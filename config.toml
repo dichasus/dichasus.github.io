@@ -1,0 +1,21 @@
+baseURL = 'https://csi.inue.science/'
+languageCode = 'en-us'
+title = 'INUE-CSI Data Sets'
+theme = 'inuetheme'
+relativeURLs = true
+
+[menu]
+  [[menu.main]]
+    identifier = "gettingstarted"
+    name = "Getting Started"
+    url = "/gettingstarted/"
+
+  [[menu.main]]
+    identifier = "datasets"
+    name = "Datasets"
+    url = "/datasets/"
+
+  [[menu.main]]
+    identifier = "results"
+    name = "Results"
+    url = "/results/"
