@@ -19,3 +19,8 @@ relativeURLs = true
     identifier = "results"
     name = "Results"
     url = "/results/"
+
+  [[menu.main]]
+    identifier = "tutorial"
+    name = "Tutorial"
+    url = "/tutorial/"
