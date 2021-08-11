@@ -1,0 +1,9 @@
+{
+    "name" : "Indoor Line of Sight",
+    "shortDescription" : "Small indoor dataset with 10MHz bandwidth and Vaccum Robot LIDAR-based ground truth positioning",
+    "subcarriers" : 1024,
+    "bandwidth" : 50e6,
+    "datapoints" : 1000,
+    "totalSize" : 5600123555,
+    "antennaSetup" : "colocated"
+}

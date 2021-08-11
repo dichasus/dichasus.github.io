@@ -1,0 +1,9 @@
+{
+    "name" : "Indoor Non-Line of Sight",
+    "shortDescription" : "Indoor dataset with non-Line of Sight components and large 50MHz bandwidth",
+    "subcarriers" : 1024,
+    "bandwidth" : 50e6,
+    "datapoints" : 1000,
+    "totalSize" : 2329547954,
+    "antennaSetup" : "colocated"
+}
