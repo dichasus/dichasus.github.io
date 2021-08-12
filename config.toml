@@ -1,5 +1,5 @@
 baseURL = 'https://csi.inue.science/'
 languageCode = 'en-us'
-title = 'INUE-CSI Data Sets'
+title = 'INUE-CSI Datasets'
 theme = 'inuetheme'
 relativeURLs = true
