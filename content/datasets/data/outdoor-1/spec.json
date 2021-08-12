@@ -3,7 +3,10 @@
     "shortDescription" : "Outdoor dataset with co-located antenna",
     "subcarriers" : 1024,
     "bandwidth" : 20e6,
+    "frequency" : 1270000000,
     "datapoints" : 1000,
     "totalSize" : 7280728596,
-    "antennaSetup" : "colocated"
+    "antennacount" : 32,
+    "outdoor" : true,
+    "antennaSetup" : "distributed"
 }

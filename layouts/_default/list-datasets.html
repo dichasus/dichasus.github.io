@@ -4,13 +4,13 @@
 	<div class="container">
 		<article id="content">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                {{- range .Resources.Match "data/*/spec.json" }}
-                    {{ $spec := (.Content | unmarshal) }}
-                    {{ $datasetPath := path.Dir .Name }}
-
+                {{ range .Pages }}
+                    {{ $spec := ((.Resources.GetMatch "spec.json").Content | unmarshal) }}
+                    {{ $datasetDataPath := .File.Dir }}
+                    {{ $datasetId := (path.Split $datasetDataPath).File }}
                     <div class="col">
                         <div class="card shadow-sm">
-                            <img class="card-img-top" width="100%" src="{{$datasetPath}}/thumbnail.jpg">
+                            <img class="card-img-top" width="100%" src="/{{$datasetDataPath}}/thumbnail.jpg">
 
                             <div class="card-body">
                                 <p class="card-title">{{ $spec.name }}</p>
@@ -18,7 +18,7 @@
 
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <a href="set/{{ .Name }}" type="button" class="btn btn-sm btn-outline-secondary">Explore</a>
+                                        <a href="/{{ $datasetDataPath }}" type="button" class="btn btn-sm btn-outline-secondary">Explore</a>
                                         <a type="button" class="btn btn-sm btn-outline-secondary">Download</a>
                                     </div>
                                     <small class="text-muted">{{ printf "%.1f" ( div $spec.totalSize 1e9 ) }} GB</small>
@@ -26,9 +26,10 @@
                             </div>
                         </div>
                     </div>
-                {{- end }}
+                {{ end }}
             </div>
 		</article>
 	</div>
 </div>
+
 {{ end }}
