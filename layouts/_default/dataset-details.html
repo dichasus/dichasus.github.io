@@ -2,8 +2,11 @@
 
 <div class="container">
 	<article id="content">
-		{{ $spec := (.Resources.GetMatch "spec.json").Content | unmarshal }}
+		{{ $spec := (.Resources.GetMatch "metadata.json").Content | unmarshal }}
 		<h1>Dataset: {{ $spec.name }}</h1>
+		<p>
+			{{ $spec.shortDescription }}
+		</p>
 
 		<div class="container-fluid">
 			<section>
@@ -13,10 +16,13 @@
 							<div class="card-body">
 								<div class="d-flex justify-content-between px-md-1">
 									<div class="align-self-center">
-										<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
-											<path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
-											<path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
-										  </svg>
+										<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48"
+											fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
+											<path
+												d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z" />
+											<path
+												d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z" />
+										</svg>
 									</div>
 									<div class="text-end">
 										<h3>{{ printf "%.3f" ( div $spec.bandwidth 1e6 ) }} MHz</h3>
@@ -52,9 +58,11 @@
 							<div class="card-body">
 								<div class="d-flex justify-content-between px-md-1">
 									<div class="align-self-center">
-										<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-collection" viewBox="0 0 16 16">
-											<path d="M2.5 3.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm2-2a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zm1.5.5A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13z"/>
-										  </svg>
+										<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48"
+											fill="currentColor" class="bi bi-collection" viewBox="0 0 16 16">
+											<path
+												d="M2.5 3.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm2-2a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zm1.5.5A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13z" />
+										</svg>
 									</div>
 									<div class="text-end">
 										<h3>{{ $spec.datapoints }}</h3>
@@ -70,9 +78,34 @@
 							<div class="card-body">
 								<div class="d-flex justify-content-between px-md-1">
 									<div class="align-self-center">
-										<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
-											<path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
-											<path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+										<svg xmlns="http://www.w3.org/2000/svg" width="58" height="48"
+											fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+											<path
+												d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+											<path
+												d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
+										</svg>
+									</div>
+									<div class="text-end">
+										<h3>{{ printf "%.1f" $spec.duration }} s</h3>
+										<p class="mb-0">Total Duration</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-xl-3 col-sm-6 col-12 mb-4">
+						<div class="card">
+							<div class="card-body">
+								<div class="d-flex justify-content-between px-md-1">
+									<div class="align-self-center">
+										<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48"
+											fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+											<path
+												d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+											<path
+												d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
 										</svg>
 									</div>
 									<div class="text-end">
@@ -96,7 +129,7 @@
 										</svg>
 									</div>
 									<div class="text-end">
-										<h3>{{ $spec.antennacount }}</h3>
+										<h3>{{ $spec.antennaCount }}</h3>
 										<p class="mb-0">Number of Antennas</p>
 									</div>
 								</div>
@@ -109,10 +142,13 @@
 							<div class="card-body">
 								<div class="d-flex justify-content-between px-md-1">
 									<div class="align-self-center">
-										<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
-											<path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
-											<path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
-										  </svg>
+										<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48"
+											fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+											<path fill-rule="evenodd"
+												d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
+											<path fill-rule="evenodd"
+												d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
+										</svg>
 									</div>
 									<div class="text-end">
 										<h3>{{ if $spec.outdoor }} Outdoor {{ else }} Indoor {{ end }}</h3>
@@ -128,10 +164,13 @@
 							<div class="card-body">
 								<div class="d-flex justify-content-between px-md-1">
 									<div class="align-self-center">
-										<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
-											<path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
-											<path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
-										  </svg>
+										<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48"
+											fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
+											<path
+												d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z" />
+											<path
+												d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z" />
+										</svg>
 									</div>
 									<div class="text-end">
 										<h3>{{ printf "%.6f" ( div $spec.frequency 1e9 ) }} GHz</h3>
@@ -147,13 +186,38 @@
 							<div class="card-body">
 								<div class="d-flex justify-content-between px-md-1">
 									<div class="align-self-center">
-										<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-bounding-box" viewBox="0 0 16 16">
-											<path d="M5 2V0H0v5h2v6H0v5h5v-2h6v2h5v-5h-2V5h2V0h-5v2H5zm6 1v2h2v6h-2v2H5v-2H3V5h2V3h6zm1-2h3v3h-3V1zm3 11v3h-3v-3h3zM4 15H1v-3h3v3zM1 4V1h3v3H1z"/>
-										  </svg>
+										<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48"
+											fill="currentColor" class="bi bi-bounding-box" viewBox="0 0 16 16">
+											<path
+												d="M5 2V0H0v5h2v6H0v5h5v-2h6v2h5v-5h-2V5h2V0h-5v2H5zm6 1v2h2v6h-2v2H5v-2H3V5h2V3h6zm1-2h3v3h-3V1zm3 11v3h-3v-3h3zM4 15H1v-3h3v3zM1 4V1h3v3H1z" />
+										</svg>
 									</div>
 									<div class="text-end">
-										<h3>{{ if (eq $spec.antennaSetup "colocated") }} Co-Located {{ else }} Distributed {{ end }}</h3>
+										<h3>{{ if (eq (len $spec.antennas) 1) }} Co-Located {{ else }}
+											Distributed {{ end }}</h3>
 										<p class="mb-0">Antenna Setup</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-xl-3 col-sm-6 col-12 mb-4">
+						<div class="card">
+							<div class="card-body">
+								<div class="d-flex justify-content-between px-md-1">
+									<div class="align-self-center">
+										<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48"
+											fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+											<path
+												d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
+											<path
+												d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+										</svg>
+									</div>
+									<div class="text-end">
+										<h3>{{ index $spec.format.pos.dimension 0 }}-D</h3>
+										<p class="mb-0">Position-Tagged</p>
 									</div>
 								</div>
 							</div>
@@ -163,10 +227,178 @@
 			</section>
 		</div>
 
+		<div class="container px-4 py-5" id="hanging-icons">
+			<div class="row g-4 py-5 row-cols-1 row-cols-lg-2">
+				<div class="col d-flex align-items-start">
+					<div>
+						<h2>Experiment Setup</h2>
+						<div id="photos-with-captions" class="carousel slide m-4" data-bs-ride="carousel">
+							<div class="carousel-inner">
+								{{ range $index, $photo := $spec.photos }}
+								<div class="carousel-item {{ if (eq $index 0) }} active {{ end }}">
+									<img src="{{ $photo.filename }}" class="d-block w-100" alt="{{ .description }}">
+									<div class="carousel-caption d-none d-md-block bg-secondary p-3 bg-opacity-50">
+										{{ $photo.description }}
+									</div>
+								</div>
+								{{ end }}
+							</div>
+							<button class="carousel-control-prev" type="button" data-bs-target="#photos-with-captions"
+								data-bs-slide="prev">
+								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+								<span class="visually-hidden">Previous</span>
+							</button>
+							<button class="carousel-control-next" type="button" data-bs-target="#photos-with-captions"
+								data-bs-slide="next">
+								<span class="carousel-control-next-icon" aria-hidden="true"></span>
+								<span class="visually-hidden">Next</span>
+							</button>
+						</div>
+					</div>
+				</div>
+				<div class="col d-flex align-items-start">
+					<div>
+						<h2>Data Analysis</h2>
+						<div id="plots-with-captions" class="carousel carousel-dark slide m-4" data-bs-ride="carousel">
+							<div class="carousel-inner">
+								<div class="carousel-item active">
+									<img src="{{ $spec.plots.snrByPosition }}" class="d-block w-100" alt="">
+									<div
+										class="carousel-caption d-none d-md-block bg-secondary text-white p-3 bg-opacity-50">
+										Mean received signal-to-noise ratio by position
+									</div>
+								</div>
+
+								<div class="carousel-item">
+									<img src="{{ $spec.plots.snrBoxplot }}" class="d-block w-100" alt="">
+									<div
+										class="carousel-caption d-none d-md-block bg-secondary text-white p-3 bg-opacity-50">
+										SNR by receive antenna index
+									</div>
+								</div>
+
+								{{ range $index, $filename := $spec.plots.csiTensors }}
+								<div class="carousel-item">
+									<img src="{{ $filename }}" class="d-block w-100" alt="">
+									<div
+										class="carousel-caption d-none d-md-block bg-secondary text-white p-3 bg-opacity-50">
+										Exemplary channel coefficient vector {{ add $index 1 }}
+									</div>
+								</div>
+								{{ end }}
+							</div>
+							<button class="carousel-control-prev" type="button" data-bs-target="#plots-with-captions"
+								data-bs-slide="prev">
+								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+								<span class="visually-hidden">Previous</span>
+							</button>
+							<button class="carousel-control-next" type="button" data-bs-target="#plots-with-captions"
+								data-bs-slide="next">
+								<span class="carousel-control-next-icon" aria-hidden="true"></span>
+								<span class="visually-hidden">Next</span>
+							</button>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<h2>Download</h2>
 		<p class="mb-5">
-			This dataset consists of 3 subsets.
+			This dataset consists of {{ len $spec.tfrecords }} files.
 		</p>
+
+		<div>
+			{{ range $index, $tfrecord := $spec.tfrecords }}
+			<div class="m-3 p-3"
+				style="border-radius: 3px; border: 1px solid lightgrey; box-shadow: 0 0.125rem 0.25rem rgba(132, 138, 163, 0.1) !important;">
+				<div class="text">
+					<h4>{{ $tfrecord.description }}</h4>
+				</div>
+
+				<div class="container-fluid">
+					<section>
+						<div class="row">
+							<div class="col-xl-3 col-sm-6 col-12 mb-4">
+								<div class="card">
+									<div class="card-body">
+										<div class="d-flex justify-content-between px-md-1">
+											<div class="align-self-center">
+												<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48"
+													fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+													<path
+														d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+													<path
+														d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+												</svg>
+											</div>
+											<div class="text-end">
+												<h3>{{ printf "%.1f" ( div $tfrecord.totalSize 1e9 ) }} GB</h3>
+												<p class="mb-0">File Size</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-xl-3 col-sm-6 col-12 mb-4">
+								<div class="card">
+									<div class="card-body">
+										<div class="d-flex justify-content-between px-md-1">
+											<div class="align-self-center">
+												<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48"
+												fill="currentColor" class="bi bi-collection" viewBox="0 0 16 16">
+												<path
+													d="M2.5 3.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm2-2a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zm1.5.5A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13z" />
+											</svg>
+											</div>
+											<div class="text-end">
+												<h3>{{ $tfrecord.datapoints }}</h3>
+												<p class="mb-0">Data Points</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-xl-3 col-sm-6 col-12 mb-4">
+								<div class="card">
+									<div class="card-body">
+										<div class="d-flex justify-content-between px-md-1">
+											<div class="align-self-center">
+												<svg xmlns="http://www.w3.org/2000/svg" width="58" height="48"
+													fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+													<path
+														d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+													<path
+														d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
+												</svg>
+											</div>
+											<div class="text-end">
+												<h3>{{ printf "%.1f" $tfrecord.duration }} s</h3>
+												<p class="mb-0">File Duration</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>		
+						</div>
+
+					</section>
+				</div>
+
+
+				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+					<button class="btn btn-lg btn-outline-dark me-md-2" type="button">View on DaRUS</button>
+					<button class="btn btn-lg btn-dark" type="button">Download TFRecords</button>
+				</div>
+			</div>
+			{{ end }}
+		</div>
+
+
+
 	</article>
 </div>
 

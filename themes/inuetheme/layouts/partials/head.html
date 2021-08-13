@@ -4,12 +4,18 @@
 	<meta charset=utf-8>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	{{ $sass := resources.Get "inue.scss" }}
-	{{ $style := $sass | resources.ToCSS }}
-
 	<link rel="icon" type="image/png" sizes="194x194" href="/favicon-194x194.png" />
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 
+
+	{{ $sass := resources.Get "inue.scss" }}
+	{{ $style := $sass | resources.ToCSS }}
+
 	<link rel="stylesheet" href="{{ $style.Permalink }}">
+
+	{{ $bootstrap := resources.Get "bootstrap/js/bootstrap.min.js" }}
+
+	<script src="{{ $bootstrap.Permalink }}"></script>
+
 </head>

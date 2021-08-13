@@ -5,23 +5,25 @@
 		<article id="content">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 {{ range .Pages }}
-                    {{ $spec := ((.Resources.GetMatch "spec.json").Content | unmarshal) }}
+                    {{ $metadata := ((.Resources.GetMatch "metadata.json").Content | unmarshal) }}
                     {{ $datasetDataPath := .File.Dir }}
                     {{ $datasetId := (path.Split $datasetDataPath).File }}
                     <div class="col">
                         <div class="card shadow-sm">
-                            <img class="card-img-top" width="100%" src="/{{$datasetDataPath}}/thumbnail.jpg">
+                            <a href="/{{ $datasetDataPath }}">
+                                <img class="card-img-top" width="100%" src="/{{$datasetDataPath}}/{{$metadata.thumbnail}}">
+                            </a>
 
                             <div class="card-body">
-                                <p class="card-title">{{ $spec.name }}</p>
-                                <p class="card-text">{{ $spec.shortDescription }}</p>
+                                <p class="card-title">{{ $metadata.name }}</p>
+                                <p class="card-text">{{ $metadata.shortDescription }}</p>
 
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
                                         <a href="/{{ $datasetDataPath }}" type="button" class="btn btn-sm btn-outline-secondary">Explore</a>
                                         <a type="button" class="btn btn-sm btn-outline-secondary">Download</a>
                                     </div>
-                                    <small class="text-muted">{{ printf "%.1f" ( div $spec.totalSize 1e9 ) }} GB</small>
+                                    <small class="text-muted">{{ printf "%.1f" ( div $metadata.totalSize 1e9 ) }} GB</small>
                                 </div>
                             </div>
                         </div>

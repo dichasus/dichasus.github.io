@@ -1,4 +1,4 @@
-baseURL = 'https://csi.inue.science/'
+baseURL = 'https://webdemo.inue.uni-stuttgart.de/csi'
 languageCode = 'en-us'
 title = 'INUE-CSI Datasets'
 theme = 'inuetheme'
