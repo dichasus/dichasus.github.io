@@ -1,37 +1,36 @@
 {{ define "main" }}
 
-<div class="album py-5 bg-light">
-	<div class="container">
-		<article id="content">
+<div class="container">
+    <h1>List of Public Datasets</h1>
+</div>
+<div class="album py-5">
+    <div class="container">
+        <article id="content">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 {{ range .Pages }}
-                    {{ $metadata := ((.Resources.GetMatch "metadata.json").Content | unmarshal) }}
-                    {{ $datasetDataPath := .File.Dir }}
-                    {{ $datasetId := (path.Split $datasetDataPath).File }}
-                    <div class="col">
-                        <div class="card shadow-sm">
-                            <a href="/{{ $datasetDataPath }}">
-                                <img class="card-img-top" width="100%" src="/{{$datasetDataPath}}/{{$metadata.thumbnail}}">
-                            </a>
+                {{ $metadata := ((.Resources.GetMatch "metadata.json").Content | unmarshal) }}
+                {{ $datasetDataPath := .File.Dir }}
+                {{ $datasetId := (path.Split $datasetDataPath).File }}
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <img class="card-img-top" width="100%" src="/{{$datasetDataPath}}/{{$metadata.thumbnail}}">
 
-                            <div class="card-body">
-                                <p class="card-title">{{ $metadata.name }}</p>
-                                <p class="card-text">{{ $metadata.shortDescription }}</p>
+                        <div class="card-body">
+                            <p class="card-title"><b>{{ $metadata.name }}</b></p>
+                            <p class="card-text">{{ $metadata.shortDescription }}</p>
 
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <a href="/{{ $datasetDataPath }}" type="button" class="btn btn-sm btn-outline-secondary">Explore</a>
-                                        <a type="button" class="btn btn-sm btn-outline-secondary">Download</a>
-                                    </div>
-                                    <small class="text-muted">{{ printf "%.1f" ( div $metadata.totalSize 1e9 ) }} GB</small>
-                                </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">{{ printf "%.1f" ( div $metadata.totalSize 1e9 ) }} GB</small>
+
+                                <a class="btn btn-dark stretched-link" href="/{{ $datasetDataPath }}">Explore</a>
                             </div>
                         </div>
                     </div>
+                </div>
                 {{ end }}
             </div>
-		</article>
-	</div>
+        </article>
+    </div>
 </div>
 
 {{ end }}
