@@ -306,7 +306,8 @@
 
 		<h2>Download</h2>
 		<p class="mb-5">
-			This dataset consists of {{ len $spec.tfrecords }} files.
+			This dataset consists of {{ len $spec.tfrecords }} file{{ if (gt (len $spec.tfrecords) 1) }}s{{ end }}.
+			Descriptions of {{ if (gt (len $spec.tfrecords) 1) }}these files{{ else }}this file{{ end }} as well as download links are provided below.
 		</p>
 
 		<div>
@@ -317,81 +318,140 @@
 					<h4>{{ $tfrecord.description }}</h4>
 				</div>
 
-				<div class="container-fluid">
-					<section>
-						<div class="row">
-							<div class="col-xl-3 col-sm-6 col-12 mb-4">
-								<div class="card">
-									<div class="card-body">
-										<div class="d-flex justify-content-between px-md-1">
-											<div class="align-self-center">
-												<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48"
-													fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
-													<path
-														d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
-													<path
-														d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
-												</svg>
-											</div>
-											<div class="text-end">
-												<h3>{{ printf "%.1f" ( div $tfrecord.totalSize 1e9 ) }} GB</h3>
-												<p class="mb-0">File Size</p>
+				<div class="container">
+					<div class="row">
+						<div class="col-xl-4">
+							<div class="container-fluid">
+								<section>
+									<div class="row">
+										<div class="col-xl-6 col-sm-4 col-6 ps-0 mb-4">
+											<div class="card">
+												<div class="card-body p-2">
+													<div class="d-flex justify-content-between px-md-1">
+														<div class="align-self-center">
+															<svg xmlns="http://www.w3.org/2000/svg" width="24"
+																height="24" fill="currentColor" class="bi bi-download"
+																viewBox="0 0 16 16">
+																<path
+																	d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+																<path
+																	d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+															</svg>
+														</div>
+														<div class="text-end">
+															<b>{{ printf "%.1f" ( div $tfrecord.totalSize 1e9 ) }}
+																GB</b>
+															<p class="mb-0">File Size</p>
+														</div>
+													</div>
+												</div>
 											</div>
 										</div>
-									</div>
-								</div>
-							</div>
 
-							<div class="col-xl-3 col-sm-6 col-12 mb-4">
-								<div class="card">
-									<div class="card-body">
-										<div class="d-flex justify-content-between px-md-1">
-											<div class="align-self-center">
-												<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48"
-												fill="currentColor" class="bi bi-collection" viewBox="0 0 16 16">
-												<path
-													d="M2.5 3.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm2-2a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zm1.5.5A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13z" />
-											</svg>
-											</div>
-											<div class="text-end">
-												<h3>{{ $tfrecord.datapoints }}</h3>
-												<p class="mb-0">Data Points</p>
+										<div class="col-xl-6 col-sm-4 col-6 ps-0 mb-4">
+											<div class="card">
+												<div class="card-body p-2">
+													<div class="d-flex justify-content-between px-md-1">
+														<div class="align-self-center">
+															<svg xmlns="http://www.w3.org/2000/svg" width="24"
+																height="24" fill="currentColor" class="bi bi-collection"
+																viewBox="0 0 16 16">
+																<path
+																	d="M2.5 3.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm2-2a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zm1.5.5A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13z" />
+															</svg>
+														</div>
+														<div class="text-end">
+															<b>{{ $tfrecord.datapoints }}</b>
+															<p class="mb-0">Points</p>
+														</div>
+													</div>
+												</div>
 											</div>
 										</div>
-									</div>
-								</div>
-							</div>
 
-							<div class="col-xl-3 col-sm-6 col-12 mb-4">
-								<div class="card">
-									<div class="card-body">
-										<div class="d-flex justify-content-between px-md-1">
-											<div class="align-self-center">
-												<svg xmlns="http://www.w3.org/2000/svg" width="58" height="48"
-													fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
-													<path
-														d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-													<path
-														d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-												</svg>
-											</div>
-											<div class="text-end">
-												<h3>{{ printf "%.1f" $tfrecord.duration }} s</h3>
-												<p class="mb-0">File Duration</p>
+										<div class="col-xl-6 col-sm-4 col-6 ps-0 mb-4">
+											<div class="card">
+												<div class="card-body p-2">
+													<div class="d-flex justify-content-between px-md-1">
+														<div class="align-self-center">
+															<svg xmlns="http://www.w3.org/2000/svg" width="24"
+																height="24" fill="currentColor" class="bi bi-clock"
+																viewBox="0 0 16 16">
+																<path
+																	d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+																<path
+																	d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
+															</svg>
+														</div>
+														<div class="text-end">
+															<b>{{ printf "%.1f" $tfrecord.duration }} s</b>
+															<p class="mb-0">Duration</p>
+														</div>
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-							</div>		
+
+								</section>
+							</div>
 						</div>
+						<div class="col-xl-8">
+							<div class="accordion mb-3" id="plot-accordion-{{ $index }}">
+								<div class="accordion-item">
+									<h2 class="accordion-header" id="headingOne-{{ $index }}">
+										<button class="accordion-button collapsed" type="button"
+											data-bs-toggle="collapse" data-bs-target="#collapseOne-{{ $index }}"
+											aria-expanded="false" aria-controls="collapseOne-{{ $index }}">
+											Mean SNR by Position Plot
+										</button>
+									</h2>
+									<div id="collapseOne-{{ $index }}" class="accordion-collapse collapse"
+										aria-labelledby="headingOne-{{ $index }}"
+										data-bs-parent="#plot-accordion-{{ $index }}">
+										<div class="accordion-body">
+											<img class="col-12" src="{{ $tfrecord.plots.snrByPosition }}" />
+										</div>
+									</div>
+								</div>
+								<div class="accordion-item">
+									<h2 class="accordion-header" id="headingTwo-{{ $index }}">
+										<button class="accordion-button collapsed" type="button"
+											data-bs-toggle="collapse" data-bs-target="#collapseTwo-{{ $index }}"
+											aria-expanded="false" aria-controls="collapseTwo-{{ $index }}">
+											SNR by Antenna Boxplot
+										</button>
+									</h2>
+									<div id="collapseTwo-{{ $index }}" class="accordion-collapse collapse"
+										aria-labelledby="headingTwo-{{ $index }}"
+										data-bs-parent="#plot-accordion-{{ $index }}">
+										<div class="accordion-body">
+											<img class="col-12" src="{{ $tfrecord.plots.snrBoxplot }}" />
+										</div>
+									</div>
+								</div>
+								<div class="accordion-item">
+									<h2 class="accordion-header" id="headingThree-{{ $index }}">
+										<button class="accordion-button collapsed" type="button"
+											data-bs-toggle="collapse" data-bs-target="#collapseThree-{{ $index }}"
+											aria-expanded="false" aria-controls="collapseThree-{{ $index }}">
+											Channel Coefficient Vector Plot (Example)
+										</button>
+									</h2>
+									<div id="collapseThree-{{ $index }}" class="accordion-collapse collapse"
+										aria-labelledby="headingThree-{{ $index }}"
+										data-bs-parent="#plot-accordion-{{ $index }}">
+										<img class="col-12" src="{{ index $tfrecord.plots.csiTensors 0 }}" />
+									</div>
+								</div>
+							</div>
 
-					</section>
-				</div>
-
-
-				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-					<button class="btn btn-lg btn-outline-dark me-md-2" type="button">View on DaRUS</button>
-					<button class="btn btn-lg btn-dark" type="button">Download TFRecords</button>
+							<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+								<button class="btn btn-lg btn-outline-dark me-md-2" type="button">View on DaRUS</button>
+								<button class="btn btn-lg btn-dark" type="button">Download TFRecords</button>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 			{{ end }}
