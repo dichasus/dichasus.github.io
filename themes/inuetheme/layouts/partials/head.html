@@ -18,4 +18,12 @@
 
 	<script src="{{ $bootstrap.Permalink }}"></script>
 
+	{{ $highlight := resources.Get "highlight.min.js" }}
+
+	<script src="{{ $highlight.Permalink }}"></script>
+
+	{{ $vs2015 := resources.Get "vs2015.min.css" }}
+
+	<link rel="stylesheet" href="{{ $vs2015.Permalink }}">
+
 </head>

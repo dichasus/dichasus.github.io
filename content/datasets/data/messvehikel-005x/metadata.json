@@ -1,7 +1,7 @@
 {
     "identifier": "messvehikel-005x",
     "name": "Indoor Non-Line of Sight, Single Room",
-    "shortDescription": "Indoor, single-room dataset with co-located antenna and 50MHz bandwidth",
+    "shortDescription": "Indoor, single-room dataset with co-located receivers and 50MHz bandwidth",
     "bandwidth": 50000000.0,
     "frequency": 1270000000,
     "outdoor": false,
@@ -9,8 +9,8 @@
         {
             "name": "Main Array",
             "type": "array",
-            "spacingX": 0.1,
-            "spacingY": 0.1,
+            "spacingX": 0.118,
+            "spacingY": 0.118,
             "assignments": [
                 [
                     28,
@@ -56,7 +56,7 @@
             "location": [
                 0,
                 0,
-                1.5
+                1.2
             ],
             "direction": [
                 -1,
