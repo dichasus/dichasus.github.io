@@ -393,7 +393,7 @@
 		{{ range $name, $desc := $spec.format }}{{ $formatkeys = $formatkeys | append (strings.Replace $name "-" "_") }} {{ end }}
 		{{ $tffilenames := slice }}
 		{{ range $file := $spec.tfrecords }}{{ $tffilenames = $tffilenames | append $file.filename }}{{ end }}
-		<pre><code class="language-python">#!/usr/bin/env python3
+		<pre class="mt-3"><code class="language-python">#!/usr/bin/env python3
 import tensorflow as tf
 
 raw_dataset = tf.data.TFRecordDataset(["{{delimit $tffilenames "\", \""}}"])
@@ -404,12 +404,16 @@ feature_description = {
 			
 def record_parse_function(proto):
 	record = tf.io.parse_single_example(proto, feature_description)
-		
-{{ range $name, $desc := $spec.format }}	{{ strings.Replace $name "-" "_" }} = {{ if eq $desc.type "tensor" }}tf.ensure_shape(tf.io.parse_tensor(record["{{ $name }}"], out_type = tf.float32), ({{ delimit $desc.dimension ", " }})){{ else if eq $desc.type "float32" }}tf.ensure_shape(record["{{ $name }}"], ()){{ end }}
+{{ range $name, $desc := $spec.format }}
+	# {{ $desc.description }}
+	{{ strings.Replace $name "-" "_" }} = {{ if eq $desc.type "tensor" }}tf.ensure_shape(tf.io.parse_tensor(record["{{ $name }}"], out_type = tf.float32), ({{ delimit $desc.dimension ", " }})){{ else if eq $desc.type "float32" }}tf.ensure_shape(record["{{ $name }}"], ()){{ end }}
 {{ end }}
 	return {{ delimit $formatkeys ", " }}
 			
-dataset = raw_dataset.map(record_parse_function, num_parallel_calls = tf.data.experimental.AUTOTUNE)</code></pre>
+dataset = raw_dataset.map(record_parse_function, num_parallel_calls = tf.data.experimental.AUTOTUNE)
+
+# Optional: Cache dataset in RAM for faster training
+dataset = dataset.cache()</code></pre>
 		</pre>
 		<script>hljs.highlightAll();</script>
 
@@ -417,7 +421,7 @@ dataset = raw_dataset.map(record_parse_function, num_parallel_calls = tf.data.ex
 		<p>
 			Please refer to the <a href="/">home page</a> for information on how to cite any of our datasets in your research.
 			For this dataset in particular, you may use the following BibTeX:
-			<pre><code class="nohighlight">@todo{todo,
+			<pre><code class="language-tex">@todo{todo,
 	author    = {Florian Euchner and Marc Gauger and Sebastian Dörner and Stephan ten Brink},
 	title     = {CSI Dataset: {{ $spec.name }}},
 	year      = {2021}

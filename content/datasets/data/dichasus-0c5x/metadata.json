@@ -1,0 +1,260 @@
+{
+    "identifier": "dichasus-0c5x",
+    "name": "Outdoor - Street on University Campus",
+    "shortDescription": "Outdoor, mostly line-of-sight dataset with transmitter on a street between two tall buildings on the university campus",
+    "bandwidth": 50000000.0,
+    "frequency": 1272000000,
+    "outdoor": true,
+    "antennas": [
+        {
+            "name": "Main Array",
+            "type": "array",
+            "spacingX": 0.118,
+            "spacingY": 0.118,
+            "assignments": [
+                [
+                    28,
+                    5,
+                    10,
+                    14,
+                    6,
+                    2,
+                    16,
+                    18
+                ],
+                [
+                    19,
+                    4,
+                    23,
+                    17,
+                    20,
+                    11,
+                    9,
+                    27
+                ],
+                [
+                    31,
+                    29,
+                    0,
+                    13,
+                    1,
+                    12,
+                    3,
+                    7
+                ],
+                [
+                    30,
+                    26,
+                    21,
+                    25,
+                    22,
+                    15,
+                    24,
+                    8
+                ]
+            ],
+            "location": [
+                0,
+                0,
+                1.2
+            ],
+            "direction": [
+                -1,
+                0,
+                0
+            ]
+        }
+    ],
+    "format": {
+        "csi": {
+            "description": "Channel coefficients for all antennas, over all subcarriers, real and imaginary parts",
+            "type": "tensor",
+            "dimension": [
+                32,
+                1024,
+                2
+            ]
+        },
+        "snr": {
+            "description": "Signal-to-Noise ratio estimates for all antennas",
+            "type": "tensor",
+            "dimension": [
+                32
+            ]
+        },
+        "pos-gnss": {
+            "description": "Position of transmitter determined by GNSS, in latitude / longitude / height above sea level",
+            "type": "tensor",
+            "dimension": [
+                3
+            ]
+        },
+        "time": {
+            "description": "Timestamp since start of measurement campaign, in seconds",
+            "type": "float32",
+            "dimension": []
+        },
+        "stddev-gnss": {
+            "description": "Standard deviation of position label estimate, in meters.",
+            "type": "tensor",
+            "dimension": [
+                3
+            ]
+        },
+        "cfo": {
+            "description": "Measured carrier frequency offset between MOBTX and each receive antenna.",
+            "type": "tensor",
+            "dimension": [
+                32
+            ]
+        }
+    },
+    "tfrecords": [
+        {
+            "filename": "tfrecords/dichasus-0c5b-outdoortest.tfrecords",
+            "description": "MOBTX static, then MOBTX moves from position B to position C, then MOBTX static. People may walk through the channel during the measurement at any time.",
+            "plots": {
+                "snrByPosition": "plots/dichasus-0c5b-outdoortest-snr-position.png",
+                "snrBoxplot": "plots/dichasus-0c5b-outdoortest-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-0c5b-outdoortest-csi-0.png"
+                ]
+            },
+            "datapoints": 1211,
+            "duration": 80.49609375,
+            "totalSize": 318031609
+        },
+        {
+            "filename": "tfrecords/dichasus-0c5c-outdoortest.tfrecords",
+            "description": "MOBTX static, then MOBTX moves from position C to position D, then MOBTX static. People may walk through the channel during the measurement at any time.",
+            "plots": {
+                "snrByPosition": "plots/dichasus-0c5c-outdoortest-snr-position.png",
+                "snrBoxplot": "plots/dichasus-0c5c-outdoortest-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-0c5c-outdoortest-csi-0.png"
+                ]
+            },
+            "datapoints": 1223,
+            "duration": 96.8160400390625,
+            "totalSize": 321183037
+        },
+        {
+            "filename": "tfrecords/dichasus-0c5d-outdoortest.tfrecords",
+            "description": "MOBTX static, then MOBTX moves from position D to position E, then MOBTX static. People may walk through the channel during the measurement at any time.",
+            "plots": {
+                "snrByPosition": "plots/dichasus-0c5d-outdoortest-snr-position.png",
+                "snrBoxplot": "plots/dichasus-0c5d-outdoortest-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-0c5d-outdoortest-csi-0.png"
+                ]
+            },
+            "datapoints": 1583,
+            "duration": 115.0560302734375,
+            "totalSize": 415725877
+        },
+        {
+            "filename": "tfrecords/dichasus-0c5e-outdoortest.tfrecords",
+            "description": "MOBTX static, then MOBTX moves from position E to position F, then MOBTX static. People may walk through the channel during the measurement at any time.",
+            "plots": {
+                "snrByPosition": "plots/dichasus-0c5e-outdoortest-snr-position.png",
+                "snrBoxplot": "plots/dichasus-0c5e-outdoortest-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-0c5e-outdoortest-csi-0.png"
+                ]
+            },
+            "datapoints": 1071,
+            "duration": 85.7763671875,
+            "totalSize": 281264949
+        },
+        {
+            "filename": "tfrecords/dichasus-0c5f-outdoortest.tfrecords",
+            "description": "MOBTX static, then MOBTX moves from position F to position G, then MOBTX static. People may walk through the channel during the measurement at any time.",
+            "plots": {
+                "snrByPosition": "plots/dichasus-0c5f-outdoortest-snr-position.png",
+                "snrBoxplot": "plots/dichasus-0c5f-outdoortest-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-0c5f-outdoortest-csi-0.png"
+                ]
+            },
+            "datapoints": 1544,
+            "duration": 134.25634765625,
+            "totalSize": 405483736
+        },
+        {
+            "filename": "tfrecords/dichasus-0c60-outdoortest.tfrecords",
+            "description": "MOBTX static, then MOBTX moves from position G to position H, then MOBTX static. People may walk through the channel during the measurement at any time.",
+            "plots": {
+                "snrByPosition": "plots/dichasus-0c60-outdoortest-snr-position.png",
+                "snrBoxplot": "plots/dichasus-0c60-outdoortest-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-0c60-outdoortest-csi-0.png"
+                ]
+            },
+            "datapoints": 535,
+            "duration": 82.1279296875,
+            "totalSize": 140501165
+        },
+        {
+            "filename": "tfrecords/dichasus-0c63-outdoortest.tfrecords",
+            "description": "Transmitter was moved in a meandering pattern, .",
+            "plots": {
+                "snrByPosition": "plots/dichasus-0c63-outdoortest-snr-position.png",
+                "snrBoxplot": "plots/dichasus-0c63-outdoortest-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-0c63-outdoortest-csi-0.png"
+                ]
+            },
+            "datapoints": 6538,
+            "duration": 695.8560791015625,
+            "totalSize": 1717003022
+        },
+        {
+            "filename": "tfrecords/dichasus-0c64-outdoortest.tfrecords",
+            "description": "Sixth complete run of vacuum robot",
+            "plots": {
+                "snrByPosition": "plots/dichasus-0c64-outdoortest-snr-position.png",
+                "snrBoxplot": "plots/dichasus-0c64-outdoortest-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-0c64-outdoortest-csi-0.png"
+                ]
+            },
+            "datapoints": 6729,
+            "duration": 1383.2159423828125,
+            "totalSize": 1767163251
+        }
+    ],
+    "photos": [
+        {
+            "filename": "photosAll/street.jpg",
+            "description": "Outdoor environment in which measurements were carried out."
+        },
+        {
+            "filename": "photosAll/map-0c64.png",
+            "description": "Locations of data points in dichasus-0c64 dataset visualized in a map."
+        },
+        {
+            "filename": "photosAll/antenna.jpg",
+            "description": "32-antenna array mounted just outside a window."
+        }
+    ],
+    "thumbnail": "photosAll/street.jpg",
+    "plots": {
+        "snrByPosition": "plots/overall-snr-position.png",
+        "snrBoxplot": "plots/overall-snr-boxplot.png",
+        "csiTensors": [
+            "plots/overall-csi-0.png",
+            "plots/overall-csi-1.png",
+            "plots/overall-csi-2.png",
+            "plots/overall-csi-3.png",
+            "plots/overall-csi-4.png",
+            "plots/overall-csi-5.png",
+            "plots/overall-csi-6.png",
+            "plots/overall-csi-7.png"
+        ]
+    },
+    "datapoints": 20434,
+    "duration": 2673.600830078125,
+    "antennaCount": 32,
+    "subcarriers": 1024,
+    "totalSize": 5366356646
+}

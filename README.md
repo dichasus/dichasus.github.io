@@ -1,4 +1,4 @@
-# Messvehikel Dataset Website
+# DICHASUS Dataset Website
 
 The website is based on [Bootstrap](https://getbootstrap.com/) for theming and [Hugo](https://gohugo.io/) for static HTML site generation.
 While the bootstrap SCSS sources are included as part of this repository, you will need to install Hugo separately on your system.

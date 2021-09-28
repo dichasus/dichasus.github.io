@@ -8,13 +8,13 @@ layout: list
 <div class="container col-xxl-8 px-4 py-5">
 	<div class="row flex-lg-row-reverse align-items-center g-5 py-5">
 		<div class="col-10 col-sm-8 col-lg-6">
-			<img src="/img/messvehikel-1.jpg" class="d-block mx-lg-auto img-fluid" alt="Messvehikel" width="700"
+			<img src="/img/dichasus-1.jpg" class="d-block mx-lg-auto img-fluid" alt="Photo of DICHASUS" width="700"
 				height="500" loading="lazy">
 		</div>
 		<div class="col-lg-6">
-			<h1 class="display-5 fw-bold lh-1 mb-3">INUE Massive MIMO CSI Dataset Collection</h1>
-			<p class="lead">The INUE-CSI dataset collection contains channel state information datasets for line of
-				sight, non-line of sight, colocated and distributed antenna configurations, complete with positioning
+			<h1 class="display-5 fw-bold lh-1 mb-3">DICHASUS Massive MIMO CSI Dataset Collection</h1>
+			<p class="lead">The DICHASUS (DIstributed CHAnnel Sounder by University of Stuttgart) dataset collection contains channel state information datasets for line of
+				sight, non-line of sight, indoor, outdoor, colocated and distributed antenna configurations, complete with "ground truth" positioning
 				labels.</p>
 			<div class="d-grid gap-2 d-md-flex justify-content-md-start">
 				<a href="/gettingstarted/" type="button" class="btn btn-dark btn-lg px-4 me-md-2">Get Started</a>
@@ -25,31 +25,33 @@ layout: list
 </div>
 
 <main class="flex-shrink-0">
-	<div class="container p-5">
-		<h3>Paper</h3>
-		TODO: Include thumbnail and link to paper
-	</div>
-	
-	<div class="container p-5">
-		<h3>How to Cite</h3>
-		<ol>
-		<li>
-		Please cite our paper if you use datasets from this site for your own research.
-		This paper explains in a general sense how data was collected and postprocessed:
-		<pre><code>
-@inproceedings{inuecsi2021,
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-2 col-md-5 px-3 py-3">
+				<h3>Paper</h3>
+				<img style="width: 150px; border: 1px solid black;" src="/img/paper-thumbnail.png">
+			</div>
+			<div class="col-lg-10 col-md-12 px-3 py-3">
+				<h3>How to Cite</h3>
+				<ol>
+				<li>
+				Please cite our paper if you use datasets from this site for your own research.
+				This paper explains in a general sense how data was collected and postprocessed:
+				<pre class="mt-3"><code class="language-tex">@inproceedings{inuecsi2021,
 	author    = {Florian Euchner and Marc Gauger and Sebastian Dörner and Stephan ten Brink},
 	title     = {A Distributed Massive MIMO Channel Sounder for "big CSI data"-driven Machine Learning Algorithms},
 	journal   = {25th International ITG Workshop on Smart Antennas},
 	year      = {2021}
-}
-		</code></pre>
-		</li>
-		<li>
-			Each dataset is unambiguously identified by its DOI.
-			Please cite this identifier to refer to the specific datasets you analyzed in your own research.
-			Refer to each dataset's page for more information.
-		</li>
-		</ol>
+}</code></pre>
+				<script>hljs.highlightAll();</script>
+				</li>
+				<li>
+					Each dataset is unambiguously identified by its DOI.
+					Please cite this identifier to refer to the specific datasets you analyzed in your own research.
+					Refer to each dataset's page for more information.
+				</li>
+				</ol>
+			</div>
+		</div>
 	</div>
 </main>

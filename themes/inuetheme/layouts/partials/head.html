@@ -1,5 +1,5 @@
 <head>
-	<title>INUE-CSI - {{ .Title }}</title>
+	<title>DICHASUS - {{ .Title }}</title>
 
 	<meta charset=utf-8>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -22,8 +22,8 @@
 
 	<script src="{{ $highlight.Permalink }}"></script>
 
-	{{ $vs2015 := resources.Get "vs2015.min.css" }}
+	{{ $highlightTheme := resources.Get "stackoverflow-light.min.css" }}
 
-	<link rel="stylesheet" href="{{ $vs2015.Permalink }}">
+	<link rel="stylesheet" href="{{ $highlightTheme.Permalink }}">
 
 </head>

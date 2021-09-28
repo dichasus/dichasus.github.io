@@ -21,6 +21,19 @@ menu:
 			<li>convert TFRecords files to different formats such as NumPy binary files and MATLAB formatted data.</li>
 		</ul>
 
-		If you are looking for an example on how to use the data sets
+		<h2>Averaging Subcarrier Chunks</h2>
+		<pre><code class="language-python">def shrink_csi(ratio, csi):
+	subcarrier_count = csi.shape[1]
+	assert(subcarrier_count % ratio == 0)
+	shrunk_subcarrier_count = subcarrier_count // ratio
+	csi_shrunk = []
+		
+	# Compute mean over chunks of subcarriers of size "ratio"
+	for subcarrier in range(shrunk_subcarrier_count):
+		shrunk_chunk = tf.math.reduce_mean(csi[:, (ratio * subcarrier):(ratio * (subcarrier + 1)), :], axis = 1)
+		csi_shrunk.append(shrunk_chunk)
+		
+	return tf.stack(csi_shrunk, axis = 1)</code></pre>
+	<script>hljs.highlightAll();</script>
 	</div>
 </main>

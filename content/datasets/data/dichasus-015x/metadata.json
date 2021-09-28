@@ -1,0 +1,232 @@
+{
+    "identifier": "dichasus-015x",
+    "name": "Indoor Line of Sight, Lab Room",
+    "shortDescription": "Indoor line-of-sight dataset in a lab room, with co-located receivers and 50MHz bandwidth",
+    "bandwidth": 50000000.0,
+    "frequency": 1272000000,
+    "outdoor": false,
+    "antennas": [
+        {
+            "name": "Main Array",
+            "type": "array",
+            "spacingX": 0.118,
+            "spacingY": 0.118,
+            "assignments": [
+                [
+                    28,
+                    5,
+                    10,
+                    14,
+                    6,
+                    2,
+                    16,
+                    18
+                ],
+                [
+                    19,
+                    4,
+                    23,
+                    17,
+                    20,
+                    11,
+                    9,
+                    27
+                ],
+                [
+                    31,
+                    29,
+                    0,
+                    13,
+                    1,
+                    12,
+                    3,
+                    7
+                ],
+                [
+                    30,
+                    26,
+                    21,
+                    25,
+                    22,
+                    15,
+                    24,
+                    8
+                ]
+            ],
+            "location": [
+                0,
+                0,
+                1.2
+            ],
+            "direction": [
+                -1,
+                0,
+                0
+            ]
+        }
+    ],
+    "format": {
+        "csi": {
+            "description": "Channel coefficients for all antennas, over all subcarriers, real and imaginary parts",
+            "type": "tensor",
+            "dimension": [
+                32,
+                1024,
+                2
+            ]
+        },
+        "snr": {
+            "description": "Signal-to-Noise ratio estimates for all antennas",
+            "type": "tensor",
+            "dimension": [
+                32
+            ]
+        },
+        "pos-tachy": {
+            "description": "Position of transmitter determined by Leica MS60 Tachymeter with 20Hz update rate",
+            "type": "tensor",
+            "dimension": [
+                3
+            ]
+        },
+        "pos-lidar": {
+            "description": "Position of transmitter determined by vacuum robot LIDAR, in meters (X / Y coordinates)",
+            "type": "tensor",
+            "dimension": [
+                2
+            ]
+        },
+        "time": {
+            "description": "Timestamp since start of measurement campaign, in seconds",
+            "type": "float32",
+            "dimension": []
+        },
+        "rot-lidar": {
+            "description": "Rotation of robot relative to its initial parking position, in radians",
+            "type": "float32",
+            "dimension": []
+        }
+    },
+    "tfrecords": [
+        {
+            "filename": "tfrecords/dichasus-0152-shifted.tfrecords",
+            "description": "First complete run of vacuum robot",
+            "plots": {
+                "snrByPosition": "plots/dichasus-0152-shifted-snr-position.png",
+                "snrBoxplot": "plots/dichasus-0152-shifted-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-0152-shifted-csi-0.png"
+                ]
+            },
+            "datapoints": 11841,
+            "duration": 871.10400390625,
+            "totalSize": 3108037521
+        },
+        {
+            "filename": "tfrecords/dichasus-0153-shifted.tfrecords",
+            "description": "Second complete run of vacuum robot",
+            "plots": {
+                "snrByPosition": "plots/dichasus-0153-shifted-snr-position.png",
+                "snrBoxplot": "plots/dichasus-0153-shifted-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-0153-shifted-csi-0.png"
+                ]
+            },
+            "datapoints": 12664,
+            "duration": 893.135986328125,
+            "totalSize": 3324059384
+        },
+        {
+            "filename": "tfrecords/dichasus-0154-shifted.tfrecords",
+            "description": "Third complete run of vacuum robot",
+            "plots": {
+                "snrByPosition": "plots/dichasus-0154-shifted-snr-position.png",
+                "snrBoxplot": "plots/dichasus-0154-shifted-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-0154-shifted-csi-0.png"
+                ]
+            },
+            "datapoints": 13472,
+            "duration": 933.93603515625,
+            "totalSize": 3536144032
+        },
+        {
+            "filename": "tfrecords/dichasus-0155-shifted.tfrecords",
+            "description": "Fourth complete run of vacuum robot",
+            "plots": {
+                "snrByPosition": "plots/dichasus-0155-shifted-snr-position.png",
+                "snrBoxplot": "plots/dichasus-0155-shifted-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-0155-shifted-csi-0.png"
+                ]
+            },
+            "datapoints": 14481,
+            "duration": 980.015869140625,
+            "totalSize": 3800987361
+        },
+        {
+            "filename": "tfrecords/dichasus-0157-shifted.tfrecords",
+            "description": "Fifth complete run of vacuum robot",
+            "plots": {
+                "snrByPosition": "plots/dichasus-0157-shifted-snr-position.png",
+                "snrBoxplot": "plots/dichasus-0157-shifted-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-0157-shifted-csi-0.png"
+                ]
+            },
+            "datapoints": 12823,
+            "duration": 887.3759765625,
+            "totalSize": 3365793863
+        },
+        {
+            "filename": "tfrecords/dichasus-0158-shifted.tfrecords",
+            "description": "Sixth complete run of vacuum robot",
+            "plots": {
+                "snrByPosition": "plots/dichasus-0158-shifted-snr-position.png",
+                "snrBoxplot": "plots/dichasus-0158-shifted-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-0158-shifted-csi-0.png"
+                ]
+            },
+            "datapoints": 12326,
+            "duration": 901.2958984375,
+            "totalSize": 3235340806
+        }
+    ],
+    "photos": [
+        {
+            "filename": "photosAll/room.jpg",
+            "description": "Picture of room in which experiment was carried out"
+        },
+        {
+            "filename": "photosAll/map.png",
+            "description": "Top view map of room generated by robot's LiDAR. Only some areas inside the room were measured."
+        },
+        {
+            "filename": "photosAll/tachy.jpg",
+            "description": "Leica MS60 tachymeter that provided the ground truth positioning labels."
+        },
+        {
+            "filename": "photosAll/saugi.jpg",
+            "description": "Vacuum robot on top of which transmit antenna was mounted and whose LiDAR positioning is used as ground truth label."
+        }
+    ],
+    "thumbnail": "photosAll/tachywide.jpg",
+    "plots": {
+        "snrByPosition": "plots/overall-snr-position.png",
+        "snrBoxplot": "plots/overall-snr-boxplot.png",
+        "csiTensors": [
+            "plots/overall-csi-0.png",
+            "plots/overall-csi-1.png",
+            "plots/overall-csi-2.png",
+            "plots/overall-csi-3.png",
+            "plots/overall-csi-4.png",
+            "plots/overall-csi-5.png"
+        ]
+    },
+    "datapoints": 77607,
+    "duration": 5466.86376953125,
+    "antennaCount": 32,
+    "subcarriers": 1024,
+    "totalSize": 20370362967
+}

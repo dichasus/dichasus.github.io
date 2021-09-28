@@ -1,5 +1,5 @@
 baseURL = 'https://webdemo.inue.uni-stuttgart.de/csi'
 languageCode = 'en-us'
-title = 'INUE-CSI Datasets'
+title = 'DICHASUS Datasets'
 theme = 'inuetheme'
 relativeURLs = true
