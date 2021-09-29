@@ -95,7 +95,7 @@
             "dimension": []
         },
         "stddev-gnss": {
-            "description": "Standard deviation of position label estimate, in meters.",
+            "description": "Standard deviation of position label estimate, in meters",
             "type": "tensor",
             "dimension": [
                 3
@@ -120,6 +120,7 @@
                     "plots/dichasus-0c5b-outdoortest-csi-0.png"
                 ]
             },
+            "gpx": "gpx/dichasus-0c5b-outdoortest.gpx",
             "datapoints": 1211,
             "duration": 80.49609375,
             "totalSize": 318031609
@@ -134,6 +135,7 @@
                     "plots/dichasus-0c5c-outdoortest-csi-0.png"
                 ]
             },
+            "gpx": "gpx/dichasus-0c5c-outdoortest.gpx",
             "datapoints": 1223,
             "duration": 96.8160400390625,
             "totalSize": 321183037
@@ -148,6 +150,7 @@
                     "plots/dichasus-0c5d-outdoortest-csi-0.png"
                 ]
             },
+            "gpx": "gpx/dichasus-0c5d-outdoortest.gpx",
             "datapoints": 1583,
             "duration": 115.0560302734375,
             "totalSize": 415725877
@@ -162,6 +165,7 @@
                     "plots/dichasus-0c5e-outdoortest-csi-0.png"
                 ]
             },
+            "gpx": "gpx/dichasus-0c5e-outdoortest.gpx",
             "datapoints": 1071,
             "duration": 85.7763671875,
             "totalSize": 281264949
@@ -176,6 +180,7 @@
                     "plots/dichasus-0c5f-outdoortest-csi-0.png"
                 ]
             },
+            "gpx": "gpx/dichasus-0c5f-outdoortest.gpx",
             "datapoints": 1544,
             "duration": 134.25634765625,
             "totalSize": 405483736
@@ -190,13 +195,44 @@
                     "plots/dichasus-0c60-outdoortest-csi-0.png"
                 ]
             },
+            "gpx": "gpx/dichasus-0c60-outdoortest.gpx",
             "datapoints": 535,
             "duration": 82.1279296875,
             "totalSize": 140501165
         },
         {
+            "filename": "tfrecords/dichasus-0c61-outdoortest.tfrecords",
+            "description": "MOBTX static, then MOBTX moves from position H to position I. Since position I is far away, only few datapoints in this dataset could be decoded.",
+            "plots": {
+                "snrByPosition": "plots/dichasus-0c61-outdoortest-snr-position.png",
+                "snrBoxplot": "plots/dichasus-0c61-outdoortest-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-0c61-outdoortest-csi-0.png"
+                ]
+            },
+            "gpx": "gpx/dichasus-0c61-outdoortest.gpx",
+            "datapoints": 3,
+            "duration": 2.78369140625,
+            "totalSize": 787857
+        },
+        {
+            "filename": "tfrecords/dichasus-0c62-outdoortest.tfrecords",
+            "description": "Transmitter moved along various paths, close to positions A to I.",
+            "plots": {
+                "snrByPosition": "plots/dichasus-0c62-outdoortest-snr-position.png",
+                "snrBoxplot": "plots/dichasus-0c62-outdoortest-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-0c62-outdoortest-csi-0.png"
+                ]
+            },
+            "gpx": "gpx/dichasus-0c62-outdoortest.gpx",
+            "datapoints": 6623,
+            "duration": 805.2001953125,
+            "totalSize": 1739325637
+        },
+        {
             "filename": "tfrecords/dichasus-0c63-outdoortest.tfrecords",
-            "description": "Transmitter was moved in a meandering pattern, .",
+            "description": "Transmitter was moved in a meandering pattern, close to positions A to I.",
             "plots": {
                 "snrByPosition": "plots/dichasus-0c63-outdoortest-snr-position.png",
                 "snrBoxplot": "plots/dichasus-0c63-outdoortest-snr-boxplot.png",
@@ -204,13 +240,14 @@
                     "plots/dichasus-0c63-outdoortest-csi-0.png"
                 ]
             },
+            "gpx": "gpx/dichasus-0c63-outdoortest.gpx",
             "datapoints": 6538,
             "duration": 695.8560791015625,
             "totalSize": 1717003022
         },
         {
             "filename": "tfrecords/dichasus-0c64-outdoortest.tfrecords",
-            "description": "Sixth complete run of vacuum robot",
+            "description": "Transmitter was moved in an area on the same street, but several meters further to the south.",
             "plots": {
                 "snrByPosition": "plots/dichasus-0c64-outdoortest-snr-position.png",
                 "snrBoxplot": "plots/dichasus-0c64-outdoortest-snr-boxplot.png",
@@ -218,6 +255,7 @@
                     "plots/dichasus-0c64-outdoortest-csi-0.png"
                 ]
             },
+            "gpx": "gpx/dichasus-0c64-outdoortest.gpx",
             "datapoints": 6729,
             "duration": 1383.2159423828125,
             "totalSize": 1767163251
@@ -249,12 +287,20 @@
             "plots/overall-csi-4.png",
             "plots/overall-csi-5.png",
             "plots/overall-csi-6.png",
-            "plots/overall-csi-7.png"
+            "plots/overall-csi-7.png",
+            "plots/overall-csi-8.png",
+            "plots/overall-csi-9.png"
         ]
     },
-    "datapoints": 20434,
-    "duration": 2673.600830078125,
+    "gpx": "gpx/overall.gpx",
+    "datapoints": 27060,
+    "duration": 3481.584716796875,
     "antennaCount": 32,
     "subcarriers": 1024,
-    "totalSize": 5366356646
+    "totalSize": 7106470140,
+    "centroid": [
+        48.74981689453125,
+        9.106256484985352
+    ],
+    "gnssMap": true
 }
