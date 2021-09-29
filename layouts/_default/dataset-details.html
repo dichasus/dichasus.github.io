@@ -25,6 +25,11 @@
 		});
 
 		let map = new ol.Map({
+			controls: ol.control.defaults().extend([
+				new ol.control.ScaleLine({
+					units: "metric"
+				})
+			]),
 			target: target,
 			layers: [
 				new ol.layer.Tile({
@@ -426,8 +431,8 @@
 
 		{{ if isset $spec "gnssMap" }}
 		<h2>GNSS Ground Truth Map</h2>
-		<div class="row my-3 p-3" style="height: 50vh;">
-			<div id="overall-map" class="lg-6" style="height: 400px;"></div>
+		<div class="row my-3 p-3">
+			<div id="overall-map" class="lg-6" style="height: 500px;"></div>
 		</div>
 		<script type="text/javascript">
 			initMap("overall-map", "{{ $spec.gpx }}");
@@ -674,7 +679,8 @@ dataset = dataset.cache()</code></pre>
 									<div id="collapseFour-{{ $index }}" class="accordion-collapse collapse"
 										aria-labelledby="headingFour-{{ $index }}"
 										data-bs-parent="#plot-accordion-{{ $index }}">
-										<div class="p-4" style="height: 300px; width: 100%;" id="map-{{ $index }}"></div>
+										<div class="p-4" style="height: 300px; width: 100%;" id="map-{{ $index }}">
+										</div>
 										<script type="text/javascript">
 											document.getElementById("headingFour-{{ $index }}").addEventListener("click", () => {
 												let elem = document.getElementById("map-{{ $index }}");
