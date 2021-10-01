@@ -5,6 +5,10 @@
     "bandwidth": 50000000.0,
     "frequency": 1272000000,
     "outdoor": true,
+    "warnings": [
+        "The GNSS coordinates in this dataset may be inaccurate (several meters of drift), regardless of the reported standard deviations. They are suitable for visualization purposes, but not for localization experiments.",
+        "In particular, do not rely on the GNSS height coordinate, it is inaccurate. You can assume a constant transmitter height of 543.21m above sea level."
+    ],
     "antennas": [
         {
             "name": "Main Array",
@@ -53,16 +57,14 @@
                     8
                 ]
             ],
-            "location": [
-                0,
-                0,
-                1.2
-            ],
-            "direction": [
-                -1,
+            "locationLonLat": [
                 0,
                 0
-            ]
+            ],
+            "heightAboveGround": 10.1,
+            "heightAboveSeaLevel": 543.21,
+            "azimuth": 94,
+            "tilt": 26.5
         }
     ],
     "format": {
@@ -111,19 +113,34 @@
     },
     "tfrecords": [
         {
-            "filename": "tfrecords/dichasus-0c5b-outdoortest.tfrecords",
-            "description": "MOBTX static, then MOBTX moves from position B to position C, then MOBTX static. People may walk through the channel during the measurement at any time.",
+            "filename": "tfrecords/dichasus-0c5a.tfrecords",
+            "description": "MOBTX static, then MOBTX moves from position A to position B, then MOBTX static. People may walk through the channel during the measurement at any time.",
             "plots": {
-                "snrByPosition": "plots/dichasus-0c5b-outdoortest-snr-position.png",
-                "snrBoxplot": "plots/dichasus-0c5b-outdoortest-snr-boxplot.png",
+                "snrByPosition": "plots/dichasus-0c5a-snr-position.png",
+                "snrBoxplot": "plots/dichasus-0c5a-snr-boxplot.png",
                 "csiTensors": [
-                    "plots/dichasus-0c5b-outdoortest-csi-0.png"
+                    "plots/dichasus-0c5a-csi-0.png"
                 ]
             },
-            "gpx": "gpx/dichasus-0c5b-outdoortest.gpx",
+            "gpx": "gpx/dichasus-0c5a.gpx",
+            "datapoints": 355,
+            "duration": 31.0560302734375,
+            "totalSize": 93234005
+        },
+        {
+            "filename": "tfrecords/dichasus-0c5b.tfrecords",
+            "description": "MOBTX static, then MOBTX moves from position B to position C, then MOBTX static. People may walk through the channel during the measurement at any time.",
+            "plots": {
+                "snrByPosition": "plots/dichasus-0c5b-snr-position.png",
+                "snrBoxplot": "plots/dichasus-0c5b-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-0c5b-csi-0.png"
+                ]
+            },
+            "gpx": "gpx/dichasus-0c5b.gpx",
             "datapoints": 1211,
             "duration": 80.49609375,
-            "totalSize": 318031609
+            "totalSize": 318046141
         },
         {
             "filename": "tfrecords/dichasus-0c5c-outdoortest.tfrecords",
@@ -289,18 +306,19 @@
             "plots/overall-csi-6.png",
             "plots/overall-csi-7.png",
             "plots/overall-csi-8.png",
-            "plots/overall-csi-9.png"
+            "plots/overall-csi-9.png",
+            "plots/overall-csi-10.png"
         ]
     },
     "gpx": "gpx/overall.gpx",
-    "datapoints": 27060,
-    "duration": 3481.584716796875,
+    "datapoints": 27415,
+    "duration": 3512.6407470703125,
     "antennaCount": 32,
     "subcarriers": 1024,
-    "totalSize": 7106470140,
+    "totalSize": 7199718677,
     "centroid": [
-        48.74981689453125,
-        9.106256484985352
+        48.74719831292897,
+        9.105300316041125
     ],
     "gnssMap": true
 }

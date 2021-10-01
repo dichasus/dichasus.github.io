@@ -429,6 +429,24 @@
 			</div>
 		</div>
 
+		{{ if isset $spec "warnings" }}
+		<h2>Warnings</h2>
+		{{ range $index, $warning := $spec.warnings }}
+		<div class="alert alert-warning d-flex p-3 align-items-center" role="alert">
+			<svg class="mx-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+				class="bi bi-exclamation-triangle" viewBox="0 0 16 16">
+				<path
+					d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z" />
+				<path
+					d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z" />
+			</svg>
+			<div class="mx-2">
+				{{ $warning }}
+			</div>
+		</div>
+		{{ end }}
+		{{ end }}
+
 		{{ if isset $spec "gnssMap" }}
 		<h2>GNSS Ground Truth Map</h2>
 		<div class="row my-3 p-3">
@@ -453,8 +471,20 @@
 								<div class="card-text">
 									This {{ $antenna.type }} has a vertical spacing of {{ $antenna.spacingX }}m and a
 									horizontal spacing of {{ $antenna.spacingY }}m.
-									In the dataset's coordinate system, it is located at {{ $antenna.location }} and
-									points in direction {{ $antenna.direction }}.
+									{{ if isset $antenna "location" }}
+									In the dataset's cartesian coordinate system, its center is located at {{
+									$antenna.location }} and the antenna points in direction {{ $antenna.direction }}.
+									{{ else }}
+									In the dataset's longitude / latitude coordinate system, it is located at N {{ index
+									$antenna.locationLonLat 0 }}°, E {{ index $antenna.locationLonLat 1 }}°, with the
+									center {{ $antenna.heightAboveGround }}m above the ground, which corresponds to {{
+									$antenna.heightAboveSeaLevel }}m above sea level.
+									The antenna points in a direction that is characterized by a <a
+										href="https://en.wikipedia.org/wiki/Azimuth#In_navigation">true-north based
+										azimuth angle</a> of {{ $antenna.azimuth }}° a downwards tilt of {{
+									$antenna.tilt }}°.
+									{{ end }}
+
 
 									<div class="mt-3"><b>Antenna Channel Assignments</b></div>
 									<table class="table table-striped table-bordered align-middle w-25">
