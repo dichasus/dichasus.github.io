@@ -54,7 +54,7 @@
 <div class="container">
 	<article id="content">
 		{{ $spec := (.Resources.GetMatch "metadata.json").Content | unmarshal }}
-		<h1>Dataset: {{ $spec.name }}</h1>
+		<h1><code class="nohighlight text-black">{{ $spec.identifier }}</code> Dataset: {{ $spec.name }}</h1>
 		<p>
 			{{ $spec.shortDescription }}
 		</p>
@@ -557,7 +557,7 @@ dataset = dataset.cache()</code></pre>
 		</ul>
 
 		<h2>Download</h2>
-		<p class="mb-5">
+		<p class="mb-3">
 			This dataset consists of {{ len $spec.tfrecords }} file{{ if (gt (len $spec.tfrecords) 1) }}s{{ end }}.
 			Descriptions of {{ if (gt (len $spec.tfrecords) 1) }}these files{{ else }}this file{{ end }} as well as
 			download links are provided below.
@@ -567,17 +567,36 @@ dataset = dataset.cache()</code></pre>
 			{{ range $index, $tfrecord := $spec.tfrecords }}
 			<div class="m-3 p-3"
 				style="border-radius: 3px; border: 1px solid lightgrey; box-shadow: 0 0.125rem 0.25rem rgba(132, 138, 163, 0.1) !important;">
-				<div class="text">
-					<h4>{{ $tfrecord.description }}</h4>
+				<div class="text mb-3">
+					<div class="h4 mb-1"><pre class="mb-0">{{ $tfrecord.name }}</pre></div>
 				</div>
 
 				<div class="container">
 					<div class="row">
-						<div class="col-xl-4">
+						<div class="col-xl-5">
 							<div class="container-fluid">
 								<section>
 									<div class="row">
-										<div class="col-xl-6 col-sm-4 col-6 ps-0 mb-4">
+										<div class="col-12 ps-0 mb-2">
+											<div class="card">
+												<div class="card-body p-2">
+													<div class="d-flex justify-content-between px-md-1">
+														<div class="align-self-center">
+															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-card-text" viewBox="0 0 16 16">
+																<path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+																<path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
+															  </svg>
+														</div>
+														<div class="text-end">
+															<b>Textual Description</b>
+															<p class="mb-0" style="font-size: 10pt;">{{ $tfrecord.description }}</p>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-xl-4 col-sm-4 col-6 ps-0 mb-2">
 											<div class="card">
 												<div class="card-body p-2">
 													<div class="d-flex justify-content-between px-md-1">
@@ -601,7 +620,7 @@ dataset = dataset.cache()</code></pre>
 											</div>
 										</div>
 
-										<div class="col-xl-6 col-sm-4 col-6 ps-0 mb-4">
+										<div class="col-xl-4 col-sm-4 col-6 ps-0 mb-2">
 											<div class="card">
 												<div class="card-body p-2">
 													<div class="d-flex justify-content-between px-md-1">
@@ -622,7 +641,7 @@ dataset = dataset.cache()</code></pre>
 											</div>
 										</div>
 
-										<div class="col-xl-6 col-sm-4 col-6 ps-0 mb-4">
+										<div class="col-xl-4 col-sm-4 col-6 ps-0 mb-2">
 											<div class="card">
 												<div class="card-body p-2">
 													<div class="d-flex justify-content-between px-md-1">
@@ -649,7 +668,7 @@ dataset = dataset.cache()</code></pre>
 								</section>
 							</div>
 						</div>
-						<div class="col-xl-8">
+						<div class="col-xl-7">
 							<div class="accordion mb-3" id="plot-accordion-{{ $index }}">
 								<div class="accordion-item">
 									<h2 class="accordion-header" id="headingOne-{{ $index }}">

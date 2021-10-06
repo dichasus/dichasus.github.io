@@ -1,4 +1,4 @@
-baseURL = 'https://webdemo.inue.uni-stuttgart.de/csi'
+baseURL = 'https://dichasus.inue.uni-stuttgart.de/'
 languageCode = 'en-us'
 title = 'DICHASUS Datasets'
 theme = 'inuetheme'
