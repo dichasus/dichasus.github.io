@@ -24,6 +24,11 @@
 
 	{{ $highlightTheme := resources.Get "stackoverflow-light.min.css" }}
 
+	{{ $copycode := resources.Get "copy-code.js" }}
+
+	<script src="{{ $copycode.Permalink }}"></script>
+
+
 	<link rel="stylesheet" href="{{ $highlightTheme.Permalink }}">
 
 	<!-- OpenLayers map -->

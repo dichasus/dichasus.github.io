@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="112.14636mm"
+   height="82.701859mm"
+   viewBox="0 0 112.14636 82.701859"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodi:docname="tfrecords.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:snap-bbox="true"
+     inkscape:bbox-paths="true"
+     inkscape:bbox-nodes="true"
+     inkscape:snap-bbox-edge-midpoints="true"
+     inkscape:snap-bbox-midpoints="true"
+     showguides="false"
+     inkscape:zoom="1.4841611"
+     inkscape:cx="178.21516"
+     inkscape:cy="161.03374"
+     inkscape:window-width="1920"
+     inkscape:window-height="1011"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-41.637329,-71.957787)">
+    <rect
+       style="fill:#323232;fill-opacity:1;stroke:none;stroke-width:0.4;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect868"
+       width="112.14636"
+       height="82.701859"
+       x="41.637329"
+       y="71.957787"
+       ry="2.3839843" />
+    <rect
+       style="fill:#004191;fill-opacity:1;stroke:none;stroke-width:0.443262;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect868-3"
+       width="105.45853"
+       height="20.34127"
+       x="44.54652"
+       y="75.077316"
+       ry="0.5863626" />
+    <rect
+       style="fill:#004191;fill-opacity:1;stroke:none;stroke-width:0.443262;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect868-3-6"
+       width="105.45853"
+       height="20.34127"
+       x="44.546524"
+       y="97.535255"
+       ry="0.5863626" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="84.642761"
+       y="150.9588"
+       id="text2624"><tspan
+         sodipodi:role="line"
+         id="tspan2622"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Source Sans 3';-inkscape-font-specification:'Source Sans 3, ';fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
+         x="84.642761"
+         y="150.9588">TFRecords File</tspan></text>
+    <rect
+       style="fill:#00beff;fill-opacity:1;stroke:none;stroke-width:0.4;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect5880"
+       width="29.231237"
+       height="14.486861"
+       x="48.370731"
+       y="78.234871"
+       ry="1.9888412" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="54.022312"
+       y="89.203621"
+       id="text6642"><tspan
+         sodipodi:role="line"
+         id="tspan6640"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
+         x="54.022312"
+         y="89.203621">csi</tspan></text>
+    <rect
+       style="fill:#00beff;fill-opacity:1;stroke:none;stroke-width:0.4;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect5880-7"
+       width="61.332207"
+       height="14.320483"
+       x="82.893631"
+       y="78.401253"
+       ry="1.966" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.4;stroke-miterlimit:4;stroke-dasharray:none"
+       x="84.75206"
+       y="88.223198"
+       id="text6642-5"><tspan
+         sodipodi:role="line"
+         id="tspan6640-6"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.4;stroke-miterlimit:4;stroke-dasharray:none"
+         x="84.75206"
+         y="88.223198">pos-tachy</tspan></text>
+    <rect
+       style="fill:#00beff;fill-opacity:1;stroke:none;stroke-width:0.4;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect5880-2"
+       width="29.231237"
+       height="14.486861"
+       x="48.370728"
+       y="100.36369"
+       ry="1.9888412" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="54.022308"
+       y="111.33241"
+       id="text6642-9"><tspan
+         sodipodi:role="line"
+         id="tspan6640-1"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
+         x="54.022308"
+         y="111.33241">csi</tspan></text>
+    <rect
+       style="fill:#00beff;fill-opacity:1;stroke:none;stroke-width:0.4;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect5880-7-2"
+       width="61.332207"
+       height="14.320483"
+       x="82.764465"
+       y="100.44688"
+       ry="1.966" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.4;stroke-miterlimit:4;stroke-dasharray:none"
+       x="84.622894"
+       y="110.26883"
+       id="text6642-5-7"><tspan
+         sodipodi:role="line"
+         id="tspan6640-6-0"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.4;stroke-miterlimit:4;stroke-dasharray:none"
+         x="84.622894"
+         y="110.26883">pos-tachy</tspan></text>
+    <rect
+       style="fill:#004191;fill-opacity:1;stroke:none;stroke-width:0.443262;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect868-3-6-9"
+       width="105.45853"
+       height="20.34127"
+       x="44.546524"
+       y="119.90726"
+       ry="0.5863626" />
+    <rect
+       style="fill:#00beff;fill-opacity:1;stroke:none;stroke-width:0.4;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect5880-2-3"
+       width="29.231237"
+       height="14.486861"
+       x="48.370728"
+       y="122.73569"
+       ry="1.9888412" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="54.022305"
+       y="133.70444"
+       id="text6642-9-6"><tspan
+         sodipodi:role="line"
+         id="tspan6640-1-0"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.264583"
+         x="54.022305"
+         y="133.70444">csi</tspan></text>
+    <rect
+       style="fill:#00beff;fill-opacity:1;stroke:none;stroke-width:0.4;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect5880-7-2-6"
+       width="61.332207"
+       height="14.320483"
+       x="82.764465"
+       y="122.81892"
+       ry="1.966" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.4;stroke-miterlimit:4;stroke-dasharray:none"
+       x="84.622894"
+       y="132.64085"
+       id="text6642-5-7-2"><tspan
+         sodipodi:role="line"
+         id="tspan6640-6-0-6"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;stroke-width:0.4;stroke-miterlimit:4;stroke-dasharray:none"
+         x="84.622894"
+         y="132.64085">pos-tachy</tspan></text>
+  </g>
+</svg>

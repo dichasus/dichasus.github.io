@@ -43,48 +43,55 @@ layout: tutorial-details
 		Before we can do any training, we must first load the dataset.
 		Conveniently, DICHASUS datasets are provided in the <a href="https://www.tensorflow.org/tutorials/load_data/tfrecord">TFRecords file format</a>, which makes loading them with TensorFlow particularly simple.
 		First, we download three robot round trips <code class="nohighlight">dichasus-0152.tfrecords</code>, <code class="nohighlight">dichasus-0153.tfrecords</code> and <code class="nohighlight">dichasus-0154.tfrecords</code>:
-		<code class="language-bash"><pre>mkdir dichasus && cd dichasus
+		<pre class="m-0"><code class="language-bash">mkdir dichasus && cd dichasus
 wget https://darus.uni-stuttgart.de/path/to/dichasus-0152.tfrecords -O # TODO
 wget https://darus.uni-stuttgart.de/path/to/dichasus-0153.tfrecords -O # TODO
-wget https://darus.uni-stuttgart.de/path/to/dichasus-0154.tfrecords -O # TODO</pre></code>
+wget https://darus.uni-stuttgart.de/path/to/dichasus-0154.tfrecords -O # TODO
+cd ..</code></pre>
 	</p>
 	<p>
 		Next, we load the TFRecords files with TensorFlow.
 		In the following, we use two complete robot round trips as training set and one round trip as test set:
 	</p>
-	<pre class="mt-3"><code class="language-python">#!/usr/bin/env python3
+	<pre class="m-0"><code class="language-python">#!/usr/bin/env python3
 import tensorflow as tf
 
-training_files = ["tfrecords/dichasus-0152-shifted.tfrecords", "tfrecords/dichasus-0153-shifted.tfrecords"]
-test_files = ["tfrecords/dichasus-0154-shifted.tfrecords"]
+training_files = ["tfrecords/dichasus-0152.tfrecords", "tfrecords/dichasus-0153.tfrecords"]
+test_files = ["tfrecords/dichasus-0154.tfrecords"]
 
-feature_description = {
-	"csi": tf.io.FixedLenFeature([], tf.string, default_value = ''),
-	"pos-tachy": tf.io.FixedLenFeature([], tf.string, default_value = '')
-}
-			
 def record_parse_function(proto):
-	record = tf.io.parse_single_example(proto, feature_description)
-
-	# Channel coefficients for all antennas, over all subcarriers, real and imaginary parts
+	record = tf.io.parse_single_example(proto, {
+		"csi": tf.io.FixedLenFeature([], tf.string, default_value = ''),
+		"pos-tachy": tf.io.FixedLenFeature([], tf.string, default_value = '')
+	})
 	csi = tf.ensure_shape(tf.io.parse_tensor(record["csi"], out_type = tf.float32), (32, 1024, 2))
-
-	# Position of transmitter determined by Leica MS60 Tachymeter with 20Hz update rate
 	pos_tachy = tf.ensure_shape(tf.io.parse_tensor(record["pos-tachy"], out_type = tf.float32), (3))
-
 	return csi, pos_tachy
 			
 training_set = tf.data.TFRecordDataset(training_files).map(record_parse_function)
-test_set = tf.data.TFRecordDataset(test_files).map(record_parse_function)
-
-# Optional: Cache datasets in RAM for faster training
-training_set = training_set.cache()
-test_set = test_set.cache()</code></pre>
+test_set = tf.data.TFRecordDataset(test_files).map(record_parse_function)</code></pre>
 	<script>hljs.highlightAll();</script>
 
+	<div class="row justify-content-center justify-content-md-start">
+		<div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2 p-3">
+			<img style="width: 100%;" src="tfrecords.png">
+		</div>
+		<div class="col-12 col-sm-12 col-md-8 col-xl-10 p-3">
+			Let's try to understand the content of the datasets we just loaded.
+			A <a href="https://www.tensorflow.org/tutorials/load_data/tfrecord">TFRecords dataset</a> is a collection of <a href="https://www.tensorflow.org/api_docs/python/tf/train/Example"><code>tf.train.Example</code></a> key-value stores.
+			In the code segment above, we only loaded the values of two keys, called <i>features</i>, into our variables <code>training_set</code> and <code>test_set</code>.
+			These two features are called <code>csi</code> and <code>pos-tachy</code>.
+			TFRecords files are a convenient way to load large datasets with TensorFlow without having to resort to writing custom import functions.
+			TensorFlow will be smart enough to automatically fetch data from storage whenever needed and, by default, does not cache the dataset in RAM.
+		</div>
+	</div>
+
 	<p>
-		Let's try to understand the content of the datasets we loaded.
+		Let's start by visualizing the <code>pos-tachy</code> property.
+		It stores the position of the transmitter, as measured by a robotic total station (tachymeter), for any given datapoint.
+		Since tachymeters are very precise instruments, we can assume that this "ground truth" label is accurate down to a few millimeters.
 	</p>
+
 
 	<h2 class="text-center my-4" style="font-weight: bold;">Feature Extraction and Input Normalization</h2>
 	In theory, we could provide the raw...
