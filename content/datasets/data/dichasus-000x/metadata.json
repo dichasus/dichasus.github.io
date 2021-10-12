@@ -82,9 +82,9 @@
                 32
             ]
         },
-        "pos": {
+        "pos-lidar": {
             "description": "Position of transmitter determined by vacuum robot LIDAR, in meters (X / Y coordinates)",
-            "type": "tensor",
+            "type": "tensor64",
             "dimension": [
                 2
             ]
@@ -102,36 +102,36 @@
     },
     "tfrecords": [
         {
-            "filename": "tfrecords/dichasus-0001-with-snr-and-time.tfrecords",
+            "filename": "tfrecords/dichasus-0001.tfrecords",
             "description": "First complete run of vacuum robot",
-            "name": "dichasus-0001-with-snr-and-time",
+            "name": "dichasus-0001",
             "plots": {
-                "snrByPosition": "plots/dichasus-0001-with-snr-and-time-snr-position.png",
-                "snrBoxplot": "plots/dichasus-0001-with-snr-and-time-snr-boxplot.png",
+                "snrByPosition": "plots/dichasus-0001-snr-position.png",
+                "snrBoxplot": "plots/dichasus-0001-snr-boxplot.png",
                 "csiTensors": [
-                    "plots/dichasus-0001-with-snr-and-time-csi-0.png"
+                    "plots/dichasus-0001-csi-0.png"
                 ]
             },
             "gpx": "",
-            "datapoints": 28156,
+            "datapoints": 26913,
             "duration": 1762.080078125,
-            "totalSize": 7388922768
+            "totalSize": 7067461452
         },
         {
-            "filename": "tfrecords/dichasus-0002-with-snr-and-time.tfrecords",
+            "filename": "tfrecords/dichasus-0002.tfrecords",
             "description": "Second complete run of vacuum robot",
-            "name": "dichasus-0002-with-snr-and-time",
+            "name": "dichasus-0002",
             "plots": {
-                "snrByPosition": "plots/dichasus-0002-with-snr-and-time-snr-position.png",
-                "snrBoxplot": "plots/dichasus-0002-with-snr-and-time-snr-boxplot.png",
+                "snrByPosition": "plots/dichasus-0002-snr-position.png",
+                "snrBoxplot": "plots/dichasus-0002-snr-boxplot.png",
                 "csiTensors": [
-                    "plots/dichasus-0002-with-snr-and-time-csi-0.png"
+                    "plots/dichasus-0002-csi-0.png"
                 ]
             },
             "gpx": "",
-            "datapoints": 35251,
+            "datapoints": 34927,
             "duration": 1846.77587890625,
-            "totalSize": 9250849428
+            "totalSize": 9171969908
         }
     ],
     "photos": [
@@ -158,9 +158,9 @@
         ]
     },
     "gpx": "",
-    "datapoints": 63407,
+    "datapoints": 61840,
     "duration": 3608.85595703125,
     "antennaCount": 32,
     "subcarriers": 1024,
-    "totalSize": 16639772196
+    "totalSize": 16239431360
 }
