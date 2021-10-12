@@ -542,19 +542,15 @@ dataset = dataset.cache()</code></pre>
 			Please refer to the <a href="/">home page</a> for information on how to cite any of our datasets in your
 			research.
 			For this dataset in particular, you may use the following BibTeX:
-		<pre><code class="language-tex">@todo{todo,
-	author    = {Florian Euchner and Marc Gauger and Sebastian Dörner and Stephan ten Brink},
-	title     = {CSI Dataset {{ $spec.identifier }}: {{ $spec.name }}},
-	year      = {2021}
+		<pre><code class="language-tex">@data{dataset-{{ $spec.identifier }},
+	author    = {Florian Euchner and Marc Gauger},
+	publisher = {DaRUS},
+	title     = {{"{{"}}CSI Dataset {{ $spec.identifier }}: {{ $spec.name }}{{"}}"}},
+	doi       = {{"{"}}{{$spec.doi}}{{"}"}}
+	url       = {https://doi.org/{{$spec.doi}}}
+	year      = {{"{"}}{{$spec.year}}{{"}"}}
 }</code></pre>
 		</p>
-
-		<h2>Referenced By</h2>
-		This dataset has been referenced in:
-		<ul>
-			<li>...</li>
-			<li>...</li>
-		</ul>
 
 		<h2>Download</h2>
 		<p class="mb-3">

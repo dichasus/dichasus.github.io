@@ -1,0 +1,5 @@
+{
+	"name" : "Indoor Positioning with DICHASUS and TensorFlow",
+	"thumbnail" : "hexbin.png",
+	"shortDescription" : "Train a <a href='https://www.tensorflow.org/'>TensorFlow</a>-based deep neural network to perform indoor transmitter positioning in a well-known physical environment."
+}

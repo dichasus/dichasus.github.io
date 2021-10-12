@@ -1,0 +1,23 @@
+
+{{ define "main" }}
+
+{{ $spec := (.Resources.GetMatch "metadata.json").Content | unmarshal }}
+
+<section id="main">
+	<div class="container">
+		<div style="background: url('{{$spec.thumbnail}}') no-repeat right top; background-size: cover;">
+			<div class="jumbotron p-4 p-md-5 text-white rounded" style="background-image: linear-gradient(to right, #000 25%, rgba(0, 0, 0, 0));">
+				<div class="col-xl-7 col-lg-9 col-md-10 px-0">
+					<h1 class="display-5" style="font-weight: bold;">{{ $spec.name }}</h1>
+					<div class="lead my-3"  style="font-weight: normal;">{{ safeHTML $spec.shortDescription }}</div>
+				</div>
+			</div>
+		</div>
+
+		<article id="content">
+			{{ .Content }}
+		</article>
+	</div>
+</section>
+
+{{ end }}
