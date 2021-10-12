@@ -82,9 +82,9 @@
                 32
             ]
         },
-        "pos": {
+        "pos-lidar": {
             "description": "Position of transmitter determined by vacuum robot LIDAR, in meters (X / Y coordinates)",
-            "type": "tensor",
+            "type": "tensor64",
             "dimension": [
                 2
             ]
@@ -102,84 +102,84 @@
     },
     "tfrecords": [
         {
-            "filename": "tfrecords/dichasus-0053-with-snr-and-time.tfrecords",
+            "filename": "tfrecords/dichasus-0053.tfrecords",
             "description": "First complete run of vacuum robot",
-            "name": "dichasus-0053-with-snr-and-time",
+            "name": "dichasus-0053",
             "plots": {
-                "snrByPosition": "plots/dichasus-0053-with-snr-and-time-snr-position.png",
-                "snrBoxplot": "plots/dichasus-0053-with-snr-and-time-snr-boxplot.png",
+                "snrByPosition": "plots/dichasus-0053-snr-position.png",
+                "snrBoxplot": "plots/dichasus-0053-snr-boxplot.png",
                 "csiTensors": [
-                    "plots/dichasus-0053-with-snr-and-time-csi-0.png"
+                    "plots/dichasus-0053-csi-0.png"
                 ]
             },
             "gpx": "",
-            "datapoints": 5053,
+            "datapoints": 5698,
             "duration": 1105.800048828125,
-            "totalSize": 1326048684
+            "totalSize": 1496317592
         },
         {
-            "filename": "tfrecords/dichasus-0054-with-snr-and-time.tfrecords",
+            "filename": "tfrecords/dichasus-0054.tfrecords",
             "description": "Second complete run of vacuum robot",
-            "name": "dichasus-0054-with-snr-and-time",
+            "name": "dichasus-0054",
             "plots": {
-                "snrByPosition": "plots/dichasus-0054-with-snr-and-time-snr-position.png",
-                "snrBoxplot": "plots/dichasus-0054-with-snr-and-time-snr-boxplot.png",
+                "snrByPosition": "plots/dichasus-0054-snr-position.png",
+                "snrBoxplot": "plots/dichasus-0054-snr-boxplot.png",
                 "csiTensors": [
-                    "plots/dichasus-0054-with-snr-and-time-csi-0.png"
+                    "plots/dichasus-0054-csi-0.png"
                 ]
             },
             "gpx": "",
-            "datapoints": 4524,
+            "datapoints": 5180,
             "duration": 1037.52001953125,
-            "totalSize": 1187224272
+            "totalSize": 1360288720
         },
         {
-            "filename": "tfrecords/dichasus-0055-with-snr-and-time.tfrecords",
+            "filename": "tfrecords/dichasus-0055.tfrecords",
             "description": "Third complete run of vacuum robot",
-            "name": "dichasus-0055-with-snr-and-time",
+            "name": "dichasus-0055",
             "plots": {
-                "snrByPosition": "plots/dichasus-0055-with-snr-and-time-snr-position.png",
-                "snrBoxplot": "plots/dichasus-0055-with-snr-and-time-snr-boxplot.png",
+                "snrByPosition": "plots/dichasus-0055-snr-position.png",
+                "snrBoxplot": "plots/dichasus-0055-snr-boxplot.png",
                 "csiTensors": [
-                    "plots/dichasus-0055-with-snr-and-time-csi-0.png"
+                    "plots/dichasus-0055-csi-0.png"
                 ]
             },
             "gpx": "",
-            "datapoints": 4347,
+            "datapoints": 5062,
             "duration": 954.1201171875,
-            "totalSize": 1140774516
+            "totalSize": 1329301448
         },
         {
-            "filename": "tfrecords/dichasus-0056-with-snr-and-time.tfrecords",
+            "filename": "tfrecords/dichasus-0056.tfrecords",
             "description": "Fourth complete run of vacuum robot",
-            "name": "dichasus-0056-with-snr-and-time",
+            "name": "dichasus-0056",
             "plots": {
-                "snrByPosition": "plots/dichasus-0056-with-snr-and-time-snr-position.png",
-                "snrBoxplot": "plots/dichasus-0056-with-snr-and-time-snr-boxplot.png",
+                "snrByPosition": "plots/dichasus-0056-snr-position.png",
+                "snrBoxplot": "plots/dichasus-0056-snr-boxplot.png",
                 "csiTensors": [
-                    "plots/dichasus-0056-with-snr-and-time-csi-0.png"
+                    "plots/dichasus-0056-csi-0.png"
                 ]
             },
             "gpx": "",
-            "datapoints": 4461,
+            "datapoints": 5220,
             "duration": 975.240234375,
-            "totalSize": 1170691308
+            "totalSize": 1370792880
         },
         {
-            "filename": "tfrecords/dichasus-0057-with-snr-and-time.tfrecords",
+            "filename": "tfrecords/dichasus-0057.tfrecords",
             "description": "Fifth complete run of vacuum robot",
-            "name": "dichasus-0057-with-snr-and-time",
+            "name": "dichasus-0057",
             "plots": {
-                "snrByPosition": "plots/dichasus-0057-with-snr-and-time-snr-position.png",
-                "snrBoxplot": "plots/dichasus-0057-with-snr-and-time-snr-boxplot.png",
+                "snrByPosition": "plots/dichasus-0057-snr-position.png",
+                "snrBoxplot": "plots/dichasus-0057-snr-boxplot.png",
                 "csiTensors": [
-                    "plots/dichasus-0057-with-snr-and-time-csi-0.png"
+                    "plots/dichasus-0057-csi-0.png"
                 ]
             },
             "gpx": "",
-            "datapoints": 4367,
+            "datapoints": 5001,
             "duration": 920.04052734375,
-            "totalSize": 1146023076
+            "totalSize": 1313282604
         }
     ],
     "photos": [
@@ -205,9 +205,9 @@
         ]
     },
     "gpx": "",
-    "datapoints": 22752,
+    "datapoints": 26161,
     "duration": 4992.720947265625,
     "antennaCount": 32,
     "subcarriers": 1024,
-    "totalSize": 5970761856
+    "totalSize": 6869983244
 }
