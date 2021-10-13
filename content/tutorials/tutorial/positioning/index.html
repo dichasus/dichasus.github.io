@@ -54,7 +54,9 @@ cd ..</code></pre>
 		In the following, we use two complete robot round trips as training set and one round trip as test set:
 	</p>
 	<pre class="m-0"><code class="language-python">#!/usr/bin/env python3
+import matplotlib.pyplot as plt
 import tensorflow as tf
+import numpy as np
 
 training_files = ["tfrecords/dichasus-0152.tfrecords", "tfrecords/dichasus-0153.tfrecords"]
 test_files = ["tfrecords/dichasus-0154.tfrecords"]
@@ -86,12 +88,42 @@ test_set = tf.data.TFRecordDataset(test_files).map(record_parse_function)</code>
 		</div>
 	</div>
 
+	<h5>Positioning "Ground Truth" Information</h5>
 	<p>
 		Let's start by visualizing the <code>pos-tachy</code> property.
-		It stores the position of the transmitter, as measured by a robotic total station (tachymeter), for any given datapoint.
+		It contains the three-dimensional position \((x, y, z)\) of the transmitter, as measured by a robotic total station (tachymeter), for any given datapoint.
 		Since tachymeters are very precise instruments, we can assume that this "ground truth" label is accurate down to a few millimeters.
+		The height coordinate \(z\) is close to \(0\) for the complete dataset, since the robot drives on (approximately) flat floor.
+		Visualizing \((x, y)\) coordinates on a plane should therefore give us a good impression of the robot positions.
+		In the following, we convert the coordinates stored in TensorFlow tensors to a large NumPy array "<code>positions</code>" which has dimensions \(N \times 3\), where \(N\) is the number of datapoints in the <code>test_set</code>.
 	</p>
 
+	<div class="row justify-content-center justify-content-md-start">
+		<div class="col-12 col-sm-12 col-md-8 col-xl-9 p-3">
+			<pre class="m-0"><code>positions = []
+for datapoint in test_set:
+	positions.append(datapoint[1].numpy())
+positions = np.vstack(positions)
+
+plt.figure(figsize=(5, 6))
+plt.scatter(positions[:, 0], positions[:, 1])
+plt.axis("equal")
+plt.xlabel("x coordinate [m]")
+plt.ylabel("y coordinate [m]")
+plt.show()</code></pre>
+		</div>
+		<div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 p-3">
+			<img style="width: 100%;" src="test_set_positions.png">
+		</div>
+	</div>
+
+	<p>
+		The resulting plot clearly shows that the robot mostly stayed inside two rectangular areas inside the room.
+		According to the <a href="http://localhost:1313/datasets/data/dichasus-015x/#antenna">information on the dataset page</a>, the receive antenna array was located at \((x, y, z) = (0, 0, 1)\) relative to the provided coordinates.
+		We also have some datapoints where the robot is directly in front of / underneath this antenna array.
+	</p>
+
+	<h5>Channel Coefficients</h5>
 
 	<h2 class="text-center my-4" style="font-weight: bold;">Feature Extraction and Input Normalization</h2>
 	In theory, we could provide the raw...

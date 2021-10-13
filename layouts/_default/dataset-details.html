@@ -457,7 +457,7 @@
 		</script>
 		{{ end }}
 
-		<h2>Antenna Configuration</h2>
+		<h2 id="antenna">Antenna Configuration</h2>
 		<div class="container-fluid">
 			<section>
 				<div class="row">
@@ -507,7 +507,7 @@
 			</section>
 		</div>
 
-		<h2>Python: Import with TensorFlow</h2>
+		<h2 id="import">Python: Import with TensorFlow</h2>
 		{{ $formatkeys := slice }}
 		{{ range $name, $desc := $spec.format }}{{ $formatkeys = $formatkeys | append (strings.Replace $name "-" "_") }}
 		{{ end }}
@@ -537,7 +537,7 @@ dataset = dataset.cache()</code></pre>
 		</pre>
 		<script>hljs.highlightAll();</script>
 
-		<h2>How to Cite</h2>
+		<h2 id="cite">How to Cite</h2>
 		<p>
 			Please refer to the <a href="/">home page</a> for information on how to cite any of our datasets in your
 			research.
@@ -552,7 +552,7 @@ dataset = dataset.cache()</code></pre>
 }</code></pre>
 		</p>
 
-		<h2>Download</h2>
+		<h2 id="download">Download</h2>
 		<p class="mb-3">
 			This dataset consists of {{ len $spec.tfrecords }} file{{ if (gt (len $spec.tfrecords) 1) }}s{{ end }}.
 			Descriptions of {{ if (gt (len $spec.tfrecords) 1) }}these files{{ else }}this file{{ end }} as well as
