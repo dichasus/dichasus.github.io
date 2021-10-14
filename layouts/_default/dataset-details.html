@@ -740,8 +740,12 @@ dataset = dataset.cache()</code></pre>
 							</div>
 
 							<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-								<button class="btn btn-lg btn-outline-dark me-md-2" type="button">View on DaRUS</button>
-								<button class="btn btn-lg btn-dark" type="button">Download TFRecords</button>
+								{{ if isset $tfrecord "darusDownloadURL" }}
+									<a href="{{ $tfrecord.darusViewURL }}"><button class="btn btn-lg btn-outline-dark me-md-2" type="button">View on DaRUS</button></a>
+									<a href="{{ $tfrecord.darusDownloadURL }}"><button class="btn btn-lg btn-dark" type="button">Download</button></a>
+								{{ else }}
+									This dataset is not public yet
+								{{ end }}
 							</div>
 						</div>
 					</div>

@@ -2,6 +2,17 @@ $dark: #004191;
 $primary: #00BEFF;
 $secondary: #323232;
 
+.text-underline-hover {
+	text-decoration: none;
+}
+
+.text-underline-hover:hover {
+	text-decoration: underline;
+}
+
+.text-underline-hover-thick {
+	text-decoration-thickness: 0.2em;
+}
 
 
 
