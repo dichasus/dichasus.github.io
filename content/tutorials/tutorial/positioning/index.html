@@ -80,7 +80,7 @@ test_set = tf.data.TFRecordDataset(test_files).map(record_parse_function)</code>
 		</div>
 		<div class="col-12 col-sm-12 col-md-8 col-xl-10 p-3">
 			Let's try to understand the content of the datasets we just loaded.
-			A <a href="https://www.tensorflow.org/tutorials/load_data/tfrecord">TFRecords dataset</a> is a collection of <a href="https://www.tensorflow.org/api_docs/python/tf/train/Example"><code>tf.train.Example</code></a> key-value stores.
+			A <a href="https://www.tensorflow.org/tutorials/load_data/tfrecord">TFRecords dataset</a> is a collection of <a href="https://www.tensorflow.org/api_docs/python/tf/train/Example"><code>tf.train.Example</code></a> key-value stores that we call <i>datapoints</i>.
 			In the code segment above, we only loaded the values of two keys, called <i>features</i>, into our variables <code>training_set</code> and <code>test_set</code>.
 			These two features are called <code>csi</code> and <code>pos-tachy</code>.
 			TFRecords files are a convenient way to load large datasets with TensorFlow without having to resort to writing custom import functions.
@@ -124,6 +124,47 @@ plt.show()</code></pre>
 	</p>
 
 	<h5>Channel Coefficients</h5>
+	<p>
+	The positions visualized in the previous section are fairly straightforward to understand.
+	The definition of instantaneous <i>channel state iformation (CSI)</i>, on the other hand, is a bit more vague.
+	In our case, what we understand by "CSI" is the combination of <a href="https://en.wikipedia.org/wiki/Orthogonal_frequency-division_multiplexing">OFDM</a> subcarrier channel coefficients from all antennas with properties like signal-to-noise ratio (SNR) and carrier frequency offset (CFO).
+	In this tutorial, we will focus purely the channel coefficients.
+	For a fixed time instance (i.e., for one datapoint), the <code>dichasus-015x</code> dataset contains \(M = 32\) channel coefficient vectors \(\mathbf h_m \in \mathbb C^{N_\mathrm{sub}}\), one for each antenna \(m = 0, \ldots, M-1\).
+	Each channel coefficient vector then contains \( N_\mathrm{sub} = 1024 \) channel coefficients, one per subcarrier.
+	Channel coefficients are complex numbers, where the amplitude corresponds to the attenuation experienced by the particular subcarrier and the argument corresponds to the phase shift.
+	In DICHASUS datasets, these are stored in real part / imaginary part format.
+	Thus, the channel coefficient tensors for all datapoints have dimensions \(M \times N_\mathrm{sub} \times 2\).
+	</p>
+
+	<p>
+	The following code snippet will choose a random datapoint and plot amplitude and phase of all corresponding vectors \(\mathbf h_m \in \mathbb C^{N_\mathrm{sub}}, ~ m = 0, \ldots, M-1\).
+	For some datapoints, the measured channel coefficient vectors contain clearly visible spectral notches, which are due to <a href="https://en.wikipedia.org/wiki/Fading#Selective_fading">frequency-selective fading</a>:
+	</p>
+
+	<div class="row justify-content-center justify-content-lg-start">
+		<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 p-3">
+			<pre class="m-0"><code>csi_tensor = next(iter(test_set.shuffle(1000).take(1)))[0]
+
+plt.figure(figsize = (10, 7))
+plt.subplot(211)
+plt.title("Channel State Information: Channel Coefficients")
+plt.xlabel("Subcarrier $i$")
+plt.ylabel("Referenced channel coeff.,\n abs. value $|h_i|_{dB}$ [dB]")
+for antenna_csi in tf.unstack(csi_tensor):
+	plt.plot(10 * np.log10(np.abs(np.fft.fftshift(antenna_csi[:,0]**2 + antenna_csi[:,1]**2))))
+				
+plt.subplot(212)
+plt.xlabel("Subcarrier $i$")
+plt.ylabel("Referenced channel coeff.,\nphase shift $arg(h_i)$")
+for antenna_csi in tf.unstack(csi_tensor):
+	plt.plot(np.unwrap(np.fft.fftshift(np.arctan2(antenna_csi[:,1], antenna_csi[:,0]))))
+				
+plt.show()</code></pre>
+		</div>
+		<div class="col-12 col-sm-12 col-md-10 col-lg-6 col-xl-6 p-3">
+			<img style="width: 100%;" src="channelcoefficients.png">
+		</div>
+	</div>
 
 	<h2 class="text-center my-4" style="font-weight: bold;">Feature Extraction and Input Normalization</h2>
 	In theory, we could provide the raw...
