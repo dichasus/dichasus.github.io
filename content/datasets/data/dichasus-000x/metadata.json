@@ -5,6 +5,7 @@
     "bandwidth": 10000000.0,
     "frequency": 1270000000,
     "outdoor": false,
+    "year": 2021,
     "antennas": [
         {
             "name": "Main Array",
