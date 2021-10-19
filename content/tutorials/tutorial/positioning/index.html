@@ -130,14 +130,14 @@ plt.show()</code></pre>
 	In our case, what we understand by "CSI" is the combination of <a href="https://en.wikipedia.org/wiki/Orthogonal_frequency-division_multiplexing">OFDM</a> subcarrier channel coefficients from all antennas with properties like signal-to-noise ratio (SNR) and carrier frequency offset (CFO).
 	In this tutorial, we will focus purely the channel coefficients.
 	For a fixed time instance (i.e., for one datapoint), the <code>dichasus-015x</code> dataset contains \(M = 32\) channel coefficient vectors \(\mathbf h_m \in \mathbb C^{N_\mathrm{sub}}\), one for each antenna \(m = 0, \ldots, M-1\).
-	Each channel coefficient vector then contains \( N_\mathrm{sub} = 1024 \) channel coefficients, one per subcarrier.
+	Each channel coefficient vector, in turn, contains \( N_\mathrm{sub} = 1024 \) channel coefficients, one per subcarrier.
 	Channel coefficients are complex numbers, where the amplitude corresponds to the attenuation experienced by the particular subcarrier and the argument corresponds to the phase shift.
 	In DICHASUS datasets, these are stored in real part / imaginary part format.
-	Thus, the channel coefficient tensors for all datapoints have dimensions \(M \times N_\mathrm{sub} \times 2\).
+	Thus, the channel coefficient tensor for each datapoint has dimensions \(M \times N_\mathrm{sub} \times 2\).
 	</p>
 
 	<p>
-	The following code snippet will choose a random datapoint and plot amplitude and phase of all corresponding vectors \(\mathbf h_m \in \mathbb C^{N_\mathrm{sub}}, ~ m = 0, \ldots, M-1\).
+	The following code snippet will choose a random datapoint and plot amplitude and phase of all corresponding channel coefficient vectors \(\mathbf h_m \in \mathbb C^{N_\mathrm{sub}}, ~ m = 0, \ldots, M-1\) over the subcarrier index \( i = 0, \ldots, N_\mathrm{sub} - 1 \).
 	For some datapoints, the measured channel coefficient vectors contain clearly visible spectral notches, which are due to <a href="https://en.wikipedia.org/wiki/Fading#Selective_fading">frequency-selective fading</a>:
 	</p>
 
@@ -167,7 +167,13 @@ plt.show()</code></pre>
 	</div>
 
 	<h2 class="text-center my-4" style="font-weight: bold;">Feature Extraction and Input Normalization</h2>
-	In theory, we could provide the raw...
+	Our goal is to generate positions estimates \( (\hat x, \hat y) \) from CSI use a neural network.
+	In theory, we could provide all \( M \times N_\mathrm{sub} \) "raw" channel coefficients to our neural network and let it directly estimate \( (\hat x, \hat y) \) from this raw data.
+	This approach, while it would certainly produce useful results, has two main drawbacks:
+	<ul>
+		<li><b>Neural Network Complexity:</b> For every datapoint, we have \( M \cdot N_\mathrm{sub} \cdot 2 = 1024 \cdot 32 \cdot 2 = 65536 \) input values to the neural network. Such an excessive amount of input parameters unnecessarily increases neural network complexity and therefore training time. Since channel coefficients of neighboring subcarriers are highly correlated, an obvious simplification is to average neighboring subcarriers. In the following, we simply compute averages over chunks of \( 32 \) subcarriers, reducing the number of input parameters to 2048.</li>
+		<li><b>Antiproportional Input Data Amplitudes:</b> According to the <a href="https://en.wikipedia.org/wiki/Free-space_path_loss">free-space path loss model</a> (which, to an indoor room, only applies as a very rough first-order approximation), channel coefficient amplitudes are proportional to \( \frac{1}{d} \), where \( d \) is the distance between main transmitter and receive antenna. By not providing averaged channel coefficients to the neural network, but their inverse, we ensure that the amplitudes of the input values are roughly proportional to the distance to the antenna, in the hope that the network can more easily make use of this relationship.</li>
+	</ul>
 
 	<h2 class="text-center my-4" style="font-weight: bold;">Network Architecture</h2>
 
