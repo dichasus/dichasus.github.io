@@ -116,7 +116,9 @@
             "gpx": "",
             "datapoints": 26913,
             "duration": 1762.080078125,
-            "totalSize": 7067461452
+            "totalSize": 7067461452,
+            "darusViewURL": "https://doi.org/10.18419/darus-2203/2",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2203/2"
         },
         {
             "filename": "tfrecords/dichasus-0002.tfrecords",
@@ -132,7 +134,9 @@
             "gpx": "",
             "datapoints": 34927,
             "duration": 1846.77587890625,
-            "totalSize": 9171969908
+            "totalSize": 9171969908,
+            "darusViewURL": "https://doi.org/10.18419/darus-2203/3",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2203/3"
         }
     ],
     "photos": [
@@ -150,6 +154,7 @@
         }
     ],
     "thumbnail": "photosAll/hallway.jpg",
+    "doi": "doi:10.18419/darus-2203",
     "plots": {
         "snrByPosition": "plots/overall-snr-position.png",
         "snrBoxplot": "plots/overall-snr-boxplot.png",

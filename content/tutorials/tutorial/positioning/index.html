@@ -44,9 +44,9 @@ layout: tutorial-details
 		Conveniently, DICHASUS datasets are provided in the <a href="https://www.tensorflow.org/tutorials/load_data/tfrecord">TFRecords file format</a>, which makes loading them with TensorFlow particularly simple.
 		First, we download three robot round trips <code class="nohighlight">dichasus-0152.tfrecords</code>, <code class="nohighlight">dichasus-0153.tfrecords</code> and <code class="nohighlight">dichasus-0154.tfrecords</code>:
 		<pre class="m-0"><code class="language-bash">mkdir dichasus && cd dichasus
-wget https://darus.uni-stuttgart.de/path/to/dichasus-0152.tfrecords -O # TODO
-wget https://darus.uni-stuttgart.de/path/to/dichasus-0153.tfrecords -O # TODO
-wget https://darus.uni-stuttgart.de/path/to/dichasus-0154.tfrecords -O # TODO
+wget --content-disposition https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2202/2 # dichasus-0152
+wget --content-disposition https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2202/3 # dichasus-0153
+wget --content-disposition https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2202/4 # dichasus-0154
 cd ..</code></pre>
 	</p>
 	<p>
@@ -166,7 +166,7 @@ plt.show()</code></pre>
 		</div>
 	</div>
 
-	<h2 class="text-center my-4" style="font-weight: bold;">Feature Extraction and Input Normalization</h2>
+	<h2 class="text-center my-4" style="font-weight: bold;">Feature Engineering and Input Normalization</h2>
 	Our goal is to generate positions estimates \( (\hat x, \hat y) \) from CSI use a neural network.
 	In theory, we could provide all \( M \times N_\mathrm{sub} \) "raw" channel coefficients to our neural network and let it directly estimate \( (\hat x, \hat y) \) from this raw data.
 	This approach, while it would certainly produce useful results, has two main drawbacks:
@@ -175,12 +175,20 @@ plt.show()</code></pre>
 		<li><b>Antiproportional Input Data Amplitudes:</b> According to the <a href="https://en.wikipedia.org/wiki/Free-space_path_loss">free-space path loss model</a> (which, to an indoor room, only applies as a very rough first-order approximation), channel coefficient amplitudes are proportional to \( \frac{1}{d} \), where \( d \) is the distance between main transmitter and receive antenna. By not providing averaged channel coefficients to the neural network, but their inverse, we ensure that the amplitudes of the input values are roughly proportional to the distance to the antenna, in the hope that the network can more easily make use of this relationship.</li>
 	</ul>
 
+	<div class="text-center"><i>More coming soon...</i></div>
+
 	<h2 class="text-center my-4" style="font-weight: bold;">Network Architecture</h2>
+	<div class="text-center"><i>Coming soon...</i></div>
 
 	<h2 class="text-center my-4" style="font-weight: bold;">Training and Validation</h2>
+	<div class="text-center"><i>Coming soon...</i></div>
 
 	<h2 class="text-center my-4" style="font-weight: bold;">Generalizability</h2>
+	<div class="text-center"><i>Coming soon...</i></div>
 
 	<h2 class="text-center my-4" style="font-weight: bold;">Conclusion</h2>
+	<div class="text-center"><i>Coming soon...</i></div>
 	<h4 class="text-center my-4" style="font-weight: bold;">Licensing</h4>
+	All our datasets are licensed under the <a href="https://creativecommons.org/licenses/by/2.0/">CC-BY license</a>, i.e., you are free to use them for whatever you like as long as you reference us in your publications.
+	All code in this tutorial is <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0-licensed</a>.
 </main>

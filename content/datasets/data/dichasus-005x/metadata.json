@@ -3,7 +3,7 @@
     "name": "Indoor Non-Line of Sight, Single Room",
     "shortDescription": "Indoor, single-room dataset with co-located receivers and 50MHz bandwidth",
     "bandwidth": 50000000.0,
-    "frequency": 1270000000,
+    "frequency": 1272000000,
     "outdoor": false,
     "year": 2021,
     "antennas": [
@@ -116,7 +116,9 @@
             "gpx": "",
             "datapoints": 5698,
             "duration": 1105.800048828125,
-            "totalSize": 1496317592
+            "totalSize": 1496317592,
+            "darusViewURL": "https://doi.org/10.18419/darus-2204/1",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2204/1"
         },
         {
             "filename": "tfrecords/dichasus-0054.tfrecords",
@@ -132,7 +134,9 @@
             "gpx": "",
             "datapoints": 5180,
             "duration": 1037.52001953125,
-            "totalSize": 1360288720
+            "totalSize": 1360288720,
+            "darusViewURL": "https://doi.org/10.18419/darus-2204/2",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2204/2"
         },
         {
             "filename": "tfrecords/dichasus-0055.tfrecords",
@@ -148,7 +152,9 @@
             "gpx": "",
             "datapoints": 5062,
             "duration": 954.1201171875,
-            "totalSize": 1329301448
+            "totalSize": 1329301448,
+            "darusViewURL": "https://doi.org/10.18419/darus-2204/3",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2204/3"
         },
         {
             "filename": "tfrecords/dichasus-0056.tfrecords",
@@ -164,7 +170,9 @@
             "gpx": "",
             "datapoints": 5220,
             "duration": 975.240234375,
-            "totalSize": 1370792880
+            "totalSize": 1370792880,
+            "darusViewURL": "https://doi.org/10.18419/darus-2204/4",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2204/4"
         },
         {
             "filename": "tfrecords/dichasus-0057.tfrecords",
@@ -180,7 +188,9 @@
             "gpx": "",
             "datapoints": 5001,
             "duration": 920.04052734375,
-            "totalSize": 1313282604
+            "totalSize": 1313282604,
+            "darusViewURL": "https://doi.org/10.18419/darus-2204/5",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2204/5"
         }
     ],
     "photos": [
@@ -194,6 +204,7 @@
         }
     ],
     "thumbnail": "photosAll/room.jpg",
+    "doi": "doi:10.18419/darus-2204",
     "plots": {
         "snrByPosition": "plots/overall-snr-position.png",
         "snrBoxplot": "plots/overall-snr-boxplot.png",
