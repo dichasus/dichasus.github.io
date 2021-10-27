@@ -169,16 +169,42 @@ plt.show()</code></pre>
 	<h2 class="text-center my-4" style="font-weight: bold;">Feature Engineering and Input Normalization</h2>
 	Our goal is to generate positions estimates \( (\hat x, \hat y) \) from CSI use a neural network.
 	In theory, we could provide all \( M \times N_\mathrm{sub} \) "raw" channel coefficients to our neural network and let it directly estimate \( (\hat x, \hat y) \) from this raw data.
-	This approach, while it would certainly produce useful results, has two main drawbacks:
-	<ul>
-		<li><b>Neural Network Complexity:</b> For every datapoint, we have \( M \cdot N_\mathrm{sub} \cdot 2 = 1024 \cdot 32 \cdot 2 = 65536 \) input values to the neural network. Such an excessive amount of input parameters unnecessarily increases neural network complexity and therefore training time. Since channel coefficients of neighboring subcarriers are highly correlated, an obvious simplification is to average neighboring subcarriers. In the following, we simply compute averages over chunks of \( 32 \) subcarriers, reducing the number of input parameters to 2048.</li>
-		<li><b>Antiproportional Input Data Amplitudes:</b> According to the <a href="https://en.wikipedia.org/wiki/Free-space_path_loss">free-space path loss model</a> (which, to an indoor room, only applies as a very rough first-order approximation), channel coefficient amplitudes are proportional to \( \frac{1}{d} \), where \( d \) is the distance between main transmitter and receive antenna. By not providing averaged channel coefficients to the neural network, but their inverse, we ensure that the amplitudes of the input values are roughly proportional to the distance to the antenna, in the hope that the network can more easily make use of this relationship.</li>
-	</ul>
-
-	<div class="text-center"><i>More coming soon...</i></div>
+	This approach, while it would certainly produce useful results, has the drawback of high neural network complexity:
+	For every datapoint, we have \( M \cdot N_\mathrm{sub} \cdot 2 = 1024 \cdot 32 \cdot 2 = 65536 \) input values to the neural network.
+	Such an excessive amount of input parameters unnecessarily increases neural network complexity and therefore training time.
+	Since channel coefficients of neighboring subcarriers are highly correlated, an obvious simplification is to average neighboring subcarriers.
+	In the following, we simply compute averages over chunks of \( 32 \) subcarriers, reducing the number of input parameters to 2048.
 
 	<h2 class="text-center my-4" style="font-weight: bold;">Network Architecture</h2>
-	<div class="text-center"><i>Coming soon...</i></div>
+	The design of neural networks is almost a whole engineering discipline on its own.
+	With convolutional networks, residual networks, transformers and many other models to chose from, things can quickly get confusing.
+	Within the scope of this tutorial, however, we don't care so much about finding the absolut optimal neural network for positioning, just as long as we can demonstrate that a neural-network based approach works at all.
+	Therefore, we resort to the simplest of all neural network architectures: A simple dense network.
+
+	However, even with the choice of neural network type pinned down, we still have several degrees of freedom:
+	<ul>
+		<li><b>Activation function:</b> We chose <b>ReLU</b>, which is arguably the most popular activation function. Among other benefits, it is easy and fast to compute.</li>
+		<li><b>Number of layers:</b> We should provide enough hidden layers so that our model can capture the nonlinearity of the input-output relationship sufficiently well, but unnecessarily increase network complexity with more layers. In this tutorial, we assume that <a>3 hidden layers should be sufficient</a>.</li>
+		<li><b>Size of hidden layers:</b> Again, there only exist some rough "rules of thumb" for this choice, i.e., the number of neurons in hidden layers should be somewhere in between the size of the input layer and the size of the ouput layer. In the following, we chose the size of hidden layers so that the width of the layers decreases from input to output.</li>
+	</ul>
+
+	<div class="row justify-content-center justify-content-lg-start">
+		<div class="col-12 col-sm-12 col-md-10 col-lg-5 col-xl-4 p-3 text-center">
+			<img class="mt-4" style="width: 90%;" src="networkarchitecture.svg">
+		</div>
+		<div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-8 p-3">
+			<pre class="m-0"><code>nn_input = tf.keras.Input(shape=(32,32,2), name="input")
+
+nn_output = tf.keras.layers.Flatten()(nn_input)
+nn_output = tf.keras.layers.Dense(units=512, activation="relu")(nn_output)
+nn_output = tf.keras.layers.Dense(units=128, activation="relu")(nn_output)
+nn_output = tf.keras.layers.Dense(units=128, activation="relu")(nn_output)
+nn_output = tf.keras.layers.Dense(units=2, activation="linear", name="output")(nn_output)
+				
+nn = tf.keras.Model(inputs=nn_input, outputs=nn_output, name="localization")</code></pre>
+		</div>
+	</div>
+
 
 	<h2 class="text-center my-4" style="font-weight: bold;">Training and Validation</h2>
 	<div class="text-center"><i>Coming soon...</i></div>
