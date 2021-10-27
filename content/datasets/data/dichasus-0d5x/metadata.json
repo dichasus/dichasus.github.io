@@ -1,0 +1,201 @@
+{
+    "identifier": "dichasus-0d5x",
+    "name": "Distributed Arrays: Indoor LoS, Lab Room",
+    "shortDescription": "Distributed measurement with two separate antenna arrays in an indoor lab room. Mostly line-of-sight dataset with vacuum robot-mounted transmitter.",
+    "bandwidth": 50000000.0,
+    "frequency": 1272000000,
+    "outdoor": false,
+    "year": 2021,
+    "antennas": [
+        {
+            "name": "Antenna array near wall",
+            "type": "array",
+            "spacingX": 0.118,
+            "spacingY": 0.118,
+            "assignments": [
+                [
+                    31,
+                    29,
+                    0,
+                    13,
+                    1,
+                    12,
+                    3,
+                    7
+                ],
+                [
+                    30,
+                    26,
+                    21,
+                    25,
+                    22,
+                    15,
+                    24,
+                    8
+                ]
+            ],
+            "location": [
+                0.034,
+                2.772,
+                1.422
+            ],
+            "direction": [
+                -1.031,
+                0.013,
+                0
+            ]
+        },
+        {
+            "name": "Antenna array near window",
+            "type": "array",
+            "spacingX": 0.118,
+            "spacingY": 0.118,
+            "assignments": [
+                [
+                    28,
+                    5,
+                    10,
+                    14,
+                    6,
+                    2,
+                    16,
+                    18
+                ],
+                [
+                    19,
+                    4,
+                    23,
+                    17,
+                    20,
+                    11,
+                    9,
+                    27
+                ]
+            ],
+            "location": [
+                -2.546,
+                0.031,
+                1.536
+            ],
+            "direction": [
+                0.013,
+                1.031,
+                0
+            ]
+        }
+    ],
+    "format": {
+        "csi": {
+            "description": "Channel coefficients for all antennas, over all subcarriers, real and imaginary parts",
+            "type": "tensor",
+            "dimension": [
+                32,
+                1024,
+                2
+            ]
+        },
+        "snr": {
+            "description": "Signal-to-Noise ratio estimates for all antennas",
+            "type": "tensor",
+            "dimension": [
+                32
+            ]
+        },
+        "pos-lidar": {
+            "description": "Position of transmitter determined by vacuum robot LiDAR, in meters (X / Y coordinates)",
+            "type": "tensor64",
+            "dimension": [
+                2
+            ]
+        },
+        "time": {
+            "description": "Timestamp since start of measurement campaign, in seconds",
+            "type": "float32",
+            "dimension": []
+        },
+        "rot-lidar": {
+            "description": "Rotation of robot relative to its initial parking position, in radians",
+            "type": "float32",
+            "dimension": []
+        },
+        "gt-interp-age-lidar": {
+            "description": "Time in seconds to closest known LiDAR position. Indicates quality of linear interpolation.",
+            "type": "float32",
+            "dimension": []
+        },
+        "cfo": {
+            "description": "Measured carrier frequency offset between MOBTX and each receive antenna.",
+            "type": "tensor",
+            "dimension": [
+                32
+            ]
+        }
+    },
+    "tfrecords": [
+        {
+            "filename": "tfrecords/dichasus-0d51.tfrecords",
+            "description": "First complete run of vacuum robot. Gain is 4dB higher than in 0d53-0d57.",
+            "name": "dichasus-0d51",
+            "plots": {
+                "snrByPosition": "plots/dichasus-0d51-snr-position.png",
+                "snrBoxplot": "plots/dichasus-0d51-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-0d51-csi-0.png"
+                ]
+            },
+            "gpx": "",
+            "datapoints": 22332,
+            "duration": 1380.81591796875,
+            "totalSize": 5865209484
+        },
+        {
+            "filename": "tfrecords/dichasus-0d52.tfrecords",
+            "description": "Second complete run of vacuum robot. Gain is 4dB higher than in 0d53-0d57.",
+            "name": "dichasus-0d52",
+            "plots": {
+                "snrByPosition": "plots/dichasus-0d52-snr-position.png",
+                "snrBoxplot": "plots/dichasus-0d52-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-0d52-csi-0.png"
+                ]
+            },
+            "gpx": "",
+            "datapoints": 26033,
+            "duration": 1532.736083984375,
+            "totalSize": 6837229021
+        }
+    ],
+    "photos": [
+        {
+            "filename": "photosAll/room.jpg",
+            "description": "Picture of room in which experiment was carried out, with the two antenna arrays on the left and on the right and the reference transmitter antenna in the center."
+        },
+        {
+            "filename": "photosAll/map.png",
+            "description": "Top view map of room generated by robot's LiDAR."
+        },
+        {
+            "filename": "photosAll/panorama.jpg",
+            "description": "Panoramic view of the experiment room."
+        },
+        {
+            "filename": "photosAll/robot_pluto.jpg",
+            "description": "Vacuum robot on top of which PlutoSDR with transmit antenna was mounted and whose LiDAR positioning is used as ground truth label."
+        }
+    ],
+    "thumbnail": "photosAll/room_sideways.jpg",
+    "plots": {
+        "snrByPosition": "plots/overall-snr-position.png",
+        "snrBoxplot": "plots/overall-snr-boxplot.png",
+        "csiTensors": [
+            "plots/overall-csi-0.png",
+            "plots/overall-csi-1.png"
+        ]
+    },
+    "gpx": "",
+    "datapoints": 48365,
+    "duration": 2913.552001953125,
+    "antennaCount": 32,
+    "subcarriers": 1024,
+    "totalSize": 12702438505
+}
