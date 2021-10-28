@@ -43,23 +43,23 @@ layout: tutorial-details
 		Before we can do any training, we must first load the dataset.
 		Conveniently, DICHASUS datasets are provided in the <a href="https://www.tensorflow.org/tutorials/load_data/tfrecord">TFRecords file format</a>, which makes loading them with TensorFlow particularly simple.
 		First, we download three robot round trips <code class="nohighlight">dichasus-0152.tfrecords</code>, <code class="nohighlight">dichasus-0153.tfrecords</code> and <code class="nohighlight">dichasus-0154.tfrecords</code>:
-		<pre class="m-0"><code class="language-bash">mkdir dichasus && cd dichasus
-wget --content-disposition https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2202/2 # dichasus-0152
-wget --content-disposition https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2202/3 # dichasus-0153
-wget --content-disposition https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2202/4 # dichasus-0154
-cd ..</code></pre>
+		<pre class="m-0"><code class="language-bash">!mkdir dichasus
+!wget --content-disposition https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2202/2 -P dichasus # dichasus-0152
+!wget --content-disposition https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2202/3 -P dichasus # dichasus-0153
+!wget --content-disposition https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2202/4 -P dichasus # dichasus-0154</code></pre>
 	</p>
 	<p>
 		Next, we load the TFRecords files with TensorFlow.
 		In the following, we use two complete robot round trips as training set and one round trip as test set:
 	</p>
-	<pre class="m-0"><code class="language-python">#!/usr/bin/env python3
-import matplotlib.pyplot as plt
+	<pre class="m-0"><code class="language-python">import matplotlib.pyplot as plt
+import matplotlib.cm as cm
 import tensorflow as tf
 import numpy as np
+%matplotlib inline
 
-training_files = ["tfrecords/dichasus-0152.tfrecords", "tfrecords/dichasus-0153.tfrecords"]
-test_files = ["tfrecords/dichasus-0154.tfrecords"]
+training_files = ["dichasus/dichasus-0152.tfrecords", "dichasus/dichasus-0153.tfrecords"]
+test_files = ["dichasus/dichasus-0154.tfrecords"]
 
 def record_parse_function(proto):
 	record = tf.io.parse_single_example(proto, {
@@ -67,9 +67,11 @@ def record_parse_function(proto):
 		"pos-tachy": tf.io.FixedLenFeature([], tf.string, default_value = '')
 	})
 	csi = tf.ensure_shape(tf.io.parse_tensor(record["csi"], out_type = tf.float32), (32, 1024, 2))
-	pos_tachy = tf.ensure_shape(tf.io.parse_tensor(record["pos-tachy"], out_type = tf.float32), (3))
-	return csi, pos_tachy
-			
+	pos_tachy = tf.ensure_shape(tf.io.parse_tensor(record["pos-tachy"], out_type = tf.float64), (3))
+
+	# We only care about x/y position dimensions, z is always close to 0
+	return csi, pos_tachy[:2]
+
 training_set = tf.data.TFRecordDataset(training_files).map(record_parse_function)
 test_set = tf.data.TFRecordDataset(test_files).map(record_parse_function)</code></pre>
 	<script>hljs.highlightAll();</script>
@@ -152,13 +154,13 @@ plt.xlabel("Subcarrier $i$")
 plt.ylabel("Referenced channel coeff.,\n abs. value $|h_i|_{dB}$ [dB]")
 for antenna_csi in tf.unstack(csi_tensor):
 	plt.plot(10 * np.log10(np.abs(np.fft.fftshift(antenna_csi[:,0]**2 + antenna_csi[:,1]**2))))
-				
+
 plt.subplot(212)
 plt.xlabel("Subcarrier $i$")
 plt.ylabel("Referenced channel coeff.,\nphase shift $arg(h_i)$")
 for antenna_csi in tf.unstack(csi_tensor):
 	plt.plot(np.unwrap(np.fft.fftshift(np.arctan2(antenna_csi[:,1], antenna_csi[:,0]))))
-				
+
 plt.show()</code></pre>
 		</div>
 		<div class="col-12 col-sm-12 col-md-10 col-lg-6 col-xl-6 p-3">
@@ -167,29 +169,60 @@ plt.show()</code></pre>
 	</div>
 
 	<h2 class="text-center my-4" style="font-weight: bold;">Feature Engineering and Input Normalization</h2>
-	Our goal is to generate positions estimates \( (\hat x, \hat y) \) from CSI use a neural network.
+	Our goal is to generate positions estimates \( (\hat x, \hat y) \) from CSI using a neural network.
 	In theory, we could provide all \( M \times N_\mathrm{sub} \) "raw" channel coefficients to our neural network and let it directly estimate \( (\hat x, \hat y) \) from this raw data.
 	This approach, while it would certainly produce useful results, has the drawback of high neural network complexity:
-	For every datapoint, we have \( M \cdot N_\mathrm{sub} \cdot 2 = 1024 \cdot 32 \cdot 2 = 65536 \) input values to the neural network.
+	For every datapoint, we have \( M \cdot N_\mathrm{sub} \cdot 2 = 32 \cdot 1024 \cdot 2 = 65536 \) input values to the neural network.
 	Such an excessive amount of input parameters unnecessarily increases neural network complexity and therefore training time.
 	Since channel coefficients of neighboring subcarriers are highly correlated, an obvious simplification is to average neighboring subcarriers.
-	In the following, we simply compute averages over chunks of \( 32 \) subcarriers, reducing the number of input parameters to 2048.
+	In the following, we simply compute averages over chunks of \( 32 \) subcarriers, reducing the number of input parameters to \( 32 \cdot 32 \cdot 2 = 2048 \).
 
-	<h2 class="text-center my-4" style="font-weight: bold;">Network Architecture</h2>
-	The design of neural networks is almost a whole engineering discipline on its own.
-	With convolutional networks, residual networks, transformers and many other models to chose from, things can quickly get confusing.
-	Within the scope of this tutorial, however, we don't care so much about finding the absolut optimal neural network for positioning, just as long as we can demonstrate that a neural-network based approach works at all.
-	Therefore, we resort to the simplest of all neural network architectures: A simple dense network.
+<pre class="m-0"><code>def get_feature_mapping(chunksize = 32):
+	def compute_features(csi, pos_tachy):
+		assert(csi.shape[1] % chunksize == 0)
+		featurecount = csi.shape[1] // chunksize
+		csi_averaged = tf.stack([tf.math.reduce_mean(csi[:, (chunksize * s):(chunksize * (s + 1)), :], axis = 1) for s in range(featurecount)], axis = 1)
+		powers = csi_averaged[:,:,0]**2 + csi_averaged[:,:,1]**2
+		csi_averaged_inverse = tf.stack([csi_averaged[:, :, 0] / powers, csi_averaged[:, :, 1] / powers], axis = 2)
+		return csi_averaged, pos_tachy
+		return csi_averaged_inverse, pos_tachy
 
-	However, even with the choice of neural network type pinned down, we still have several degrees of freedom:
-	<ul>
-		<li><b>Activation function:</b> We chose <b>ReLU</b>, which is arguably the most popular activation function. Among other benefits, it is easy and fast to compute.</li>
-		<li><b>Number of layers:</b> We should provide enough hidden layers so that our model can capture the nonlinearity of the input-output relationship sufficiently well, but unnecessarily increase network complexity with more layers. In this tutorial, we assume that <a>3 hidden layers should be sufficient</a>.</li>
-		<li><b>Size of hidden layers:</b> Again, there only exist some rough "rules of thumb" for this choice, i.e., the number of neurons in hidden layers should be somewhere in between the size of the input layer and the size of the ouput layer. In the following, we chose the size of hidden layers so that the width of the layers decreases from input to output.</li>
-	</ul>
+	return compute_features
+
+training_set_features = training_set.map(get_feature_mapping(32))
+test_set_features = test_set.map(get_feature_mapping(32))
+
+training_set_features = training_set_features.shuffle(buffer_size = 100000)
+test_set_features = test_set_features.shuffle(buffer_size = 100000)</code></pre>
+
+	<h2 class="text-center my-4" style="font-weight: bold;">Neural Network Architecture</h2>
+	<p>
+		The design of neural networks is almost a whole engineering discipline on its own.
+		With convolutional networks, residual networks, transformers and many other models to chose from, things can quickly get confusing.
+		Within the scope of this tutorial, however, we don't care so much about finding the <i>optimal</i> neural network for positioning, just as long as we can demonstrate that a neural-network based approach works <i>at all</i>.
+		Therefore, we resort to the simplest of all neural network architectures: A dense network.
+	</p>
+
+	<p>
+		Even with the choice of neural network type pinned down, we still have several degrees of freedom:
+		<ul>
+			<li><b>Activation function:</b> We chose <b>ReLU</b>, which is arguably the most popular activation function. Among other benefits, it is easy and fast to compute.</li>
+			<li><b>Number of layers:</b> We should provide enough hidden layers so that our model can capture the nonlinearity of the input-output relationship sufficiently well, but not unnecessarily increase network complexity with more layers. In this tutorial, we assume that three hidden layers should be sufficient.</li>
+			<li><b>Size of hidden layers:</b> Again, there only exist some rough "rules of thumb" for this choice; the number of neurons in hidden layers should be somewhere in between the size of the input layer and the size of the ouput layer. In the following, we chose the size of hidden layers so that the width of the layers decreases from input to output.</li>
+		</ul>
+	</p>
+
+	<p>
+		Another issue is feeding complex-valued channel coefficients into a neural network that only deals with real numbers.
+		One approach might be to separate the channel coefficients into magnitude and phase.
+		This encoding, however, is not a good choice for neural networks:
+		If represented in radians, the phase values \( \varphi \) and \( \varphi + 2 \pi \) denote the exact same angle; the neural network, however, would output different results for these inputs.
+		Even worse, the sudden wrap-around in phase from \( 2 \pi \, \mathrm{rad} \) to \( 0 \, \mathrm{rad} \) suggests a discontinuity in the input space when really, there is none, which negatively impacts training performance.
+		Providing complex numbers in real / imaginary part format, just like they are stored in the TFRecords file, is a much better-suited representation that we will use in the following.
+	</p>
 
 	<div class="row justify-content-center justify-content-lg-start">
-		<div class="col-12 col-sm-12 col-md-10 col-lg-5 col-xl-4 p-3 text-center">
+		<div class="col-12 col-sm-12 col-md-8 col-lg-5 col-xl-4 p-3 text-center">
 			<img class="mt-4" style="width: 90%;" src="networkarchitecture.svg">
 		</div>
 		<div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-8 p-3">
@@ -200,20 +233,113 @@ nn_output = tf.keras.layers.Dense(units=512, activation="relu")(nn_output)
 nn_output = tf.keras.layers.Dense(units=128, activation="relu")(nn_output)
 nn_output = tf.keras.layers.Dense(units=128, activation="relu")(nn_output)
 nn_output = tf.keras.layers.Dense(units=2, activation="linear", name="output")(nn_output)
-				
+
 nn = tf.keras.Model(inputs=nn_input, outputs=nn_output, name="localization")</code></pre>
 		</div>
 	</div>
 
+	<h2 class="text-center my-4" style="font-weight: bold;">Training</h2>
+	Before we can train this neural network to perform localization, we first need to decide on which loss function to use.
+	Since 2D positioning is a <i>regression</i> problem, a mean squared error (MSE) loss is a reasonable choice for a loss function.
+	Again, for the other hyperparameters such as learning rate schedule, number of epochs and batch size, we just choose some reasonable values without further consideration or optimization:
+	<pre class="m-0"><code>nn.compile(optimizer=tf.keras.optimizers.Adam(), loss=tf.keras.losses.MeanSquaredError())
 
-	<h2 class="text-center my-4" style="font-weight: bold;">Training and Validation</h2>
-	<div class="text-center"><i>Coming soon...</i></div>
+batch_sizes = [32,64,256,1024,4096]
+for b in batch_sizes:
+	dataset_batched = training_set_features.batch(b)
+	test_set_batched = test_set_features.batch(b)
+	print("\nTraining with batch size:", b)
+	nn.fit(dataset_batched, epochs=20, validation_data=test_set_batched)</code></pre>
+
+	<h2 class="text-center my-4" style="font-weight: bold;">Evaluation</h2>
+	At this point, we have a model that should be able to estimate the transmitter's position purely based on CSI data.
+	To evaluate this neural network, we will use the third round trip of the vacuum robot downloaded earlier, i.e., a test set with datapoints that the network has never seen before.
+
+	Before we can visualize the localization accuracy with some plots, we must first collect the position predictions of the model for all datapoints in the test set:
+	<pre class="m-0"><code>true_positions = []
+predictions = []
+
+for channel_coeffs, positions in test_set_batched:
+	true_positions.append(positions)
+	predictions.append(nn.predict(channel_coeffs))
+
+true_positions = np.vstack(true_positions)
+predictions = np.vstack(predictions)
+
+error_vectors = predictions - true_positions
+absolute_errors = np.sqrt(error_vector[:,0]**2 + error_vector[:,1]**2)</code></pre>
+
+	Let's first examine the distribution of the localization errors. 
+	While we used MSE as a loss function, the <i>squared</i> error is less intuitive to understand than the <i>absolute</i> error, measured in meters.
+	Therefore, it makes sense to use the absolute localization error in the following histogram:
+
+	<div class="row justify-content-center justify-content-lg-start">
+		<div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5 p-3">
+			<pre class="m-0"><code>plt.figure(figsize=(12,3))
+plt.title('Error distance distibution')
+plt.xlabel('error distance in m')
+plt.ylabel('occurences')
+
+plt.hist(absolute_errors, bins=100, range=(0, 1))
+plt.show()</code></pre>
+		</div>
+		<div class="col-12 col-sm-12 col-md-10 col-lg-7 col-xl-7 p-3">
+			<img style="width: 100%;" src="errordistribution.png">
+		</div>
+	</div>
+
+	Pretty impressive: For most datapoints, our localization error is below 20cm!
+	How are the errors distributed in space, though?
+	Are there some areas in the room where accuracy is particularly good, or some areas where positioning does not work at all?
+	To get a feeling for this, we can plot the localization error as a function of the x/y position.
+	One  way to visualize this relationship is <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.hexbin.html">matplotlib's hexbin plot</a>.
+	In contrast to scatter plots, where dots may overlap and occlude each other, a hexbin plot averages the plottet quantity (here: localization error) inside hexagonal grid elements.
+	<div class="row justify-content-center justify-content-lg-start">
+		<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-7 p-3">
+			<pre class="m-0"><code>plt.figure(figsize=(12, 12))
+
+plt.hexbin(labels[:,0], labels[:,1], C = error_vector_distance, gridsize = 35, cmap = cm.jet, vmin = 0, vmax = 0.5)
+plt.axis("equal")
+cb = plt.colorbar()
+cb.set_label("Absolute Error [m]", fontsize = 14)
+plt.xlabel("x [m]", fontsize = 14)
+plt.ylabel("y [m]", fontsize = 14)
+plt.show()</code></pre>
+
+			The generated hexbin plot clearly shows that positioning is accurate to 30cm or less in almost the whole measured area.
+			There are only two small red hexagons close to \( (0, 0) \), i.e. directly underneath the antenna, which indicate that position accuracy is worse at these locations.
+			It is not obvious why this might be the case - for example, it might be possible that the training set does not contain enough examples for this particular position or that the steep incidence angle of the wave from underneath the antenna poses a problem here.
+			But, since localization seems to be possible for the whole area, our neural network is clearly able to perform CSI-based positioning.
+		</div>
+		<div class="col-12 col-sm-12 col-md-10 col-lg-6 col-xl-5 p-3">
+			<img style="width: 100%;" src="errorhexbin.png">
+		</div>
+	</div>
 
 	<h2 class="text-center my-4" style="font-weight: bold;">Generalizability</h2>
-	<div class="text-center"><i>Coming soon...</i></div>
+	<p>
+
+		Clearly, for a well-defined scenario with CSI datapoints available for many locations inside the room, the neural network can learn the relationship between channel coefficients and transmitter position.
+		However, if we had labeled traning data only for a small section of the room, e.g., only at the area's perimeter, would this approach still work?
+		In other words, does the neural network just do "fingerprinting" (associate test set datapoints with similar datapoints it has seen before during training, similar to <a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm">k-Nearest Neighbor Regression</a>), or has it actually learned some properties of the antennas and the physical environment?
+	</p>
+
+	<p>
+		A detailed investigation of this question is outside the scope of this tutorial, but experiments have shown that this approach indeed does <i>not</i> generalize to previously unseen areas in the measurement environment.
+		Different position estimation techniques based on the same dataset, such as angle estimation, yield results which generalize much better than the naive approach presented here.
+	</p>
 
 	<h2 class="text-center my-4" style="font-weight: bold;">Conclusion</h2>
-	<div class="text-center"><i>Coming soon...</i></div>
+	With DICHASUS datasets, we demonstrated that deep neural network-based indoor positioning based on CSI data is feasible.
+	Some important lessons for using DICHASUS datasets were learned along the way:
+	<ul>
+		<li>DICHASUS datasets are provided in the TFRecords format, which is particularly suitable for deep-learn with TensorFlow, but which can also be used in many other applications.</li>
+		<li>In the context of DICHASUS, CSI refers primarily to channel coefficients for all antennas and all OFDM subcarriers</li>
+		<li>DICHASUS datasets also contain precise "ground truth" positioning information</li>
+		<li>In many deep learning applications with DICHASUS datasets, it is not necessary to have the optimal neural network architecture - it is much more important to formulate the right optimization problem.</li>
+		<li>While the naive approach CSI-based indoor positioning with dense neural networks produces accurate results, it does not generalize well to previously unseen transmitter positions.</li>
+	</ul>
+
 	<h4 class="text-center my-4" style="font-weight: bold;">Licensing</h4>
 	All our datasets are licensed under the <a href="https://creativecommons.org/licenses/by/2.0/">CC-BY license</a>, i.e., you are free to use them for whatever you like as long as you reference us in your publications.
 	All code in this tutorial is <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0-licensed</a>.

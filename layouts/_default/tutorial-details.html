@@ -17,6 +17,12 @@
 		<article id="content">
 			{{ .Content }}
 		</article>
+
+		{{ if isset $spec "jupyterNotebook" }}
+		<div class="text-center">
+			<a class="btn btn-dark me-2" href="{{ $spec.jupyterNotebook }}" download>Download Jupyter Notebook</a>
+		</div>
+		{{ end }}
 	</div>
 </section>
 

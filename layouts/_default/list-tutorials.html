@@ -17,7 +17,9 @@
 					</div>
 					<div class="d-flex align-items-center">
 						<a class="btn btn-dark me-2" href="/{{ $datasetDataPath }}">Read Tutorial</a>
-						<a class="btn btn-secondary text-white" href="/TODO">Download Jupyter Notebook</a>
+						{{ if isset $metadata "jupyterNotebook" }}
+						<a class="btn btn-secondary text-white" href="/{{ $datasetDataPath }}/{{ $metadata.jupyterNotebook }}" download>Download Jupyter Notebook</a>
+						{{ end }}
 					</div>
 				</div>
 			</div>
