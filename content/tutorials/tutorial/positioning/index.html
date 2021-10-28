@@ -267,7 +267,7 @@ true_positions = np.vstack(true_positions)
 predictions = np.vstack(predictions)
 
 error_vectors = predictions - true_positions
-absolute_errors = np.sqrt(error_vector[:,0]**2 + error_vector[:,1]**2)</code></pre>
+absolute_errors = np.sqrt(error_vectors[:,0]**2 + error_vectors[:,1]**2)</code></pre>
 
 	Let's first examine the distribution of the localization errors. 
 	While we used MSE as a loss function, the <i>squared</i> error is less intuitive to understand than the <i>absolute</i> error, measured in meters.
@@ -298,7 +298,7 @@ plt.show()</code></pre>
 		<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-7 p-3">
 			<pre class="m-0"><code>plt.figure(figsize=(12, 12))
 
-plt.hexbin(labels[:,0], labels[:,1], C = error_vector_distance, gridsize = 35, cmap = cm.jet, vmin = 0, vmax = 0.5)
+plt.hexbin(true_positions[:,0], true_positions[:,1], C = absolute_errors, gridsize = 35, cmap = cm.jet, vmin = 0, vmax = 0.5)
 plt.axis("equal")
 cb = plt.colorbar()
 cb.set_label("Absolute Error [m]", fontsize = 14)
