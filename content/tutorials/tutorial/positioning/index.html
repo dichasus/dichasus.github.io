@@ -102,7 +102,7 @@ test_set = tf.data.TFRecordDataset(test_files).map(record_parse_function)</code>
 
 	<div class="row justify-content-center justify-content-md-start">
 		<div class="col-12 col-sm-12 col-md-8 col-xl-9 p-3">
-			<pre class="m-0"><code>positions = []
+			<pre class="m-0"><code class="language-python">positions = []
 for datapoint in test_set:
 	positions.append(datapoint[1].numpy())
 positions = np.vstack(positions)
@@ -256,7 +256,7 @@ for b in batch_sizes:
 	To evaluate this neural network, we will use the third round trip of the vacuum robot downloaded earlier, i.e., a test set with datapoints that the network has never seen before.
 
 	Before we can visualize the localization accuracy with some plots, we must first collect the position predictions of the model for all datapoints in the test set:
-	<pre class="m-0"><code>true_positions = []
+	<pre class="m-0"><code class="language-python">true_positions = []
 predictions = []
 
 for channel_coeffs, positions in test_set_batched:
