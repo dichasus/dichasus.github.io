@@ -5,6 +5,7 @@
     "bandwidth": 50000000.0,
     "frequency": 1272000000,
     "outdoor": true,
+    "year": 2021,
     "warnings": [
         "The GNSS coordinates in this dataset may be inaccurate (several meters of drift), regardless of the reported standard deviations. They are suitable for visualization purposes, but not for localization experiments.",
         "In particular, do not rely on the GNSS height coordinate, it is inaccurate. You can assume a constant transmitter height of 543.21m above sea level."

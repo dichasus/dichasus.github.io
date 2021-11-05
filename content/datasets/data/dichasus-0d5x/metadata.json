@@ -163,6 +163,86 @@
             "datapoints": 26033,
             "duration": 1532.736083984375,
             "totalSize": 6837229021
+        },
+        {
+            "filename": "tfrecords/dichasus-0d53.tfrecords",
+            "description": "Third complete run of vacuum robot. Gain is 4dB lower than in 0d51 and 0d52.",
+            "name": "dichasus-0d53",
+            "plots": {
+                "snrByPosition": "plots/dichasus-0d53-snr-position.png",
+                "snrBoxplot": "plots/dichasus-0d53-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-0d53-csi-0.png"
+                ]
+            },
+            "gpx": "",
+            "datapoints": 24416,
+            "duration": 1413.93603515625,
+            "totalSize": 6412544992
+        },
+        {
+            "filename": "tfrecords/dichasus-0d54.tfrecords",
+            "description": "Fourth complete run of vacuum robot. Gain is 4dB lower than in 0d51 and 0d52.",
+            "name": "dichasus-0d54",
+            "plots": {
+                "snrByPosition": "plots/dichasus-0d54-snr-position.png",
+                "snrBoxplot": "plots/dichasus-0d54-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-0d54-csi-0.png"
+                ]
+            },
+            "gpx": "",
+            "datapoints": 21894,
+            "duration": 1280.73583984375,
+            "totalSize": 5750174478
+        },
+        {
+            "filename": "tfrecords/dichasus-0d55.tfrecords",
+            "description": "Fifth complete run of vacuum robot. Gain is 4dB lower than in 0d51 and 0d52.",
+            "name": "dichasus-0d55",
+            "plots": {
+                "snrByPosition": "plots/dichasus-0d55-snr-position.png",
+                "snrBoxplot": "plots/dichasus-0d55-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-0d55-csi-0.png"
+                ]
+            },
+            "gpx": "",
+            "datapoints": 23410,
+            "duration": 1328.9755859375,
+            "totalSize": 6148332170
+        },
+        {
+            "filename": "tfrecords/dichasus-0d56.tfrecords",
+            "description": "Sixth complete run of vacuum robot. Gain is 4dB lower than in 0d51 and 0d52.",
+            "name": "dichasus-0d56",
+            "plots": {
+                "snrByPosition": "plots/dichasus-0d56-snr-position.png",
+                "snrBoxplot": "plots/dichasus-0d56-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-0d56-csi-0.png"
+                ]
+            },
+            "gpx": "",
+            "datapoints": 22206,
+            "duration": 1273.5361328125,
+            "totalSize": 5832117222
+        },
+        {
+            "filename": "tfrecords/dichasus-0d57.tfrecords",
+            "description": "Seventh complete run of vacuum robot. Gain is 4dB lower than in 0d51 and 0d52.",
+            "name": "dichasus-0d57",
+            "plots": {
+                "snrByPosition": "plots/dichasus-0d57-snr-position.png",
+                "snrBoxplot": "plots/dichasus-0d57-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-0d57-csi-0.png"
+                ]
+            },
+            "gpx": "",
+            "datapoints": 22171,
+            "duration": 1272.8154296875,
+            "totalSize": 5822924927
         }
     ],
     "photos": [
@@ -189,13 +269,18 @@
         "snrBoxplot": "plots/overall-snr-boxplot.png",
         "csiTensors": [
             "plots/overall-csi-0.png",
-            "plots/overall-csi-1.png"
+            "plots/overall-csi-1.png",
+            "plots/overall-csi-2.png",
+            "plots/overall-csi-3.png",
+            "plots/overall-csi-4.png",
+            "plots/overall-csi-5.png",
+            "plots/overall-csi-6.png"
         ]
     },
     "gpx": "",
-    "datapoints": 48365,
-    "duration": 2913.552001953125,
+    "datapoints": 162462,
+    "duration": 9483.551025390625,
     "antennaCount": 32,
     "subcarriers": 1024,
-    "totalSize": 12702438505
+    "totalSize": 42668532294
 }
