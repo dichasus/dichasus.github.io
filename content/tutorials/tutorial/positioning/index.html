@@ -182,7 +182,6 @@ plt.show()</code></pre>
 		assert(csi.shape[1] % chunksize == 0)
 		featurecount = csi.shape[1] // chunksize
 		csi_averaged = tf.stack([tf.math.reduce_mean(csi[:, (chunksize * s):(chunksize * (s + 1)), :], axis = 1) for s in range(featurecount)], axis = 1)
-		powers = csi_averaged[:,:,0]**2 + csi_averaged[:,:,1]**2
 		return csi_averaged, pos_tachy
 
 	return compute_features
