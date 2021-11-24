@@ -7,7 +7,7 @@ layout: list
 
 <div class="container col-xxl-8 px-4 py-5">
 	<div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-		<div class="col-10 col-sm-8 col-lg-6">
+		<div class="col-10 col-sm-10 col-md-10 col-lg-6">
 			<img src="/img/dichasus-1.jpg" class="d-block mx-lg-auto img-fluid rounded" alt="Photo of DICHASUS" width="700"
 				height="500" loading="lazy">
 		</div>
@@ -25,6 +25,42 @@ layout: list
 </div>
 
 <main class="flex-shrink-0">
+	<div class="container">
+		<div class="row g-4 py-5 row-cols-1 row-cols-md-3">
+			<div class="feature col">
+				<div class="feature-icon bg-gradient mb-3">
+					<img style="height: 100px;" src="/img/ota_sync.svg">
+				</div>
+				<h2>OTA Synchronization</h2>
+				<p>
+					DICHASUS uses a reference synchronization signal and an <b>over-the-air synchronization protocol</b> to precisely align all receivers in frequency, time and phase.
+					Thanks to this flexible system architecture, our datasets contain phase-coherent channel measurements, even if individual receivers are distributed across a large area.
+				</p>
+			</div>
+			<div class="feature col">
+				<div class="feature-icon bg-gradient mb-3">
+					<img style="height: 100px;" src="/img/repeatable.png">
+				</div>
+				<h2>Repeatable Results</h2>
+				<p>
+					Measured channels should be a function of the physical environment and <i>only</i> of the physical environment.
+					When the transmitter returns to the same position and the physical environment remains unchanged, the measured channel state information must be identical or similar, <b>even if many minutes, hours, days have passed</b>.
+					This requires highly accurate clock synchronization.
+				</p>
+			</div>
+			<div class="feature col">
+				<div class="feature-icon bg-gradient mb-3">
+					<img style="height: 100px;" src="/img/positiontagged.svg">
+				</div>
+				<h2>Accurate "Ground Truth"</h2>
+				<p>
+					Machine learning algorithms can only be as good as the underlying "ground truth" labels such as position tags and timestamps.
+					Therefore, we strive to provide the most precise ground truth data possible.
+					We use <b>differential GNSS, tachymeters, LiDAR sensors</b> and other indoor positioning technologies to gather position metadata with centimeter-level or even millimeter-level accuracies.
+				</p>
+			</div>
+		</div>
+	</div>
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-2 col-md-5 px-3 py-3">

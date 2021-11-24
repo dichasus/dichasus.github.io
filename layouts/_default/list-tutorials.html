@@ -9,7 +9,7 @@
             {{ range .Pages }}
             {{ $metadata := ((.Resources.GetMatch "metadata.json").Content | unmarshal) }}
             {{ $datasetDataPath := .File.Dir }}
-			<div class="mb-3" style="background: url('/{{$datasetDataPath}}/{{$metadata.thumbnail}}') no-repeat right top; background-size: cover;">
+			<div class="mb-3" style="background: url('/{{$datasetDataPath}}{{$metadata.thumbnail}}') no-repeat right top; background-size: cover;">
 				<div class="jumbotron p-4 p-md-5 text-white rounded" style="background-image: linear-gradient(to right, #000 25%, rgba(0, 0, 0, 0));">
 					<div class="col-xl-7 col-lg-9 col-md-10 px-0">
 						<a class="text-white text-underline-hover text-underline-hover-thick" href="/{{ $datasetDataPath }}"><h1 class="display-5" style="font-weight: bold;">{{ $metadata.name }}</h1></a>

@@ -5,4 +5,40 @@ draft: false
 type: page
 layout: tutorial-details
 ---
-<h1 class="my-4 text-center">Coming Soon...</h1>
+<h1 class="my-4 text-center">What are static phase offsets?</h1>
+
+<div class="row justify-content-center justify-content-lg-start">
+	<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 p-3">
+		<p>
+			In this tutorial, we will try to visualize the received phases of the receive antennas and apply a <i>classical</i> AoA estimation method to a DICHASUS dataset.
+			We will see that before we can do any of this, we need to compensate for the constant receiver-specific carrier phase offsets (CPOs) and sampling time offsets (STOs).
+		</p>
+		<p>
+			But wait: Isn't it strange that there are any phase and time offsets in the first place?
+			Looking at an overview of the system architecture, you can see that the antenna array receivers (AARX) should be able to receive both the reference transmitter (REFTX) for synchronization and mobile "main" transmitter (MOBTX) for channel measurements.
+			Isn't the whole purpose of the over-the-air synchronization in DICHASUS to make all receivers coherent in frequency, time and also in phase?
+		</p>
+	</div>
+	<div class="col-12 col-sm-12 col-md-10 col-lg-6 col-xl-6 p-3">
+		<img style="width: 100%;" src="system.png" />
+	</div>
+</div>
+
+<div class="row justify-content-center justify-content-lg-start">
+	<div class="col-12 col-sm-12 col-md-10 col-lg-6 col-xl-6 p-3">
+		<img style="width: 100%;" src="reftx-channel.svg" />
+	</div>
+	<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 p-3">
+		<p>
+			Well, it's true that all receivers (AARX) are synchronous to the reference signal, also called <i>synchronization broadcast</i>.
+			However, they can only be synchronous to their respective received synchronization signal, not to the one that was actually transmitted.
+			In other words, the channel between the reference transmitter (REFTX) and each receiver (AARX) has an impact on the synchronization!
+		</p>
+		<p>
+			While almost all receivers should have a good (line-of-sight or, at least, low-attenuation) channel to the REFTX, each REFTX-receiver path may experience a different phase shift and path delay.
+			This is because the REFTX signal still has to pass through a real-world physical environment channel, with different path lengths and possibly even multipath propagation.
+		</p>
+	</div>
+</div>
+
+<h2 class="text-center">More Coming Soon...</h2>
