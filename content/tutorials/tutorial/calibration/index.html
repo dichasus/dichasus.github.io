@@ -5,40 +5,230 @@ draft: false
 type: page
 layout: tutorial-details
 ---
-<h1 class="my-4 text-center">What are static phase offsets?</h1>
 
-<div class="row justify-content-center justify-content-lg-start">
-	<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 p-3">
-		<p>
-			In this tutorial, we will try to visualize the received phases of the receive antennas and apply a <i>classical</i> AoA estimation method to a DICHASUS dataset.
-			We will see that before we can do any of this, we need to compensate for the constant receiver-specific carrier phase offsets (CPOs) and sampling time offsets (STOs).
-		</p>
-		<p>
-			But wait: Isn't it strange that there are any phase and time offsets in the first place?
-			Looking at an overview of the system architecture, you can see that the antenna array receivers (AARX) should be able to receive both the reference transmitter (REFTX) for synchronization and mobile "main" transmitter (MOBTX) for channel measurements.
-			Isn't the whole purpose of the over-the-air synchronization in DICHASUS to make all receivers coherent in frequency, time and also in phase?
-		</p>
-	</div>
-	<div class="col-12 col-sm-12 col-md-10 col-lg-6 col-xl-6 p-3">
-		<img style="width: 100%;" src="system.png" />
-	</div>
-</div>
+<script>hljs.highlightAll();</script>
 
-<div class="row justify-content-center justify-content-lg-start">
-	<div class="col-12 col-sm-12 col-md-10 col-lg-6 col-xl-6 p-3">
-		<img style="width: 100%;" src="reftx-channel.svg" />
-	</div>
-	<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 p-3">
-		<p>
-			Well, it's true that all receivers (AARX) are synchronous to the reference signal, also called <i>synchronization broadcast</i>.
-			However, they can only be synchronous to their respective received synchronization signal, not to the one that was actually transmitted.
-			In other words, the channel between the reference transmitter (REFTX) and each receiver (AARX) has an impact on the synchronization!
-		</p>
-		<p>
-			While almost all receivers should have a good (line-of-sight or, at least, low-attenuation) channel to the REFTX, each REFTX-receiver path may experience a different phase shift and path delay.
-			This is because the REFTX signal still has to pass through a real-world physical environment channel, with different path lengths and possibly even multipath propagation.
-		</p>
-	</div>
-</div>
+<main class="flex-shrink-0 my-4">
+	<h2 class="text-center" style="font-weight: bold;">What are static phase offsets?</h2>
 
-<h2 class="text-center">More Coming Soon...</h2>
+	<div class="row justify-content-center justify-content-lg-start">
+		<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 p-3">
+			<p>
+				In this tutorial, we will try to visualize the received phases of the receive antennas and apply a <i>classical</i> AoA estimation method to a DICHASUS dataset.
+				We will see that before we can do any of this, we need to compensate for the constant receiver-specific carrier phase offsets (CPOs) and sampling time offsets (STOs).
+			</p>
+			<p>
+				But wait: Isn't it strange that there are any phase and time offsets in the first place?
+				Looking at an overview of the system architecture, you can see that the antenna array receivers (AARX) should be able to receive both the reference transmitter (REFTX) for synchronization and mobile "main" transmitter (MOBTX) for channel measurements.
+				Isn't the whole purpose of the over-the-air synchronization in DICHASUS to make all receivers coherent in frequency, time and also in phase?
+			</p>
+		</div>
+		<div class="col-12 col-sm-12 col-md-10 col-lg-6 col-xl-6 p-3">
+			<img style="width: 100%;" src="system.png" />
+		</div>
+	</div>
+
+	<div class="row justify-content-center justify-content-lg-start">
+		<div class="col-12 col-sm-12 col-md-10 col-lg-6 col-xl-6 p-3">
+			<img style="width: 100%;" src="reftx-channel.svg" />
+		</div>
+		<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 p-3">
+			<p>
+				Well, it's true that all receivers (AARX) are synchronous to the reference signal, also called <i>synchronization broadcast</i>.
+				However, they can only be synchronous to their respective received synchronization signal, not to the one that was actually transmitted.
+				In other words, the channel between the reference transmitter (REFTX) and each receiver (AARX) has an impact on the synchronization!
+			</p>
+			<p>
+				While almost all receivers should have a good (line-of-sight or, at least, low-attenuation) channel to the REFTX, each REFTX-receiver path may experience a different phase shift and path delay.
+				This is because the REFTX signal still has to pass through a real-world physical environment channel, with different path lengths and possibly even multipath propagation.
+			</p>
+		</div>
+	</div>
+
+	<h2 class="text-center" style="font-weight: bold;">Without Offset Compensation</h2>
+	<p>
+		For now, we are going to completely ignore the issue of static phase offsets.
+		Let's find out what happens if we plot the received phases over the physical position of antennas in the antenna array without any prior calibration whatsoever.
+		In a line-of-sight scenario, we should, assuming phase-coherent receivers, hopefully see some patterns emerge, depending on the location of the transmitter.
+		In this tutorial, we will use a single robot round trip from the <a href="/datasets/data/dichasus-015x/"><code class="nohighlight">dichasus-015x</code></a> dataset, namely <code class="nohighlight">dichasus-0152</code>:
+		<pre class="m-0"><code class="language-bash">!mkdir dichasus
+!wget --content-disposition https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2202/2 -P dichasus # dichasus-0152</code></pre>
+	</p>
+
+	<div class="row justify-content-center justify-content-lg-start">
+		<div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-5 p-3">
+			<p class="my-3">
+				As usual, let's fire up our Python / TensorFlow / NumPy environment and import the dataset.
+				Since we are not doing any deep learning in this tutorial, it makes sense to already convert the CSI from a real / imaginary part format to a complex-valued tensor.
+				Moreover, to simplify our mental model of the subcarriers, we can already apply the <a href="https://www.tensorflow.org/api_docs/python/tf/signal/fftshift"><code class="language-python">tf.signal.fftshift</code></a> function so that subcarriers are order from lowest frequency (at index 0) to highest frequency (at index 1023).
+			</p>
+		</div>
+		<div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 p-3">
+			<pre class="m-0"><code class="language-python">import matplotlib.colors as colorsa
+import matplotlib.pyplot as plt
+import matplotlib.cm as cm
+import tensorflow as tf
+import numpy as np
+import json
+%matplotlib inline</code></pre>
+		</div>
+	</div>
+
+	<pre class="m-0"><code class="language-python">def record_parse_function(proto):
+	record = tf.io.parse_single_example(proto, {
+		"csi": tf.io.FixedLenFeature([], tf.string, default_value = ''),
+		"pos-tachy": tf.io.FixedLenFeature([], tf.string, default_value = '')
+	})
+		
+	csi = tf.io.parse_tensor(record["csi"], out_type = tf.float32)
+	csi = tf.signal.fftshift(csi, axes = 1)
+	csi = tf.complex(csi[:,:,0], csi[:,:,1])
+	pos_tachy = tf.ensure_shape(tf.io.parse_tensor(record["pos-tachy"], out_type = tf.float64), (3))
+		
+	# We only care about x/y position dimensions, z is always close to 0
+	return csi, pos_tachy[:2]
+	
+datafiles = ["dichasus/dichasus-0152.tfrecords"]
+dataset = tf.data.TFRecordDataset(datafiles).map(record_parse_function)
+dataset = dataset.cache()</code></pre>
+
+	<p>
+		Our goal is to plot the received signal phases over the physical antenna position.
+		Obviously, these phases depend on the transmitter position.
+		We could, in theory, just create a plot for each and every datapoint in the whole dataset - for this tutorial, we will concentrate on three different, representative transmitter locations though:
+		<ul>
+			<li><b>Frontal</b>: The transmitter is directly in front of the receiver antenna array, at a distance of 3m</li>
+			<li><b>Left</b>: Relative to the "frontal" position, the transmitter is moved 1m to the left of the antenna array</li>
+			<li><b>Right</b>: Relative to the "frontal" position, the transmitter is moved 1m to the right of the antenna array</li>
+		</ul>
+	</p>
+
+	<div class="row justify-content-center justify-content-lg-start">
+		<div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-5 p-3">
+			<p class="my-3">
+				In the following, we will create three datasets containing datapoints which are located in proxmity of the three afforementioned locations (frontal, left and right).
+				We can do this by <a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset#filter">filtering</a> the dataset according to a certain predicate that determines whether any given datapoint is within a small radius of the respective location.
+			</p>
+
+			<p>
+				Now that we have channel coefficient vectors for each of the three locations, we only need to plot the phases in a way that effectively generates a frontal view of the antenna array.
+			</p>
+		</div>
+		<div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 p-3">
+			<pre class="m-0"><code class="language-python"># Generate filter function that returns true if datapoint was measured somewhere around given target location
+def filter_around_point(point, radius):
+	def f(csi, pos):
+		return tf.norm(pos - tf.constant(point, dtype = tf.float64)) < radius
+	return f
+				
+# Pass dataset through filter to generate frontal / left / right samples
+points_frontal = dataset.filter(filter_around_point((-3.0, 0.0), 0.15))
+points_left = dataset.filter(filter_around_point((-3.0, 1.0), 0.15))
+points_right = dataset.filter(filter_around_point((-3.0, -1.0), 0.15))</code></pre>
+		</div>
+	</div>
+
+	<div class="row justify-content-center justify-content-lg-start">
+		<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 p-3">
+			<p>
+				To do that, though, we first have to figure out <i>where</i> to draw the measured phases, i.e., how to assign each of the phase values to an antenna in the array.
+				All the required information for this is given at the <a href="/datasets/data/dichasus-015x/">dataset's description page</a>, namely in the <a href="http://localhost:1313/datasets/data/dichasus-015x/#antenna">antenna configuration</a> section.
+			</p>
+			<p>
+				Most importantly, this is where you will find the "channel assignments" table.
+				This table contains the mapping from the <i>channel</i> of the CSI vector (i.e., its antenna index in the CSI tensor, here in the range 0-31) to the position of the antenna in the array, as seen from a viewpoint in front of the array.
+				For <code class="nohighlight">dichasus-015x</code>, these assignments are also illustrated in the picture.
+				Please note that the assignments may be different from one dataset to another!
+			</p>
+		</div>
+		<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 p-3 d-flex align-items-center justify-content-center">
+			<img style="width: 80%;" src="assignments.jpg">
+		</div>
+	</div>
+
+	<div class="row justify-content-center justify-content-lg-start">
+		<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 p-3">
+			<pre class="m-0"><code class="language-python">assignments = [
+	[28,5,10,14,6,2,16,18],
+	[19,4,23,17,20,11,9,27],
+	[31,29,0,13,1,12,3,7],
+	[30,26,21,25,22,15,24,8]
+]
+			
+antennacount = np.sum([len(line) for line in assignments])
+antennapos = np.zeros((antennacount, 2), dtype = int)
+			
+for y in range(len(assignments)):
+	for x in range(len(assignments[y])):
+		antennapos[assignments[y][x]] = np.asarray((x, y))</code></pre>
+		</div>
+		<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 p-3">
+			<div class="my-3">
+				<p>
+					To make our lives easier, we can construct a look-up table called <code class="language-python">antennapos</code> from the channel assignments.
+					In this table, for each channel \( 0 \ldots 31 \), we store the respective position of the antenna.
+				</p>
+				<p>
+					Finally, we actually write a function <code class="language-python">plot_array_phases(dataset, subcarrier_start, subcarrier_count, title)</code> that plots the received phases.
+					The two parameters <code class="language-python">subcarrier_start</code> and <code class="language-python">subcarrier_count</code> determine the subcarrier range (i.e., frequency range) over which to compute and plot the received phases.
+					In fact, the function simply averages the received phases over this subcarrier range.
+					In practice, unless a scatterer produces at only one particular frequency, the frequency range to plot does not really matter for line-of-sight channels.
+					In the following, we will simply choose an arbitrary subcarrier range \( 512 \ldots 520 \) from somewhere in the middle of the spectrum.
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<p>
+		Furthermore, the function still takes a TensorFlow dataset as an input (its first parameter).
+		This dataset should already be filtered down to only contain datapoints within a limited physical area, as the function will average the received phases also over all contained datapoints.
+	</p>
+
+	<pre class="m-0"><code class="language-python">def plot_array_phases(dataset, subcarrier_start, subcarrier_count, title):
+	dataset_phases = []
+	
+	for csi, pos in dataset:
+		datapoint_phases = np.sum(csi.numpy()[:, subcarrier_start:subcarrier_start + subcarrier_count], axis = 1)
+		datapoint_phases = datapoint_phases * np.conj(datapoint_phases[0])
+		dataset_phases.append(datapoint_phases)
+	
+	antenna_phases_frontview = np.zeros((len(assignments), len(assignments[0])), dtype = np.complex128)
+	for antenna, phase in enumerate(np.sum(dataset_phases, axis = 0)):
+		pos = antennapos[antenna]
+		antenna_phases_frontview[pos[1], pos[0]] = phase
+	
+	plt.title(title)
+	plt.xlabel("Antenna Position X")
+	plt.ylabel("Antenna Position Y")
+	plt.imshow(np.angle(antenna_phases_frontview), cmap = plt.get_cmap("twilight"))
+	plt.colorbar(shrink = 0.7)
+	plt.show()</code></pre>
+
+	<div class="row justify-content-center justify-content-lg-start">
+		<div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-9 p-3">
+			It's time for the long-awaited moment of truth:
+			<pre class="m-0"><code class="language-python">plot_array_phases(points_frontal, 512, 8, "Frontal")
+plot_array_phases(points_left, 512, 8, "Left")
+plot_array_phases(points_right, 512, 8, "Right")</code></pre>
+
+			<p>
+				The results we obtain are rather... disappointing.
+				To put it bluntly, the phases we measure appear to be completely random, there is no visible pattern whatsoever.
+				Even worse, just looking at the phase plots, there is no way on earth we would be able to distinguish the three different transmitter positions.
+			</p>
+
+			<p>
+				Admittedly, this is not really unexpected:
+				We already established that each antenna has a constant phase and time offset that we have not compensated for up until this point.
+			</p>
+		</div>
+		<div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-3 p-3 d-flex flex-column align-items-center justify-content-center">
+			<img style="width: 100%;" src="uncalibrated_frontal.png" />
+			<img style="width: 100%;" src="uncalibrated_left.png" />
+			<img style="width: 100%;" src="uncalibrated_right.png" />
+		</div>
+	</div>
+
+
+	<h2 class="text-center">More Coming Soon...</h2>
+</main>

@@ -3,10 +3,10 @@
 <div class="container">
     <h1>List of Public Datasets</h1>
 </div>
-<div class="album py-5">
+<div class="album py-2">
     <div class="container">
         <article id="content">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 g-3">
                 {{ range .Pages }}
                 {{ $metadata := ((.Resources.GetMatch "metadata.json").Content | unmarshal) }}
                 {{ $datasetDataPath := .File.Dir }}
