@@ -1,0 +1,5 @@
+{
+	"name" : "Channel Charting",
+	"thumbnail" : "header.svg",
+	"shortDescription" : "Create a virtual map of the radio environment based on a self-supervised triplet learning technique."
+}
