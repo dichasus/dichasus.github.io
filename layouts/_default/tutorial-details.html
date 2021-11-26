@@ -11,6 +11,11 @@
 					<h1 class="display-5" style="font-weight: bold;">{{ $spec.name }}</h1>
 					<div class="lead my-3"  style="font-weight: normal;">{{ safeHTML $spec.shortDescription }}</div>
 				</div>
+				<div class="d-flex align-items-center">
+					{{ if isset $spec "jupyterNotebook" }}
+					<a class="btn btn-dark text-white" href="{{ $spec.jupyterNotebook }}" download>Download Jupyter Notebook</a>
+					{{ end }}
+				</div>
 			</div>
 		</div>
 

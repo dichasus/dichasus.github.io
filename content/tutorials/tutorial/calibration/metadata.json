@@ -1,5 +1,6 @@
 {
 	"name" : "Compensating for the Reference Transmitter Channel",
 	"thumbnail" : "system_header.png",
-	"shortDescription" : "Compensate the effects of REFTX channel phase shifts and propagation delays using the provided values."
+	"shortDescription" : "Compensate the effects of REFTX channel phase shifts and propagation delays using the provided values.",
+	"jupyterNotebook" : "REFTXOffsetCalibration.ipynb"
 }
