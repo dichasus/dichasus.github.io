@@ -363,7 +363,7 @@ plot_array_phases(points_right_calibrated, 512, 8, "Right")</code></pre>
 				The following code snippets estimate the phase difference between antennas that are horizontal neighbors (for a small subcarrier range).
 				Subsequently, this this measured phase difference is transformed to an AoA estimate using the well-known ULA AoA equation, i.e.,
 				\[
-					\Delta \varphi = \frac{2 \pi f_\mathrm{c}}{c} ~ \sin(\vartheta),
+					\Delta \varphi = \frac{2 \pi f_\mathrm{c}}{c} ~ d ~ \sin(\vartheta),
 				\]
 				where \( \Delta \varphi \) is the estimated phase difference between neighboring antennas, \( f_\mathrm{c} \) is the carrier frequency, \( c \) is the speed of light and \( \vartheta \) is the angle of arrival of the electromagnetic wave, measured relative to the perpendicular (see sketch).
 			</p>
