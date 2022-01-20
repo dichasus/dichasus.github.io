@@ -560,8 +560,8 @@ dataset = dataset.cache()</code></pre>
 	author    = {Florian Euchner and Marc Gauger},
 	publisher = {DaRUS},
 	title     = {{"{{"}}CSI Dataset {{ $spec.identifier }}: {{ $spec.name }}{{"}}"}},
-	doi       = {{"{"}}{{$spec.doi}}{{"}"}}
-	url       = {https://doi.org/{{$spec.doi}}}
+	doi       = {{"{"}}{{$spec.doi}}{{"}"}},
+	url       = {https://doi.org/{{$spec.doi}}},
 	year      = {{"{"}}{{$spec.year}}{{"}"}}
 }</code></pre>
 			{{ else }}
