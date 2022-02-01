@@ -1,0 +1,166 @@
+{
+    "identifier": "dichasus-ca0x",
+    "name": "Industrial Environment LoS Day 1",
+    "shortDescription": "Line-of-Sight (LoS) area in the [Arena2036](https://www.arena2036.de/) research factory campus environment.",
+    "bandwidth": 50000000.0,
+    "frequency": 1272000000,
+    "outdoor": false,
+    "year": 2022,
+    "warnings": [
+        "This dataset is currently still in the process of being analyzed. It will be published once complete."
+    ],
+    "antennas": [
+        {
+            "name": "Main Array",
+            "type": "array",
+            "spacingX": 0.118,
+            "spacingY": 0.118,
+            "assignments": [
+                [
+                    0,
+                    13,
+                    31,
+                    29,
+                    3,
+                    7,
+                    1,
+                    12
+                ],
+                [
+                    30,
+                    26,
+                    21,
+                    25,
+                    24,
+                    8,
+                    22,
+                    15
+                ],
+                [
+                    28,
+                    5,
+                    10,
+                    14,
+                    6,
+                    2,
+                    16,
+                    18
+                ],
+                [
+                    19,
+                    4,
+                    23,
+                    17,
+                    20,
+                    11,
+                    9,
+                    27
+                ]
+            ],
+            "location": [
+                -2.6706,
+                7.878075,
+                1.457425
+            ],
+            "direction": [
+                -0.50889655,
+                -0.86082768,
+                0
+            ]
+        }
+    ],
+    "format": {
+        "csi": {
+            "description": "Channel coefficients for all antennas, over all subcarriers, real and imaginary parts",
+            "type": "tensor",
+            "dimension": [
+                32,
+                1024,
+                2
+            ]
+        },
+        "snr": {
+            "description": "Signal-to-Noise ratio estimates for all antennas",
+            "type": "tensor",
+            "dimension": [
+                32
+            ]
+        },
+        "pos-tachy": {
+            "description": "Position of transmitter determined by a tachymeter pointed at a prism mounted on top of the antenna, in meters (X / Y / Z coordinates)",
+            "type": "tensor64",
+            "dimension": [
+                3
+            ]
+        },
+        "gt-interp-age-tachy": {
+            "description": "Time in seconds to closest known tachymeter position. Indicates quality of linear interpolation.",
+            "type": "float32",
+            "dimension": []
+        },
+        "time": {
+            "description": "Timestamp since start of measurement campaign, in seconds",
+            "type": "float32",
+            "dimension": []
+        },
+        "rot": {
+            "description": "Rotation of robot relative to its initial parking position, in radians",
+            "type": "float32",
+            "dimension": []
+        }
+    },
+    "tfrecords": [
+        {
+            "filename": "tfrecords/dichasus-ca01_part1.tfrecords",
+            "description": "First part of the first robot round trip, with very slow robot movement speed and a pseudorandom trajectory inside the measurement area",
+            "name": "dichasus-ca01_part1",
+            "plots": {
+                "snrByPosition": "plots/dichasus-ca01_part1-snr-position.png",
+                "snrBoxplot": "plots/dichasus-ca01_part1-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-ca01_part1-csi-0.png"
+                ]
+            },
+            "gpx": "",
+            "datapoints": 27354,
+            "duration": 1600.56005859375,
+            "totalSize": 7183762188
+        }
+    ],
+    "photos": [
+        {
+            "filename": "photosAll/arena2036.jpg",
+            "description": "The Arena 2036 factory floor. The measurement area is on the right at the very back of the hall."
+        },
+        {
+            "filename": "photosAll/forklift.jpg",
+            "description": "Industiral equipment (e.g., forklifts, car bodies, machines, ...) was placed outside of the measurement area (unfortunately, we were not allowed to take pictures of everything)."
+        },
+        {
+            "filename": "photosAll/robot_and_antenna.jpg",
+            "description": "The measurement was carried out in a corner of the Arena 2036 factory building."
+        },
+        {
+            "filename": "photosAll/tachymeter.jpg",
+            "description": "A tachymeter was used to precisely track the position of the prism on top of the transmit antenna."
+        },
+        {
+            "filename": "photosAll/inrosi.jpg",
+            "description": "The robot with an ADALM-Pluto SDR as main transmitter and the antenna on top of a pole."
+        }
+    ],
+    "thumbnail": "photosAll/tachymeter.jpg",
+    "plots": {
+        "snrByPosition": "plots/overall-snr-position.png",
+        "snrBoxplot": "plots/overall-snr-boxplot.png",
+        "csiTensors": [
+            "plots/overall-csi-0.png"
+        ]
+    },
+    "gpx": "",
+    "datapoints": 27354,
+    "duration": 1600.56005859375,
+    "antennaCount": 32,
+    "subcarriers": 1024,
+    "totalSize": 7183762188
+}

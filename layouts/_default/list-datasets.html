@@ -7,7 +7,7 @@
     <div class="container">
         <article id="content">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 g-3">
-                {{ range .Pages }}
+                {{ range .Pages.Reverse }}
                 {{ $metadata := ((.Resources.GetMatch "metadata.json").Content | unmarshal) }}
                 {{ $datasetDataPath := .File.Dir }}
                 {{ $datasetId := (path.Split $datasetDataPath).File }}
@@ -19,7 +19,7 @@
 
                         <div class="card-body">
                             <p class="card-title"><b><a class="text-black text-underline-hover" href="/{{ $datasetDataPath }}">{{ $metadata.name }}</a></b></p>
-                            <p class="card-text">{{ $metadata.shortDescription }}</p>
+                            <p class="card-text">{{ .RenderString $metadata.shortDescription }}</p>
 
                             <div class="d-flex justify-content-between align-items-center">
                                 <small class="text-muted">{{ printf "%.1f" ( div $metadata.totalSize 1e9 ) }} GB</small>

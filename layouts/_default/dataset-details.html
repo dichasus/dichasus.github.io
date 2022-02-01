@@ -56,7 +56,7 @@
 		{{ $spec := (.Resources.GetMatch "metadata.json").Content | unmarshal }}
 		<h1><code class="nohighlight text-black">{{ $spec.identifier }}</code> Dataset: {{ $spec.name }}</h1>
 		<p>
-			{{ $spec.shortDescription }}
+			{{ .RenderString $spec.shortDescription }}
 		</p>
 
 		<div class="container-fluid">
