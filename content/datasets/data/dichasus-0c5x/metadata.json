@@ -8,7 +8,7 @@
     "year": 2021,
     "warnings": [
         "The GNSS coordinates in this dataset may be inaccurate (several meters of drift), regardless of the reported standard deviations. They are suitable for visualization purposes, but not for localization experiments.",
-        "In particular, do not rely on the GNSS height coordinate, it is inaccurate. You can assume a constant transmitter height of 543.21m above sea level."
+        "In particular, do not rely on the GNSS height coordinate, it is inaccurate. You can assume a constant transmitter height of approx. 518m above sea level."
     ],
     "antennas": [
         {
@@ -59,11 +59,11 @@
                 ]
             ],
             "locationLonLat": [
-                0,
-                0
+                48.747036,
+                9.105075
             ],
             "heightAboveGround": 10.1,
-            "heightAboveSeaLevel": 543.21,
+            "ellipsoidalHeight": 527.0,
             "azimuth": 94,
             "tilt": 26.5
         }
