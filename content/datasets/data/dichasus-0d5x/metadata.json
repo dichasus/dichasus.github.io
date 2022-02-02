@@ -6,6 +6,9 @@
     "frequency": 1272000000,
     "outdoor": false,
     "year": 2021,
+    "warnings": [
+        "The stated antenna positions and directions may be slightly off. For this reason, we are currently unable to provide accurate reference channel offset estimates."
+    ],
     "antennas": [
         {
             "name": "Antenna array near wall",
@@ -35,13 +38,13 @@
                 ]
             ],
             "location": [
-                0.034,
-                2.772,
-                1.422
+                0.04409614,
+                2.75381747,
+                1.41292018
             ],
             "direction": [
-                -1.031,
-                0.013,
+                -1.02372397,
+                0.01639262,
                 0
             ]
         },
@@ -73,13 +76,13 @@
                 ]
             ],
             "location": [
-                -2.546,
-                0.031,
-                1.536
+                -2.53918909,
+                0.03996753,
+                1.53192728
             ],
             "direction": [
-                0.013,
-                1.031,
+                0.01639262,
+                1.02372397,
                 0
             ]
         }
@@ -146,7 +149,9 @@
             "gpx": "",
             "datapoints": 22332,
             "duration": 1380.81591796875,
-            "totalSize": 5865209484
+            "totalSize": 5865209484,
+            "darusViewURL": "https://doi.org/10.18419/darus-2218/1",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2218/1"
         },
         {
             "filename": "tfrecords/dichasus-0d52.tfrecords",
@@ -162,7 +167,9 @@
             "gpx": "",
             "datapoints": 26033,
             "duration": 1532.736083984375,
-            "totalSize": 6837229021
+            "totalSize": 6837229021,
+            "darusViewURL": "https://doi.org/10.18419/darus-2218/2",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2218/2"
         },
         {
             "filename": "tfrecords/dichasus-0d53.tfrecords",
@@ -178,7 +185,9 @@
             "gpx": "",
             "datapoints": 24416,
             "duration": 1413.93603515625,
-            "totalSize": 6412544992
+            "totalSize": 6412544992,
+            "darusViewURL": "https://doi.org/10.18419/darus-2218/3",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2218/3"
         },
         {
             "filename": "tfrecords/dichasus-0d54.tfrecords",
@@ -194,7 +203,9 @@
             "gpx": "",
             "datapoints": 21894,
             "duration": 1280.73583984375,
-            "totalSize": 5750174478
+            "totalSize": 5750174478,
+            "darusViewURL": "https://doi.org/10.18419/darus-2218/4",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2218/4"
         },
         {
             "filename": "tfrecords/dichasus-0d55.tfrecords",
@@ -210,7 +221,9 @@
             "gpx": "",
             "datapoints": 23410,
             "duration": 1328.9755859375,
-            "totalSize": 6148332170
+            "totalSize": 6148332170,
+            "darusViewURL": "https://doi.org/10.18419/darus-2218/5",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2218/5"
         },
         {
             "filename": "tfrecords/dichasus-0d56.tfrecords",
@@ -226,7 +239,9 @@
             "gpx": "",
             "datapoints": 22206,
             "duration": 1273.5361328125,
-            "totalSize": 5832117222
+            "totalSize": 5832117222,
+            "darusViewURL": "https://doi.org/10.18419/darus-2218/6",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2218/6"
         },
         {
             "filename": "tfrecords/dichasus-0d57.tfrecords",
@@ -242,7 +257,9 @@
             "gpx": "",
             "datapoints": 22171,
             "duration": 1272.8154296875,
-            "totalSize": 5822924927
+            "totalSize": 5822924927,
+            "darusViewURL": "https://doi.org/10.18419/darus-2218/7",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2218/7"
         }
     ],
     "photos": [
@@ -264,6 +281,7 @@
         }
     ],
     "thumbnail": "photosAll/room_sideways.jpg",
+    "doi": "doi:10.18419/darus-2218",
     "plots": {
         "snrByPosition": "plots/overall-snr-position.png",
         "snrBoxplot": "plots/overall-snr-boxplot.png",
