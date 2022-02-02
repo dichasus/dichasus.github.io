@@ -102,11 +102,6 @@
             "description": "Timestamp since start of measurement campaign, in seconds",
             "type": "float32",
             "dimension": []
-        },
-        "rot": {
-            "description": "Rotation of robot relative to its initial parking position, in radians",
-            "type": "float32",
-            "dimension": []
         }
     },
     "tfrecords": [
