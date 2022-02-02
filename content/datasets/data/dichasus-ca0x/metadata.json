@@ -112,7 +112,7 @@
     "tfrecords": [
         {
             "filename": "tfrecords/dichasus-ca01_part1.tfrecords",
-            "description": "First part of the first robot round trip, with very slow robot movement speed and a pseudorandom trajectory inside the measurement area",
+            "description": "First part of the first robot round trip, with very slow robot movement speed and a pseudorandom trajectory inside the measurement area.",
             "name": "dichasus-ca01_part1",
             "plots": {
                 "snrByPosition": "plots/dichasus-ca01_part1-snr-position.png",
@@ -125,6 +125,22 @@
             "datapoints": 27354,
             "duration": 1600.56005859375,
             "totalSize": 7183762188
+        },
+        {
+            "filename": "tfrecords/dichasus-ca01_part2.tfrecords",
+            "description": "Second part of the first robot round trip, with very slow robot movement speed and a pseudorandom trajectory inside the measurement area.",
+            "name": "dichasus-ca01_part2",
+            "plots": {
+                "snrByPosition": "plots/dichasus-ca01_part2-snr-position.png",
+                "snrBoxplot": "plots/dichasus-ca01_part2-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-ca01_part2-csi-0.png"
+                ]
+            },
+            "gpx": "",
+            "datapoints": 28112,
+            "duration": 1485.66015625,
+            "totalSize": 7382829664
         }
     ],
     "photos": [
@@ -154,13 +170,14 @@
         "snrByPosition": "plots/overall-snr-position.png",
         "snrBoxplot": "plots/overall-snr-boxplot.png",
         "csiTensors": [
-            "plots/overall-csi-0.png"
+            "plots/overall-csi-0.png",
+            "plots/overall-csi-1.png"
         ]
     },
     "gpx": "",
-    "datapoints": 27354,
-    "duration": 1600.56005859375,
+    "datapoints": 55466,
+    "duration": 3086.22021484375,
     "antennaCount": 32,
     "subcarriers": 1024,
-    "totalSize": 7183762188
+    "totalSize": 14566591852
 }
