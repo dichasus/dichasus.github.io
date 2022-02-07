@@ -63,8 +63,8 @@
                 1.457425
             ],
             "direction": [
-                -0.50889655,
                 -0.86082768,
+                -0.50889655,
                 0
             ]
         }
@@ -136,12 +136,44 @@
             "datapoints": 28112,
             "duration": 1485.66015625,
             "totalSize": 7382829664
+        },
+        {
+            "filename": "tfrecords/dichasus-ca01_part3.tfrecords",
+            "description": "Third part of the first robot round trip, with very slow robot movement speed and a pseudorandom trajectory inside the measurement area.",
+            "name": "dichasus-ca01_part3",
+            "plots": {
+                "snrByPosition": "plots/dichasus-ca01_part3-snr-position.png",
+                "snrBoxplot": "plots/dichasus-ca01_part3-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-ca01_part3-csi-0.png"
+                ]
+            },
+            "gpx": "",
+            "datapoints": 29092,
+            "duration": 1394.85009765625,
+            "totalSize": 7640199224
+        },
+        {
+            "filename": "tfrecords/dichasus-ca01_part4.tfrecords",
+            "description": "Fourth part of the first robot round trip, with very slow robot movement speed and a pseudorandom trajectory inside the measurement area.",
+            "name": "dichasus-ca01_part4",
+            "plots": {
+                "snrByPosition": "plots/dichasus-ca01_part4-snr-position.png",
+                "snrBoxplot": "plots/dichasus-ca01_part4-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-ca01_part4-csi-0.png"
+                ]
+            },
+            "gpx": "",
+            "datapoints": 31557,
+            "duration": 1367.52001953125,
+            "totalSize": 8287562454
         }
     ],
     "photos": [
         {
             "filename": "photosAll/arena2036.jpg",
-            "description": "The Arena 2036 factory floor. The measurement area is on the right at the very back of the hall."
+            "description": "The Arena 2036 factory floor. The measurement area is on the right at the very back of the hall. Source: ARENA2036 e.V."
         },
         {
             "filename": "photosAll/forklift.jpg",
@@ -166,13 +198,15 @@
         "snrBoxplot": "plots/overall-snr-boxplot.png",
         "csiTensors": [
             "plots/overall-csi-0.png",
-            "plots/overall-csi-1.png"
+            "plots/overall-csi-1.png",
+            "plots/overall-csi-2.png",
+            "plots/overall-csi-3.png"
         ]
     },
     "gpx": "",
-    "datapoints": 55466,
-    "duration": 3086.22021484375,
+    "datapoints": 116115,
+    "duration": 5848.59033203125,
     "antennaCount": 32,
     "subcarriers": 1024,
-    "totalSize": 14566591852
+    "totalSize": 30494353530
 }
