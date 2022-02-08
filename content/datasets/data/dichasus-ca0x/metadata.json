@@ -168,6 +168,22 @@
             "datapoints": 31557,
             "duration": 1367.52001953125,
             "totalSize": 8287562454
+        },
+        {
+            "filename": "tfrecords/dichasus-ca02.tfrecords",
+            "description": "Second robot round trip, with faster robot movement speed and a pseudorandom trajectory inside the measurement area.",
+            "name": "dichasus-ca02",
+            "plots": {
+                "snrByPosition": "plots/dichasus-ca02-snr-position.png",
+                "snrBoxplot": "plots/dichasus-ca02-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-ca02-csi-0.png"
+                ]
+            },
+            "gpx": "",
+            "datapoints": 32234,
+            "duration": 1342.2900390625,
+            "totalSize": 8465357548
         }
     ],
     "photos": [
@@ -200,13 +216,14 @@
             "plots/overall-csi-0.png",
             "plots/overall-csi-1.png",
             "plots/overall-csi-2.png",
-            "plots/overall-csi-3.png"
+            "plots/overall-csi-3.png",
+            "plots/overall-csi-4.png"
         ]
     },
     "gpx": "",
-    "datapoints": 116115,
-    "duration": 5848.59033203125,
+    "datapoints": 148349,
+    "duration": 7190.88037109375,
     "antennaCount": 32,
     "subcarriers": 1024,
-    "totalSize": 30494353530
+    "totalSize": 38959711078
 }
