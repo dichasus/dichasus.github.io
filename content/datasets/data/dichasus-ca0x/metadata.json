@@ -117,9 +117,9 @@
                 ]
             },
             "gpx": "",
-            "datapoints": 27354,
+            "datapoints": 27595,
             "duration": 1600.56005859375,
-            "totalSize": 7183762188
+            "totalSize": 7247054090
         },
         {
             "filename": "tfrecords/dichasus-ca01_part2.tfrecords",
@@ -133,9 +133,9 @@
                 ]
             },
             "gpx": "",
-            "datapoints": 28112,
+            "datapoints": 28457,
             "duration": 1485.66015625,
-            "totalSize": 7382829664
+            "totalSize": 7473434254
         },
         {
             "filename": "tfrecords/dichasus-ca01_part3.tfrecords",
@@ -221,9 +221,9 @@
         ]
     },
     "gpx": "",
-    "datapoints": 148349,
+    "datapoints": 148935,
     "duration": 7190.88037109375,
     "antennaCount": 32,
     "subcarriers": 1024,
-    "totalSize": 38959711078
+    "totalSize": 39113607570
 }
