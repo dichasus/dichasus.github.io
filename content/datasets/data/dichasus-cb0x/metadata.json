@@ -109,7 +109,7 @@
     "tfrecords": [
         {
             "filename": "tfrecords/dichasus-cb00.tfrecords",
-            "description": "First robot round trip, with fast robot movement speed and a pseudorandom trajectory inside the measurement area.",
+            "description": "First robot round trip, with fast robot movement speed and a pseudorandom trajectory inside the measurement area. Not continous since some datapoints failed to decode due to a configuration error.",
             "name": "dichasus-cb00",
             "plots": {
                 "snrByPosition": "plots/dichasus-cb00-snr-position.png",
@@ -138,6 +138,22 @@
             "datapoints": 32978,
             "duration": 1477.409912109375,
             "totalSize": 5685802936
+        },
+        {
+            "filename": "tfrecords/dichasus-cb02.tfrecords",
+            "description": "Third robot round trip, with fast robot movement speed and a pseudorandom trajectory inside the measurement area.",
+            "name": "dichasus-cb02",
+            "plots": {
+                "snrByPosition": "plots/dichasus-cb02-snr-position.png",
+                "snrBoxplot": "plots/dichasus-cb02-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-cb02-csi-0.png"
+                ]
+            },
+            "gpx": "",
+            "datapoints": 23045,
+            "duration": 1228.169921875,
+            "totalSize": 3973234540
         }
     ],
     "photos": [
@@ -168,13 +184,14 @@
         "snrBoxplot": "plots/overall-snr-boxplot.png",
         "csiTensors": [
             "plots/overall-csi-0.png",
-            "plots/overall-csi-1.png"
+            "plots/overall-csi-1.png",
+            "plots/overall-csi-2.png"
         ]
     },
     "gpx": "",
-    "datapoints": 49613,
-    "duration": 2772.6898193359375,
+    "datapoints": 72658,
+    "duration": 4000.8597412109375,
     "antennaCount": 21,
     "subcarriers": 1024,
-    "totalSize": 8553876556
+    "totalSize": 12527111096
 }
