@@ -154,6 +154,38 @@
             "datapoints": 23045,
             "duration": 1228.169921875,
             "totalSize": 3973234540
+        },
+        {
+            "filename": "tfrecords/dichasus-cb03.tfrecords",
+            "description": "Fourth robot round trip, with fast robot movement speed the same trajectory as dichasus-cb02 inside the measurement area.",
+            "name": "dichasus-cb03",
+            "plots": {
+                "snrByPosition": "plots/dichasus-cb03-snr-position.png",
+                "snrBoxplot": "plots/dichasus-cb03-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-cb03-csi-0.png"
+                ]
+            },
+            "gpx": "",
+            "datapoints": 30432,
+            "duration": 1345.109375,
+            "totalSize": 5246841984
+        },
+        {
+            "filename": "tfrecords/dichasus-cb04.tfrecords",
+            "description": "The robot leaves the measurement area.",
+            "name": "dichasus-cb04",
+            "plots": {
+                "snrByPosition": "plots/dichasus-cb04-snr-position.png",
+                "snrBoxplot": "plots/dichasus-cb04-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-cb04-csi-0.png"
+                ]
+            },
+            "gpx": "",
+            "datapoints": 11539,
+            "duration": 583.2001953125,
+            "totalSize": 1989462068
         }
     ],
     "photos": [
@@ -185,13 +217,15 @@
         "csiTensors": [
             "plots/overall-csi-0.png",
             "plots/overall-csi-1.png",
-            "plots/overall-csi-2.png"
+            "plots/overall-csi-2.png",
+            "plots/overall-csi-3.png",
+            "plots/overall-csi-4.png"
         ]
     },
     "gpx": "",
-    "datapoints": 72658,
-    "duration": 4000.8597412109375,
+    "datapoints": 114629,
+    "duration": 5929.1693115234375,
     "antennaCount": 21,
     "subcarriers": 1024,
-    "totalSize": 12527111096
+    "totalSize": 19763415148
 }
