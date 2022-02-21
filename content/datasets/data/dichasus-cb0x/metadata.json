@@ -186,6 +186,38 @@
             "datapoints": 11539,
             "duration": 583.2001953125,
             "totalSize": 1989462068
+        },
+        {
+            "filename": "tfrecords/dichasus-cb05.tfrecords",
+            "description": "Meandering path (crosswise) through measurement area, fast driving speed.",
+            "name": "dichasus-cb05",
+            "plots": {
+                "snrByPosition": "plots/dichasus-cb05-snr-position.png",
+                "snrBoxplot": "plots/dichasus-cb05-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-cb05-csi-0.png"
+                ]
+            },
+            "gpx": "",
+            "datapoints": 12799,
+            "duration": 633.029296875,
+            "totalSize": 2206701188
+        },
+        {
+            "filename": "tfrecords/dichasus-cb06.tfrecords",
+            "description": "Meandering path (lengthwise) through measurement area, fast driving speed.",
+            "name": "dichasus-cb06",
+            "plots": {
+                "snrByPosition": "plots/dichasus-cb06-snr-position.png",
+                "snrBoxplot": "plots/dichasus-cb06-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-cb06-csi-0.png"
+                ]
+            },
+            "gpx": "",
+            "datapoints": 13393,
+            "duration": 622.0205078125,
+            "totalSize": 2309113916
         }
     ],
     "photos": [
@@ -219,13 +251,15 @@
             "plots/overall-csi-1.png",
             "plots/overall-csi-2.png",
             "plots/overall-csi-3.png",
-            "plots/overall-csi-4.png"
+            "plots/overall-csi-4.png",
+            "plots/overall-csi-5.png",
+            "plots/overall-csi-6.png"
         ]
     },
     "gpx": "",
-    "datapoints": 114629,
-    "duration": 5929.1693115234375,
+    "datapoints": 140821,
+    "duration": 7184.2191162109375,
     "antennaCount": 21,
     "subcarriers": 1024,
-    "totalSize": 19763415148
+    "totalSize": 24279230252
 }
