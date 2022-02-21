@@ -6,9 +6,6 @@
     "frequency": 1272000000,
     "outdoor": false,
     "year": 2022,
-    "warnings": [
-        "This dataset is currently still in the process of being analyzed. It will be published once complete."
-    ],
     "antennas": [
         {
             "name": "Main Array",
@@ -119,7 +116,9 @@
             "gpx": "",
             "datapoints": 27595,
             "duration": 1600.56005859375,
-            "totalSize": 7247054090
+            "totalSize": 7247054090,
+            "darusViewURL": "https://doi.org/10.18419/darus-2507/2",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2507/2"
         },
         {
             "filename": "tfrecords/dichasus-ca01_part2.tfrecords",
@@ -135,7 +134,9 @@
             "gpx": "",
             "datapoints": 28457,
             "duration": 1485.66015625,
-            "totalSize": 7473434254
+            "totalSize": 7473434254,
+            "darusViewURL": "https://doi.org/10.18419/darus-2507/3",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2507/3"
         },
         {
             "filename": "tfrecords/dichasus-ca01_part3.tfrecords",
@@ -151,7 +152,9 @@
             "gpx": "",
             "datapoints": 29092,
             "duration": 1394.85009765625,
-            "totalSize": 7640199224
+            "totalSize": 7640199224,
+            "darusViewURL": "https://doi.org/10.18419/darus-2507/4",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2507/4"
         },
         {
             "filename": "tfrecords/dichasus-ca01_part4.tfrecords",
@@ -167,7 +170,9 @@
             "gpx": "",
             "datapoints": 31557,
             "duration": 1367.52001953125,
-            "totalSize": 8287562454
+            "totalSize": 8287562454,
+            "darusViewURL": "https://doi.org/10.18419/darus-2507/5",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2507/5"
         },
         {
             "filename": "tfrecords/dichasus-ca02.tfrecords",
@@ -183,7 +188,9 @@
             "gpx": "",
             "datapoints": 32234,
             "duration": 1342.2900390625,
-            "totalSize": 8465357548
+            "totalSize": 8465357548,
+            "darusViewURL": "https://doi.org/10.18419/darus-2507/6",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2507/6"
         }
     ],
     "photos": [
@@ -209,6 +216,7 @@
         }
     ],
     "thumbnail": "photosAll/tachymeter.jpg",
+    "doi": "doi:10.18419/darus-2507",
     "plots": {
         "snrByPosition": "plots/overall-snr-position.png",
         "snrBoxplot": "plots/overall-snr-boxplot.png",
