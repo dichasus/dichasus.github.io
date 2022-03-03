@@ -6,5 +6,129 @@ type: page
 layout: tutorial-details
 ---
 <main class="flex-shrink-0 my-4">
-	<h2 class="text-center" style="font-weight: bold;">Coming Soon...</h2>
+	<h2 class="text-center" style="font-weight: bold;">The Problem with FDD massive MIMO</h2>
+	<div class="row justify-content-center justify-content-lg-start">
+		<div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7 p-3">
+			<p>
+				To focus different streams on different user equipments (UEs), massive MIMO uses something called <a href="https://en.wikipedia.org/wiki/Precoding"><i>precoding</i></a> in the downlink direction.
+				In the simplest "line of sight" case, precoding simplifies to <a href="https://en.wikipedia.org/wiki/Beamforming">beamforming</a>:
+				Different UEs, which are usually at different angles to the base station, each get an RF electromagnetic wave in their direction.
+				If there is not just a single "line of sight" path between base station and UEs, but several paths with one ore multiple reflections, this simpliciation is no longer possible.
+				In this case, massive MIMO precoding can be interpreted as the base station shooting multiple beams in multiple directions in such a way that the electromagnetic waves constructively interfere right at the point of the transmitter.
+				But how does the base station know which direction, phase and time offsets for each of the individual beams?
+				Sounds pretty challening!
+			</p>
+			<p>
+				The good news is that in time division duplex (TDD) massive MIMO, where uplink and downlink happen at the same frequency, precoding is fairly straightforward:
+				Since wireless channels have a property that is known as <i>reciprocity</i>, the phase shift and time delay incurred by the propagated wave when passing through the channel is the same regardless of the direction in which it passes through the channel.
+				It is therefore enough to estimate the channel using the received uplink signal (which may contain pilots) and to use the same estimates for the downlink channel.
+			</p>
+		</div>
+		<div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5 p-3">
+			<img style="width: 100%;" src="principle.svg" />
+		</div>
+	</div>
+
+	<p>
+		Unfortunately, many real-world wireless systems are not TDD systems, but frequency division duplex (FDD) systems.
+		This is not just a regulatory issue, but there are also some technical advantages to this mode of operation (e.g., less transmit power fluctuations, which is beneficial for amplifier linearity).
+		But then, how does the base station obtain a channel estimate to use for downlink precoding?
+		This is the question we're trying to answer here!
+	</p>
+	<p>
+		The most obvious solution to this question is to simply estimate the downlink channel at each UE and to provide the channel estimates as feedback to the base station.
+		This is a perfectly valid idea, but sending lots of downlink pilots and transmitting feedback lead to a pretty signifcant overhead, which can quickly grow too large for many antennas.
+		Many researchers have thought about ways to somehow reduce the amount of feedback required using codebooks and other compression techniques, but that still does not remove the necessity for feedback entirely.
+	</p>
+
+	<div class="row justify-content-center justify-content-lg-start">
+		<div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 p-3">
+			<img style="width: 100%;" src="bijective.png" />
+		</div>
+		<div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 p-3">
+			<p>
+				In this tutorial, the goal is to completely get rid of feedback by estimating the downlink channel state information (CSI) purely based on the uplink CSI.
+				How is this possible?
+				By collecting downlink CSI feedback from UEs and aggregating it with the observed uplink CSI measured at the same UE location, we can collect a large dataset of known correspondences between uplink and downlink CSI.
+			</p>
+			<p>
+				In an environment with static scatterer positions and fixed base station location, uplink and downlink CSI are entirely determined by the position \( \mathbf x = (x_1, x_2)^{\mathrm T} \) of the UE.
+				If UL CSI is given by \( f_\mathrm{U}(\mathbf x) \), DL CSI is given by \( f_\mathrm{D}(\mathbf x) \) and \( f_\mathrm{U} \) and \( f_\mathrm{D} \) are bijective (which is often the case), then there exists a mapping \( f_\mathrm{D} \circ f_\mathrm{U}^{-1} \) from UL CSI to DL CSI.
+				According to the universal approximation theorem, a neural network should be capable of learning this mapping.
+				This means that when the BS measures a similar uplink channel to one that it has already seen previously, it can just assume that the downlink channel to this UE will also look similar to the previously seen one.
+			</p>
+		</div>
+	</div>
+
+	<p>
+		You might wonder how this topic can even be researched purely based on DICHASUS channel sounding datasets.
+		After all, they only contain received (uplink) channel coefficients measured at the base station and no downlink CSI.
+		It turns out that, thanks to channel reciprocity, this is actually not a problem:
+		We know that the measured channel coefficients are the same regardless of the direction in which the channel is traversed.
+		Therefore, as illustrated in the figure above, we can just pick a subcarrier range and designate it to be the uplink channel, pick a different range and call it the downlink channel and perform our neural network training on that.
+	</p>
+	<p>
+		Do we really need a neural network here, couldn't we just use classical signal processing?
+		Well, we could try to determine the main direction that the uplink was coming from and simply send the downlink back to the same direction.
+		However, working with angles of arrival and departure (AoA and AoD) is not as easy as it sounds if we potentially don't have <a href="/tutorials/tutorial/calibration">absolute phase calibration</a>.
+		In contrast to classical AoA / AoD algorithms, neural networks don't need absolute phase calibration.
+		Moreover, we lose some performance since this method would only be able to use one propagation path.
+		As soon as we have more than one path, things get complicated (which phase difference to use between paths?) and very environment-dependent.
+		Since, in practical systems, we don't have a good model for the radio environment, but lots of CSI data to work with, neural networks are a natural fit for this kind of problem.
+
+		So, let's get started!
+	</p>
+
+	<p>
+		For this tutorial, we use the <a href="/datasets/data/dichasus-015x/"><code class="nohighlight">dichasus-015x</code></a> dataset.
+		Before we can do any training, we must first load the dataset.
+		Conveniently, DICHASUS datasets are provided in the TFRecords file format, which makes loading them with TensorFlow particularly simple.
+		First, we download three robot round trips <code class="nohighlight">dichasus-0152.tfrecords</code>, <code class="nohighlight">dichasus-0153.tfrecords</code> and <code class="nohighlight">dichasus-0154.tfrecords</code>:
+	</p>
+
+	<pre class="m-0"><code class="language-bash">!mkdir dichasus
+!wget --content-disposition https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2202/2 -P dichasus # dichasus-0152
+!wget --content-disposition https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2202/3 -P dichasus # dichasus-0153
+!wget --content-disposition https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2202/4 -P dichasus # dichasus-0154</code></pre>
+</main>
+
+Next, we load the data into TensorFlow, with <code class="nohighlight">dichasus-0152.tfrecords</code> and <code class="nohighlight">dichasus-0153.tfrecords</code> as training set and <code class="nohighlight">dichasus-0154.tfrecords</code> as test set.
+<a href="/datasets/data/dichasus-015x/"><code class="nohighlight">dichasus-015x</code></a> contains 1024 per antenna and datapoint, which is quite a lot of data to work with.
+To reduce the amount of processing power and memory required, we average over chunks of 32 neighboring subcarriers 
+<pre class="m-0"><code class="language-python">import tensorflow as tf
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.cm as cm
+
+training_files = ["dichasus/dichasus-0152.tfrecords", "dichasus/dichasus-0153.tfrecords"]
+test_files = ["dichasus/dichasus-0154.tfrecords"]
+
+feature_description = {
+    "pos-tachy": tf.io.FixedLenFeature([], tf.string, default_value = ''),
+    "csi": tf.io.FixedLenFeature([], tf.string, default_value = ''),
+}
+
+def record_parse_function(proto):
+    record = tf.io.parse_single_example(proto, feature_description)
+
+    pos = tf.io.parse_tensor(record["pos-tachy"], out_type = tf.float64)
+    csi_tensor = tf.ensure_shape(tf.io.parse_tensor(record["csi"], out_type=tf.float32), (32, 1024, 2))
+    csi_tensor = tf.signal.fftshift(csi_tensor, axes=1)
+
+    # Average neighboring subcarriers
+    chunksize = 32
+    featurecount = csi_tensor.shape[1] // chunksize
+    csi_averaged = tf.stack([tf.math.reduce_mean(csi_tensor[:, (chunksize * s):(chunksize * (s + 1)), :], axis = 1) for s in range(featurecount)], axis = 1)
+
+    csi_UL = csi_averaged[:, :8] / tf.norm(csi_tensor[:, :8])
+    csi_DL = csi_averaged[:, -5] / tf.norm(csi_tensor[:, -5])
+
+    return (csi_UL, pos[:2]), csi_DL
+
+training_set = tf.data.TFRecordDataset(training_files).map(record_parse_function).cache()
+test_set = tf.data.TFRecordDataset(test_files).map(record_parse_function).cache()</code></pre>
+<script>hljs.highlightAll();</script>
+
+<main class="flex-shrink-0 my-4">
+	<h2 class="text-center" style="font-weight: bold;">More Coming Soon...</h2>
 </main>

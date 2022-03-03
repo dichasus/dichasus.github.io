@@ -550,16 +550,28 @@ dataset = dataset.cache()</code></pre>
 		</pre>
 		<script>hljs.highlightAll();</script>
 
-		{{ $offsets := (.Resources.GetMatch "reftx-offsets-*.json") }}
-		{{ if not (eq $offsets nil) }}
+		{{ $offsetfile := ".json" | printf "%s%s" $spec.identifier | printf "%s%s" "reftx-offsets-" }}
+		{{ $offsetsCombined := (.Resources.GetMatch $offsetfile) }}
+		{{ $offsetsIndividual := (.Resources.Match "reftx-offsets-*.json") }}
+		{{ if or (not (eq $offsetsCombined nil)) (not (eq $offsetsIndividual nil)) }}
 		<h2 id="reftx-compensation">Reference Channel Compensation</h2>
 		For this dataset, we are able to provide estimated antenna-specific carrier phase and sampling time offsets.
-		These offsets are constant over the complete dataset and occur due to the fact that the reference transmitter channel is not perfectly frequency-flat.
+		These offsets occur due to the fact that the reference transmitter channel is not perfectly frequency-flat.
 		To learn more about why these offsets occur and about their compensation, visit our offset calibration tutorial on this topic.
+
+		{{ if not (eq $offsetsCombined nil) }}
+		The offset are constant over the complete dataset.
+		{{ else }}
+		For this dataset, the reference transmitter channel seems to be somewhat unstable, i.e., phase and time offsets fluctuate over time.
+		Therefore, we provide a file containing our phase and time offset estimates <i>for each individual file in the dataset</i>.
+		You can download these estimates from the list of files below.
+		{{ end }}
 
 		<div class="mt-3 mb-3 d-grid gap-2 d-md-flex justify-content-md-end">
 			<a href="/tutorials/tutorial/calibration/"><button class="btn btn-lg btn-outline-dark me-md-2" type="button">Compensation Tutorial</button></a>
-			<a href="{{ $offsets }}" download><button class="btn btn-lg btn-dark" type="button">Download Offset Estimates</button></a>
+			{{ if not (eq $offsetsCombined nil) }}
+			<a href="{{ $offsetsCombined }}" download><button class="btn btn-lg btn-dark" type="button">Download Offset Estimates</button></a>
+			{{ end }}
 		</div>
 		{{ end }}
 
@@ -772,6 +784,11 @@ dataset = dataset.cache()</code></pre>
 
 							<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 								{{ if isset $tfrecord "darusDownloadURL" }}
+									{{ $singleOffsetfile := ".json" | printf "%s%s" $tfrecord.name | printf "%s%s" "reftx-offsets-" }}
+									{{ $singleOffsets := ($.Resources.GetMatch $singleOffsetfile) }}
+									{{ if not (eq $singleOffsets nil) }}
+									<a href="{{ $singleOffsets }}" download><button class="btn btn-lg btn-outline-dark me-md-2" type="button">Download Offset Estimates</button></a>
+									{{ end }}
 									<a href="{{ $tfrecord.darusViewURL }}"><button class="btn btn-lg btn-outline-dark me-md-2" type="button">View on DaRUS</button></a>
 									<a href="{{ $tfrecord.darusDownloadURL }}"><button class="btn btn-lg btn-dark" type="button">Download</button></a>
 								{{ else }}

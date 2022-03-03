@@ -8,7 +8,6 @@
     "outdoor": false,
     "year": 2022,
     "warnings": [
-        "This dataset is currently still in the process of being analyzed. It will be published once complete.",
         "Due to a configuration error, we are unable to provide high-quality CSI data for all 32 antennas and at all locations. We had to disable certain antennas (as indicated below) and some transmitter locations are missing."
     ],
     "antennas": [
@@ -121,7 +120,9 @@
             "gpx": "",
             "datapoints": 16635,
             "duration": 1295.2799072265625,
-            "totalSize": 2868073620
+            "totalSize": 2868073620,
+            "darusViewURL": "https://doi.org/10.18419/darus-2604/2",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2604/2"
         },
         {
             "filename": "tfrecords/dichasus-cb01.tfrecords",
@@ -137,7 +138,9 @@
             "gpx": "",
             "datapoints": 32978,
             "duration": 1477.409912109375,
-            "totalSize": 5685802936
+            "totalSize": 5685802936,
+            "darusViewURL": "https://doi.org/10.18419/darus-2604/3",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2604/3"
         },
         {
             "filename": "tfrecords/dichasus-cb02.tfrecords",
@@ -153,7 +156,9 @@
             "gpx": "",
             "datapoints": 23045,
             "duration": 1228.169921875,
-            "totalSize": 3973234540
+            "totalSize": 3973234540,
+            "darusViewURL": "https://doi.org/10.18419/darus-2604/4",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2604/4"
         },
         {
             "filename": "tfrecords/dichasus-cb03.tfrecords",
@@ -169,7 +174,9 @@
             "gpx": "",
             "datapoints": 30432,
             "duration": 1345.109375,
-            "totalSize": 5246841984
+            "totalSize": 5246841984,
+            "darusViewURL": "https://doi.org/10.18419/darus-2604/5",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2604/5"
         },
         {
             "filename": "tfrecords/dichasus-cb04.tfrecords",
@@ -185,7 +192,9 @@
             "gpx": "",
             "datapoints": 11539,
             "duration": 583.2001953125,
-            "totalSize": 1989462068
+            "totalSize": 1989462068,
+            "darusViewURL": "https://doi.org/10.18419/darus-2604/6",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2604/6"
         },
         {
             "filename": "tfrecords/dichasus-cb05.tfrecords",
@@ -201,7 +210,9 @@
             "gpx": "",
             "datapoints": 12799,
             "duration": 633.029296875,
-            "totalSize": 2206701188
+            "totalSize": 2206701188,
+            "darusViewURL": "https://doi.org/10.18419/darus-2604/7",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2604/7"
         },
         {
             "filename": "tfrecords/dichasus-cb06.tfrecords",
@@ -217,7 +228,9 @@
             "gpx": "",
             "datapoints": 13393,
             "duration": 622.0205078125,
-            "totalSize": 2309113916
+            "totalSize": 2309113916,
+            "darusViewURL": "https://doi.org/10.18419/darus-2604/8",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2604/8"
         }
     ],
     "photos": [
@@ -243,6 +256,7 @@
         }
     ],
     "thumbnail": "photosAll/robot_and_antenna.jpg",
+    "doi": "doi:10.18419/darus-2604",
     "plots": {
         "snrByPosition": "plots/overall-snr-position.png",
         "snrBoxplot": "plots/overall-snr-boxplot.png",
