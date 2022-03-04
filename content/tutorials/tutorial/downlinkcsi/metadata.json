@@ -1,6 +1,6 @@
 {
 	"name" : "FDD Massive MIMO: Infer Downlink CSI from Uplink CSI",
 	"thumbnail" : "header.svg",
-	"shortDescription" : "Use the uplink channel state information available at the base station to predict the downlink channel at a different frequency band."
-
+	"shortDescription" : "Use the uplink channel state information available at the base station to predict the downlink channel at a different frequency band.",
+	"jupyterNotebook" : "FDDMassiveMIMO.ipynb"
 }
