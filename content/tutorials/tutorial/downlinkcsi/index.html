@@ -408,6 +408,34 @@ If you do the math, you can see that a two-path propagation model would lead to 
 Since we always want constructive interference with massive MIMO, the NN has learned to mitigate this effect by adjusting the phase difference between the direct beam and the ceiling-reflected beam accordingly.
 Pretty astonishing!
 
+<h3 class="text-center mt-3" style="font-weight: bold;">Video Visualization</h3>
+So, what would downlink precoding actually "look" like in a real system?
+With DICHASUS datasets, we can make electromagnetic waves visible by coloring the datapoints in the dataset according to the power they <i>would</i> receive in the downlink direction for any particular precoding vector.
+If we do so, this is what downlink precoding looks like:
+
+<div class="row justify-content-center mb-4">
+	<div class="col-12 col-l-10 col-xl-8">
+		<video width="100%" controls>
+			<source src="precoding-video.mp4" type="video/mp4">
+		</video>
+	</div>
+</div>
+
+<p>
+	In the video, the red dot indicates the position of the UE, i.e., the location that we want to direct all downlink power towards.
+	To generate the video, the previously trained encoder / decoder neural network is tasked to estimate the downlink precoding vector \( \mathbf h_\mathrm{D} \) from \( \mathbf H_\mathrm{U} \) measured at that UE position.
+	Then, the received powers everywhere are calculated based on \( \mathbf h_\mathrm{D} \) and the hexagons are colored accordingly.
+</p>
+
+<p>
+	It is clear to see that downlink precoding with neural networks based on uplink CSI <i>does</i> work in principle: The antenna array is clearly capable of focusing beam power on the UE.
+	The beam sweeping is especially visible in the azimuthal direction.
+	In addition, it is now also obvious why the neural network's latent space contains the axial stripe pattern:
+	The antenna array steers the downlink precoding power towards the UE by exploiting the reflection at the ceiling. 
+</p>
+
+
+
 <h4 class="text-center my-4" style="font-weight: bold;">Licensing and Authors</h4>
 <p>
 	All our datasets are licensed under the <a href="https://creativecommons.org/licenses/by/2.0/">CC-BY license</a>, i.e., you are free to use them for whatever you like as long as you reference us in your publications.
