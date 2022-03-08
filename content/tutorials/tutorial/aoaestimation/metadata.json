@@ -1,0 +1,5 @@
+{
+	"name" : "Deep Learning-Based AoA Estimation",
+	"thumbnail" : "header.svg",
+	"shortDescription" : "Train a neural network to perform angle of arrival estimation and see how it generalizes to unseen data."
+}

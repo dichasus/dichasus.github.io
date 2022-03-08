@@ -1,0 +1,232 @@
+---
+title: "Deep Learning-Based AoA Estimation"
+date: 2021-11-25T18:03:52+02:00
+draft: false
+type: page
+layout: tutorial-details
+---
+<main class="flex-shrink-0 my-4">
+	<h2 class="text-center" style="font-weight: bold;">Angle Estimation: Classical or Deep Learning-Based?</h2>
+	<p>
+		Our <a href="/tutorial/tutorials/calibration">reference transmitter calibration tutorial</a> outlines the steps required to perform angle of arrival (AoA) estimation based on classical signal processing.
+		So, why use neural networks for AoA estimation if good classical algorithms such as <a href="https://en.wikipedia.org/wiki/MUSIC_(algorithm)">MUSIC</a> exist?
+		Is it just so that we can check a box and claim that we are using "artificial intelligence" or "machine learning"?
+	</p>
+	<p>
+		No, of course not. There are several advantages and disadvantages to using a neural-network based approach over classical AoA estimation.
+		Here is a short comparison:
+		<div class="row justify-content-center">
+			<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-5 p-3">
+				<div class="text-center fw-bold">Classical AoA Estimation</div>
+				<ul>
+					<li>No training data (CSI with AoA labels) required</li>
+					<li>Requires absolute phase and time synchronization between antennas</li>
+					<li>Well-known algorithms such as <a href="https://en.wikipedia.org/wiki/MUSIC_(algorithm)">MUSIC</a> and <a href="https://en.wikipedia.org/wiki/Estimation_of_signal_parameters_via_rotational_invariance_techniques">ESPRIT</a> (and simpler, less optimal alternatives) exist</li>
+					<li>Objects in the environment will lead to accuracy issues due to reflections. Antenna properties such as radiation pattern and phase center location also need to be considered for accurate estimates.</li>
+					<li>Location of antennas (assignment of channels, orientation, ...) has to be known precisely</li>
+				</ul>
+			</div>
+			<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-5 p-3">
+				<div class="text-center fw-bold">Neural Network-Based Estimation</div>
+				<ul>
+					<li>Needs large amounts of labelled training data</li>
+					<li>The neural network can learn to compensate any phase and time offsets between antennas as well as other impairments</li>
+					<li>Need to tune neural network and training hyperparameters, there is no "optimal" solution</li>
+					<li>The neural network can learn to ignore multipath propagation issues caused by the radio environment. Antenna propagation properties are also learned during training.</li>
+					<li>No need to specify antenna array properties, the neural network can learn these from the training set</li>
+				</ul>
+			</div>
+		</div>
+	</p>
+
+	<div class="row justify-content-center">
+		<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-8 p-3">
+			<p>
+				If there is a sufficient amount of training data, neural-network based AoA estimation usually performs better than classical techniques, as we will show in this tutorial.
+				We will put a special focus on testing the ability of the neural network to generalize AoA estimation to physical regions in space that it has not seen during training.
+			</p>
+			<p>
+				In case you are unfamiliar with DICHASUS datasets, it might be a good idea to have a look at <a href="/tutorials/tutorial/positioning/">our position estimation tutorial</a> first.
+				It uses a very similar feature extraction and neural network training and explains both in greater detail.
+			</p>
+			<p>
+				When it comes to angle of arrival estimation, there are two incident angles that one might want to estimate at the antenna array: <a href="https://en.wikipedia.org/wiki/Spherical_coordinate_system">Elevation</a> and <a href="https://en.wikipedia.org/wiki/Azimuth">azimuth</a>.
+				Since, at the time of writing, most of our datasets exhibit a much greater variance in azimuth (compared to elevation), we will focus on azimuth angle estimation in this tutorial.
+				Estimating the elevation angle instead is, however, simply a matter of changing the training data, no modifications to the neural network are required.
+			</p>
+		</div>
+		<div class="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-4 p-3">
+			<img style="width: 100%;" src="aoaprinciple.svg">
+		</div>
+	</div>
+
+	<h3 class="text-center" style="font-weight: bold;">Training Set and Test Set</h3>
+	<p>
+		As always, we start by downloading the dataset and importing it with TensorFlow.
+		We use subcarrier averaging as a simple feature engineering technique, just like we did in <a href="/tutorials/tutorial/positioning/">the indoor positioning tutorial</a>:
+<pre class="m-0"><code class="language-bash">!mkdir dichasus
+!wget --content-disposition https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2202/2 -P dichasus # dichasus-0152
+!wget --content-disposition https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2202/3 -P dichasus # dichasus-0153</code></pre>
+</code></pre>
+		<script>hljs.highlightAll();</script>
+
+		<pre class="m-0"><code class="language-python">import matplotlib.pyplot as plt
+import tensorflow as tf
+import numpy as np
+
+def record_parse_function(proto):
+	record = tf.io.parse_single_example(proto, {
+		"csi": tf.io.FixedLenFeature([], tf.string, default_value = ""),
+		"pos-tachy": tf.io.FixedLenFeature([], tf.string, default_value = "")
+	})
+	csi = tf.ensure_shape(tf.io.parse_tensor(record["csi"], out_type = tf.float32), (32, 1024, 2))
+	pos_tachy = tf.ensure_shape(tf.io.parse_tensor(record["pos-tachy"], out_type = tf.float64), (3))
+
+	dist = tf.sqrt(tf.square(pos_tachy[0]) + tf.square(pos_tachy[1]))
+	angle = tf.math.atan2(pos_tachy[1], -pos_tachy[0])
+
+	return csi, pos_tachy[:2], angle, dist
+
+def get_feature_mapping(chunksize = 32):
+	def compute_features(csi, pos_tachy, angle, dist):
+		assert(csi.shape[1] % chunksize == 0)
+		featurecount = csi.shape[1] // chunksize
+		csi_averaged = tf.stack([tf.math.reduce_mean(csi[:, (chunksize * s):(chunksize * (s + 1)), :], axis = 1) for s in range(featurecount)], axis = 1)
+		return csi_averaged, pos_tachy, angle, dist
+
+	return compute_features
+
+datafiles = ["dichasus/dichasus-0152.tfrecords", "dichasus/dichasus-0153.tfrecords"]
+dataset = tf.data.TFRecordDataset(datafiles).map(record_parse_function)
+
+training_set = dataset.filter(lambda csi, pos, angle, dist: dist <= 4 and dist > 0.5)
+test_set = dataset.filter(lambda csi, pos, angle, dist: dist > 4)
+
+training_set_features = training_set.map(get_feature_mapping(32))
+test_set_features = test_set.map(get_feature_mapping(32))
+
+training_set_features = training_set_features.shuffle(buffer_size = 100000).cache()
+test_set_features = test_set_features.shuffle(buffer_size = 100000).cache()</code></pre>
+	</p>
+
+	<div class="row justify-content-center">
+		<div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7 p-3">
+			In the above code snippet, we already split the dataset into a training set and a test set.
+			The training set contains all datapoints located at some distance \( d \) that is between \( 0.5 \,\mathrm{m} \) and \( 4 \,\mathrm{m} \) from the antenna array, which, itself, is located at \( (x, y) = (0, 0) \).
+			The test set contains points that are further away than a \( 4\,\mathrm{m} \) radius.
+			Thereby, we ensure that the neural network has to infer angles of arrival for datapoints that it has never seen before in locations that it has not seen either.
+			Let's visualize this:
+			<pre class="m-0"><code class="language-python">positions_train = np.vstack([pos for csi, pos, angle, dist in training_set_features])
+positions_test = np.vstack([pos for csi, pos, angle, dist in test_set_features])
+
+plt.figure(figsize = (8, 8))
+plt.title("Training Set and Test Set", fontsize = 16, pad = 16)
+plt.axis("equal")
+plt.xlim(-6, 0)
+plt.scatter(x = positions_train[:,0], y = positions_train[:,1], marker = ".", s = 1000, label = "Training Set")
+plt.scatter(x = positions_test[:,0], y = positions_test[:,1], marker = ".", s = 1000, label = "Test Set")
+plt.legend(fontsize = 16)
+plt.xlabel("$x$ coordinate [m]", fontsize = 16)
+plt.ylabel("$y$ coordinate [m]", fontsize = 16)
+plt.tick_params(axis = "both", labelsize = 16)
+plt.show()</code></pre>
+		</div>
+		<div class="col-12 col-sm-12 col-md-8 col-lg-5 col-xl-5 p-3">
+			<img style="width: 90%;" src="training_test_set.png">
+		</div>
+	</div>
+
+	<h3 class="text-center" style="font-weight: bold;">Neural Network Architecture and Training</h3>
+	We use a simple dense neural network with mean squared error (MSE) loss for the AoA estimate.
+	Really, there are only a few things to pay attention to here:
+	First, we need to make sure to provide only the channel state information features as input and only take the AoA estimate as output.
+	This is why there is a function called <code class="nohighlight">only_input_output</code> which removes all irrelevant information from the dataset.
+	Second, and perhaps less obvious, we need to make sure that there is no discontinuity in the desired AoA values in the dataset.
+	This could occur if there are both angles close to \( 0^\circ \) and close to \( 360^\circ \) - MSE loss would not be suitable for these circumstances.
+	However, thanks to the way the desired (ground truth) azimuth angle was computed earlier, we have already avoided this issue, all angles are in the continuous range \( (-90^\circ, 90^\circ) \).
+
+	<pre class="m-0"><code class="language-python">nn_input = tf.keras.Input(shape=(32, 32, 2), name = "input")
+nn_output = tf.keras.layers.Flatten()(nn_input)
+
+nn_output = tf.keras.layers.Dense(units = 64, activation = "relu")(nn_output)
+nn_output = tf.keras.layers.Dense(units = 64, activation = "relu")(nn_output)
+nn_output = tf.keras.layers.Dense(units = 64, activation = "relu")(nn_output)
+nn_output = tf.keras.layers.Dense(units = 1, activation = "linear", name = "output")(nn_output)
+model = tf.keras.Model(inputs = nn_input, outputs = nn_output, name = "AoA_NN")
+model.compile(optimizer = tf.keras.optimizers.Adam(), loss = "mse")
+
+def only_input_output(csi, pos, angle, dist):
+	return csi, angle
+
+batch_sizes = [32, 64, 256, 1024, 4096]
+for b in batch_sizes:
+	dataset_batched = training_set_features.batch(b)
+	test_set_batched = test_set_features.batch(b)
+	print("\nBatch Size:", b)
+	model.fit(dataset_batched.map(only_input_output), epochs = 10, validation_data = test_set_batched.map(only_input_output))</code></pre>
+
+	<h3 class="text-center mt-4" style="font-weight: bold;">Performance Evaluation</h3>
+	<div class="row justify-content-center">
+		<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-7 p-3">
+			<pre class="m-0"><code class="language-python">positions = []
+predicted_angles = []
+true_angles = []
+distances = []
+
+for csi, pos, angle, dist in test_set_features.batch(100):
+	positions.append(pos.numpy())
+	predicted_angles.append(np.transpose(model.predict(csi))[0])
+	true_angles.append(angle.numpy())
+	distances.append(dist.numpy())
+
+positions = np.vstack(positions)
+predicted_angles = np.hstack(predicted_angles)
+true_angles = np.hstack(true_angles)
+distances = np.hstack(distances)
+
+errorvectors = np.transpose(distances * np.vstack([-np.cos(predicted_angles), np.sin(predicted_angles)])) - positions
+errors_abs_deg = np.rad2deg(np.abs(true_angles - predicted_angles))</code></pre>
+		</div>
+		<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-5 p-3">
+			We feed the complete test set into the neural network (in batches) and let it predict an azimuth angle estimate.
+		</div>
+	</div>
+	<div class="row justify-content-center">
+		<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-7 p-3">
+			<pre class="m-0"><code class="language-python">plt.figure(figsize=(10, 10))
+plt.title("AoA Estimation Error", fontsize = 16, pad = 16)
+
+plt.axis("equal")
+plt.xlim(-6, 0)
+plt.hexbin(x = positions[:, 0], y = positions[:, 1], C = errors_abs_deg, gridsize = 30)
+plt.quiver(positions[:300, 0], positions[:300, 1], errorvectors[:300, 0], errorvectors[:300, 1], color = "red", angles = "xy", scale_units = "xy", scale = 1)
+
+cb = plt.colorbar()
+cb.set_label("AoA Estimation Error [deg]", fontsize = 16)
+plt.xlabel("$x$ coordinate [m]", fontsize = 16)
+plt.ylabel("$y$ coordinate [m]", fontsize = 16)
+plt.tick_params(axis = "both", labelsize = 16)
+plt.show()</code></pre>
+		</div>
+		<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-5 p-3">
+			<img style="width: 100%;" src="aoa_errorvectors.png">
+		</div>
+	</div>
+
+	<pre class="m-0"><code class="language-python">plt.figure(figsize=(15, 4))
+plt.title("AoA Estimation Error Distibution", fontsize = 16)
+plt.xlabel("AoA Estimation Error [deg]", fontsize = 16)
+plt.ylabel("Number of Occurences", fontsize = 16)
+plt.tick_params(axis = "both", labelsize = 14)
+		
+plt.hist(errors_abs_deg, bins = 100)
+plt.show()</code></pre>
+
+	<div class="row justify-content-center">
+		<div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-8 p-3">
+			<img style="width: 100%;" src="error_histogram.png">
+		</div>
+	</div>
+
+	<h2 class="text-center" style="font-weight: bold;">More coming Soon...</h2>
+</main>
