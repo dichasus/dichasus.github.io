@@ -423,8 +423,8 @@ If we do so, this is what downlink precoding looks like:
 
 <p>
 	In the video, the red dot indicates the position of the UE, i.e., the location that we want to direct all downlink power towards.
-	To generate the video, the previously trained encoder / decoder neural network is tasked to estimate the downlink precoding vector \( \mathbf h_\mathrm{D} \) from \( \mathbf H_\mathrm{U} \) measured at that UE position.
-	Then, the received powers everywhere are calculated based on \( \mathbf h_\mathrm{D} \) and the hexagons are colored accordingly.
+	To generate the video, the previously trained encoder / decoder neural network is tasked to produce a downlink channel vector estimate \( \mathbf w \) from \( \mathbf H_\mathrm{U} \) measured at that UE position.
+	Then, the received powers everywhere are calculated based on \( \mathbf w \) and the hexagons are colored accordingly.
 </p>
 
 <p>

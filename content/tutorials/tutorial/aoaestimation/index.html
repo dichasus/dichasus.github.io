@@ -8,12 +8,12 @@ layout: tutorial-details
 <main class="flex-shrink-0 my-4">
 	<h2 class="text-center" style="font-weight: bold;">Angle Estimation: Classical or Deep Learning-Based?</h2>
 	<p>
-		Our <a href="/tutorial/tutorials/calibration">reference transmitter calibration tutorial</a> outlines the steps required to perform angle of arrival (AoA) estimation based on classical signal processing.
-		So, why use neural networks for AoA estimation if good classical algorithms such as <a href="https://en.wikipedia.org/wiki/MUSIC_(algorithm)">MUSIC</a> exist?
+		Our <a href="/tutorial/tutorials/calibration">reference transmitter calibration tutorial</a> outlines the steps required to perform angle of arrival (AoA) estimation with classical signal processing methods.
+		So, why use neural networks for AoA estimation if good conventional algorithms such as <a href="https://en.wikipedia.org/wiki/MUSIC_(algorithm)">MUSIC</a> exist?
 		Is it just so that we can check a box and claim that we are using "artificial intelligence" or "machine learning"?
 	</p>
 	<p>
-		No, of course not. There are several advantages and disadvantages to using a neural-network based approach over classical AoA estimation.
+		No, of course not. There are several advantages (but also some disadvantages) to using a neural-network based approach over model-based AoA estimation.
 		Here is a short comparison:
 		<div class="row justify-content-center">
 			<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-5 p-3">
@@ -23,7 +23,7 @@ layout: tutorial-details
 					<li>Requires absolute phase and time synchronization between antennas</li>
 					<li>Well-known algorithms such as <a href="https://en.wikipedia.org/wiki/MUSIC_(algorithm)">MUSIC</a> and <a href="https://en.wikipedia.org/wiki/Estimation_of_signal_parameters_via_rotational_invariance_techniques">ESPRIT</a> (and simpler, less optimal alternatives) exist</li>
 					<li>Objects in the environment will lead to accuracy issues due to reflections. Antenna properties such as radiation pattern and phase center location also need to be considered for accurate estimates.</li>
-					<li>Location of antennas (assignment of channels, orientation, ...) has to be known precisely</li>
+					<li>Locations of individual antennas (assignment of channels, orientation of array, distance between antennas, ...) have to be known precisely</li>
 				</ul>
 			</div>
 			<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-5 p-3">
@@ -52,7 +52,7 @@ layout: tutorial-details
 			<p>
 				When it comes to angle of arrival estimation, there are two incident angles that one might want to estimate at the antenna array: <a href="https://en.wikipedia.org/wiki/Spherical_coordinate_system">Elevation</a> and <a href="https://en.wikipedia.org/wiki/Azimuth">azimuth</a>.
 				Since, at the time of writing, most of our datasets exhibit a much greater variance in azimuth (compared to elevation), we will focus on azimuth angle estimation in this tutorial.
-				Estimating the elevation angle instead is, however, simply a matter of changing the training data, no modifications to the neural network are required.
+				Estimating the elevation angle instead is, however, simply a matter of changing which label to train on, no modifications to the neural network are required.
 			</p>
 		</div>
 		<div class="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-4 p-3">
@@ -188,11 +188,45 @@ errorvectors = np.transpose(distances * np.vstack([-np.cos(predicted_angles), np
 errors_abs_deg = np.rad2deg(np.abs(true_angles - predicted_angles))</code></pre>
 		</div>
 		<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-5 p-3">
-			We feed the complete test set into the neural network (in batches) and let it predict an azimuth angle estimate.
+			<p>
+				We feed the complete test set into the neural network (in batches) and let it predict an azimuth angle estimate.
+				In addition, we store the ground truth positions as well as the true angles and true distances to the antenna array in additional NumPy arrays.
+			</p>
+			<p>
+				Based on this information, we can compute <i>error vectors</i>, that is, vectors that point from the ground truth position, as provided in the dataset, to the estimated position.
+				We only estimate an angle here, so, to obtain a complete position estimate, we will just use the true (ground truth) distance value to compute the coordinates of the location that the error vector points at.
+			</p>
+		</div>
+	</div>
+	<div class="row justify-content-center">
+		<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-8 p-3">
+			Before taking a closer look at angle estimation errors (and thereby highlighting all the places where AoA estimation does <i>not</i> work so well), let's first see what <i>does</i> work.
+			We can do this by visualizing the estimated AoA over the UE location in a heatmap.
+			Remember, the antenna array is located at \( 0, 0 \).
+			<pre class="m-0"><code class="language-python">plt.figure(figsize=(10, 10))
+plt.title("AoA Estimate", fontsize = 16, pad = 16)
+
+plt.axis("equal")
+plt.xlim(-6, 0)
+plt.hexbin(x = positions[:, 0], y = positions[:, 1], C = np.rad2deg(predicted_angles), gridsize = 30)
+cb = plt.colorbar()
+cb.set_label("AoA Estimate [deg]", fontsize = 16)
+plt.xlabel("$x$ coordinate [m]", fontsize = 16)
+plt.ylabel("$y$ coordinate [m]", fontsize = 16)
+plt.tick_params(axis = "both", labelsize = 16)
+plt.show()</code></pre>
+		</div>
+		<div class="col-12 col-sm-12 col-md-9 col-lg-6 col-xl-4 p-3">
+			<img style="width: 100%;" src="aoa_estimates.png">
 		</div>
 	</div>
 	<div class="row justify-content-center">
 		<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-7 p-3">
+			<p>
+				Next, we visualize the estimation <i>errors</i>.
+				We could try to plot all the error vectors, but that's simply too many lines.
+				So, instead, we only plot a few vectors (the first 300 entries from the test set, which was randomly shuffled) and display estimation errors as a heatmap again.
+			</p>
 			<pre class="m-0"><code class="language-python">plt.figure(figsize=(10, 10))
 plt.title("AoA Estimation Error", fontsize = 16, pad = 16)
 
@@ -207,12 +241,17 @@ plt.xlabel("$x$ coordinate [m]", fontsize = 16)
 plt.ylabel("$y$ coordinate [m]", fontsize = 16)
 plt.tick_params(axis = "both", labelsize = 16)
 plt.show()</code></pre>
+		Clearly, there are some locations where estimation errors are higher than in others, but overall, most estimates are within less than \( 10^\circ \) or so.
+		The comparably bad performance in some places could be due to particularly strong multipath components there.
+		Since the neural network has never seen these areas before, it does not really have a chance to learn to compensate for these.
 		</div>
-		<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-5 p-3">
+		<div class="col-12 col-sm-12 col-md-9 col-lg-6 col-xl-5 p-3">
 			<img style="width: 100%;" src="aoa_errorvectors.png">
 		</div>
 	</div>
 
+	Finally, let's have a look at the distribution of angle estimation errors by plotting the error histogram.
+	The histogram confirms that most estimation errors are below \( 10^\circ \), which goes to show that we are able to achieve at least some generalization capability on unseen data, even with a very simple dense neural network.
 	<pre class="m-0"><code class="language-python">plt.figure(figsize=(15, 4))
 plt.title("AoA Estimation Error Distibution", fontsize = 16)
 plt.xlabel("AoA Estimation Error [deg]", fontsize = 16)
@@ -228,5 +267,10 @@ plt.show()</code></pre>
 		</div>
 	</div>
 
-	<h2 class="text-center" style="font-weight: bold;">More coming Soon...</h2>
+	<h4 class="text-center my-4" style="font-weight: bold;">Licensing and Authors</h4>
+	<p>
+		All our datasets are licensed under the <a href="https://creativecommons.org/licenses/by/2.0/">CC-BY license</a>, i.e., you are free to use them for whatever you like as long as you reference us in your publications.
+		All code in this tutorial is <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0-licensed</a>.
+		This tutorial was written jointly by Robin Sauerzapf and <a href="mailto:florian.euchner@inue.uni-stuttgart.de">Florian Euchner</a>.
+	</p>
 </main>
