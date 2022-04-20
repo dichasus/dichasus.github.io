@@ -1,0 +1,301 @@
+{
+    "identifier": "dichasus-cf0x",
+    "name": "Distributed Antenna Setup in Industrial Environment, Day 1",
+    "shortDescription": "Distributed antenna setup with line-of-sight (LoS) and non-line-of-sight (NLoS) channels, measured in the [Arena2036](https://www.arena2036.de/) research factory campus environment.",
+    "longDescription": "Four antenna arrays with 8 antennas each distributed at the corners of an L-shaped area with a scatterer in between.",
+    "bandwidth": 50000000.0,
+    "frequency": 1272000000,
+    "outdoor": false,
+    "year": 2022,
+    "antennas": [
+        {
+            "name": "Antenna Array A",
+            "type": "array",
+            "spacingX": 0.118,
+            "spacingY": 0.118,
+            "assignments": [
+                [
+                    6,
+                    2,
+                    16,
+                    18
+                ],
+                [
+                    28,
+                    5,
+                    10,
+                    14
+                ]
+            ],
+            "location": [
+                2.6747,
+                -13.8973,
+                1.560075
+            ],
+            "direction": [
+                -0.86082768,
+                -0.50889655,
+                0
+            ]
+        },
+        {
+            "name": "Antenna Array B",
+            "type": "array",
+            "spacingX": 0.118,
+            "spacingY": 0.118,
+            "assignments": [
+                [
+                    24,
+                    8,
+                    22,
+                    15
+                ],
+                [
+                    30,
+                    26,
+                    21,
+                    25
+                ]
+            ],
+            "location": [
+                -11.250275,
+                -9.689025,
+                1.5336
+            ],
+            "direction": [
+                0.79588938,
+                0.60544207,
+                0
+            ]
+        },
+        {
+            "name": "Antenna Array C",
+            "type": "array",
+            "spacingX": 0.118,
+            "spacingY": 0.118,
+            "assignments": [
+                [
+                    3,
+                    7,
+                    1,
+                    12
+                ],
+                [
+                    0,
+                    13,
+                    31,
+                    29
+                ]
+            ],
+            "location": [
+                -1.531375,
+                -15.0595,
+                1.5772
+            ],
+            "direction": [
+                0.21111578,
+                0.97746106,
+                0
+            ]
+        },
+        {
+            "name": "Antenna Array D",
+            "type": "array",
+            "spacingX": 0.118,
+            "spacingY": 0.118,
+            "assignments": [
+                [
+                    20,
+                    11,
+                    9,
+                    27
+                ],
+                [
+                    19,
+                    4,
+                    23,
+                    17
+                ]
+            ],
+            "location": [
+                -12.684425,
+                -4.483325,
+                1.78985
+            ],
+            "direction": [
+                0.99638112,
+                -0.08499802,
+                0
+            ]
+        }
+    ],
+    "format": {
+        "csi": {
+            "description": "Channel coefficients for all antennas, over all subcarriers, real and imaginary parts",
+            "type": "tensor",
+            "dimension": [
+                32,
+                1024,
+                2
+            ]
+        },
+        "snr": {
+            "description": "Signal-to-Noise ratio estimates for all antennas",
+            "type": "tensor",
+            "dimension": [
+                32
+            ]
+        },
+        "pos-tachy": {
+            "description": "Position of transmitter determined by a tachymeter pointed at a prism mounted on top of the antenna, in meters (X / Y / Z coordinates)",
+            "type": "tensor64",
+            "dimension": [
+                3
+            ]
+        },
+        "gt-interp-age-tachy": {
+            "description": "Time in seconds to closest known tachymeter position. Indicates quality of linear interpolation.",
+            "type": "float32",
+            "dimension": []
+        },
+        "time": {
+            "description": "Timestamp since start of measurement campaign, in seconds",
+            "type": "float32",
+            "dimension": []
+        },
+        "cfo": {
+            "description": "Measured carrier frequency offset between MOBTX and each receive antenna.",
+            "type": "tensor",
+            "dimension": [
+                32
+            ]
+        }
+    },
+    "tfrecords": [
+        {
+            "filename": "tfrecords/dichasus-cf02.tfrecords",
+            "description": "Robot drives along a trajectory with north-south meanders.",
+            "name": "dichasus-cf02",
+            "plots": {
+                "snrByPosition": "plots/dichasus-cf02-snr-position.png",
+                "snrBoxplot": "plots/dichasus-cf02-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-cf02-csi-0.png"
+                ]
+            },
+            "gpx": "",
+            "datapoints": 18516,
+            "duration": 941.134765625,
+            "totalSize": 4862708952
+        },
+        {
+            "filename": "tfrecords/dichasus-cf03.tfrecords",
+            "description": "Robot drives along a trajectory with south west-north east meanders.",
+            "name": "dichasus-cf03",
+            "plots": {
+                "snrByPosition": "plots/dichasus-cf03-snr-position.png",
+                "snrBoxplot": "plots/dichasus-cf03-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-cf03-csi-0.png"
+                ]
+            },
+            "gpx": "",
+            "datapoints": 23478,
+            "duration": 1186.416015625,
+            "totalSize": 6165839316
+        },
+        {
+            "filename": "tfrecords/dichasus-cf04.tfrecords",
+            "description": "Robot drives along a trajectory with east-west meanders.",
+            "name": "dichasus-cf04",
+            "plots": {
+                "snrByPosition": "plots/dichasus-cf04-snr-position.png",
+                "snrBoxplot": "plots/dichasus-cf04-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-cf04-csi-0.png"
+                ]
+            },
+            "gpx": "",
+            "datapoints": 41991,
+            "duration": 2562.576171875,
+            "totalSize": 11027760402
+        },
+        {
+            "filename": "tfrecords/dichasus-cf05.tfrecords",
+            "description": "Robot drives along a trajectory with south east-north west meanders (first part).",
+            "name": "dichasus-cf05",
+            "plots": {
+                "snrByPosition": "plots/dichasus-cf05-snr-position.png",
+                "snrBoxplot": "plots/dichasus-cf05-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-cf05-csi-0.png"
+                ]
+            },
+            "gpx": "",
+            "datapoints": 21635,
+            "duration": 1072.17578125,
+            "totalSize": 5681826970
+        },
+        {
+            "filename": "tfrecords/dichasus-cf06.tfrecords",
+            "description": "Robot drives along a trajectory with south east-north west meanders (second part).",
+            "name": "dichasus-cf06",
+            "plots": {
+                "snrByPosition": "plots/dichasus-cf06-snr-position.png",
+                "snrBoxplot": "plots/dichasus-cf06-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-cf06-csi-0.png"
+                ]
+            },
+            "gpx": "",
+            "datapoints": 13557,
+            "duration": 673.775390625,
+            "totalSize": 3560366454
+        },
+        {
+            "filename": "tfrecords/dichasus-cf07.tfrecords",
+            "description": "Robot follows a pseudorandom (hand-drawn) trajectory.",
+            "name": "dichasus-cf07",
+            "plots": {
+                "snrByPosition": "plots/dichasus-cf07-snr-position.png",
+                "snrBoxplot": "plots/dichasus-cf07-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-cf07-csi-0.png"
+                ]
+            },
+            "gpx": "",
+            "datapoints": 59137,
+            "duration": 2911.5390625,
+            "totalSize": 15530677214
+        }
+    ],
+    "photos": [
+        {
+            "filename": "photosAll/arena2036.jpg",
+            "description": "The Arena 2036 factory floor. The measurement area is on the left at the very back of the hall. Source: ARENA2036 e.V."
+        },
+        {
+            "filename": "photosAll/arrays_b_and_d.jpg",
+            "description": "Antenna arrays B (left) and D (right)"
+        }
+    ],
+    "thumbnail": "photosAll/arrays_b_and_d.jpg",
+    "plots": {
+        "snrByPosition": "plots/overall-snr-position.png",
+        "snrBoxplot": "plots/overall-snr-boxplot.png",
+        "csiTensors": [
+            "plots/overall-csi-0.png",
+            "plots/overall-csi-1.png",
+            "plots/overall-csi-2.png",
+            "plots/overall-csi-3.png",
+            "plots/overall-csi-4.png",
+            "plots/overall-csi-5.png"
+        ]
+    },
+    "gpx": "",
+    "datapoints": 178314,
+    "duration": 9347.6171875,
+    "antennaCount": 32,
+    "subcarriers": 1024,
+    "totalSize": 46829179308
+}
