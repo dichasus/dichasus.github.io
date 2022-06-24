@@ -73,19 +73,27 @@ layout: tutorial-details
 			</p>
 		</div>
 		<div class="col-sm-12 col-md-6 p-3 col-xl-4">
-			<img style="width: 100%;" src="pipeline.jpg">
+			<img style="width: 100%;" src="pipeline.png">
 		</div>
 	</div>
 
-	<h2 class="text-center" style="font-weight: bold;">Forward Charting Function</h2>
-	<div class="row">
+	<h2 class="text-center" style="font-weight: bold;">Neural Network-based Channel Charting: Forward Charting Function</h2>
+	<div class="row py-2">
 		<div class="col-sm-12 col-md-6 p-3 col-xl-3">
-			<img style="width: 100%;" src="pipeline.jpg">
+			<img style="width: 100%;" src="forward_charting_function.png">
 		</div>
 		<div class="col-sm-12 col-md-6 col-xl-9">
 			<p>
-				Regardless of the training method employed, the objective of neural network-based channel charting is to <i>learn</i> the so-called Forward Charting Function \( \mathcal C_\Theta \).
-				The subscript \( \Theta \) indicates that this function is 
+				Regardless of the training method employed, the objective of neural network-based channel charting is to learn the so-called Forward Charting Function \( \mathcal C_{\boldsymbol \theta} \).
+				The Forward Charting Function takes a feature vector \( \bar { \mathbf h } \) as an input and directly outputs the position in the Channel Chart \( \mathbf z \).
+				Once \( \mathcal C_{\boldsymbol \theta} \) has been found, this makes it very easy and efficient to infer Chart positions (this is not the case for other dimensionality reduction techniques!).
+			</p>
+			<p>
+				The \( \boldsymbol \theta \) in the subscript indicates that this function is parametrized by a parameter vector \( \boldsymbol \theta \), which contains the weights and biases of the neural network.
+				The purpose of neural network training is to find suitable values for \( \boldsymbol \theta \).
+			</p>
+			<p>
+				But before we can do any of that, let's start with some basics about our datasets.
 			</p>
 		</div>
 	</div>
@@ -503,10 +511,10 @@ plot_data(positions_train, channel_chart_train, title='Channel Chart', metrics=m
 
 <h2 class="text-center my-4" style="font-weight: bold;">A Note on Privacy</h2>
 <p>
-	Last, but not least: If you read the whole tutorial all the way to the end, then you have certainly realized that Channel Charting technology means that the massive MIMO base station will know the location of the user's, in a much more fine-grained manner than is possible with today's sector antennas.
+	Last, but not least: If you read the whole tutorial all the way to the end, then you have certainly realized that Channel Charting technology means that the massive MIMO base station will know the location of the users in a much more fine-grained manner than is possible with today's base stations and their sector antennas.
 	In my experience, Channel Charting researchers are very aware of the potential privacy implications.
 	There are some very obvious benefits attached to Channel Charting (outlined in the introduction), but there is also potential for abuse.
-	With all the skepticism about 5G and mobile networks in general, we believe it is important to transparently publish and discuss the advantages and risks of this technology long before a potential rollout.
+	With all the skepticism about 5G and mobile networks in general, we believe it is important to transparently publish and discuss the advantages and risks of this technology.
 </p>
 
 </main>
