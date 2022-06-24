@@ -108,7 +108,7 @@ layout: tutorial-details
 		\]
 	</p>
 	<p>
-		In particular, we use the <a href="/datasets/data/dichasus-cf0x/"><code class="nohighlight">dichasus-cf0x</code></a> dataset for this tutorial.
+		For this tutorial, we use the <a href="/datasets/data/dichasus-cf0x/"><code class="nohighlight">dichasus-cf0x</code></a> dataset.
 		DICHASUS uses a reference transmitter-based system architecture, which entails that measured phases may exhibit constant offsets caused by the reference transmitter channel.
 		Luckily, we calculated these offsets for each DICHASUS dataset so they are available for download.
 		The datasets themselves are provided in the <a href="https://www.tensorflow.org/tutorials/load_data/tfrecord">TFRecords file format</a>, which makes loading them with TensorFlow particularly simple.
@@ -122,7 +122,7 @@ layout: tutorial-details
 !wget https://dichasus.inue.uni-stuttgart.de/datasets/data/dichasus-cf0x/reftx-offsets-dichasus-cf04.json -P dichasus</code></pre>
 	</p>
 	<p>
-		Next, we load the TFRecords files with TensorFlow and apply the offset compensation to the CSI as described in <a href="/tutorials/tutorial/calibration/"><code class="nohighlight">Offset Compensation</code></a>.
+		Next, we load the TFRecords files with TensorFlow and apply the offset compensation to the CSI as described in <a href="/tutorials/tutorial/calibration/">our offset compensation tutorial</a>.
 		Furthermore, we apply a first pre-processing step by averaging each CSI vector over eight subcarriers in the center of the considered bandwidth as
 		\[
 		\mathbf{\overline{h}}=\frac{1}{8}\sum_{w=508}^{515}\mathbf{h}_{b,w} \in \mathbb{C}^{32}
