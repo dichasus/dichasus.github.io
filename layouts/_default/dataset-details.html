@@ -398,6 +398,18 @@
 									</div>
 								</div>
 
+								{{ if isset $spec.plots "snrByPositionAndArray" }}
+									{{ range $name, $filename := $spec.plots.snrByPositionAndArray }}
+									<div class="carousel-item">
+										<img src="{{ $filename }}" class="d-block w-100" alt="">
+										<div
+											class="carousel-caption d-none d-md-block bg-secondary text-white p-3 bg-opacity-50">
+											Mean received signal-to-noise ratio by position, seen from {{ $name }}
+										</div>
+									</div>
+									{{ end }}
+								{{ end }}
+
 								<div class="carousel-item">
 									<img src="{{ $spec.plots.snrBoxplot }}" class="d-block w-100" alt="">
 									<div
@@ -722,6 +734,11 @@ dataset = dataset.cache()</code></pre>
 										data-bs-parent="#plot-accordion-{{ $index }}">
 										<div class="accordion-body">
 											<img class="col-12" src="{{ $tfrecord.plots.snrByPosition }}" />
+											{{ if isset $tfrecord.plots "snrByPositionAndArray" }}
+												{{ range $name, $filename := $tfrecord.plots.snrByPositionAndArray }}
+													<img src="{{ $filename }}" class="d-block w-100" alt="">
+												{{ end }}
+											{{ end }}
 										</div>
 									</div>
 								</div>

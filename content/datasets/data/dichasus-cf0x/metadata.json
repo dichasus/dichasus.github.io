@@ -181,7 +181,13 @@
                 "snrBoxplot": "plots/dichasus-cf02-snr-boxplot.png",
                 "csiTensors": [
                     "plots/dichasus-cf02-csi-0.png"
-                ]
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-cf02-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-cf02-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-cf02-snr-position-array-2.png",
+                    "Antenna Array D": "plots/dichasus-cf02-snr-position-array-3.png"
+                }
             },
             "gpx": "",
             "datapoints": 18516,
@@ -199,7 +205,13 @@
                 "snrBoxplot": "plots/dichasus-cf03-snr-boxplot.png",
                 "csiTensors": [
                     "plots/dichasus-cf03-csi-0.png"
-                ]
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-cf03-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-cf03-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-cf03-snr-position-array-2.png",
+                    "Antenna Array D": "plots/dichasus-cf03-snr-position-array-3.png"
+                }
             },
             "gpx": "",
             "datapoints": 23478,
@@ -217,7 +229,13 @@
                 "snrBoxplot": "plots/dichasus-cf04-snr-boxplot.png",
                 "csiTensors": [
                     "plots/dichasus-cf04-csi-0.png"
-                ]
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-cf04-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-cf04-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-cf04-snr-position-array-2.png",
+                    "Antenna Array D": "plots/dichasus-cf04-snr-position-array-3.png"
+                }
             },
             "gpx": "",
             "datapoints": 41991,
@@ -235,7 +253,13 @@
                 "snrBoxplot": "plots/dichasus-cf05-snr-boxplot.png",
                 "csiTensors": [
                     "plots/dichasus-cf05-csi-0.png"
-                ]
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-cf05-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-cf05-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-cf05-snr-position-array-2.png",
+                    "Antenna Array D": "plots/dichasus-cf05-snr-position-array-3.png"
+                }
             },
             "gpx": "",
             "datapoints": 21635,
@@ -253,7 +277,13 @@
                 "snrBoxplot": "plots/dichasus-cf06-snr-boxplot.png",
                 "csiTensors": [
                     "plots/dichasus-cf06-csi-0.png"
-                ]
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-cf06-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-cf06-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-cf06-snr-position-array-2.png",
+                    "Antenna Array D": "plots/dichasus-cf06-snr-position-array-3.png"
+                }
             },
             "gpx": "",
             "datapoints": 13557,
@@ -271,7 +301,13 @@
                 "snrBoxplot": "plots/dichasus-cf07-snr-boxplot.png",
                 "csiTensors": [
                     "plots/dichasus-cf07-csi-0.png"
-                ]
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-cf07-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-cf07-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-cf07-snr-position-array-2.png",
+                    "Antenna Array D": "plots/dichasus-cf07-snr-position-array-3.png"
+                }
             },
             "gpx": "",
             "datapoints": 59137,
@@ -351,7 +387,13 @@
             "plots/overall-csi-3.png",
             "plots/overall-csi-4.png",
             "plots/overall-csi-5.png"
-        ]
+        ],
+        "snrByPositionAndArray": {
+            "Antenna Array A": "plots/overall-snr-position-array-0.png",
+            "Antenna Array B": "plots/overall-snr-position-array-1.png",
+            "Antenna Array C": "plots/overall-snr-position-array-2.png",
+            "Antenna Array D": "plots/overall-snr-position-array-3.png"
+        }
     },
     "gpx": "",
     "datapoints": 178314,
