@@ -100,19 +100,20 @@ layout: tutorial-details
 
 	<h2 class="text-center my-4" style="font-weight: bold;">The CSI Dataset</h2>
 	<p>
-		Considering a massive MIMO system, CSI is collected at the BS for different UE positions \(\mathbf{x}_n \in \mathbb{R}^D\) at each time instant \(n=1,\dots,N\).
-		The CSI at a particular time instant can be expressed as \(\mathbf h_n \in \mathbb C^M\), with \(M=B\cdot W \gg D\) for \(B = 32\) antennas at the BS and \(W = 1024\) OFDM subcarriers.
-		The dataset is made up of data points that are 3-tuples of channel coefficients \(\mathbf{h}_{n}\), UE positions \(\mathbf x_n\) and timestamps \(t_n\):
+		For this tutorial, we use the <a href="/datasets/data/dichasus-cf0x/"><code class="nohighlight">dichasus-cf0x</code></a> dataset collected by DICHASUS.
+		This dataset contains CSI for \(B = 32\) receive antennas and for  \(W = 1024\) OFDM subcarriers at \( N \) different transmitter positions.
+		The CSI at a particular time instant can be expressed as a matrix \(\mathbf H_n \in \mathbb C^{B \times W}\).
+		The dataset is made up of data points that are 3-tuples of channel coefficients \( \mathbf{H}_{n} \in \mathbb C^{B \times W} \), UE positions \( \mathbf{x}_n \in \mathbb{R}^D \) and timestamps \( t_n \in \mathbb R \):
 		\[
-			\text{Dataset:} ~ \left\{ (\mathbf{h}_{n}, \mathbf x_n, t_n) \right\}_{n = 1, \ldots, N}
+			\text{Dataset:} \quad \left\{ (\mathbf{H}_{n}, \mathbf x_n, t_n) \right\}_{n = 1, \ldots, N}
 		\]
 	</p>
 	<p>
-		For this tutorial, we use the <a href="/datasets/data/dichasus-cf0x/"><code class="nohighlight">dichasus-cf0x</code></a> dataset.
-		DICHASUS uses a reference transmitter-based system architecture, which entails that measured phases may exhibit constant offsets caused by the reference transmitter channel.
-		Luckily, we calculated these offsets for each DICHASUS dataset so they are available for download.
+		DICHASUS uses a reference transmitter for synchronization, which entails that measured phases may exhibit constant offsets caused by the specific channel between reference transmitter and receive antenna.
+		Luckily, we computed these offsets for each DICHASUS dataset and made them available for download.
 		The datasets themselves are provided in the <a href="https://www.tensorflow.org/tutorials/load_data/tfrecord">TFRecords file format</a>, which makes loading them with TensorFlow particularly simple.
-		First, we download the three robot round trips <code class="nohighlight">dichasus-cf02.tfrecords</code>, <code class="nohighlight">dichasus-cf03.tfrecords</code> and <code class="nohighlight">dichasus-cf04.tfrecords</code> and their phase offsets:
+		Obviously, the more training data we have, the better the channel chart gets.
+		To save some disk and RAM space, we will settle for just 3 robot round trips in the following: <code class="nohighlight">dichasus-cf02.tfrecords</code>, <code class="nohighlight">dichasus-cf03.tfrecords</code> and <code class="nohighlight">dichasus-cf04.tfrecords</code> and their phase offsets:
 		<pre class="m-0"><code class="language-bash">!mkdir dichasus
 !wget --content-disposition https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2854/8 -P dichasus # dichasus-cf02
 !wget --content-disposition https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2854/9 -P dichasus # dichasus-cf03
@@ -123,11 +124,6 @@ layout: tutorial-details
 	</p>
 	<p>
 		Next, we load the TFRecords files with TensorFlow and apply the offset compensation to the CSI as described in <a href="/tutorials/tutorial/calibration/">our offset compensation tutorial</a>.
-		Furthermore, we apply a first pre-processing step by averaging each CSI vector over eight subcarriers in the center of the considered bandwidth as
-		\[
-		\mathbf{\overline{h}}=\frac{1}{8}\sum_{w=508}^{515}\mathbf{h}_{b,w} \in \mathbb{C}^{32}
-		\]
-		In the following, we use three complete robot round trips as training set and one round trip as test set:
 	</p>
 	<pre class="m-0"><code class="language-python">import numpy as np
 import pandas as pd
@@ -154,42 +150,42 @@ records_n_test=59137
 
 def return_dataset(path,offset_path):
 
-    def record_parse_function(proto):
-        record = tf.io.parse_single_example(proto, {
-        "csi": tf.io.FixedLenFeature([], tf.string, default_value = ''),
-        "pos-tachy": tf.io.FixedLenFeature([], tf.string, default_value = ''),
-        "time": tf.io.FixedLenFeature([], tf.float32, default_value = 0),
-        })
+	def record_parse_function(proto):
+		record = tf.io.parse_single_example(proto, {
+		"csi": tf.io.FixedLenFeature([], tf.string, default_value = ''),
+		"pos-tachy": tf.io.FixedLenFeature([], tf.string, default_value = ''),
+		"time": tf.io.FixedLenFeature([], tf.float32, default_value = 0),
+		})
 
-        csi = tf.ensure_shape(tf.io.parse_tensor(record["csi"], out_type = tf.float32), (32, 1024, 2))
-        csi = tf.complex(csi[:,:,0], csi[:,:,1])
-        csi = tf.signal.fftshift(csi, axes = 1)
+		csi = tf.ensure_shape(tf.io.parse_tensor(record["csi"], out_type = tf.float32), (32, 1024, 2))
+		csi = tf.complex(csi[:,:,0], csi[:,:,1])
+		csi = tf.signal.fftshift(csi, axes = 1)
 
 
-        offsets = None
-        with open(offset_path, "r") as offsetfile:
-            offsets = json.load(offsetfile)
-        sto_offset = tf.tensordot(tf.constant(offsets["sto"]), 2 * np.pi * tf.range(tf.shape(csi)[1], dtype = np.float32) / tf.cast(tf.shape(csi)[1], np.float32), axes = 0)
-        cpo_offset = tf.tensordot(tf.constant(offsets["cpo"]), tf.ones(tf.shape(csi)[1], dtype = np.float32), axes = 0)
-        csi = tf.multiply(csi, tf.exp(tf.complex(0.0, sto_offset + cpo_offset)))
+		offsets = None
+		with open(offset_path, "r") as offsetfile:
+			offsets = json.load(offsetfile)
+		sto_offset = tf.tensordot(tf.constant(offsets["sto"]), 2 * np.pi * tf.range(tf.shape(csi)[1], dtype = np.float32) / tf.cast(tf.shape(csi)[1], np.float32), axes = 0)
+		cpo_offset = tf.tensordot(tf.constant(offsets["cpo"]), tf.ones(tf.shape(csi)[1], dtype = np.float32), axes = 0)
+		csi = tf.multiply(csi, tf.exp(tf.complex(0.0, sto_offset + cpo_offset)))
 
-        csi = csi = tf.reduce_mean(csi[:,508:516],axis=1)
+		csi = csi = tf.reduce_mean(csi[:,508:516],axis=1)
 
-        position = tf.ensure_shape(tf.io.parse_tensor(record["pos-tachy"], out_type = tf.float64), (3))
-        time = tf.ensure_shape(record["time"], ())
-        return csi, position[:2], time
+		position = tf.ensure_shape(tf.io.parse_tensor(record["pos-tachy"], out_type = tf.float64), (3))
+		time = tf.ensure_shape(record["time"], ())
+		return csi, position[:2], time
 
-    return tf.data.TFRecordDataset(path).map(record_parse_function)
+	return tf.data.TFRecordDataset(path).map(record_parse_function)
 
 training_set = return_dataset(training_path[0],training_offsets[0])
 if len(training_path) > 1:
-    for i in range(1,len(training_path)):
-        training_set=training_set.concatenate(return_dataset(training_path[i],training_offsets[i]))
+	for i in range(1,len(training_path)):
+		training_set=training_set.concatenate(return_dataset(training_path[i],training_offsets[i]))
 
 test_set = return_dataset(test_path[0],test_offsets[0])
 if len(test_path) > 1:
-    for i in range(1,len(test_path)):
-        test_set=test_set.concatenate(return_dataset(test_path[i],test_offsets[i]))</code></pre>
+	for i in range(1,len(test_path)):
+		test_set=test_set.concatenate(return_dataset(test_path[i],test_offsets[i]))</code></pre>
 	<script>hljs.highlightAll();</script>
 
 	<h4 class="text-center my-4" style="font-weight: bold;">Load training set in NumPy</h4>
@@ -262,6 +258,15 @@ plot_data(positions_train,positions_train,title="Ground Truth Positions")</code>
 	</div>
 
 	<h2 class="text-center my-4" style="font-weight: bold;">Feature Engineering</h2>
+	<p>
+		Furthermore, we apply a first pre-processing step by averaging each CSI vector over eight subcarriers in the center of the considered bandwidth as
+		\[
+			\mathbf{\overline{h}}=\frac{1}{8}\sum_{w=508}^{515}\mathbf{h}_{b,w} \in \mathbb{C}^{32}
+		\]
+		In the following, we use three complete robot round trips as training set and one round trip as test set:
+
+		TODO
+	</p>
 	<p>
 		The main reason to perform feature engineering is to reduce the dimensionality of the CSI while keeping the large-scale fading characteristics of the channel.
 		Averaging over a certain subcarrier area has aleady been performed as a first step previously.
