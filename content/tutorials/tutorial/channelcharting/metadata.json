@@ -1,5 +1,6 @@
 {
 	"name" : "Channel Charting - Mapping the Radio Environment",
 	"thumbnail" : "header.svg",
-	"shortDescription" : "Leverage a self-supervised triplet learning technique to create a virtual map of the radio environment purely from radio channel observations."
+	"shortDescription" : "Leverage a self-supervised triplet learning technique to create a virtual map of the radio environment purely from radio channel observations.",
+	"jupyterNotebook" : "ChannelCharting.ipynb"
 }
