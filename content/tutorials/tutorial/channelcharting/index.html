@@ -98,22 +98,24 @@ layout: tutorial-details
 		</div>
 	</div>
 
-	<h2 class="text-center my-4" style="font-weight: bold;">The CSI Dataset</h2>
+	<h2 class="text-center my-4" style="font-weight: bold;">Downloading and Reading the CSI Dataset</h2>
 	<p>
 		For this tutorial, we use the <a href="/datasets/data/dichasus-cf0x/"><code class="nohighlight">dichasus-cf0x</code></a> dataset collected by DICHASUS.
 		This dataset contains CSI for \(B = 32\) receive antennas and for  \(W = 1024\) OFDM subcarriers at \( N \) different transmitter positions.
+		The transmitter is mounted on top of a robot, which follows some trajectory through the measurement area.
 		The CSI at a particular time instant can be expressed as a matrix \(\mathbf H_n \in \mathbb C^{B \times W}\).
-		The dataset is made up of data points that are 3-tuples of channel coefficients \( \mathbf{H}_{n} \in \mathbb C^{B \times W} \), UE positions \( \mathbf{x}_n \in \mathbb{R}^D \) and timestamps \( t_n \in \mathbb R \):
+		The dataset is made up of data points that are 3-tuples of channel coefficients \( \mathbf{H}_{n} \in \mathbb C^{B \times W} \), <i>ground truth</i>> positions \( \mathbf{x}_n \in \mathbb{R}^D \) and timestamps \( t_n \in \mathbb R \):
 		\[
 			\text{Dataset:} \quad \left\{ (\mathbf{H}_{n}, \mathbf x_n, t_n) \right\}_{n = 1, \ldots, N}
 		\]
+		The ground truth positons (which are really only for comparison, they are not used for training!) are measured with a tachymeter robotic total station, a very precise instrument that tracks the robot's antenna with a laser with at least centimeter-level accuracy.
 	</p>
 	<p>
 		DICHASUS uses a reference transmitter for synchronization, which entails that measured phases may exhibit constant offsets caused by the specific channel between reference transmitter and receive antenna.
 		Luckily, we computed these offsets for each DICHASUS dataset and made them available for download.
 		The datasets themselves are provided in the <a href="https://www.tensorflow.org/tutorials/load_data/tfrecord">TFRecords file format</a>, which makes loading them with TensorFlow particularly simple.
 		Obviously, the more training data we have, the better the channel chart gets.
-		To save some disk and RAM space, we will settle for just 3 robot round trips in the following: <code class="nohighlight">dichasus-cf02.tfrecords</code>, <code class="nohighlight">dichasus-cf03.tfrecords</code> and <code class="nohighlight">dichasus-cf04.tfrecords</code> and their phase offsets:
+		To save some disk and RAM space, we will settle for just 3 robot round trips in the following: <code class="nohighlight">dichasus-cf02.tfrecords</code>, <code class="nohighlight">dichasus-cf03.tfrecords</code> and <code class="nohighlight">dichasus-cf04.tfrecords</code>:
 		<pre class="m-0"><code class="language-bash">!mkdir dichasus
 !wget --content-disposition https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2854/8 -P dichasus # dichasus-cf02
 !wget --content-disposition https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2854/9 -P dichasus # dichasus-cf03
@@ -124,6 +126,7 @@ layout: tutorial-details
 	</p>
 	<p>
 		Next, we load the TFRecords files with TensorFlow and apply the offset compensation to the CSI as described in <a href="/tutorials/tutorial/calibration/">our offset compensation tutorial</a>.
+		To reduce the number of datapoints, we will only use every 4<sup>th</sup> datapoint for training and plotting (it is nevertheless important to load multiple robot round trips, since these provide diversity in the types of trajectories!).
 	</p>
 	<pre class="m-0"><code class="language-python">import matplotlib.pyplot as plt
 import tensorflow as tf
@@ -191,79 +194,68 @@ training_set = training_set.map(lambda idx, value : value)</code></pre>
 	<script>hljs.highlightAll();</script>
 
 	<h2 class="text-center my-4" style="font-weight: bold;">Feature Engineering</h2>
-	<p>
-		Furthermore, we apply a first pre-processing step by averaging each CSI vector over eight subcarriers in the center of the considered bandwidth as
-		\[
-			\mathbf{\overline{h}}=\frac{1}{8}\sum_{w=508}^{515}\mathbf{H}_{b,w} \in \mathbb{C}^{32}
-		\]
-	</p>
-	<p>
-		The main reason to perform feature engineering is to reduce the dimensionality of the CSI while keeping the large-scale fading characteristics of the channel.
-		Averaging over a certain subcarrier area has aleady been performed as a first step previously.
-		We further apply the method described in the <a href="https://ieeexplore.ieee.org/abstract/document/8444621">initial paper on channel charting</a> by computing the scaled raw second moment (R2M) of \(\mathbf{\overline{h}}\).
-		By only considering its real part, we obtain the feature vector \(\mathbf{f}_n \in \mathbb R^{B\times B}\).
-		The channel coefficients \(\mathbf H_n \in \mathbb C^{B \times W}\) are then replaced by the feature vectors \(\mathbf f_n \in \mathbb R^{B \times B}\) so the resulting dataset is built as
-		\[
-			\text{Dataset:} ~ \left\{ (\mathbf{f}_{n}, \mathbf x_n, t_n) \right\}_{n = 1, \ldots, N}
-		\]
-	</p>
-	<pre class="m-0"><code class="language-python">def average_over_subcarriers(csi, pos, time):
-	csi = tf.reduce_mean(csi[:, 508:516], axis=1)
+	<div class="row justify-content-center justify-content-md-start">
+		<div class="col-12 col-xl-6 p-3">
+			<pre class="m-0"><code class="language-python"># Average channel coefficients subcarriers 508 to 516
+def average_over_subcarriers(csi, pos, time):
+	csi = tf.reduce_mean(csi[:, 508:516], axis = 1)
 	return csi, pos, time
 
 training_set = training_set.map(average_over_subcarriers, num_parallel_calls = tf.data.AUTOTUNE)
 
-beta = 1 + 1 / 16
+# Compute real part of vectorized scaled raw 2nd-order moment
+def scaled_r2m(csi, pos, time):
+	beta = 1 + 1 / 16
 
-def scale_r2m(csi, pos, time):
-    second_moment = tf.tensordot(csi, tf.math.conj(csi), axes=0)
-    csi = tf.constant(ANTENNACOUNT**(beta - 1), dtype = tf.complex64) / tf.math.pow(tf.norm(second_moment, ord = "fro", axis = (0, 1)), beta) * second_moment
-    csi = tf.squeeze(tf.reshape(csi, (1, ANTENNACOUNT * ANTENNACOUNT)), axis = 0)
+	second_moment = tf.tensordot(csi, tf.math.conj(csi), axes = 0)
+	csi = tf.constant(ANTENNACOUNT**(beta - 1), dtype = tf.complex64) / tf.math.pow(tf.norm(second_moment, ord = "fro", axis = (0, 1)), beta) * second_moment
+	csi = tf.squeeze(tf.reshape(csi, (1, ANTENNACOUNT * ANTENNACOUNT)), axis = 0)
 
-    return csi, pos, time
+	return csi, pos, time
 
-training_set = training_set.map(scale_r2m, num_parallel_calls = tf.data.AUTOTUNE)
+training_set = training_set.map(scaled_r2m, num_parallel_calls = tf.data.AUTOTUNE)</code></pre>
+		</div>
+		<div class="col-12 col-xl-6 p-3">
+			<p>
+				We apply a first pre-processing step by averaging each CSI vector over eight subcarriers in the center of the considered bandwidth as
+				\[
+					\mathbf{\overline{h}}_n = \frac{1}{8}\sum_{w=508}^{515} \left[\mathbf{H}_{n}\right]_{b, w} \in \mathbb{C}^{32}
+				\]
+			</p>
+			<p>
+				The reason for this is to reduce the dimensionality of the CSI while keeping the large-scale fading characteristics of the channel.
+				We do lose some information here (most notably, antenna-specific time delays), so feel free to improve this step if you have good hardware accelerators for training.
+				We further apply a method described in the <a href="https://ieeexplore.ieee.org/abstract/document/8444621">initial paper on channel charting</a>, namely we compute the <i>scaled raw second moment (R2M)</i>
+				\[
+					\mathbf f_n = \mathrm{Re} \left\{ \mathrm{vec} \left\{ \frac{B^{\beta - 1}}{\left\lVert \mathbf{\overline{h}}_n ~ \mathbf{\overline{h}}_n^\mathrm{H} \right\rVert^\beta_\mathrm{F}} ~~ \mathbf{\overline{h}}_n ~ \mathbf{\overline{h}}_n^\mathrm{H} \right\} \right\}.
+				\]
+				By vectorization and only considering its real part (again, we are losing information here, space for improvement!), we obtain the feature vector \(\mathbf{f}_n \in \mathbb R^{B^2}\), which we use for training.
+				After feature engineering, our training dataset looks as follows:
+				\[
+					\text{Dataset:} ~~~ \left\{ (\mathbf{f}_{n}, \mathbf x_n, t_n) \right\}_{n = 1, \ldots, N}
+				\]
+			</p>
+		</div>
+	</div>
 
-# If you have enough RAM...
+	<p>
+		At this point, if your RAM is large enough for all TFRecords to fit inside, it might be a good idea to cache the training set so that all the subsequent training and evaluation steps will be quicker.
+		If your RAM is small (or you want to train on really huge training sets), don't worry:
+		The datasets can also remain on disk storage, and the training code will load batches of triplets from there when needed.
+		<pre class="m-0"><code class="language-python"># If you have enough RAM...
 training_set = training_set.cache()</code></pre>
-
-	<h2 class="text-center my-4" style="font-weight: bold;">Triplet-based dimensionality reduction</h2>
-
-	<p>
-		As we have loaded and applied feature engineering to our CSI dataset, we are now ready for the most important part of channel charting: the dimensionality reduction algorithm.
-		Keeping in mind that this works self-supervised, we pretend that we don't know the ground truth positions.
-		However, the channel chart is intended to maintain the local geometry of the UE positions, i.e. any two positions \(\mathbf{x},\mathbf{x'} \in \mathbb{R}^D\) that are close to each other should also be close to each other in the channel chart, with \(\mathbf{z},\mathbf{z'} \in \mathbb{R}^{D'}\) being the corresponding points in the channel chart.
-		Therefore, the condition
-		\[
-			d_z\left(\mathbf{z},\mathbf{z'}\right) \approx d_x\left(\mathbf{x},\mathbf{x'}\right)
-		\]
-		should be satisfied for any neighboring data points, with \(d\left(\cdot,\cdot\right)\) being an appropriately defined dissimilarity measure.
-		Finding such a dissimilarity measure is not trivial, as the Euclidean distance is a poor representation for high-dimensional data.
-		This problem is elegantly circumvented by the triplet-based dimensionality reduction technique, which takes timestamps as side information into account.
-		Its principle is simple: Triplets of CSI samples are selected based on their timestamps.
-		Each triplet consists of a randomly selected anchor point and a positive sample which is closer to the anchor point than a third sample, which is called the negative sample.
-		These triplets can be processed by a special neural-network-structure called "Triplet Network".
-		The "Triplet Loss" ensures that the positive sample is closer to the anchor than the negative sample as well in the channel chart.
 	</p>
 
-	<h4 class="text-center my-4" style="font-weight: bold;">How do we select triplets?</h4>
+	<h2 class="text-center my-4" style="font-weight: bold;">Visualizing the Dataset</h2>
 	<p>
-		For training, we need to create a large set of triplets \(\left(i,j,k\right)\in \mathcal{T}\).
-		Ideally, these triplets would be selected such that
-		\[
-		\lVert \mathbf{x}_\mathrm{i} - \mathbf{x}_\mathrm{j} \rVert \leq \lVert \mathbf{x}_\mathrm{i} - \mathbf{x}_\mathrm{k} \rVert.
-		\]
-		However, this is not possible for us because we have no ground truth positions on which we can rely on.
-		Since the user travels with a finite velocity, we can assume that two CSI vectors measured within a short timeframe are likely to be close to each other.
-		Therefore we select the triplets based on their timestamps such that
-		\[
-			\mathcal{T}=\{\left(i,j,k\right):0<|t_j-t_i|\leq T_c\},
-		\]
-		with \(T_c\) being the timespan to the anchor point within the positive sample is selected.
-		The particular implementation is shown in the following.
+		Now that we have loaded the TFRecords dataset and applied some feature engineering stages, let's have a look at what the dataset actually looks like.
+		For this, we plot the afforementioned <i>ground truth</i> positions.
+		Additionally, we store a mapping from datapoint timestamp to the index in the dataset in a Python dictionary called <code class="language-python">timestamp_index_map</code> and sort this dictionary by timestamp (the dataset is not guaranteed to be sorted in any way!).
+		The purpose of this list will become apparent later on.
 	</p>
 	<p>
-		At first we load the timestamps and ground truth positions, where we sort the indices of the datapoints according to their timestamps.
+		Running this code segment may take a lot of time - this is because all of the previous code segments only added processing steps to TensorFlow's compute graph.
+		It is only in the following processing step, that the datapoints are actually read from disk and feature engineering is applied.
 	</p>
 	<pre class="m-0"><code class="language-python"># This may take a long time, since TensorFlow has to load the dataset from disk!
 groundtruth_positions = []
@@ -277,9 +269,9 @@ timestamp_index_map = dict(sorted(timestamp_index_map.items()))
 groundtruth_positions = np.asarray(groundtruth_positions)</code></pre>
 
 <p>
-	At this point, we are also able to plot the ground truth positions of the training set.
-	To this end, we wrote a plot-function which colorizes the area of the ground truth positions unambiguously.
-	Later, we can reuse this function to plot the channel chart with the same colorization.
+	We use the <code>plot_colorized</code> function to plot the ground truth positions.
+	It produces a scatter plot, where each point in the scatter plot is assigned a color according to its ground truth position.
+	We can later reuse this function to plot the channel chart with the same colorization.
 </p>
 
 <div class="row justify-content-center justify-content-md-start">
@@ -307,6 +299,42 @@ plot_data(groundtruth_positions, title="Ground Truth Positions")</code></pre>
 		<img style="width: 120%;" src="ground_truth.png">
 	</div>
 </div>
+
+	<h2 class="text-center my-4" style="font-weight: bold;">Triplet-Based Dimensionality Reduction</h2>
+
+	<p>
+		Now that we have loaded our CSI datasets and applied feature engineering, we are ready for the most important part of channel charting: the dimensionality reduction algorithm.
+		Keeping in mind that Channel Charting is a self-supervised training method, we need to pretend that we don't know the ground truth positions.
+		The channel chart should maintain the local geometry of the transmitter positions, i.e., any two positions \( \mathbf{x}, \mathbf{x'} \in \mathbb{R}^D \) that are close to each other in the real world should also be close to each other in the channel chart, with \( \mathbf{z}, \mathbf{z'} \in \mathbb{R}^{D'} \) being the corresponding points in the channel chart.
+		In other words, the condition
+		\[
+			\mathrm d_\mathrm{z} \left( \mathbf{z}, \mathbf{z'} \right) \approx \mathrm d_\mathrm{x} \left( \mathbf{x}, \mathbf{x'} \right)
+		\]
+		should be satisfied for any neighboring data points, with \( \mathrm d_\mathrm{z} \left( \cdot, \cdot \right) \) and \( \mathrm d_\mathrm{x} \left( \cdot, \cdot \right) \) being appropriately defined dissimilarity measures.
+		Finding such a dissimilarity measure is not trivial, as the Euclidean distance is a poor representation for high-dimensional data.
+		This problem is elegantly circumvented by the triplet-based dimensionality reduction technique, which takes timestamps as side information into account.
+		Its principle is simple: Triplets of CSI samples are selected based on their timestamps.
+		Each triplet consists of a randomly selected anchor point and a positive sample which is closer to the anchor point than a third sample, which is called the negative sample.
+		These triplets can be processed by a special neural-network-structure called "Triplet Network".
+		The "Triplet Loss" ensures that the positive sample is closer to the anchor than the negative sample as well in the channel chart.
+	</p>
+
+	<h4 class="text-center my-4" style="font-weight: bold;">How to select triplets?</h4>
+	<p>
+		For training, we need to create a large set of triplets \(\left(i,j,k\right)\in \mathcal{T}\).
+		Ideally, these triplets would be selected such that
+		\[
+		\lVert \mathbf{x}_\mathrm{i} - \mathbf{x}_\mathrm{j} \rVert \leq \lVert \mathbf{x}_\mathrm{i} - \mathbf{x}_\mathrm{k} \rVert.
+		\]
+		However, this is not possible for us because we have no ground truth positions on which we can rely on.
+		Since the user travels with a finite velocity, we can assume that two CSI vectors measured within a short timeframe are likely to be close to each other.
+		Therefore we select the triplets based on their timestamps such that
+		\[
+			\mathcal{T}=\{\left(i,j,k\right):0<|t_j-t_i|\leq T_c\},
+		\]
+		with \(T_c\) being the timespan to the anchor point within the positive sample is selected.
+		The particular implementation is shown in the following.
+	</p>
 
 	<p>
 		Then, we generate a lookup table which links feasible positive samples for each anchor point in the dataset.
@@ -611,6 +639,13 @@ print("CT: {} \nTW: {} \nKS: {}".format(*metrics_channel_chart_train))</code></p
 	In my experience, Channel Charting researchers are very aware of the potential privacy implications.
 	There are some very obvious benefits attached to Channel Charting (outlined in the introduction), but there is also potential for abuse.
 	With all the skepticism about 5G and mobile networks in general, we believe it is important to transparently publish and discuss the advantages and risks of this technology.
+</p>
+
+<h4 class="text-center my-4" style="font-weight: bold;">Licensing and Authors</h4>
+<p>
+	All our datasets are licensed under the <a href="https://creativecommons.org/licenses/by/2.0/">CC-BY license</a>, i.e., you are free to use them for whatever you like as long as you reference us in your publications.
+	All code in this tutorial is <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0-licensed</a>.
+	This tutorial was written jointly by <a href="mailto:phillip.stephan@inue.uni-stuttgart.de">Phillip Stephan</a> and <a href="mailto:florian.euchner@inue.uni-stuttgart.de">Florian Euchner</a>.
 </p>
 
 </main>
