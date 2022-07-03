@@ -44,7 +44,7 @@ layout: tutorial-details
 		<a href="https://ieeexplore.ieee.org/document/7438932/">It has been shown that CSI-based user localization is possible</a> (we have <a href="/tutorials/tutorial/positioning">a tutorial</a> on that!), at least with supervised machine learning methods such as CSI fingerprinting.
 		These approaches, however, require "ground truth" position labels for the transmitter position, which are usually not available.
 		Channel Charting, on the other hand, is a self-supervised learning technique which aims to create a virtual map of high-dimensional CSI.
-		Therefore, channel charting is not dependent on the availability of position labels, which is a huge advantage over fingerprinting.
+		Therefore, Channel Charting is not dependent on the availability of position labels, which is a huge advantage over fingerprinting.
 	</p>
 
 	<p>
@@ -65,7 +65,7 @@ layout: tutorial-details
 				This tutorial will explain how to implement <a href="https://ieeexplore.ieee.org/document/9448128">triplet neural network-based</a> Channel Charting, which we consider to be the current "State-of-the-Art", with Python and TensorFlow.
 			</p>
 			<p>
-				The channel charting "pipeline" always consists of two separate stages:
+				The Channel Charting "pipeline" always consists of two separate stages:
 				First, we need to take the CSI datasets and extract some features from them, in a process known as Feature Engineering.
 				The purpose of this step is to reduce the amount of data that the neural network has to process, and to provide the data to the neural network in a more suitable format.
 				Second, we apply a dimensionality reduction technique to the resulting feature sets.
@@ -84,7 +84,7 @@ layout: tutorial-details
 		</div>
 		<div class="col-sm-12 col-md-6 col-xl-9">
 			<p>
-				Regardless of the training method employed, the objective of neural network-based channel charting is to learn the so-called Forward Charting Function \( \mathcal C_{\boldsymbol \theta} \).
+				Regardless of the training method employed, the objective of neural network-based Channel Charting is to learn the so-called Forward Charting Function \( \mathcal C_{\boldsymbol \theta} \).
 				The Forward Charting Function takes a feature vector \( \mathbf f \) as an input and directly outputs the position in the Channel Chart \( \mathbf z \).
 				Once \( \mathcal C_{\boldsymbol \theta} \) has been found, this makes it very easy and efficient to infer Chart positions (this is not the case for other dimensionality reduction techniques!).
 			</p>
@@ -224,7 +224,7 @@ training_set = training_set.map(scale_r2m, num_parallel_calls = tf.data.AUTOTUNE
 			<p>
 				The reason for this is to reduce the dimensionality of the CSI while keeping the large-scale fading characteristics of the channel.
 				We do lose some information here (most notably, antenna-specific time delays), so feel free to improve this step if you have good hardware accelerators for training.
-				We further apply a method described in the <a href="https://ieeexplore.ieee.org/abstract/document/8444621">initial paper on channel charting</a>, namely we compute the <i>scaled raw second moment (R2M)</i>
+				We further apply a method described in the <a href="https://ieeexplore.ieee.org/abstract/document/8444621">initial paper on Channel Charting</a>, namely we compute the <i>scaled raw second moment (R2M)</i>
 				\[
 					\mathbf f_n = \mathrm{Re} \left\{ \mathrm{vec} \left\{ \frac{B^{\beta - 1}}{\left\lVert \mathbf{\overline{h}}_n ~ \mathbf{\overline{h}}_n^\mathrm{H} \right\rVert^\beta_\mathrm{F}} ~~ \mathbf{\overline{h}}_n ~ \mathbf{\overline{h}}_n^\mathrm{H} \right\} \right\}.
 				\]
@@ -301,7 +301,7 @@ plot_colorized(groundtruth_positions, title="Ground Truth Positions")</code></pr
 	<h2 class="text-center my-4" style="font-weight: bold;">Triplet-Based Dimensionality Reduction</h2>
 
 	<p>
-		Now that we have loaded our CSI datasets and applied feature engineering, we are ready for the most important part of channel charting: the dimensionality reduction algorithm.
+		Now that we have loaded our CSI datasets and applied feature engineering, we are ready for the most important part of Channel Charting: the dimensionality reduction algorithm.
 		Keeping in mind that Channel Charting is a self-supervised training method, we need to pretend that we don't know the ground truth positions.
 		The channel chart should maintain the local geometry of the transmitter positions, i.e., any two positions \( \mathbf{x}, \mathbf{x'} \in \mathbb{R}^D \) that are close to each other in the real world should also be close to each other in the channel chart, with \( \mathbf{z}, \mathbf{z'} \in \mathbb{R}^{D'} \) being the corresponding points in the channel chart.
 		In other words, the condition
@@ -494,7 +494,7 @@ embedding_model = tf.keras.models.Sequential(
 <p>
 	For training, we need to embed the DNN \( \mathcal C_{\boldsymbol \theta} \) into a triplet neural network.
 	The three feature vectors of a triplet are each fed into the DNN, which then outputs the three corresponding low-dimensional points.
-	These points are then evaluated by the triplet loss.
+	From the three output points, TensorFlow then computes gradients for backpropagation using our triplet loss.
 </p>
 <div class="row justify-content-center">
 	<div class="col-12 col-md-9 col-lg-7 col-xl-5 p-3">
@@ -515,14 +515,21 @@ model = tf.keras.models.Model([input_anchor, input_positive, input_negative], ou
 </div>
 
 	<h4 class="text-center my-4" style="font-weight: bold;">DNN Training</h4>
-	<p>
-		Finally, we are ready to train the DNN.
-		The threshold between positive and negative decreases over time (\(T_c = 5.5 \dots 3\)).
-		The training itself is performed in eight sessions.
-		In each session, a new dataset with 150.000 triplets is generated, on which the DNN is trained for ten epochs.
-		The learning rate decreases after each few steps, and the batch size stays constant at 8.192.
-	</p>
-	<pre class="m-0"><code class="languaghappense-python">optimizer = tf.keras.optimizers.Adam()
+	<div class="row justify-content-center">
+		<div class="col-12">
+			<p>
+				Finally, we are ready to train the DNN.
+				The elapsed time threshold between anchor and positive sample decreases for every training batch (\(T_c = 5.5 \dots 3\)).
+				The training itself is performed in eight sessions.
+				In each session, a new dataset with \( 150\,000 \) triplets is generated, on which the DNN is trained for ten epochs.
+				The learning rate decreases every few sessions, but the batch size remains at constant \( 8\,192 \).
+				All of these hyperparameters are definitely subject to further optimization!
+			</p>
+		</div>
+	</div>
+	<div class="row justify-content-center">
+		<div class="col-12">
+			<pre class="m-0"><code class="language-python">optimizer = tf.keras.optimizers.Adam()
 model.compile(loss = triplet_loss, optimizer = optimizer)
 
 batch_size = 8192
@@ -535,18 +542,20 @@ for l in range(len(learning_rates)):
 	optimizer.learning_rate.assign(learning_rates[l])
 	print("\nBatch Size: ", batch_size, "\nEpochs: ", 10, "\nLearning rate: ", learning_rates[l])
 	model.fit(triplets, triplets, batch_size = batch_size, steps_per_epoch = int(len(triplets[0]) / batch_size), epochs = 10)</code></pre>
+		</div>
+	</div>
 
 	<h4 class="text-center my-4" style="font-weight: bold;">Channel Chart Plotting</h4>
 
 	<div class="row justify-content-center">
 		<div class="col-12 col-xl-8 p-3">
 			<p>
-				Now we can let the trained DNN predict the points in the channel chart given the features of the training set.
+				Now we can let the trained DNN \( \mathcal C_{\boldsymbol \theta} \) predict points in the channel chart given CSI features from the training set.
 				But wait!
 				Isn't it common in machine learning tasks to do this on a test set?
 				In our case, we applied an unsupervised learning technique, so the ground truth information is not known to the DNN.
-				Therefore, and since the goal of channel charting is to learn a representation of the CSI, we can use the training set here.
-				Let's see what the DNN predicts if we feed it with the CSI features.
+				Therefore, and since the real goal of Channel Charting is to learn a sparse (low-dimensional) representation of CSI, we will use the training set here.
+				Let's see what the DNN predicts if we feed it with the CSI feature vectors \( \mathbf f_n \).
 			</p>
 			<pre class="m-0"><code class="language-python">channel_chart_positions = []
 	
@@ -562,31 +571,40 @@ plot_colorized(channel_chart_positions, title = "Channel Chart")</code></pre>
 		</div>
 	</div>
 <p>
-	Thanks to the colorization we can directly see that CSI vectors measured at close user positions are also placed close to each other in the channel chart.
+	Thanks to the colorization (remember, colors are assigned according to the <i>ground truth</i> positions) we can directly see that CSI vectors measured at similar user positions are also placed close to each other in the channel chart.
 	The global structure of the positions is also preserved to a certain degree.
 </p>
 
 <h2 class="text-center" style="font-weight: bold;">Performance Evaluation</h2>
-	<p>
-		The goal of channel charting is to preserve the local geometry of the UE positions, and ideally the global geometry as well.
-		However, we can't compare the channel chart with the ground truth positions using metrics such as the mean squared error, because even if the geometry of the UE positions is preserved perfectly, the channel chart can still be scaled or rotated somehow.
-		Therefore, we need to find other metrics to measure the performance of the learned forward charting function.
-		The channel charting literature serves itself with performance metrics that are also commonly used in other dimensionality reduction tasks.
-		We decided to use three different metrics among them to evaluate our channel charts:
-		<ul>
-			<li>Continuity (CT) and Trustworthiness (TW), are two measures, normalized to the range [0,1], for the preservation of local neighborhoods.
-				A high CT indicates that many neighborhood relationships in physical space are preserved in the channel chart.
-				A high TW value, on the other hand, indicates that the channel chart does not contain many additional false neighborhood relationships, i.e., ones which are not present in the physical space.
-				The trustworthiness is already implemented in the <a href="https://scikit-learn.org/stable/modules/generated/sklearn.manifold.trustworthiness.html">scikit-learn package</a>.
-				We implemented the continuity based on the implementation of the trustworthiness.
-			</li>
-			<li>Kruskal Stress (KS) is a measure for the preservation of the global channel chart structure.
-				It is also bounded to the range [0,1], with 0 indicating the best and 1 indicating the worst possible performance.
-			</li>
-		</ul>
-	</p>
+	<div class="row justify-content-center">
+		<div class="col-12">
+			<p>
+				The goal of Channel Charting is to preserve the local geometry of the UE positions, and ideally the global geometry as well.
+				However, we can't compare the channel chart with the ground truth positions using metrics such as mean squared error:
+				If the geometry of the transmitter positions was preserved perfectly, since we don't have any known reference locations, the channel chart can always only match the real positions down to some linear transformation (i.e., some combination of rotation, scaling and / or reflection).
+				Therefore, we need to find other metrics to measure the performance of the learned forward charting function.
+				Channel Charting literature employs performance metrics that are also commonly used in other dimensionality reduction tasks.
+				We use three different metrics out of them to evaluate our channel charts:
+				<ul>
+					<li>
+						<b>Continuity</b> (CT) and <b>Trustworthiness</b> (TW), both normalized to range \( [0, 1] \), are two measures for the preservation of local neighborhoods.
+						A high CT indicates that many neighborhood relationships in physical space are preserved in the channel chart.
+						A high TW value, on the other hand, indicates that the channel chart does not contain many additional false neighborhood relationships, i.e., ones which are not present in the physical space.
+						Trustworthiness is already implemented in the <a href="https://scikit-learn.org/stable/modules/generated/sklearn.manifold.trustworthiness.html">scikit-learn package</a>.
+						We implement continuity based on this implementation of the trustworthiness.
+					</li>
+					<li>
+						<b>Kruskal Stress</b> (KS) is a measure for the preservation of the global channel chart structure.
+						It is also bounded to the range \( [0,1] \), but this time with 0 indicating the best and 1 indicating the worst possible performance.
+					</li>
+				</ul>
+			</p>
+		</div>
+	</div>
 
-	<pre class="m-0"><code class="language-python">from sklearn.metrics import pairwise_distances
+	<div class="row justify-content-center">
+		<div class="col-12">
+			<pre class="m-0"><code class="language-python">from sklearn.metrics import pairwise_distances
 from sklearn.neighbors import NearestNeighbors
 from sklearn import manifold
 import random
@@ -613,40 +631,58 @@ def kruskal_stress(X, X_embedded, *, metric="euclidean"):
 	beta = np.divide(np.sum(dist_X * dist_X_embedded), np.sum(dist_X_embedded * dist_X_embedded))
 
 	return np.sqrt(np.divide(np.sum(np.square((dist_X - beta * dist_X_embedded))), np.sum(dist_X * dist_X)))</code></pre>
-<p>
-	Obviously, the continuity and the trustworthiness are close to one, and the kruskal stress is close to zero.
-	This confirms our first impression of the channel chart to be a locally, as well as globally reasonable representation of the radio environment.
-</p>
-<pre class="m-0"><code class="language-python">>> CT: 0.9736
+			<p>
+				Computing and storing pairwise distances for the CT, TW and KS metrics is both memory-intensive and computationally expensive.
+				We therefore compute these metrics on a randomly picked subset of datapoints, consisting of only every tenth datapoint:
+			</p>
+			<pre class="m-0"><code class="language-python">subset_indices = random.sample(range(len(groundtruth_positions)), len(groundtruth_positions) // 10)
+
+groundtruth_positions_subset = groundtruth_positions[subset_indices]
+channel_chart_positions_subset = channel_chart_positions[subset_indices]
+
+ct_train = continuity(groundtruth_positions_subset, channel_chart_positions_subset, n_neighbors = int(0.05 * len(groundtruth_positions_subset)))
+tw_train = manifold.trustworthiness(groundtruth_positions_subset, channel_chart_positions_subset, n_neighbors = int(0.05 * len(groundtruth_positions_subset)))
+ks_train = kruskal_stress(groundtruth_positions_subset, channel_chart_positions_subset)
+
+metrics_channel_chart_train = np.around(np.array([ct_train, tw_train, ks_train]), 4)
+
+print("CT: {} \nTW: {} \nKS: {}".format(*metrics_channel_chart_train))</code></pre>
+		</div>
+	</div>
+
+
+	<div class="row justify-content-center">
+		<div class="col-12 col-md-8 py-3">
+			<p>
+				Obviously, continuity and trustworthiness are close to 1, and the kruskal stress is close to 0.
+				This confirms our first impression of the channel chart to be a locally, as well as globally reasonable representation of the radio environment.
+			</p>
+		</div>
+		<div class="col-12 col-md-4">
+			<pre class="m-0"><code>>> CT: 0.9736
 >> TW: 0.957
 >> KS: 0.2596</code></pre>
+		</div>
+	</div>
 
 <h2 class="text-center" style="font-weight: bold;">Conclusion</h2>
 
-<p>
-	We successfully applied triplet-based channel charting on a DICHASUS dataset.
-	The key takeaways are:
-	<ul>
-		<li>
-			DICHASUS datasets contain CSI, ground truth positions and timestamps, which are provided in the TFRecords format.
-		</li>
-		<li>
-			We select triplets based on their timestamps.
-		</li>
-		<li>
-			Triplet-based channel charting is feasible on real CSI measured by DICHASUS.
-		</li>
-		<li>
-			Ground truth positions are used to evaluate the resulting channel charts.
-		</li>
-		<li>
-			Channel Charts can be evaluated with Continuity, Trustworthiness and Kruskal Stress.
-		</li>
-		<li>
-			The performance is dependent on the number of UE trajectories in different directions within the considered area.
-		</li>
-	</ul>
-</p>
+<div class="row justify-content-center">
+	<div class="col-12">
+		<p>
+			We successfully applied triplet-based Channel Charting to a DICHASUS dataset.
+			The key takeaways are:
+			<ul>
+				<li>
+					Triplet-based Channel Charting is feasible on real CSI measured by DICHASUS, exploiting timestamp metadata.
+				</li>
+				<li>
+					Performance, as measured by the evaluation metrics Continuity, Trustworthiness and Kruskal Stress, is acceptable, but can be improved further using more training data, hyperparameter tuning or better training approaches.
+				</li>
+			</ul>
+		</p>
+	</div>
+</div>
 
 <h2 class="text-center my-4" style="font-weight: bold;">A Note on Privacy</h2>
 <p>
