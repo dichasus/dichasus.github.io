@@ -117,12 +117,12 @@ layout: tutorial-details
 		Obviously, the more training data we have, the better the channel chart gets.
 		To save some disk and RAM space, we will settle for just 3 robot round trips in the following: <code class="nohighlight">dichasus-cf02.tfrecords</code>, <code class="nohighlight">dichasus-cf03.tfrecords</code> and <code class="nohighlight">dichasus-cf04.tfrecords</code>:
 		<pre class="m-0"><code class="language-bash">!mkdir dichasus
-!wget --content-disposition https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2854/8 -P dichasus # dichasus-cf02
-!wget --content-disposition https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2854/9 -P dichasus # dichasus-cf03
-!wget --content-disposition https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2854/10 -P dichasus # dichasus-cf04
-!wget https://dichasus.inue.uni-stuttgart.de/datasets/data/dichasus-cf0x/reftx-offsets-dichasus-cf02.json -P dichasus
-!wget https://dichasus.inue.uni-stuttgart.de/datasets/data/dichasus-cf0x/reftx-offsets-dichasus-cf03.json -P dichasus
-!wget https://dichasus.inue.uni-stuttgart.de/datasets/data/dichasus-cf0x/reftx-offsets-dichasus-cf04.json -P dichasus</code></pre>
+!wget -nc --content-disposition https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2854/8 -P dichasus # dichasus-cf02
+!wget -nc --content-disposition https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2854/9 -P dichasus # dichasus-cf03
+!wget -nc --content-disposition https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2854/10 -P dichasus # dichasus-cf04
+!wget -nc https://dichasus.inue.uni-stuttgart.de/datasets/data/dichasus-cf0x/reftx-offsets-dichasus-cf02.json -P dichasus
+!wget -nc https://dichasus.inue.uni-stuttgart.de/datasets/data/dichasus-cf0x/reftx-offsets-dichasus-cf03.json -P dichasus
+!wget -nc https://dichasus.inue.uni-stuttgart.de/datasets/data/dichasus-cf0x/reftx-offsets-dichasus-cf04.json -P dichasus</code></pre>
 	</p>
 	<p>
 		Next, we load the TFRecords files with TensorFlow and apply the offset compensation to the CSI as described in <a href="/tutorials/tutorial/calibration/">our offset compensation tutorial</a>.
@@ -514,7 +514,7 @@ model = tf.keras.models.Model([input_anchor, input_positive, input_negative], ou
 	</div>
 </div>
 
-	<h4 class="text-center my-4" style="font-weight: bold;">DNN Training</h4>
+	<h4 class="text-center my-4" style="font-weight: bold;">Neural Network Training</h4>
 	<div class="row justify-content-center">
 		<div class="col-12">
 			<p>
@@ -545,7 +545,7 @@ for l in range(len(learning_rates)):
 		</div>
 	</div>
 
-	<h4 class="text-center my-4" style="font-weight: bold;">Channel Chart Plotting</h4>
+	<h4 class="text-center my-4" style="font-weight: bold;">Plotting the Channel Chart</h4>
 
 	<div class="row justify-content-center">
 		<div class="col-12 col-xl-8 p-3">
