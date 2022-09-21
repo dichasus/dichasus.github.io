@@ -1,0 +1,244 @@
+{
+    "identifier": "dichasus-dxxx-complete",
+    "name": "Outdoor: Three arrays distributed along the facade",
+    "shortDescription": "Three 2 x 8 antenna arrays are distributed along the facade of a building, separated by up to 35m.",
+    "longDescription": "<i>This dataset is currently in the process of being analyzed. A full description will be added later.</i>",
+    "bandwidth": 50000000.0,
+    "frequency": 1272000000,
+    "outdoor": true,
+    "year": 2022,
+    "antennas": [
+        {
+            "name": "Antenna Array A",
+            "type": "array",
+            "spacingX": 0.118,
+            "spacingY": 0.118,
+            "assignments": [
+                [
+                    4,
+                    13,
+                    39,
+                    14,
+                    2,
+                    35,
+                    10,
+                    11
+                ],
+                [
+                    42,
+                    33,
+                    30,
+                    18,
+                    7,
+                    20,
+                    3,
+                    21
+                ]
+            ],
+            "location": [
+                14.104,
+                4.37595,
+                10.090525
+            ],
+            "direction": [
+                -0.9369289,
+                -0.01300416,
+                -0.349278
+            ]
+        },
+        {
+            "name": "Antenna Array B",
+            "type": "array",
+            "spacingX": 0.118,
+            "spacingY": 0.118,
+            "assignments": [
+                [
+                    32,
+                    40,
+                    45,
+                    44,
+                    36,
+                    25,
+                    0,
+                    17
+                ],
+                [
+                    43,
+                    8,
+                    16,
+                    19,
+                    12,
+                    1,
+                    23,
+                    28
+                ]
+            ],
+            "location": [
+                14.031675,
+                22.342375,
+                10.09225
+            ],
+            "direction": [
+                -0.93379024,
+                -0.00749353,
+                -0.3577424
+            ]
+        },
+        {
+            "name": "Antenna Array C",
+            "type": "array",
+            "spacingX": 0.118,
+            "spacingY": 0.118,
+            "assignments": [
+                [
+                    24,
+                    5,
+                    26,
+                    22,
+                    15,
+                    46,
+                    29,
+                    6
+                ],
+                [
+                    47,
+                    9,
+                    41,
+                    27,
+                    34,
+                    37,
+                    31,
+                    38
+                ]
+            ],
+            "location": [
+                14.163125,
+                -13.618325,
+                10.08755
+            ],
+            "direction": [
+                -0.91256453,
+                -0.00540906,
+                -0.40889695
+            ]
+        }
+    ],
+    "format": {
+        "csi": {
+            "description": "Channel coefficients for all antennas, over all subcarriers, real and imaginary parts",
+            "type": "tensor",
+            "dimension": [
+                48,
+                1024,
+                2
+            ]
+        },
+        "snr": {
+            "description": "Signal-to-Noise ratio estimates for all antennas",
+            "type": "tensor",
+            "dimension": [
+                48
+            ]
+        },
+        "pos-tachy": {
+            "description": "Position of transmitter determined by a tachymeter pointed at a prism mounted on top of the antenna, in meters (X / Y / Z coordinates)",
+            "type": "tensor64",
+            "dimension": [
+                3
+            ]
+        },
+        "gt-interp-age-tachy": {
+            "description": "Time in seconds to closest known tachymeter position. Indicates quality of linear interpolation.",
+            "type": "float32",
+            "dimension": []
+        },
+        "time": {
+            "description": "Timestamp since start of measurement campaign, in seconds",
+            "type": "float32",
+            "dimension": []
+        },
+        "cfo": {
+            "description": "Measured carrier frequency offset between MOBTX and each receive antenna.",
+            "type": "tensor",
+            "dimension": [
+                48
+            ]
+        }
+    },
+    "tfrecords": [
+        {
+            "filename": "tfrecords/dichasus-d002-complete.tfrecords",
+            "description": "The trajectory of the transmitter traces back overlapping rectangular shapes (vertical).",
+            "name": "dichasus-d002-complete",
+            "plots": {
+                "snrByPosition": "plots/dichasus-d002-complete-snr-position.png",
+                "snrBoxplot": "plots/dichasus-d002-complete-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-d002-complete-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-d002-complete-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-d002-complete-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-d002-complete-snr-position-array-2.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 9163,
+            "duration": 578.30419921875,
+            "totalSize": 3608590986
+        }
+    ],
+    "photos": [
+        {
+            "filename": "photosAll/all_antennas.jpg",
+            "description": "Photo of the building facade with the three antenna arrays B, A and C (from left to right)"
+        },
+        {
+            "filename": "photosAll/all_antennas.jpg",
+            "description": "Photo of the building facade with the three antenna arrays B, A and C (from left to right), antennas circled in red"
+        },
+        {
+            "filename": "photosAll/all_antennas_side.jpg",
+            "description": "Photo of the building facade from the side with the three antenna arrays B, A and C (from left to right)"
+        },
+        {
+            "filename": "photosAll/antenna_c.jpg",
+            "description": "Close-up shot of antenna array C"
+        },
+        {
+            "filename": "photosAll/antennas_b_and_a.jpg",
+            "description": "Antenna arrays B and A on the facade, handcart with the transmitter below"
+        },
+        {
+            "filename": "photosAll/antenna_window.jpg",
+            "description": "Antenna array tilted outside the window"
+        },
+        {
+            "filename": "photosAll/building_tachymeter.jpg",
+            "description": "Building facade with antenna arrays B and A, tachymeter for ground truth positioning data in the front"
+        },
+        {
+            "filename": "photosAll/street.jpg",
+            "description": "Picture of the area in front of the building, handcart with transmitter"
+        }
+    ],
+    "thumbnail": "photosAll/thumbnail.jpg",
+    "plots": {
+        "snrByPosition": "plots/overall-snr-position.png",
+        "snrBoxplot": "plots/overall-snr-boxplot.png",
+        "csiTensors": [
+            "plots/overall-csi-0.png"
+        ],
+        "snrByPositionAndArray": {
+            "Antenna Array A": "plots/overall-snr-position-array-0.png",
+            "Antenna Array B": "plots/overall-snr-position-array-1.png",
+            "Antenna Array C": "plots/overall-snr-position-array-2.png"
+        }
+    },
+    "gpx": "",
+    "datapoints": 9163,
+    "duration": 578.30419921875,
+    "antennaCount": 48,
+    "subcarriers": 1024,
+    "totalSize": 3608590986
+}
