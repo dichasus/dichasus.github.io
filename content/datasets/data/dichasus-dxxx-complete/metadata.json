@@ -186,6 +186,27 @@
             "datapoints": 9163,
             "duration": 578.30419921875,
             "totalSize": 3608590986
+        },
+        {
+            "filename": "tfrecords/dichasus-d004-complete.tfrecords",
+            "description": "The trajectory of the transmitter traces back overlapping rectangular shapes (horizontal).",
+            "name": "dichasus-d004-complete",
+            "plots": {
+                "snrByPosition": "plots/dichasus-d004-complete-snr-position.png",
+                "snrBoxplot": "plots/dichasus-d004-complete-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-d004-complete-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-d004-complete-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-d004-complete-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-d004-complete-snr-position-array-2.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 14272,
+            "duration": 896.9765625,
+            "totalSize": 5620627584
         }
     ],
     "photos": [
@@ -227,7 +248,8 @@
         "snrByPosition": "plots/overall-snr-position.png",
         "snrBoxplot": "plots/overall-snr-boxplot.png",
         "csiTensors": [
-            "plots/overall-csi-0.png"
+            "plots/overall-csi-0.png",
+            "plots/overall-csi-1.png"
         ],
         "snrByPositionAndArray": {
             "Antenna Array A": "plots/overall-snr-position-array-0.png",
@@ -236,9 +258,9 @@
         }
     },
     "gpx": "",
-    "datapoints": 9163,
-    "duration": 578.30419921875,
+    "datapoints": 23435,
+    "duration": 1475.28076171875,
     "antennaCount": 48,
     "subcarriers": 1024,
-    "totalSize": 3608590986
+    "totalSize": 9229218570
 }
