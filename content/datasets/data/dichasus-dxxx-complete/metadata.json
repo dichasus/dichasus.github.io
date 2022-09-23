@@ -168,7 +168,7 @@
     "tfrecords": [
         {
             "filename": "tfrecords/dichasus-d002-complete.tfrecords",
-            "description": "The trajectory of the transmitter traces back overlapping rectangular shapes (vertical).",
+            "description": "The trajectory of the transmitter traces back overlapping rectangular shapes (vertical) on the so-called 'ramp' (close underneath antenna array A).",
             "name": "dichasus-d002-complete",
             "plots": {
                 "snrByPosition": "plots/dichasus-d002-complete-snr-position.png",
@@ -189,7 +189,7 @@
         },
         {
             "filename": "tfrecords/dichasus-d004-complete.tfrecords",
-            "description": "The trajectory of the transmitter traces back overlapping rectangular shapes (horizontal).",
+            "description": "The trajectory of the transmitter traces back overlapping rectangular shapes (horizontal) on the so-called 'ramp' (close underneath antenna array A).",
             "name": "dichasus-d004-complete",
             "plots": {
                 "snrByPosition": "plots/dichasus-d004-complete-snr-position.png",
@@ -207,6 +207,27 @@
             "datapoints": 14272,
             "duration": 896.9765625,
             "totalSize": 5620627584
+        },
+        {
+            "filename": "tfrecords/dichasus-d005-complete.tfrecords",
+            "description": "The transmitter moves along a zig-zag trajectory on the so-called 'ramp' (close underneath antenna array A)..",
+            "name": "dichasus-d005-complete",
+            "plots": {
+                "snrByPosition": "plots/dichasus-d005-complete-snr-position.png",
+                "snrBoxplot": "plots/dichasus-d005-complete-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-d005-complete-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-d005-complete-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-d005-complete-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-d005-complete-snr-position-array-2.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 9537,
+            "duration": 613.7763671875,
+            "totalSize": 3755880414
         }
     ],
     "photos": [
@@ -249,7 +270,8 @@
         "snrBoxplot": "plots/overall-snr-boxplot.png",
         "csiTensors": [
             "plots/overall-csi-0.png",
-            "plots/overall-csi-1.png"
+            "plots/overall-csi-1.png",
+            "plots/overall-csi-2.png"
         ],
         "snrByPositionAndArray": {
             "Antenna Array A": "plots/overall-snr-position-array-0.png",
@@ -258,9 +280,9 @@
         }
     },
     "gpx": "",
-    "datapoints": 23435,
-    "duration": 1475.28076171875,
+    "datapoints": 32972,
+    "duration": 2089.05712890625,
     "antennaCount": 48,
     "subcarriers": 1024,
-    "totalSize": 9229218570
+    "totalSize": 12985098984
 }
