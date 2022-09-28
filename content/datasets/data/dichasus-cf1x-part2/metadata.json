@@ -192,7 +192,9 @@
             "gpx": "",
             "datapoints": 26464,
             "duration": 1349.6640625,
-            "totalSize": 4562711168
+            "totalSize": 4562711168,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=148664",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/148664"
         },
         {
             "filename": "tfrecords/dichasus-cf14.tfrecords",
@@ -214,11 +216,13 @@
             "gpx": "",
             "datapoints": 35640,
             "duration": 1803.9375,
-            "totalSize": 6144763680
+            "totalSize": 6144763680,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=148665",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/148665"
         },
         {
             "filename": "tfrecords/dichasus-cf15.tfrecords",
-            "description": "Robot trjaectory traces several symbols: INUE letters, heart, star, spiral. Slow robot movement.",
+            "description": "Robot trajectory traces several symbols: INUE letters, heart, star, spiral. Slow robot movement.",
             "name": "dichasus-cf15",
             "plots": {
                 "snrByPosition": "plots/dichasus-cf15-snr-position.png",
@@ -236,7 +240,9 @@
             "gpx": "",
             "datapoints": 12702,
             "duration": 630.14453125,
-            "totalSize": 2189977224
+            "totalSize": 2189977224,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=148666",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/148666"
         },
         {
             "filename": "tfrecords/dichasus-cf16.tfrecords",
@@ -258,7 +264,9 @@
             "gpx": "",
             "datapoints": 53087,
             "duration": 2633.6640625,
-            "totalSize": 9152835844
+            "totalSize": 9152835844,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=148667",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/148667"
         },
         {
             "filename": "tfrecords/dichasus-cf20.tfrecords",
@@ -280,7 +288,9 @@
             "gpx": "",
             "datapoints": 198,
             "duration": 9.935546875,
-            "totalSize": 34137576
+            "totalSize": 34137576,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=148668",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/148668"
         }
     ],
     "photos": [
@@ -342,6 +352,7 @@
         }
     ],
     "thumbnail": "photosAll/trajectory.png",
+    "doi": "doi:10.18419/darus-3151",
     "plots": {
         "snrByPosition": "plots/overall-snr-position.png",
         "snrBoxplot": "plots/overall-snr-boxplot.png",

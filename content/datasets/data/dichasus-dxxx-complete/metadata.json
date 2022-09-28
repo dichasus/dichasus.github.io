@@ -210,7 +210,7 @@
         },
         {
             "filename": "tfrecords/dichasus-d005-complete.tfrecords",
-            "description": "The transmitter moves along a zig-zag trajectory on the so-called 'ramp' (close underneath antenna array A)..",
+            "description": "The transmitter moves along a zig-zag trajectory on the so-called 'ramp' (close underneath antenna array A).",
             "name": "dichasus-d005-complete",
             "plots": {
                 "snrByPosition": "plots/dichasus-d005-complete-snr-position.png",
@@ -228,6 +228,216 @@
             "datapoints": 9537,
             "duration": 613.7763671875,
             "totalSize": 3755880414
+        },
+        {
+            "filename": "tfrecords/dichasus-d006-complete.tfrecords",
+            "description": "The transmitter moves forth and back on the street (all the way to the left and all the way to the right).",
+            "name": "dichasus-d006-complete",
+            "plots": {
+                "snrByPosition": "plots/dichasus-d006-complete-snr-position.png",
+                "snrBoxplot": "plots/dichasus-d006-complete-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-d006-complete-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-d006-complete-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-d006-complete-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-d006-complete-snr-position-array-2.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 8929,
+            "duration": 801.1201171875,
+            "totalSize": 3516436638
+        },
+        {
+            "filename": "tfrecords/dichasus-d007-complete.tfrecords",
+            "description": "The transmitter's trajectory is a wavy line on the street.",
+            "name": "dichasus-d007-complete",
+            "plots": {
+                "snrByPosition": "plots/dichasus-d007-complete-snr-position.png",
+                "snrBoxplot": "plots/dichasus-d007-complete-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-d007-complete-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-d007-complete-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-d007-complete-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-d007-complete-snr-position-array-2.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 6707,
+            "duration": 644.0166015625,
+            "totalSize": 2641364154
+        },
+        {
+            "filename": "tfrecords/dichasus-d008-complete.tfrecords",
+            "description": "The transmitter moves around on the street, and sometimes swerves onto the 'ramp' area.",
+            "name": "dichasus-d008-complete",
+            "plots": {
+                "snrByPosition": "plots/dichasus-d008-complete-snr-position.png",
+                "snrBoxplot": "plots/dichasus-d008-complete-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-d008-complete-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-d008-complete-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-d008-complete-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-d008-complete-snr-position-array-2.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 3568,
+            "duration": 342.1435546875,
+            "totalSize": 1405156896
+        },
+        {
+            "filename": "tfrecords/dichasus-d009-complete.tfrecords",
+            "description": "Again, the transmitter moves around on the street, and sometimes swerves onto the 'ramp' area.",
+            "name": "dichasus-d009-complete",
+            "plots": {
+                "snrByPosition": "plots/dichasus-d009-complete-snr-position.png",
+                "snrBoxplot": "plots/dichasus-d009-complete-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-d009-complete-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-d009-complete-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-d009-complete-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-d009-complete-snr-position-array-2.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 7163,
+            "duration": 637.7763671875,
+            "totalSize": 2820946986
+        },
+        {
+            "filename": "tfrecords/dichasus-d00a-complete.tfrecords",
+            "description": "Transmitter follows several trajectories that connect the 'ramp' area below antenna A and the street (mostly towards antenna B).",
+            "name": "dichasus-d00a-complete",
+            "plots": {
+                "snrByPosition": "plots/dichasus-d00a-complete-snr-position.png",
+                "snrBoxplot": "plots/dichasus-d00a-complete-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-d00a-complete-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-d00a-complete-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-d00a-complete-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-d00a-complete-snr-position-array-2.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 6450,
+            "duration": 611.3759765625,
+            "totalSize": 2540151900
+        },
+        {
+            "filename": "tfrecords/dichasus-d00b-complete.tfrecords",
+            "description": "Transmitter follows several trajectories that connect the 'ramp' area below antenna A and the street (mostly towards antenna C). Towards the end, the transmitter moves towards the driveway of the building opposite to antenna A.",
+            "name": "dichasus-d00b-complete",
+            "plots": {
+                "snrByPosition": "plots/dichasus-d00b-complete-snr-position.png",
+                "snrBoxplot": "plots/dichasus-d00b-complete-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-d00b-complete-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-d00b-complete-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-d00b-complete-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-d00b-complete-snr-position-array-2.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 3360,
+            "duration": 473.6162109375,
+            "totalSize": 1323241920
+        },
+        {
+            "filename": "tfrecords/dichasus-d010-complete.tfrecords",
+            "description": "Transmitter moves from being in front of antenna A to the street, to antenna B, and further.",
+            "name": "dichasus-d010-complete",
+            "plots": {
+                "snrByPosition": "plots/dichasus-d010-complete-snr-position.png",
+                "snrBoxplot": "plots/dichasus-d010-complete-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-d010-complete-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-d010-complete-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-d010-complete-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-d010-complete-snr-position-array-2.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 537,
+            "duration": 49.583984375,
+            "totalSize": 211482414
+        },
+        {
+            "filename": "tfrecords/dichasus-d011-complete.tfrecords",
+            "description": "Transmitter moves from one end of the street to the other (forwards).",
+            "name": "dichasus-d011-complete",
+            "plots": {
+                "snrByPosition": "plots/dichasus-d011-complete-snr-position.png",
+                "snrBoxplot": "plots/dichasus-d011-complete-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-d011-complete-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-d011-complete-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-d011-complete-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-d011-complete-snr-position-array-2.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 683,
+            "duration": 89.1845703125,
+            "totalSize": 268980426
+        },
+        {
+            "filename": "tfrecords/dichasus-d012-complete.tfrecords",
+            "description": "Transmitter moves from one end of the street to the other (backwards).",
+            "name": "dichasus-d012-complete",
+            "plots": {
+                "snrByPosition": "plots/dichasus-d012-complete-snr-position.png",
+                "snrBoxplot": "plots/dichasus-d012-complete-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-d012-complete-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-d012-complete-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-d012-complete-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-d012-complete-snr-position-array-2.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 780,
+            "duration": 80.1123046875,
+            "totalSize": 307181160
+        },
+        {
+            "filename": "tfrecords/dichasus-d013-complete.tfrecords",
+            "description": "Transmitter moves from one end of the street to the other (forwards).",
+            "name": "dichasus-d013-complete",
+            "plots": {
+                "snrByPosition": "plots/dichasus-d013-complete-snr-position.png",
+                "snrBoxplot": "plots/dichasus-d013-complete-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-d013-complete-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-d013-complete-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-d013-complete-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-d013-complete-snr-position-array-2.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 983,
+            "duration": 89.1845703125,
+            "totalSize": 387127026
         }
     ],
     "photos": [
@@ -271,7 +481,17 @@
         "csiTensors": [
             "plots/overall-csi-0.png",
             "plots/overall-csi-1.png",
-            "plots/overall-csi-2.png"
+            "plots/overall-csi-2.png",
+            "plots/overall-csi-3.png",
+            "plots/overall-csi-4.png",
+            "plots/overall-csi-5.png",
+            "plots/overall-csi-6.png",
+            "plots/overall-csi-7.png",
+            "plots/overall-csi-8.png",
+            "plots/overall-csi-9.png",
+            "plots/overall-csi-10.png",
+            "plots/overall-csi-11.png",
+            "plots/overall-csi-12.png"
         ],
         "snrByPositionAndArray": {
             "Antenna Array A": "plots/overall-snr-position-array-0.png",
@@ -280,9 +500,9 @@
         }
     },
     "gpx": "",
-    "datapoints": 32972,
-    "duration": 2089.05712890625,
+    "datapoints": 72132,
+    "duration": 5907.17138671875,
     "antennaCount": 48,
     "subcarriers": 1024,
-    "totalSize": 12985098984
+    "totalSize": 28407168504
 }
