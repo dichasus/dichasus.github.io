@@ -1,8 +1,8 @@
 {
     "identifier": "dichasus-dxxx-complete",
-    "name": "Outdoor: Three arrays distributed along the facade",
+    "name": "Outdoor - Three arrays distributed along the facade",
     "shortDescription": "Three 2 x 8 antenna arrays are distributed along the facade of a building, separated by up to 35m.",
-    "longDescription": "<i>This dataset is currently in the process of being analyzed. A full description will be added later.</i>",
+    "longDescription": "Three separate antenna arrays are attached to the facade of the Institute of Telecommunications building on the University of Stuttgart campus in Stuttgart-Vaihingen. The transmitter is mounted on a handcart and pulled around on the street in front of that building. The position of the tip of the transmit antenna is accurately tracked by a Tachymeter. This dataset only contains datapoints for which all 48 antennas have successfully acquired channel state information. Since one antenna in array B was not perfectly reliable due to synchronization issues, some datapoints might be missing (but all the contained datapoints should be accurate).",
     "bandwidth": 50000000.0,
     "frequency": 1272000000,
     "outdoor": true,
@@ -185,7 +185,9 @@
             "gpx": "",
             "datapoints": 9163,
             "duration": 578.30419921875,
-            "totalSize": 3608590986
+            "totalSize": 3608590986,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=148785",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/148785"
         },
         {
             "filename": "tfrecords/dichasus-d004-complete.tfrecords",
@@ -206,7 +208,9 @@
             "gpx": "",
             "datapoints": 14272,
             "duration": 896.9765625,
-            "totalSize": 5620627584
+            "totalSize": 5620627584,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=148786",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/148786"
         },
         {
             "filename": "tfrecords/dichasus-d005-complete.tfrecords",
@@ -227,7 +231,9 @@
             "gpx": "",
             "datapoints": 9537,
             "duration": 613.7763671875,
-            "totalSize": 3755880414
+            "totalSize": 3755880414,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=148787",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/148787"
         },
         {
             "filename": "tfrecords/dichasus-d006-complete.tfrecords",
@@ -248,7 +254,9 @@
             "gpx": "",
             "datapoints": 8929,
             "duration": 801.1201171875,
-            "totalSize": 3516436638
+            "totalSize": 3516436638,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=148788",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/148788"
         },
         {
             "filename": "tfrecords/dichasus-d007-complete.tfrecords",
@@ -269,7 +277,9 @@
             "gpx": "",
             "datapoints": 6707,
             "duration": 644.0166015625,
-            "totalSize": 2641364154
+            "totalSize": 2641364154,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=148789",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/148789"
         },
         {
             "filename": "tfrecords/dichasus-d008-complete.tfrecords",
@@ -290,7 +300,9 @@
             "gpx": "",
             "datapoints": 3568,
             "duration": 342.1435546875,
-            "totalSize": 1405156896
+            "totalSize": 1405156896,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=148790",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/148790"
         },
         {
             "filename": "tfrecords/dichasus-d009-complete.tfrecords",
@@ -311,7 +323,9 @@
             "gpx": "",
             "datapoints": 7163,
             "duration": 637.7763671875,
-            "totalSize": 2820946986
+            "totalSize": 2820946986,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=148791",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/148791"
         },
         {
             "filename": "tfrecords/dichasus-d00a-complete.tfrecords",
@@ -332,7 +346,9 @@
             "gpx": "",
             "datapoints": 6450,
             "duration": 611.3759765625,
-            "totalSize": 2540151900
+            "totalSize": 2540151900,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=148792",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/148792"
         },
         {
             "filename": "tfrecords/dichasus-d00b-complete.tfrecords",
@@ -353,11 +369,13 @@
             "gpx": "",
             "datapoints": 3360,
             "duration": 473.6162109375,
-            "totalSize": 1323241920
+            "totalSize": 1323241920,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=148793",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/148793"
         },
         {
             "filename": "tfrecords/dichasus-d010-complete.tfrecords",
-            "description": "Transmitter moves from being in front of antenna A to the street, to antenna B, and further.",
+            "description": "Transmitter moves from a place in front of antenna A to the street, to antenna B, and further.",
             "name": "dichasus-d010-complete",
             "plots": {
                 "snrByPosition": "plots/dichasus-d010-complete-snr-position.png",
@@ -374,7 +392,9 @@
             "gpx": "",
             "datapoints": 537,
             "duration": 49.583984375,
-            "totalSize": 211482414
+            "totalSize": 211482414,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=148794",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/148794"
         },
         {
             "filename": "tfrecords/dichasus-d011-complete.tfrecords",
@@ -395,7 +415,9 @@
             "gpx": "",
             "datapoints": 683,
             "duration": 89.1845703125,
-            "totalSize": 268980426
+            "totalSize": 268980426,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=148795",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/148795"
         },
         {
             "filename": "tfrecords/dichasus-d012-complete.tfrecords",
@@ -416,7 +438,9 @@
             "gpx": "",
             "datapoints": 780,
             "duration": 80.1123046875,
-            "totalSize": 307181160
+            "totalSize": 307181160,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=148796",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/148796"
         },
         {
             "filename": "tfrecords/dichasus-d013-complete.tfrecords",
@@ -437,7 +461,32 @@
             "gpx": "",
             "datapoints": 983,
             "duration": 89.1845703125,
-            "totalSize": 387127026
+            "totalSize": 387127026,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=148797",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/148797"
+        },
+        {
+            "filename": "tfrecords/dichasus-d014-complete.tfrecords",
+            "description": "Transmitter moves from one end of the street to a place in front of antenna A.",
+            "name": "dichasus-d014-complete",
+            "plots": {
+                "snrByPosition": "plots/dichasus-d014-complete-snr-position.png",
+                "snrBoxplot": "plots/dichasus-d014-complete-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-d014-complete-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-d014-complete-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-d014-complete-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-d014-complete-snr-position-array-2.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 577,
+            "duration": 64.80078125,
+            "totalSize": 227235294,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=148798",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/148798"
         }
     ],
     "photos": [
@@ -475,6 +524,7 @@
         }
     ],
     "thumbnail": "photosAll/thumbnail.jpg",
+    "doi": "doi:10.18419/darus-3153",
     "plots": {
         "snrByPosition": "plots/overall-snr-position.png",
         "snrBoxplot": "plots/overall-snr-boxplot.png",
@@ -491,7 +541,8 @@
             "plots/overall-csi-9.png",
             "plots/overall-csi-10.png",
             "plots/overall-csi-11.png",
-            "plots/overall-csi-12.png"
+            "plots/overall-csi-12.png",
+            "plots/overall-csi-13.png"
         ],
         "snrByPositionAndArray": {
             "Antenna Array A": "plots/overall-snr-position-array-0.png",
@@ -500,9 +551,9 @@
         }
     },
     "gpx": "",
-    "datapoints": 72132,
-    "duration": 5907.17138671875,
+    "datapoints": 72709,
+    "duration": 5971.97216796875,
     "antennaCount": 48,
     "subcarriers": 1024,
-    "totalSize": 28407168504
+    "totalSize": 28634403798
 }
