@@ -570,6 +570,8 @@ dataset = dataset.cache()</code></pre>
 		For this dataset, we are able to provide estimated antenna-specific carrier phase and sampling time offsets.
 		These offsets occur due to the fact that the reference transmitter channel is not perfectly frequency-flat.
 		To learn more about why these offsets occur and about their compensation, visit our offset calibration tutorial on this topic.
+		Note that the estimates provided here are "best-effort" calculations.
+		The phase and time offsets between antennas in the same array are usually very accurate, but for antennas that are spaced far apart, the results may be less precise.
 
 		{{ if not (eq $offsetsCombined nil) }}
 		The offset are constant over the complete dataset.
