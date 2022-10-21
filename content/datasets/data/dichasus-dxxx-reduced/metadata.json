@@ -2,7 +2,7 @@
     "identifier": "dichasus-dxxx-reduced",
     "name": "Outdoor - Three arrays distributed along the facade (one antenna removed)",
     "shortDescription": "Three 2 x 8 antenna arrays are distributed along the facade of a building, separated by up to 35m (one antenna less due to synchronization issues).",
-    "longDescription": "This dataset is generated from the same recording as dichasus-dxxx-complete. However, due to the fact that one antenna in array B was not perfectly reliable because of synchronization issues, that antenna was removed from this dataset. This reduces the number of antennas by one, but increases the number of valid collected datapoints since datapoints that previously had to be rejected due to bad synchronization at that one antenna are now also part of the dataset. This dataset therefore contains more trajectories and datapoints than dichasus-dxxx-complete, but is otherwise identical.",
+    "longDescription": "This dataset is generated from the same recording as dichasus-dxxx-complete. However, due to the fact that one antenna that is part of array B was not perfectly reliable because of synchronization issues, that antenna was removed from this dataset. This reduces the number of antennas by one, but increases the number of valid collected datapoints since datapoints that previously had to be rejected due to bad synchronization at that one antenna are now also part of the dataset. This dataset therefore contains more trajectories and datapoints than dichasus-dxxx-complete, but is otherwise identical.",
     "bandwidth": 50000000.0,
     "frequency": 1272000000,
     "outdoor": true,
@@ -167,6 +167,351 @@
     },
     "tfrecords": [
         {
+            "filename": "tfrecords/dichasus-d002.tfrecords",
+            "description": "The trajectory of the transmitter traces back overlapping rectangular shapes (vertical) on the so-called 'ramp' (close underneath antenna array A).",
+            "name": "dichasus-d002",
+            "plots": {
+                "snrByPosition": "plots/dichasus-d002-snr-position.png",
+                "snrBoxplot": "plots/dichasus-d002-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-d002-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-d002-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-d002-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-d002-snr-position-array-2.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 9373,
+            "duration": 578.30419921875,
+            "totalSize": 3614435006,
+            "darusViewURL": "https://doi.org/10.18419/darus-3236/2",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3236/2"
+        },
+        {
+            "filename": "tfrecords/dichasus-d004.tfrecords",
+            "description": "The trajectory of the transmitter traces back overlapping rectangular shapes (horizontal) on the so-called 'ramp' (close underneath antenna array A).",
+            "name": "dichasus-d004",
+            "plots": {
+                "snrByPosition": "plots/dichasus-d004-snr-position.png",
+                "snrBoxplot": "plots/dichasus-d004-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-d004-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-d004-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-d004-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-d004-snr-position-array-2.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 14330,
+            "duration": 896.9765625,
+            "totalSize": 5525963260,
+            "darusViewURL": "https://doi.org/10.18419/darus-3236/3",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3236/3"
+        },
+        {
+            "filename": "tfrecords/dichasus-d005.tfrecords",
+            "description": "The transmitter moves along a zig-zag trajectory on the so-called 'ramp' (close underneath antenna array A).",
+            "name": "dichasus-d005",
+            "plots": {
+                "snrByPosition": "plots/dichasus-d005-snr-position.png",
+                "snrBoxplot": "plots/dichasus-d005-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-d005-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-d005-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-d005-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-d005-snr-position-array-2.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 9658,
+            "duration": 613.7763671875,
+            "totalSize": 3724337276,
+            "darusViewURL": "https://doi.org/10.18419/darus-3236/4",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3236/4"
+        },
+        {
+            "filename": "tfrecords/dichasus-d006.tfrecords",
+            "description": "The transmitter moves forth and back on the street (all the way to the left and all the way to the right).",
+            "name": "dichasus-d006",
+            "plots": {
+                "snrByPosition": "plots/dichasus-d006-snr-position.png",
+                "snrBoxplot": "plots/dichasus-d006-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-d006-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-d006-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-d006-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-d006-snr-position-array-2.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 8902,
+            "duration": 801.1201171875,
+            "totalSize": 3432807044,
+            "darusViewURL": "https://doi.org/10.18419/darus-3236/5",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3236/5"
+        },
+        {
+            "filename": "tfrecords/dichasus-d007.tfrecords",
+            "description": "The transmitter's trajectory is a wavy line on the street.",
+            "name": "dichasus-d007",
+            "plots": {
+                "snrByPosition": "plots/dichasus-d007-snr-position.png",
+                "snrBoxplot": "plots/dichasus-d007-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-d007-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-d007-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-d007-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-d007-snr-position-array-2.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 6748,
+            "duration": 644.0166015625,
+            "totalSize": 2602177256,
+            "darusViewURL": "https://doi.org/10.18419/darus-3236/6",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3236/6"
+        },
+        {
+            "filename": "tfrecords/dichasus-d008.tfrecords",
+            "description": "The transmitter moves around on the street, and sometimes swerves onto the 'ramp' area.",
+            "name": "dichasus-d008",
+            "plots": {
+                "snrByPosition": "plots/dichasus-d008-snr-position.png",
+                "snrBoxplot": "plots/dichasus-d008-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-d008-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-d008-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-d008-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-d008-snr-position-array-2.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 3593,
+            "duration": 341.9521484375,
+            "totalSize": 1385539846,
+            "darusViewURL": "https://doi.org/10.18419/darus-3236/7",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3236/7"
+        },
+        {
+            "filename": "tfrecords/dichasus-d009.tfrecords",
+            "description": "Again, the transmitter moves around on the street, and sometimes swerves onto the 'ramp' area.",
+            "name": "dichasus-d009",
+            "plots": {
+                "snrByPosition": "plots/dichasus-d009-snr-position.png",
+                "snrBoxplot": "plots/dichasus-d009-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-d009-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-d009-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-d009-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-d009-snr-position-array-2.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 7297,
+            "duration": 637.7763671875,
+            "totalSize": 2813883734,
+            "darusViewURL": "https://doi.org/10.18419/darus-3236/8",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3236/8"
+        },
+        {
+            "filename": "tfrecords/dichasus-d00a.tfrecords",
+            "description": "Transmitter follows several trajectories that connect the 'ramp' area below antenna A and the street (mostly towards antenna B).",
+            "name": "dichasus-d00a",
+            "plots": {
+                "snrByPosition": "plots/dichasus-d00a-snr-position.png",
+                "snrBoxplot": "plots/dichasus-d00a-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-d00a-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-d00a-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-d00a-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-d00a-snr-position-array-2.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 8888,
+            "duration": 611.3759765625,
+            "totalSize": 3427408336,
+            "darusViewURL": "https://doi.org/10.18419/darus-3236/9",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3236/9"
+        },
+        {
+            "filename": "tfrecords/dichasus-d00b.tfrecords",
+            "description": "Transmitter follows several trajectories that connect the 'ramp' area below antenna A and the street (mostly towards antenna C). Towards the end, the transmitter moves towards the driveway of the building opposite to antenna A.",
+            "name": "dichasus-d00b",
+            "plots": {
+                "snrByPosition": "plots/dichasus-d00b-snr-position.png",
+                "snrBoxplot": "plots/dichasus-d00b-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-d00b-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-d00b-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-d00b-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-d00b-snr-position-array-2.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 7624,
+            "duration": 474.0966796875,
+            "totalSize": 2939982128,
+            "darusViewURL": "https://doi.org/10.18419/darus-3236/10",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3236/10"
+        },
+        {
+            "filename": "tfrecords/dichasus-d010.tfrecords",
+            "description": "Transmitter moves from a place in front of antenna A to the street, to antenna B, and further.",
+            "name": "dichasus-d010",
+            "plots": {
+                "snrByPosition": "plots/dichasus-d010-snr-position.png",
+                "snrBoxplot": "plots/dichasus-d010-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-d010-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-d010-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-d010-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-d010-snr-position-array-2.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 855,
+            "duration": 50.4482421875,
+            "totalSize": 329706810,
+            "darusViewURL": "https://doi.org/10.18419/darus-3236/11",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3236/11"
+        },
+        {
+            "filename": "tfrecords/dichasus-d011.tfrecords",
+            "description": "Transmitter moves from one end of the street to the other (forwards).",
+            "name": "dichasus-d011",
+            "plots": {
+                "snrByPosition": "plots/dichasus-d011-snr-position.png",
+                "snrBoxplot": "plots/dichasus-d011-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-d011-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-d011-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-d011-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-d011-snr-position-array-2.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 1174,
+            "duration": 89.0400390625,
+            "totalSize": 452720228,
+            "darusViewURL": "https://doi.org/10.18419/darus-3236/12",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3236/12"
+        },
+        {
+            "filename": "tfrecords/dichasus-d012.tfrecords",
+            "description": "Transmitter moves from one end of the street to the other (backwards).",
+            "name": "dichasus-d012",
+            "plots": {
+                "snrByPosition": "plots/dichasus-d012-snr-position.png",
+                "snrBoxplot": "plots/dichasus-d012-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-d012-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-d012-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-d012-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-d012-snr-position-array-2.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 1157,
+            "duration": 80.1123046875,
+            "totalSize": 446164654,
+            "darusViewURL": "https://doi.org/10.18419/darus-3236/13",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3236/13"
+        },
+        {
+            "filename": "tfrecords/dichasus-d013.tfrecords",
+            "description": "Transmitter moves from one end of the street to the other (forwards).",
+            "name": "dichasus-d013",
+            "plots": {
+                "snrByPosition": "plots/dichasus-d013-snr-position.png",
+                "snrBoxplot": "plots/dichasus-d013-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-d013-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-d013-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-d013-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-d013-snr-position-array-2.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 1272,
+            "duration": 95.3759765625,
+            "totalSize": 490511184,
+            "darusViewURL": "https://doi.org/10.18419/darus-3236/14",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3236/14"
+        },
+        {
+            "filename": "tfrecords/dichasus-d014.tfrecords",
+            "description": "Transmitter moves from one end of the street to a place in front of antenna A.",
+            "name": "dichasus-d014",
+            "plots": {
+                "snrByPosition": "plots/dichasus-d014-snr-position.png",
+                "snrBoxplot": "plots/dichasus-d014-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-d014-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-d014-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-d014-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-d014-snr-position-array-2.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 988,
+            "duration": 66.0966796875,
+            "totalSize": 380994536,
+            "darusViewURL": "https://doi.org/10.18419/darus-3236/15",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3236/15"
+        },
+        {
+            "filename": "tfrecords/dichasus-d020.tfrecords",
+            "description": "Transmitter moves from somewhere close to antanna array A all the way to the end of the street and around the corner, until it loses connection.",
+            "name": "dichasus-d020",
+            "plots": {
+                "snrByPosition": "plots/dichasus-d020-snr-position.png",
+                "snrBoxplot": "plots/dichasus-d020-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-d020-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-d020-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-d020-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-d020-snr-position-array-2.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 970,
+            "duration": 80.591796875,
+            "totalSize": 374053340,
+            "darusViewURL": "https://doi.org/10.18419/darus-3236/16",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3236/16"
+        },
+        {
             "filename": "tfrecords/dichasus-d030.tfrecords",
             "description": "Transmitter trajectory is a heart shape in the 'ramp' area.",
             "name": "dichasus-d030",
@@ -185,7 +530,9 @@
             "gpx": "",
             "datapoints": 584,
             "duration": 41.759765625,
-            "totalSize": 225203248
+            "totalSize": 225203248,
+            "darusViewURL": "https://doi.org/10.18419/darus-3236/17",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3236/17"
         },
         {
             "filename": "tfrecords/dichasus-d031.tfrecords",
@@ -206,7 +553,9 @@
             "gpx": "",
             "datapoints": 823,
             "duration": 53.615234375,
-            "totalSize": 317366906
+            "totalSize": 317366906,
+            "darusViewURL": "https://doi.org/10.18419/darus-3236/18",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3236/18"
         },
         {
             "filename": "tfrecords/dichasus-d032.tfrecords",
@@ -227,7 +576,9 @@
             "gpx": "",
             "datapoints": 804,
             "duration": 44.59375,
-            "totalSize": 310040088
+            "totalSize": 310040088,
+            "darusViewURL": "https://doi.org/10.18419/darus-3236/19",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3236/19"
         },
         {
             "filename": "tfrecords/dichasus-d033.tfrecords",
@@ -248,7 +599,9 @@
             "gpx": "",
             "datapoints": 948,
             "duration": 57.455078125,
-            "totalSize": 365569656
+            "totalSize": 365569656,
+            "darusViewURL": "https://doi.org/10.18419/darus-3236/20",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3236/20"
         },
         {
             "filename": "tfrecords/dichasus-d034.tfrecords",
@@ -269,7 +622,9 @@
             "gpx": "",
             "datapoints": 662,
             "duration": 39.697265625,
-            "totalSize": 255281764
+            "totalSize": 255281764,
+            "darusViewURL": "https://doi.org/10.18419/darus-3236/21",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3236/21"
         },
         {
             "filename": "tfrecords/dichasus-d035.tfrecords",
@@ -290,7 +645,9 @@
             "gpx": "",
             "datapoints": 649,
             "duration": 34.416015625,
-            "totalSize": 250268678
+            "totalSize": 250268678,
+            "darusViewURL": "https://doi.org/10.18419/darus-3236/22",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3236/22"
         },
         {
             "filename": "tfrecords/dichasus-d036.tfrecords",
@@ -311,7 +668,9 @@
             "gpx": "",
             "datapoints": 532,
             "duration": 27.6953125,
-            "totalSize": 205150904
+            "totalSize": 205150904,
+            "darusViewURL": "https://doi.org/10.18419/darus-3236/23",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3236/23"
         },
         {
             "filename": "tfrecords/dichasus-d037.tfrecords",
@@ -332,7 +691,9 @@
             "gpx": "",
             "datapoints": 1055,
             "duration": 65.6171875,
-            "totalSize": 406831210
+            "totalSize": 406831210,
+            "darusViewURL": "https://doi.org/10.18419/darus-3236/24",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3236/24"
         },
         {
             "filename": "tfrecords/dichasus-d038.tfrecords",
@@ -353,7 +714,55 @@
             "gpx": "",
             "datapoints": 593,
             "duration": 32.9765625,
-            "totalSize": 228673846
+            "totalSize": 228673846,
+            "darusViewURL": "https://doi.org/10.18419/darus-3236/25",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3236/25"
+        },
+        {
+            "filename": "tfrecords/dichasus-d041.tfrecords",
+            "description": "Transmitter moves around in some arbitrary trajectory in the area in front of the three antenna arrays.",
+            "name": "dichasus-d041",
+            "plots": {
+                "snrByPosition": "plots/dichasus-d041-snr-position.png",
+                "snrBoxplot": "plots/dichasus-d041-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-d041-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-d041-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-d041-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-d041-snr-position-array-2.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 5354,
+            "duration": 319.056640625,
+            "totalSize": 2064620188,
+            "darusViewURL": "https://doi.org/10.18419/darus-3236/26",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3236/26"
+        },
+        {
+            "filename": "tfrecords/dichasus-d042.tfrecords",
+            "description": "Transmitter moves around in some arbitrary trajectory in the area in front of the three antenna arrays for even longer.",
+            "name": "dichasus-d042",
+            "plots": {
+                "snrByPosition": "plots/dichasus-d042-snr-position.png",
+                "snrBoxplot": "plots/dichasus-d042-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-d042-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Antenna Array A": "plots/dichasus-d042-snr-position-array-0.png",
+                    "Antenna Array B": "plots/dichasus-d042-snr-position-array-1.png",
+                    "Antenna Array C": "plots/dichasus-d042-snr-position-array-2.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 18876,
+            "duration": 1087.53515625,
+            "totalSize": 7279000872,
+            "darusViewURL": "https://doi.org/10.18419/darus-3236/27",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3236/27"
         }
     ],
     "photos": [
@@ -391,6 +800,7 @@
         }
     ],
     "thumbnail": "photosAll/thumbnail.jpg",
+    "doi": "doi:10.18419/darus-3236",
     "plots": {
         "snrByPosition": "plots/overall-snr-position.png",
         "snrBoxplot": "plots/overall-snr-boxplot.png",
@@ -403,7 +813,24 @@
             "plots/overall-csi-5.png",
             "plots/overall-csi-6.png",
             "plots/overall-csi-7.png",
-            "plots/overall-csi-8.png"
+            "plots/overall-csi-8.png",
+            "plots/overall-csi-9.png",
+            "plots/overall-csi-10.png",
+            "plots/overall-csi-11.png",
+            "plots/overall-csi-12.png",
+            "plots/overall-csi-13.png",
+            "plots/overall-csi-14.png",
+            "plots/overall-csi-15.png",
+            "plots/overall-csi-16.png",
+            "plots/overall-csi-17.png",
+            "plots/overall-csi-18.png",
+            "plots/overall-csi-19.png",
+            "plots/overall-csi-20.png",
+            "plots/overall-csi-21.png",
+            "plots/overall-csi-22.png",
+            "plots/overall-csi-23.png",
+            "plots/overall-csi-24.png",
+            "plots/overall-csi-25.png"
         ],
         "snrByPositionAndArray": {
             "Antenna Array A": "plots/overall-snr-position-array-0.png",
@@ -412,9 +839,9 @@
         }
     },
     "gpx": "",
-    "datapoints": 6650,
-    "duration": 397.826171875,
+    "datapoints": 113709,
+    "duration": 7865.47802734375,
     "antennaCount": 47,
     "subcarriers": 1024,
-    "totalSize": 2564386300
+    "totalSize": 43848691998
 }
