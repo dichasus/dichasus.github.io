@@ -821,8 +821,47 @@ dataset = dataset.cache()</code></pre>
 			{{ end }}
 		</div>
 
-
-
+		{{ $channelStatsFile := ($.Resources.GetMatch "stats/stats.json") }}
+		{{ if not (eq $channelStatsFile nil) }}
+			{{ $channelStats := $channelStatsFile.Content | unmarshal }}
+			<h2 id="stats">Derived Channel Statistics</h2>
+			<div class="container-fluid">
+				<section>
+					<div class="row">
+						<div class="col-12 mb-4">
+							<div class="card">
+								<div class="card-body">
+									<div class="card-title">
+										<h4>RMS Delay Spread</h4>
+										The <a href="https://en.wikipedia.org/wiki/Delay_spread">delay spread</a> of a wireless channel is inverely proportional to the channel's coherence bandwidth and indicates how "spread out" the lengths of the various multipath propagation paths are.
+										For every datapoint, the delay spread can be characterized by its <a href="https://en.wikipedia.org/wiki/Root_mean_square">root mean square</a> value and the resulting delay spreads can be plotted over the measurement area:
+										<div class="row justify-content-md-center">
+											<div id="delay-spread-plots" class="carousel carousel-dark slide m-4 col-6" data-bs-ride="carousel">
+												<div class="carousel-inner">
+													{{ range $index, $delaySpreadPlot := $channelStats.plots.delaySpread }}
+														<div class="carousel-item {{ if (eq $index 0) }} active {{ end }}">
+															<img src="stats/{{ $delaySpreadPlot }}" class="d-block w-100">
+														</div>
+													{{ end }}
+												</div>
+												<button class="carousel-control-prev" type="button" data-bs-target="#delay-spread-plots" data-bs-slide="prev">
+													<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+													<span class="visually-hidden">Previous</span>
+												</button>
+												<button class="carousel-control-next" type="button" data-bs-target="#delay-spread-plots" data-bs-slide="next">
+													<span class="carousel-control-next-icon" aria-hidden="true"></span>
+													<span class="visually-hidden">Next</span>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		{{ end }}
 	</article>
 </div>
 
