@@ -534,11 +534,11 @@ model.compile(loss = triplet_loss, optimizer = optimizer)
 
 batch_size = 8192
 learning_rates = [1e-3, 1e-3, 1e-4, 1e-4, 1e-5, 1e-5, 1e-5, 1e-5]
-T_c_array = [5.5, 4.5, 4, 3.5, 3.5, 3.5, 3, 3]
+T_c = 5
 
 for l in range(len(learning_rates)):
-	print("\nTraining Session ", l + 1, "\nT_c =", T_c_array[l])
-	triplets = generate_triplets(150000, T_c_array[1])
+	print("\nTraining Session ", l + 1, "\nT_c =", T_c)
+	triplets = generate_triplets(150000, T_c)
 	optimizer.learning_rate.assign(learning_rates[l])
 	print("\nBatch Size: ", batch_size, "\nEpochs: ", 10, "\nLearning rate: ", learning_rates[l])
 	model.fit(triplets, triplets, batch_size = batch_size, steps_per_epoch = int(len(triplets[0]) / batch_size), epochs = 10)</code></pre>
