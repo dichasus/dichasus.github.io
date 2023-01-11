@@ -361,7 +361,7 @@
 				<div class="px-0 col d-flex align-items-start">
 					<div>
 						<h2>Experiment Setup</h2>
-						<div id="photos-with-captions" class="carousel slide m-4" data-bs-ride="carousel">
+						<div id="photos-with-captions" class="carousel slide m-4" data-bs-ride="carousel" data-bs-interval="false">
 							<div class="carousel-inner">
 								{{ range $index, $photo := $spec.photos }}
 								<div class="carousel-item {{ if (eq $index 0) }} active {{ end }}">
@@ -388,7 +388,7 @@
 				<div class="px-0 col d-flex align-items-start">
 					<div>
 						<h2>Data Analysis</h2>
-						<div id="plots-with-captions" class="carousel carousel-dark slide m-4" data-bs-ride="carousel">
+						<div id="plots-with-captions" class="carousel carousel-dark slide m-4" data-bs-ride="carousel" data-bs-interval="false">
 							<div class="carousel-inner">
 								<div class="carousel-item active">
 									<img src="{{ $spec.plots.snrByPosition }}" class="d-block w-100" alt="">
@@ -825,18 +825,23 @@ dataset = dataset.cache()</code></pre>
 		{{ if not (eq $channelStatsFile nil) }}
 			{{ $channelStats := $channelStatsFile.Content | unmarshal }}
 			<h2 id="stats">Derived Channel Statistics</h2>
+			<p>
+				Channel statistics such as delay spread, k-Factor and path loss exponent are a good way to characterize a wireless channel measurement and to parametrize a channel model.
+				Using estimation algorithms contributed by Janina Sanzi, we automatically extract the following channel statistics from the measured datasets:	
+			</p>
+			
 			<div class="container-fluid">
 				<section>
 					<div class="row">
-						<div class="col-12 mb-4">
+						<div class="col-xl-6 col-sm-12 col-12 mb-4">
 							<div class="card">
 								<div class="card-body">
 									<div class="card-title">
 										<h4>RMS Delay Spread</h4>
-										The <a href="https://en.wikipedia.org/wiki/Delay_spread">delay spread</a> of a wireless channel is inverely proportional to the channel's coherence bandwidth and indicates how "spread out" the lengths of the various multipath propagation paths are.
+										The <a href="https://en.wikipedia.org/wiki/Delay_spread">delay spread</a> of a wireless channel is inversely proportional to the channel's coherence bandwidth and indicates how "spread out" the lengths of the various multipath propagation paths are.
 										For every datapoint, the delay spread can be characterized by its <a href="https://en.wikipedia.org/wiki/Root_mean_square">root mean square</a> value and the resulting delay spreads can be plotted over the measurement area:
 										<div class="row justify-content-md-center">
-											<div id="delay-spread-plots" class="carousel carousel-dark slide m-4 col-6" data-bs-ride="carousel">
+											<div id="delay-spread-plots" class="carousel carousel-dark slide m-4 col-12" data-bs-ride="carousel" data-bs-interval="false">
 												<div class="carousel-inner">
 													{{ range $index, $delaySpreadPlot := $channelStats.plots.delaySpread }}
 														<div class="carousel-item {{ if (eq $index 0) }} active {{ end }}">
@@ -844,14 +849,50 @@ dataset = dataset.cache()</code></pre>
 														</div>
 													{{ end }}
 												</div>
-												<button class="carousel-control-prev" type="button" data-bs-target="#delay-spread-plots" data-bs-slide="prev">
-													<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-													<span class="visually-hidden">Previous</span>
-												</button>
-												<button class="carousel-control-next" type="button" data-bs-target="#delay-spread-plots" data-bs-slide="next">
-													<span class="carousel-control-next-icon" aria-hidden="true"></span>
-													<span class="visually-hidden">Next</span>
-												</button>
+												{{ if gt (len $channelStats.plots.delaySpread) 1 }}
+													<button class="carousel-control-prev" type="button" data-bs-target="#delay-spread-plots" data-bs-slide="prev">
+														<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+														<span class="visually-hidden">Previous</span>
+													</button>
+													<button class="carousel-control-next" type="button" data-bs-target="#delay-spread-plots" data-bs-slide="next">
+														<span class="carousel-control-next-icon" aria-hidden="true"></span>
+														<span class="visually-hidden">Next</span>
+													</button>
+												{{ end }}
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-xl-6 col-sm-12 col-12 mb-4">
+							<div class="card">
+								<div class="card-body">
+									<div class="card-title">
+										<h4>Rician K-Factor</h4>
+										The Rician K-factor is defined as the power ratio between dominant and diffuse component, usually expressed in decibels.
+										We estimate the K-factor with a <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=769521">moment-method based on the distribution of of channel coefficient powers</a>.
+										The resulting K-Factors be plotted over the measurement area:
+										<div class="row justify-content-md-center">
+											<div id="kfactor-plots" class="carousel carousel-dark slide m-4 col-12" data-bs-ride="carousel" data-bs-interval="false">
+												<div class="carousel-inner">
+													{{ range $index, $kFactor := $channelStats.plots.kFactor }}
+														<div class="carousel-item {{ if (eq $index 0) }} active {{ end }}">
+															<img src="stats/{{ $kFactor }}" class="d-block w-100">
+														</div>
+													{{ end }}
+												</div>
+												{{ if gt (len $channelStats.plots.kFactor) 1 }}
+													<button class="carousel-control-prev" type="button" data-bs-target="#kfactor-plots" data-bs-slide="prev">
+														<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+														<span class="visually-hidden">Previous</span>
+													</button>
+													<button class="carousel-control-next" type="button" data-bs-target="#kfactor-plots" data-bs-slide="next">
+														<span class="carousel-control-next-icon" aria-hidden="true"></span>
+														<span class="visually-hidden">Next</span>
+													</button>
+												{{ end }}
 											</div>
 										</div>
 									</div>

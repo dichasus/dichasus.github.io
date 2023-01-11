@@ -5,6 +5,12 @@
             "delay-spread-subarray-1.png",
             "delay-spread-subarray-2.png",
             "delay-spread-subarray-3.png"
+        ],
+        "kFactor": [
+            "kfactor-subarray-0.png",
+            "kfactor-subarray-1.png",
+            "kfactor-subarray-2.png",
+            "kfactor-subarray-3.png"
         ]
     }
 }

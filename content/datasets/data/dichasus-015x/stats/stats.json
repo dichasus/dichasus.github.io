@@ -2,6 +2,9 @@
     "plots": {
         "delaySpread": [
             "delay-spread-subarray-0.png"
+        ],
+        "kFactor": [
+            "kfactor-subarray-0.png"
         ]
     }
 }
