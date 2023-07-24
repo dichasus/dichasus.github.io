@@ -1,0 +1,297 @@
+{
+    "identifier": "dichasus-dcxx",
+    "name": "Institute hallway with known 3D model, distributed antennas",
+    "shortDescription": "Two separate antenna arrays with 64 antennas in total observe a transmitter in a hallway with known 3D model, ideal for raytracing experiments.",
+    "bandwidth": 50000000.0,
+    "frequency": 3438000000,
+    "outdoor": false,
+    "year": 2023,
+    "warnings": [
+        "This dataset is currently still being processed.",
+        "A 3D model of the hallway will be made available alongside the dataset."
+    ],
+    "antennas": [
+        {
+            "name": "North wing antenna array",
+            "type": "array",
+            "spacingX": 0.04364,
+            "spacingY": 0.04364,
+            "assignments": [
+                [
+                    58,
+                    12,
+                    24,
+                    29,
+                    16,
+                    2,
+                    33,
+                    38
+                ],
+                [
+                    57,
+                    7,
+                    45,
+                    18,
+                    42,
+                    52,
+                    28,
+                    21
+                ],
+                [
+                    63,
+                    13,
+                    55,
+                    37,
+                    46,
+                    50,
+                    43,
+                    51
+                ],
+                [
+                    34,
+                    9,
+                    36,
+                    32,
+                    22,
+                    62,
+                    39,
+                    10
+                ]
+            ],
+            "location": [
+                7.480775,
+                -20.9824,
+                1.39335
+            ],
+            "direction": [
+                -0.30928047,
+                0.9508464,
+                -0.01538569
+            ]
+        },
+        {
+            "name": "South wing antenna array",
+            "type": "array",
+            "spacingX": 0.04364,
+            "spacingY": 0.04364,
+            "assignments": [
+                [
+                    60,
+                    54,
+                    6,
+                    17,
+                    49,
+                    20,
+                    5,
+                    19
+                ],
+                [
+                    40,
+                    8,
+                    0,
+                    27,
+                    41,
+                    25,
+                    23,
+                    56
+                ],
+                [
+                    44,
+                    53,
+                    61,
+                    59,
+                    48,
+                    35,
+                    1,
+                    26
+                ],
+                [
+                    3,
+                    11,
+                    47,
+                    30,
+                    14,
+                    4,
+                    15,
+                    31
+                ]
+            ],
+            "location": [
+                -6.390425,
+                24.440075,
+                1.4197
+            ],
+            "direction": [
+                0.23178338,
+                -0.97276149,
+                -0.00339935
+            ]
+        }
+    ],
+    "format": {
+        "csi": {
+            "description": "Channel coefficients for all antennas, over all subcarriers, real and imaginary parts",
+            "type": "tensor",
+            "dimension": [
+                64,
+                1024,
+                2
+            ]
+        },
+        "snr": {
+            "description": "Signal-to-Noise ratio estimates for all antennas",
+            "type": "tensor",
+            "dimension": [
+                64
+            ]
+        },
+        "pos-tachy": {
+            "description": "Position of transmitter determined by a tachymeter pointed at a prism mounted on top of the antenna, in meters (X / Y / Z coordinates)",
+            "type": "tensor64",
+            "dimension": [
+                3
+            ]
+        },
+        "gt-interp-age-tachy": {
+            "description": "Time in seconds to closest known tachymeter position. Indicates quality of linear interpolation.",
+            "type": "float32",
+            "dimension": []
+        },
+        "time": {
+            "description": "Timestamp since start of measurement campaign, in seconds",
+            "type": "float32",
+            "dimension": []
+        },
+        "cfo": {
+            "description": "Measured carrier frequency offset between MOBTX and each receive antenna.",
+            "type": "tensor",
+            "dimension": [
+                64
+            ]
+        }
+    },
+    "tfrecords": [
+        {
+            "filename": "tfrecords/dichasus-dc40.tfrecords",
+            "description": "Robot follows a pseudorandom trajectory in the central \"lobby\" area of the hallway, partly LoS and partly NLoS. No obstacles in the hallway. Gain of all receivers is 66dB.",
+            "name": "dichasus-dc40",
+            "plots": {
+                "snrByPosition": "plots/dichasus-dc40-snr-position.png",
+                "snrBoxplot": "plots/dichasus-dc40-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-dc40-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "North wing antenna array": "plots/dichasus-dc40-snr-position-array-0.png",
+                    "South wing antenna array": "plots/dichasus-dc40-snr-position-array-1.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 19551,
+            "duration": 1084.65625,
+            "totalSize": 10264705122
+        },
+        {
+            "filename": "tfrecords/dichasus-dc41.tfrecords",
+            "description": "Robot follows the \"T-Rex\" trajectory in the central \"lobby\" area of the hallway, partly LoS and partly NLoS. No obstacles in the hallway. Gain of all receivers is 66dB.",
+            "name": "dichasus-dc41",
+            "plots": {
+                "snrByPosition": "plots/dichasus-dc41-snr-position.png",
+                "snrBoxplot": "plots/dichasus-dc41-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-dc41-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "North wing antenna array": "plots/dichasus-dc41-snr-position-array-0.png",
+                    "South wing antenna array": "plots/dichasus-dc41-snr-position-array-1.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 3335,
+            "duration": 183.216796875,
+            "totalSize": 1750948370
+        },
+        {
+            "filename": "tfrecords/dichasus-dc42.tfrecords",
+            "description": "Same configuration as dichasus-dc41: Robot follows the \"T-Rex\" trajectory in the central \"lobby\" area of the hallway, partly LoS and partly NLoS. No obstacles in the hallway. Gain of all receivers is 66dB.",
+            "name": "dichasus-dc42",
+            "plots": {
+                "snrByPosition": "plots/dichasus-dc42-snr-position.png",
+                "snrBoxplot": "plots/dichasus-dc42-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-dc42-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "North wing antenna array": "plots/dichasus-dc42-snr-position-array-0.png",
+                    "South wing antenna array": "plots/dichasus-dc42-snr-position-array-1.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 3385,
+            "duration": 182.255859375,
+            "totalSize": 1777199470
+        }
+    ],
+    "photos": [
+        {
+            "filename": "photosAll/northwing-array-hallway-obstacle.jpg",
+            "description": "Close-up photo of MOBTX robot in front of west wing."
+        },
+        {
+            "filename": "photosAll/empty-hallway-from-northwing.jpg",
+            "description": "Empty hallway with tachymeter, seen from the north wing antenna array. Of course, no people were present in the hallway during measurement."
+        },
+        {
+            "filename": "photosAll/empty-hallway-from-southwing.jpg",
+            "description": "Empty hallway with tachymeter, seen from the perspective of the south wing antenna array."
+        },
+        {
+            "filename": "photosAll/northwing-array.jpg",
+            "description": "Frontal view of north wing antenna array."
+        },
+        {
+            "filename": "photosAll/northwing-array-hallway-obstacle.jpg",
+            "description": "Hallway with obstacle in north-west alignment seen from behind the north wing antenna array."
+        },
+        {
+            "filename": "photosAll/obstacle-towards-northwest.jpg",
+            "description": "Obstacle in north-west alignment configuration."
+        },
+        {
+            "filename": "photosAll/obstacle-towards-southwest.jpg",
+            "description": "Obstacle in south-west alignment configuration."
+        },
+        {
+            "filename": "photosAll/robot-lobby.jpg",
+            "description": "MOBTX robot in west wing, with parts of the lobby area on the left."
+        },
+        {
+            "filename": "photosAll/southwing-array.jpg",
+            "description": "Frontal view of south wing antenna array."
+        },
+        {
+            "filename": "photosAll/lobby.jpg",
+            "description": "Empty \"lobby\" area."
+        }
+    ],
+    "thumbnail": "photosAll/thumbnail.jpg",
+    "plots": {
+        "snrByPosition": "plots/overall-snr-position.png",
+        "snrBoxplot": "plots/overall-snr-boxplot.png",
+        "csiTensors": [
+            "plots/overall-csi-0.png",
+            "plots/overall-csi-1.png",
+            "plots/overall-csi-2.png"
+        ],
+        "snrByPositionAndArray": {
+            "North wing antenna array": "plots/overall-snr-position-array-0.png",
+            "South wing antenna array": "plots/overall-snr-position-array-1.png"
+        }
+    },
+    "gpx": "",
+    "datapoints": 26271,
+    "duration": 1450.12890625,
+    "antennaCount": 64,
+    "subcarriers": 1024,
+    "totalSize": 13792852962
+}
