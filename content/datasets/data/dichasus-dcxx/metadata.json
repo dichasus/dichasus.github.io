@@ -172,8 +172,30 @@
     },
     "tfrecords": [
         {
+            "filename": "tfrecords/dichasus-dc01.tfrecords",
+            "description": "Robot follows a pseudorandom trajectory in the hallway and in the central \"lobby\" area. No obstacles in the hallway. Gain of all receivers is 58dB.",
+            "rx_gain_db": 58,
+            "name": "dichasus-dc01",
+            "plots": {
+                "snrByPosition": "plots/dichasus-dc01-snr-position.png",
+                "snrBoxplot": "plots/dichasus-dc01-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-dc01-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "North wing antenna array": "plots/dichasus-dc01-snr-position-array-0.png",
+                    "South wing antenna array": "plots/dichasus-dc01-snr-position-array-1.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 32570,
+            "duration": 1761.935546875,
+            "totalSize": 17099966540
+        },
+        {
             "filename": "tfrecords/dichasus-dc40.tfrecords",
             "description": "Robot follows a pseudorandom trajectory in the central \"lobby\" area of the hallway, partly LoS and partly NLoS. No obstacles in the hallway. Gain of all receivers is 66dB.",
+            "rx_gain_db": 66,
             "name": "dichasus-dc40",
             "plots": {
                 "snrByPosition": "plots/dichasus-dc40-snr-position.png",
@@ -194,6 +216,7 @@
         {
             "filename": "tfrecords/dichasus-dc41.tfrecords",
             "description": "Robot follows the \"T-Rex\" trajectory in the central \"lobby\" area of the hallway, partly LoS and partly NLoS. No obstacles in the hallway. Gain of all receivers is 66dB.",
+            "rx_gain_db": 66,
             "name": "dichasus-dc41",
             "plots": {
                 "snrByPosition": "plots/dichasus-dc41-snr-position.png",
@@ -214,6 +237,7 @@
         {
             "filename": "tfrecords/dichasus-dc42.tfrecords",
             "description": "Same configuration as dichasus-dc41: Robot follows the \"T-Rex\" trajectory in the central \"lobby\" area of the hallway, partly LoS and partly NLoS. No obstacles in the hallway. Gain of all receivers is 66dB.",
+            "rx_gain_db": 66,
             "name": "dichasus-dc42",
             "plots": {
                 "snrByPosition": "plots/dichasus-dc42-snr-position.png",
@@ -230,6 +254,27 @@
             "datapoints": 3385,
             "duration": 182.255859375,
             "totalSize": 1777199470
+        },
+        {
+            "filename": "tfrecords/dichasus-dc43.tfrecords",
+            "description": "Robot follows a trajectory consisting of west-east meanders the central \"lobby\" area of the hallway, partly LoS and partly NLoS. No obstacles in the hallway. Gain of all receivers is 66dB.",
+            "rx_gain_db": 66,
+            "name": "dichasus-dc43",
+            "plots": {
+                "snrByPosition": "plots/dichasus-dc43-snr-position.png",
+                "snrBoxplot": "plots/dichasus-dc43-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-dc43-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "North wing antenna array": "plots/dichasus-dc43-snr-position-array-0.png",
+                    "South wing antenna array": "plots/dichasus-dc43-snr-position-array-1.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 15722,
+            "duration": 994.896484375,
+            "totalSize": 8254395884
         }
     ],
     "photos": [
@@ -281,7 +326,9 @@
         "csiTensors": [
             "plots/overall-csi-0.png",
             "plots/overall-csi-1.png",
-            "plots/overall-csi-2.png"
+            "plots/overall-csi-2.png",
+            "plots/overall-csi-3.png",
+            "plots/overall-csi-4.png"
         ],
         "snrByPositionAndArray": {
             "North wing antenna array": "plots/overall-snr-position-array-0.png",
@@ -289,9 +336,9 @@
         }
     },
     "gpx": "",
-    "datapoints": 26271,
-    "duration": 1450.12890625,
+    "datapoints": 74563,
+    "duration": 4206.9609375,
     "antennaCount": 64,
     "subcarriers": 1024,
-    "totalSize": 13792852962
+    "totalSize": 39147215386
 }

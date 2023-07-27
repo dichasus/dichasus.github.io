@@ -802,16 +802,17 @@ dataset = dataset.cache()</code></pre>
 							</div>
 
 							<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-								{{ if isset $tfrecord "darusDownloadURL" }}
-									{{ $singleOffsetfile := ".json" | printf "%s%s" $tfrecord.name | printf "%s%s" "reftx-offsets-" }}
-									{{ $singleOffsets := ($.Resources.GetMatch $singleOffsetfile) }}
-									{{ if not (eq $singleOffsets nil) }}
+								{{ $singleOffsetfile := ".json" | printf "%s%s" $tfrecord.name | printf "%s%s" "reftx-offsets-" }}
+								{{ $singleOffsets := ($.Resources.GetMatch $singleOffsetfile) }}
+								{{ if not (eq $singleOffsets nil) }}
 									<a href="{{ $singleOffsets }}" download><button class="btn btn-lg btn-outline-dark me-md-2" type="button">Download Offset Estimates</button></a>
-									{{ end }}
+								{{ end }}
+
+								{{ if isset $tfrecord "darusDownloadURL" }}
 									<a href="{{ $tfrecord.darusViewURL }}"><button class="btn btn-lg btn-outline-dark me-md-2" type="button">View on DaRUS</button></a>
 									<a href="{{ $tfrecord.darusDownloadURL }}"><button class="btn btn-lg btn-dark" type="button">Download</button></a>
 								{{ else }}
-									This dataset is not public yet
+									<button class="btn btn-lg btn-dark" disabled>This dataset is not public yet</button>
 								{{ end }}
 							</div>
 						</div>
