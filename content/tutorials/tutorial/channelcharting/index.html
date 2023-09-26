@@ -1,78 +1,43 @@
 ---
-title: "Channel Charting - Mapping the Radio Environment"
+title: "Timestamp / Triplet-Based Channel Charting"
 date: 2022-06-22T18:03:52+02:00
 draft: false
 type: page
 layout: tutorial-details
 ---
 <main class="flex-shrink-0 my-4">
-	<h2 class="text-center" style="font-weight: bold;">What is Channel Charting?</h2>
-	<div class="row justify-content-center p-4">
-		<div class="d-flex col-12 col-sm-10 col-md-9 col-lg-6 col-xl-5">
-			<img class="align-self-center" style="width: 90%;" src="city.png">
-		</div>
-		<div class="d-flex col-lg-1 col-xl-1 py-5 d-none d-lg-block">
-			<div class="d-flex" style="height: 100%;">
-				<img class="align-self-center" style="width: 90%;" src="arrow.png">
+	<!--<div class="alert alert-warning" role="alert">
+		<h2 class="text-center" style="font-weight: bold;">Updated Tutorial Available</h2>
+		<div class="row justify-content-center">
+			<div class="col-xl-8 col-12">
+				Based on insights from research published <a href="https://ieeexplore.ieee.org/abstract/document/10070385">by our friends at Fraunhofer IIS</a> and <a href="https://arxiv.org/abs/2308.09539">by ourselves</a> (among many other influential publications), we developed a significantly improved Channel Charting technique.
+				You can learn about this technique in our new tutorial on <i>dissimilarity metric-based Channel Charting</i>:
+				<div class="row justify-content-center">
+					<div class="d-flex justify-content-center p-4">
+						<a class="btn btn-dark me-2" href="../dissimilarity-metric-channelcharting">Read New Tutorial</a>
+					</div>
+				</div>
+				Regardless, we keep this tutorial on timestamp/triplet-based Channel Charting online for the time being.
+				We believe that this tutorial reflects one State-of-the-Art method in Channel Charting in the summer of 2022.
 			</div>
 		</div>
-		<div class="d-flex col-12 py-5 d-lg-none">
-			<div class="d-flex justify-content-center" style="width: 100%;">
-				<img class="align-self-center" style="width: 50px; transform: rotate(90deg);" src="arrow.png">
-			</div>
-		</div>
-		<div class="d-flex col-12 col-sm-10 col-md-9 col-lg-5 col-xl-4 px-5">
-			<img class="align-self-center" style="width: 90%;" src="channelchart.png">
-		</div>
-	</div>
+	</div>-->
 
-	<p>
-		Thanks to global navigation satellite systems, your phone can tell you your location and reliably guide you to your destiation.
-		Well, except if you are indoors or in an urban canyon of course, then you are on your own.
-		And, sure it will drain your battery a bit faster.
-		It will also take a few moments until your phone has picked up signals from sufficiently many satellites to localize you.
-		Is this really the best technology can do?
-	</p>
+	{{% include "./static/common/intro_to_channelcharting.html" %}}
 
-	<p>
-		We believe that, by leveraging future massive MIMO deployments in 5G and beyond in a process known as "Channel Charting", there is still room for enhancing geolocation services.
-		Massive MIMO is crucial technology for improving the spectral efficiency of wireless telecommunication systems through spatial multiplexing and will likely be deployed in the form of 5G base stations.
-		With massive MIMO, the base station collects so-called channel state information (CSI) at every receiver antenna, from which the base station can infer properties like angles of arrival, reflections and propagation delays.
-		While this is essential for ensuring the functionality of massive MIMO, CSI does not necessarily have to be stored and analyzed.
-		But, what if we did just that, can we localize end users at the base station just from CSI?
-		Well, sure!
-		<a href="https://ieeexplore.ieee.org/document/7438932/">It has been shown that CSI-based user localization is possible</a> (we have <a href="/tutorials/tutorial/positioning">a tutorial</a> on that!), at least with supervised machine learning methods such as CSI fingerprinting.
-		These approaches, however, require "ground truth" position labels for the transmitter position, which are usually not available.
-		Channel Charting, on the other hand, is a self-supervised learning technique which aims to create a virtual map of high-dimensional CSI.
-		Therefore, Channel Charting is not dependent on the availability of position labels, which is a huge advantage over fingerprinting.
-	</p>
-
-	<p>
-		While faster and more reliable personal navigation will be the most visible advantage for end users, asset tracking and radio access network (RAN) management tasks will benefit even more significantly:
-		Asset tracking, because embedding GNSS (e.g., GPS) receivers into trackers is often infeasible:
-		A GNSS receiver is more expensive than just a wide-area radio modem, it doesn't work inside warehouses and needs a lot of energy and hence does not last on a battery for long (especially if the device is usually in sleep mode, and needs up to a minute to obtain an accurate position estimate after waking up before going back to sleep).
-		The mobile network itself will also benefit significantly from the availability of location information at the base station.
-		For example, knowing location and velocity of a user will allow the base station to predict the wireless channel into the future.
-		In addition, the network will be able to plan handovers between base stations ahead of time ensuring seamless connectivity and <a href="https://ieeexplore.ieee.org/document/9367434">prevent pilot contamination</a>.
-	</p>
-
-	<h2 class="text-center" style="font-weight: bold;">Channel Charting with DICHASUS</h2>
+	<h2 class="text-center" style="font-weight: bold;">Channel Charting Pipeline</h2>
 	<div class="row justify-content-center">
-		<div class="col-sm-12 col-md-12 col-xl-8">
+		<div class="col-sm-12 col-md-12 col-xl-9">
 			<p>
-				DICHASUS is not a "real" base station, but we can use channel sounder data to investigate the feasibility of Channel Charting in a real-world setup.
-				Thanks to public datasets, everyone can reproduce and improve upon this work!
-				This tutorial will explain how to implement <a href="https://ieeexplore.ieee.org/document/9448128">triplet neural network-based</a> Channel Charting, which we consider to be the current "State-of-the-Art", with Python and TensorFlow.
-			</p>
-			<p>
-				The Channel Charting "pipeline" always consists of two separate stages:
+				This tutorial will explain how to implement <a href="https://ieeexplore.ieee.org/document/9448128">triplet neural network-based</a> Channel Charting, which we consider to be the "State-of-the-Art" in 2022, with Python and TensorFlow.
+				Our Channel Charting "pipeline" consists of two separate stages:
 				First, we need to take the CSI datasets and extract some features from them, in a process known as Feature Engineering.
 				The purpose of this step is to reduce the amount of data that the neural network has to process, and to provide the data to the neural network in a more suitable format.
 				Second, we apply a dimensionality reduction technique to the resulting feature sets.
 				Dimensionality reduction can either be some classical linear or nonlinear approach such as <a href="https://en.wikipedia.org/wiki/Principal_component_analysis">Principal Component Analysis (PCA)</a> or <a href="https://en.wikipedia.org/wiki/Isomap">Isomap</a>, or, for better performance, a neural network-based method.
 			</p>
 		</div>
-		<div class="col-sm-12 col-md-6 p-3 col-xl-4">
+		<div class="col-sm-12 col-md-6 p-3 col-xl-3">
 			<img style="width: 100%;" src="pipeline.png">
 		</div>
 	</div>
@@ -104,15 +69,15 @@ layout: tutorial-details
 		This dataset contains CSI for \(B = 32\) receive antennas and for  \(W = 1024\) OFDM subcarriers at \( N \) different transmitter positions.
 		The transmitter is mounted on top of a robot, which follows some trajectory through the measurement area.
 		The CSI at a particular time instant can be expressed as a matrix \(\mathbf H_n \in \mathbb C^{B \times W}\).
-		The dataset is made up of data points that are 3-tuples of channel coefficients \( \mathbf{H}_{n} \in \mathbb C^{B \times W} \), <i>ground truth</i>> positions \( \mathbf{x}_n \in \mathbb{R}^D \) and timestamps \( t_n \in \mathbb R \):
+		The dataset is made up of data points that are 3-tuples of channel coefficients \( \mathbf{H}_{n} \in \mathbb C^{B \times W} \), <i>ground truth</i> positions \( \mathbf{x}_n \in \mathbb{R}^D \) and timestamps \( t_n \in \mathbb R \):
 		\[
 			\text{Dataset:} \quad \left\{ (\mathbf{H}_{n}, \mathbf x_n, t_n) \right\}_{n = 1, \ldots, N}
 		\]
-		The ground truth positons (which are really only for comparison, they are not used for training!) are measured with a tachymeter robotic total station, a very precise instrument that tracks the robot's antenna with a laser with at least centimeter-level accuracy.
+		The ground truth positions (which are really only for evaluation purposes, they are not used for training!) are measured with a tachymeter robotic total station, a very precise instrument that tracks the robot's antenna with a laser with at least centimeter-level accuracy.
 	</p>
 	<p>
 		DICHASUS uses a reference transmitter for synchronization, which entails that measured phases may exhibit constant offsets caused by the specific channel between reference transmitter and receive antenna.
-		Luckily, we computed these offsets for each DICHASUS dataset and made them available for download.
+		Luckily, we <a href="https://arxiv.org/abs/2206.05984">computed these offsets</a> for each DICHASUS dataset and made them available for download.
 		The datasets themselves are provided in the <a href="https://www.tensorflow.org/tutorials/load_data/tfrecord">TFRecords file format</a>, which makes loading them with TensorFlow particularly simple.
 		Obviously, the more training data we have, the better the channel chart gets.
 		To save some disk and RAM space, we will settle for just 3 robot round trips in the following: <code class="nohighlight">dichasus-cf02.tfrecords</code>, <code class="nohighlight">dichasus-cf03.tfrecords</code> and <code class="nohighlight">dichasus-cf04.tfrecords</code>:

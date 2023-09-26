@@ -1,0 +1,84 @@
+<h2 class="text-center" style="font-weight: bold;">What is Channel Charting?</h2>
+<div class="row justify-content-center p-4">
+	<div class="d-flex col-12 col-sm-10 col-md-9 col-lg-6 col-xl-5">
+		<img class="align-self-center" style="width: 90%;" src="/img/city.png">
+	</div>
+	<div class="d-flex col-lg-1 col-xl-1 py-5 d-none d-lg-block">
+		<div class="d-flex" style="height: 100%;">
+			<img class="align-self-center" style="width: 90%;" src="/img/arrow.png">
+		</div>
+	</div>
+	<div class="d-flex col-12 py-5 d-lg-none">
+		<div class="d-flex justify-content-center" style="width: 100%;">
+			<img class="align-self-center" style="width: 50px; transform: rotate(90deg);" src="/img/arrow.png">
+		</div>
+	</div>
+	<div class="d-flex col-12 col-sm-10 col-md-9 col-lg-5 col-xl-4 px-5">
+		<img class="align-self-center" style="width: 90%;" src="/img/channelchart.png">
+	</div>
+</div>
+
+<p>
+	Thanks to global navigation satellite systems, your phone can tell you your location and reliably guide you to your destiation.
+	Well, except if you are indoors or in an urban canyon of course, then you are on your own.
+	And, sure it will drain your battery a bit faster.
+	It will also take a few moments until your phone has picked up signals from sufficiently many satellites to localize you.
+	Is this really the best technology can do?
+</p>
+
+<p>
+	We believe that, by leveraging future massive MIMO deployments in 5G and beyond in a process known as "Channel Charting", there is still room for enhancing geolocation services.
+	Massive MIMO is crucial technology for improving the spectral efficiency of wireless telecommunication systems through spatial multiplexing and will likely be deployed in the form of 5G base stations.
+	With massive MIMO, the base station collects so-called channel state information (CSI) at every receiver antenna, from which the base station can infer properties like angles of arrival, reflections and propagation delays.
+	While this is essential for ensuring the functionality of massive MIMO, CSI does not necessarily have to be stored and analyzed.
+	But, what if we did just that, can we localize end users at the base station just from CSI?
+	Well, sure!
+	<a href="https://ieeexplore.ieee.org/document/7438932/">It has been shown that CSI-based user localization is possible</a> (we have <a href="/tutorials/tutorial/positioning">a tutorial</a> on that!), at least with supervised machine learning methods such as CSI fingerprinting.
+	These approaches, however, require "ground truth" position labels for the transmitter position, which are usually not available.
+	Channel Charting, on the other hand, is a self-supervised learning technique which aims to create a virtual map of high-dimensional CSI.
+	Therefore, Channel Charting is not dependent on the availability of position labels, which is a huge advantage over fingerprinting.
+</p>
+
+<p>
+	While faster and more reliable personal navigation will be the most visible advantage for end users, asset tracking and radio access network (RAN) management tasks will benefit even more significantly:
+	Asset tracking, because embedding GNSS (e.g., GPS) receivers into trackers is often infeasible:
+	A GNSS receiver is more expensive than just a wide-area radio modem, it doesn't work inside warehouses and needs a lot of energy and hence does not last on a battery for long (especially if the device is usually in sleep mode, and needs up to a minute to obtain an accurate position estimate after waking up before going back to sleep).
+	The mobile network itself will also benefit significantly from the availability of location information at the base station.
+	For example, knowing location and velocity of a user will allow the base station to predict the wireless channel into the future.
+	In addition, the network will be able to plan handovers between base stations ahead of time ensuring seamless connectivity and <a href="https://ieeexplore.ieee.org/document/9367434">prevent pilot contamination</a>.
+</p>
+
+<div class="alert alert-secondary" role="alert">
+	<h4 class="text-center" style="font-weight: bold;">TL;DR - Video</h4>
+	<div class="text-center">
+		<div class="row justify-content-center mb-4">
+			<div class="col-12 col-xl-10">
+				This video (no audio) will explain Channel Charting in a more visual format:
+				<video class="mt-4" width="100%" controls style="border: 1px solid black;">
+					<source src="/videos/introduction_to_channel_charting.mp4" type="video/mp4">
+				</video>
+			</div>
+		</div>
+	</div>
+</div>
+
+<h2 class="text-center" style="font-weight: bold;">DICHASUS Datasets for Channel Charting</h2>
+<div class="row justify-content-center">
+	<div class="col-sm-12 col-md-12 col-xl-10">
+		<p>
+			DICHASUS is not a "real" base station, but we can use channel sounder data to investigate the feasibility of Channel Charting in a real-world setup.
+			The datasets are particularly suitable for Channel Charting research for several reasons:
+			<ul>
+				<li><b>Large datasets</b>: Channel Charting needs <i>lots</i> of training data</li>
+				<li><b>Distributed massive MIMO</b>: Channel Charting works better if there are several distributed, yet coherent antenna arrays. Want to test it with just one massive MIMO array? Just remove the others from the training set.</li>
+				<li><b>Real-world scenarios</b>: If your algorithm works with DICHASUS datasets, you can show that it works in the real world (and not only in a simulator). The carrier frequency ranges that DICHASUS uses are close to the frequency range of real-world 4G/5G networks, so the chance that results will be reproducible on real distributed massive MIMO base stations is high.</li>
+				<li><b>Accurate Ground Truth Positions</b>: Since Channel Charting is unsupervised, you don't need these for training, but they are necessary for performance evaluations.</li>
+			</ul>
+		
+			Of course, there are also some downsides to consider: Lower flexibility as opposed to simulations, only a limited number of datasets is available and the bandwidth could be better (even though real-world commercial wireless systems rarely offer much higher bandwidths).
+		</p>
+	</div>
+	<div class="col-8 col-sm-6 col-md-3 p-3 col-xl-2">
+		<img style="width: 100%;" src="/img/dichasus-1-cropped.jpg">
+	</div>
+</div>

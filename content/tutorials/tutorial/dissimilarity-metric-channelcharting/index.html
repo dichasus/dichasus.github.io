@@ -1,0 +1,768 @@
+---
+title: "Dissimilarity Metric-Based Channel Charting"
+date: 2023-09-25T18:00:00+02:00
+draft: false
+type: page
+layout: tutorial-details
+---
+<main class="flex-shrink-0 my-4">
+	<div class="alert alert-primary" role="alert">
+		<div class="row justify-content-center">
+			<div class="col-xl-8 col-12">
+				Good news, you are reading our latest Channel Charting tutorial &#128578;, which is based on <a href="https://arxiv.org/abs/2308.09539">this research paper</a> (in particular, we implement the "fused metric / Siamese NN"-version from that paper).
+				There is also an <a href="../channelcharting">older tutorial</a> about timestamp/triplet-based Channel Charting, in case you are looking for that.
+			</div>
+		</div>
+	</div>
+
+	{{% include "./static/common/intro_to_channelcharting.html" %}}
+
+	<h2 class="text-center" style="font-weight: bold;">Overview: Dissimilarity Metric-Based Channel Charting</h2>
+	<div class="row justify-content-center">
+		<div class="col-sm-12 col-md-6 p-3 col-xl-4">
+			<img style="width: 100%;" src="pipeline.svg">
+		</div>
+		<div class="col-sm-12 col-md-12 col-xl-8">
+			<p>
+				What we call <i>dissimilarity metric-based Channel Charting</i> is a very structured way to perform Channel Charting on a measured dataset.
+				The basic idea is that we will compute pseudo-distances that we call <i>dissimilarities</i> between pairs of datapoints in the dataset.
+				We will discuss later how exactly that works, but basically, you can extract information about distances either from metadata (like timestamps) or directly from CSI - in this tutorial, we will combine ("fuse") both sources of information.
+				These distances are then collected in a large matrix that we call the <i>dissimilarity matrix</i>.
+			</p>
+			<p>
+				Next, classical or deep learning-based manifold learning techniques are applied to learn a low-dimensional representation.
+				In contrast to other Channel Charting techniques (e.g., <a href="../channelcharting/">our timestamp/triplet-based tutorial</a>), we don't really need a neural network, but using one has some advantages over classical methods (more on that later).
+			</p>
+		</div>
+	</div>
+
+	<h2 class="text-center my-4" style="font-weight: bold;">Downloading and Reading the CSI Dataset</h2>
+	<p>
+		For this tutorial, we use the <a href="/datasets/data/dichasus-cf0x/"><code class="nohighlight">dichasus-cf0x</code></a> dataset collected by DICHASUS.
+		This dataset contains CSI for \(BM = 32\) receive antennas (\( B=4 \) antenna arrays with \( M = 8 \) antennas per array) and for  \( N_\mathrm{sub} = 1024 \) OFDM subcarriers at \( L \) different transmitter positions ("datapoints").
+		The transmitter is mounted on top of a robot, which follows some trajectory through the measurement area.
+		The CSI at a particular time instant can be expressed as a matrix \(\mathbf H^{(l)} \in \mathbb C^{BM \times N_\mathrm{sub}}\).
+		Hence, the dataset consists of datapoints that are 3-tuples of channel coefficients \( \mathbf{H}^{(l)} \in \mathbb C^{BM \times N_\mathrm{sub}} \), <i>ground truth</i> positions \( \mathbf{x}^{(l)} \in \mathbb{R}^D \) and timestamps \( t^{(l)} \in \mathbb R \):
+		\[
+			\text{Dataset:} \quad \left\{ (\mathbf{H}^{(l)}, \mathbf x^{(l)}, t^{(l)}) \right\}_{l = 1, \ldots, L}
+		\]
+		The ground truth positions (which are really only for evaluation purposes, they are not used for training!) are measured with a tachymeter robotic total station, a very precise instrument that tracks the robot's antenna with a laser with at least centimeter-level accuracy.
+	</p>
+	<p>
+		DICHASUS uses a reference transmitter for synchronization, which entails that measured phases may exhibit constant offsets caused by the specific channel between reference transmitter and receive antenna.
+		Luckily, we <a href="https://arxiv.org/abs/2206.05984">computed these offsets</a> for each DICHASUS dataset and made them available for download.
+		The datasets themselves are provided in the <a href="https://www.tensorflow.org/tutorials/load_data/tfrecord">TFRecords file format</a>, which makes loading them with TensorFlow particularly simple.
+		Obviously, the more training data we have, the better the channel chart gets.
+		To save some disk and RAM space, we will settle for just 3 robot round trips in the following: <code class="nohighlight">dichasus-cf02.tfrecords</code>, <code class="nohighlight">dichasus-cf03.tfrecords</code> and <code class="nohighlight">dichasus-cf04.tfrecords</code>:
+		<pre class="m-0"><code class="language-bash">!mkdir dichasus
+!wget -nc --content-disposition https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2854/8 -P dichasus # dichasus-cf02
+!wget -nc --content-disposition https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2854/9 -P dichasus # dichasus-cf03
+!wget -nc --content-disposition https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2854/10 -P dichasus # dichasus-cf04
+!wget -nc https://dichasus.inue.uni-stuttgart.de/datasets/data/dichasus-cf0x/reftx-offsets-dichasus-cf02.json -P dichasus
+!wget -nc https://dichasus.inue.uni-stuttgart.de/datasets/data/dichasus-cf0x/reftx-offsets-dichasus-cf03.json -P dichasus
+!wget -nc https://dichasus.inue.uni-stuttgart.de/datasets/data/dichasus-cf0x/reftx-offsets-dichasus-cf04.json -P dichasus</code></pre>
+	</p>
+	<p>
+		Next, we load the TFRecords files with TensorFlow:
+	</p>
+	<pre class="m-0"><code class="language-python">import matplotlib.pyplot as plt
+import multiprocessing as mp
+import tensorflow as tf
+import numpy as np
+import progressbar
+import queue
+import json
+
+# Antenna definitions
+ASSIGNMENTS = [
+	[0, 13, 31, 29, 3, 7, 1, 12 ],
+	[30, 26, 21, 25, 24, 8, 22, 15],
+	[28, 5, 10, 14, 6, 2, 16, 18],
+	[19, 4, 23, 17, 20, 11, 9, 27]
+]
+
+ANTENNACOUNT = np.sum([len(antennaArray) for antennaArray in ASSIGNMENTS])
+
+def load_calibrate_timedomain(path, offset_path):
+	offsets = None
+	with open(offset_path, "r") as offsetfile:
+		offsets = json.load(offsetfile)
+	
+	def record_parse_function(proto):
+		record = tf.io.parse_single_example(
+			proto,
+			{
+				"csi": tf.io.FixedLenFeature([], tf.string, default_value=""),
+				"pos-tachy": tf.io.FixedLenFeature([], tf.string, default_value=""),
+				"time": tf.io.FixedLenFeature([], tf.float32, default_value=0),
+			},
+		)
+
+		csi = tf.ensure_shape(tf.io.parse_tensor(record["csi"], out_type=tf.float32), (ANTENNACOUNT, 1024, 2))
+		csi = tf.complex(csi[:, :, 0], csi[:, :, 1])
+		csi = tf.signal.fftshift(csi, axes=1)
+
+		position = tf.ensure_shape(tf.io.parse_tensor(record["pos-tachy"], out_type=tf.float64), (3))
+		time = tf.ensure_shape(record["time"], ())
+
+		return csi, position[:2], time
+
+	def apply_calibration(csi, pos, time):
+		sto_offset = tf.tensordot(tf.constant(offsets["sto"]), 2 * np.pi * tf.range(tf.shape(csi)[1], dtype = np.float32) / tf.cast(tf.shape(csi)[1], np.float32), axes = 0)
+		cpo_offset = tf.tensordot(tf.constant(offsets["cpo"]), tf.ones(tf.shape(csi)[1], dtype = np.float32), axes = 0)
+		csi = tf.multiply(csi, tf.exp(tf.complex(0.0, sto_offset + cpo_offset)))
+
+		return csi, pos, time
+
+	def csi_time_domain(csi, pos, time):
+		csi = tf.signal.fftshift(tf.signal.ifft(tf.signal.fftshift(csi, axes=1)),axes=1)
+
+		return csi, pos, time
+
+	def cut_out_taps(tap_start, tap_stop):
+		def cut_out_taps_func(csi, pos, time):
+			return csi[:,tap_start:tap_stop], pos, time
+
+		return cut_out_taps_func
+
+	def order_by_antenna_assignments(csi, pos, time):
+		csi = tf.stack([tf.gather(csi, antenna_inidces) for antenna_inidces in ASSIGNMENTS])
+		return csi, pos, time
+	
+	dataset = tf.data.TFRecordDataset(path)
+	
+	dataset = dataset.map(record_parse_function, num_parallel_calls = tf.data.AUTOTUNE)
+	dataset = dataset.map(apply_calibration, num_parallel_calls = tf.data.AUTOTUNE)
+	dataset = dataset.map(csi_time_domain, num_parallel_calls = tf.data.AUTOTUNE)
+	dataset = dataset.map(cut_out_taps(507, 520), num_parallel_calls = tf.data.AUTOTUNE)
+	dataset = dataset.map(order_by_antenna_assignments, num_parallel_calls = tf.data.AUTOTUNE)
+
+	return dataset
+
+inputpaths = [
+	{
+		"tfrecords" : "dichasus/dichasus-cf02.tfrecords",
+		"offsets" : "dichasus/reftx-offsets-dichasus-cf02.json"
+	},
+	{
+		"tfrecords" : "dichasus/dichasus-cf03.tfrecords",
+		"offsets" : "dichasus/reftx-offsets-dichasus-cf03.json"
+	},
+	{
+		"tfrecords" : "dichasus/dichasus-cf04.tfrecords",
+		"offsets" : "dichasus/reftx-offsets-dichasus-cf04.json"
+	}
+]
+
+full_dataset = load_calibrate_timedomain(inputpaths[0]["tfrecords"], inputpaths[0]["offsets"])
+
+for path in inputpaths[1:]:
+	full_dataset = full_dataset.concatenate(load_calibrate_timedomain(path["tfrecords"], path["offsets"]))</code></pre>
+			<script>hljs.highlightAll();</script>
+
+			<p>
+				There is quite a lot to unwrap in that dataset loading code, so here is a short summary:
+				We load all three TFRecord files (<code>dichasus-cf02</code>, <code>dichasus-cf03</code>, <code>dichasus-cf04</code>), and each of them goes through a pipeline of processing steps:
+				<ul>
+					<li>
+						First, <code>record_parse_function</code> reads the raw <code>.tfrecord</code> file and extracts raw frequency-domain CSI, "ground truth" position information and timestamps.
+						Afterwards, the complex-valued tensor <code>csi</code> should have shape <code>(32, 1024)</code>, where \( BM = 32 \) is the number of antennas and \( N_\mathrm{sub} = 1024 \) is the number of subcarriers.
+						Each entry corresponds to the channel coefficient of one particular OFDM subchannel.
+					</li>
+					<li>Second, we use <code>apply_calibration</code> to correct time and phase errors <a href="../calibration">as explained in the calibration tutorial</a>.</li>
+					<li>Third, <code>csi_time_domain</code> computes the inverse fast fourier transform (IFFT) of the frequency-domain CSI (over the subcarrier axis) so that the variable <code>csi</code> now contains complex-valued time domain channel impulse responses of length 1024 taps.</li>
+					<li>
+						Fourth, <code>cut_out_taps</code> extracts time-domain taps \( \tau_\mathrm{min} = 507 \) to \( \tau_\mathrm{max} = 520 \), which should contain the line of sight signal as well as most relevant reflections and discards the rest.
+						The <code>csi</code> tensor now has shape <code>(32, 13)</code>, i.e., we have 13 taps for each of the 32 antennas in the setup.
+					</li>
+					<li>
+						Finally, <code>order_by_antenna_assignments</code> adds another dimension to the shape of the <code>csi</code> tensor such that measurements are grouped by antenna array.
+						It returns a <code>csi</code> tensor with shape <code>(4, 8, 13)</code>, where \( B = 4 \) corresponds to the number of antenna arrays, \( M = 8 \) is the number of antennas per array and \( \tau_\mathrm{max} - \tau_\mathrm{min} = 13 \) is still the number of time-domain taps.
+					</li>
+				</ul>
+			</p>
+
+			To reduce the number of datapoints (and hence, RAM usage and processing time), we will only use every 4<sup>th</sup> datapoint:
+			<pre class="m-0"><code class="language-python"># Decimate dataset: Use only every 4th datapoint (to reduce number of points)
+training_set = full_dataset.enumerate().filter(lambda idx, value : (idx % 4 == 0))
+training_set = training_set.map(lambda idx, value : value)</code></pre>
+
+	<h2 class="text-center my-4" style="font-weight: bold;">From TensorFlow to NumPy</h2>
+	<div class="row justify-content-center">
+		<div class="col-sm-12 col-md-6 p-3 col-xl-4">
+			This may seem a bit odd, but we will perform many of the following processing steps on the CPU and not on the GPU.
+			Since we want to use well-established and optimized Python libraries which work on NumPy arrays, we first have to convert the dataset into NumPy arrays.
+			Don't worry, Channel Charting on the CPU can also be extremely fast (this whole tutorial should take only a few minutes on a reasonably fast machine), and the neural network training later will of course use GPU acceleration.
+		</div>
+		<div class="col-sm-12 col-md-6 col-xl-8">
+			<pre class="m-0"><code class="language-python">groundtruth_positions = []
+csi_time_domain = []
+timestamps = []
+
+for csi, pos, time in training_set.batch(1000):
+	csi_time_domain.append(csi.numpy())
+	groundtruth_positions.append(pos.numpy())
+	timestamps.append(time.numpy())
+
+csi_time_domain = np.concatenate(csi_time_domain)
+groundtruth_positions = np.concatenate(groundtruth_positions)
+timestamps = np.concatenate(timestamps)</code></pre>
+		</div>
+	</div>
+
+	<h2 class="text-center my-4" style="font-weight: bold;">Visualizing the Dataset</h2>
+
+	We use the <code>plot_colorized</code> function to plot the ground truth positions in a top view diagram.
+	The function produces a scatter plot, where each point in the scatter plot is assigned a color according to its ground truth position.
+	We can later reuse this function to plot the channel chart with the same colorization. 
+
+	<div class="row justify-content-center">
+		<div class="col-12 col-sm-12 col-md-12 col-xl-8 p-3">
+			<pre class="m-0"><code class="language-python">def plot_colorized(positions, groundtruth_positions, title = None, show = True, alpha = 1.0):
+	# Generate RGB colors for datapoints
+	center_point = np.zeros(2, dtype = np.float32)
+	center_point[0] = 0.5 * (np.min(groundtruth_positions[:, 0], axis = 0) + np.max(groundtruth_positions[:, 0], axis = 0))
+	center_point[1] = 0.5 * (np.min(groundtruth_positions[:, 1], axis = 0) + np.max(groundtruth_positions[:, 1], axis = 0))
+	NormalizeData = lambda in_data : (in_data - np.min(in_data)) / (np.max(in_data) - np.min(in_data))
+	rgb_values = np.zeros((groundtruth_positions.shape[0], 3))
+	rgb_values[:, 0] = 1 - 0.9 * NormalizeData(groundtruth_positions[:, 0])
+	rgb_values[:, 1] = 0.8 * NormalizeData(np.square(np.linalg.norm(groundtruth_positions - center_point, axis=1)))
+	rgb_values[:, 2] = 0.9 * NormalizeData(groundtruth_positions[:, 1])
+
+	# Plot datapoints
+	plt.figure(figsize=(6, 6))
+	if title is not None:
+		plt.title(title, fontsize=16)
+	plt.scatter(positions[:, 0], positions[:, 1], c = rgb_values, alpha = alpha, s = 10, linewidths = 0)
+	plt.xlabel("x coordinate")
+	plt.ylabel("y coordinate")
+	if show:
+		plt.show()
+
+plot_colorized(groundtruth_positions, groundtruth_positions, title="Ground Truth Positions")</code></pre>
+		</div>
+		<div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 p-3">
+				<img style="width: 100%;" src="groundtruth.png">
+		</div>
+	</div>
+
+	<h2 class="text-center my-4" style="font-weight: bold;">Computing the Dissimilarity Matrix</h2>
+	<pre class="m-0"><code class="language-python">adp_dissimilarity_matrix = np.zeros((csi_time_domain.shape[0], csi_time_domain.shape[0]),dtype=np.float32)
+
+def adp_dissimilarities_worker(todo_queue, output_queue):
+	def adp_dissimilarities(index):
+		cosine_similarities = np.zeros((np.shape(csi_time_domain)[0] - index, np.shape(csi_time_domain)[1], np.shape(csi_time_domain)[2]))
+		
+		# h has shape (arrays, antennas, taps), w has shape (datapoints, arrays, antennas, taps)
+		h = csi_time_domain[index,:,:,:]
+		w = csi_time_domain[index:,:,:,:]
+			
+		dotproducts = np.abs(np.einsum("bmt,lbmt->lbt", np.conj(h), w, optimize = "optimal"))**2
+		norms = np.real(np.einsum("bmt,bmt->bt", h, np.conj(h), optimize = "optimal") * np.einsum("lbmt,lbmt->lbt", w, np.conj(w), optimize = "optimal"))
+		
+		return np.sum(1 - dotproducts / norms, axis = (1, 2))
+
+	while True:
+		index = todo_queue.get()
+
+		if index == -1:
+			output_queue.put((-1, None))
+			break
+		
+		output_queue.put((index, adp_dissimilarities(index)))
+
+count = 0
+
+with progressbar.ProgressBar(max_value = csi_time_domain.shape[0]**2) as bar:
+	todo_queue = mp.Queue()
+	output_queue = mp.Queue()
+
+	for i in range(csi_time_domain.shape[0]):
+		todo_queue.put(i)
+	
+	for i in range(mp.cpu_count()):
+		todo_queue.put(-1)
+		p = mp.Process(target = adp_dissimilarities_worker, args = (todo_queue, output_queue))
+		p.start()
+
+	finished_processes = 0
+	while finished_processes != mp.cpu_count():
+		i, d = output_queue.get()
+
+		if i == -1:
+			finished_processes = finished_processes + 1
+		else:
+			adp_dissimilarity_matrix[i,i:] = d
+			adp_dissimilarity_matrix[i:,i] = d
+			count = count + 2 * len(d) - 1
+			bar.update(count)</code></pre>
+
+	<div class="alert alert-danger" role="alert">
+		<h2>More Coming Soon...</h2>
+		This tutorial is a work-in-progress. More sections will be published soon.
+	</div>
+<!--
+
+	<p>
+		In a way, you can visualize the dataset as a <a href="https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)">graph</a>, with the datapoints being the .
+	</p>
+
+	<h2 class="text-center" style="font-weight: bold;">Neural Network-based Channel Charting: Forward Charting Function</h2>
+	<div class="row justify-content-center py-2">
+		<div class="col-12 col-sm-8 col-md-6 p-3 col-xl-3">
+			<img style="width: 100%;" src="forward_charting_function.png">
+		</div>
+		<div class="col-12 col-xl-9">
+			<p>
+				Regardless of the training method employed, the objective of neural network-based Channel Charting is to learn the so-called Forward Charting Function \( \mathcal C_{\boldsymbol \theta} \).
+				The Forward Charting Function takes a feature vector \( \mathbf f \) as an input and directly outputs the position in the Channel Chart \( \mathbf z \).
+				Once \( \mathcal C_{\boldsymbol \theta} \) has been found, this makes it very easy and efficient to infer Chart positions (this is not the case for other dimensionality reduction techniques!).
+			</p>
+			<p>
+				The \( \boldsymbol \theta \) in the subscript indicates that this function is parametrized by a parameter vector \( \boldsymbol \theta \), which contains the weights and biases of the neural network.
+				The purpose of neural network training is to find suitable values for \( \boldsymbol \theta \).
+			</p>
+			<p>
+				But before we can do any of that, let's start with some basics about our datasets.
+			</p>
+		</div>
+	</div>
+
+	<p>
+		At this point, if your RAM is large enough for all TFRecords to fit inside, it might be a good idea to cache the training set so that all the subsequent training and evaluation steps will be quicker.
+		If your RAM is small (or you want to train on really huge training sets), don't worry:
+		The datasets can also remain on disk storage, and the training code will load batches of triplets from there when needed.
+		<pre class="m-0"><code class="language-python"># If you have enough RAM...
+training_set = training_set.cache()</code></pre>
+	</p>
+
+	<h2 class="text-center my-4" style="font-weight: bold;">Visualizing the Dataset</h2>
+	<p>
+		Now that we have loaded the TFRecords dataset and applied some feature engineering stages, let's have a look at what the dataset actually looks like.
+		For this, we plot the afforementioned <i>ground truth</i> positions.
+		Additionally, we store a mapping from datapoint timestamp to the index in the dataset in a Python dictionary called <code class="language-python">timestamp_index_map</code> and sort this dictionary by timestamp (the dataset is not guaranteed to be sorted in any way!).
+		The purpose of this list will become apparent later on.
+	</p>
+	<p>
+		Running this code segment may take a lot of time - this is because all of the previous code segments only added processing steps to TensorFlow's compute graph.
+		It is only in the following processing step, that the datapoints are actually read from disk and feature engineering is applied.
+	</p>
+	<pre class="m-0"><code class="language-python"># This may take a long time, since TensorFlow has to load the dataset from disk!
+groundtruth_positions = []
+timestamp_index_map = dict()
+
+for index, data in enumerate(training_set):
+	groundtruth_positions.append(data[1].numpy())
+	timestamp_index_map[data[2].numpy()] = index
+
+timestamp_index_map = dict(sorted(timestamp_index_map.items()))
+groundtruth_positions = np.asarray(groundtruth_positions)</code></pre>
+	<p>
+		We use the <code>plot_colorized</code> function to plot the ground truth positions.
+		It produces a scatter plot, where each point in the scatter plot is assigned a color according to its ground truth position.
+		We can later reuse this function to plot the channel chart with the same colorization.
+	</p>
+
+	<h2 class="text-center my-4" style="font-weight: bold;">Triplet-Based Dimensionality Reduction</h2>
+
+	<p>
+		Now that we have loaded our CSI datasets and applied feature engineering, we are ready for the most important part of Channel Charting: the dimensionality reduction algorithm.
+		Keeping in mind that Channel Charting is a self-supervised training method, we need to pretend that we don't know the ground truth positions.
+		The channel chart should maintain the local geometry of the transmitter positions, i.e., any two positions \( \mathbf{x}, \mathbf{x'} \in \mathbb{R}^D \) that are close to each other in the real world should also be close to each other in the channel chart, with \( \mathbf{z}, \mathbf{z'} \in \mathbb{R}^{D'} \) being the corresponding points in the channel chart.
+		In other words, the condition
+		\[
+			\mathrm d_\mathrm{z} \left( \mathbf{z}, \mathbf{z'} \right) \approx \mathrm d_\mathrm{x} \left( \mathbf{x}, \mathbf{x'} \right)
+		\]
+		should be satisfied for any neighboring data points, with \( \mathrm d_\mathrm{z} \left( \cdot, \cdot \right) \) and \( \mathrm d_\mathrm{x} \left( \cdot, \cdot \right) \) being appropriately defined dissimilarity measures.
+		Finding such a dissimilarity measure is not trivial, as the Euclidean distance is a poor representation for high-dimensional data.
+		This problem is elegantly circumvented by the <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9322643">triplet-based dimensionality reduction technique</a>, which takes timestamps as side information into account.
+		Its principle is simple: Triplets of CSI samples are selected based on their timestamps.
+		Each triplet consists of a randomly selected anchor point and a positive sample which is closer to the anchor point in time than a third sample, which is called the negative sample.
+		<b>Since anchor and positive sample are close to each other in time, it is very likely that they are also close to each other in space, the converse holds for anchor and negative sample.</b>
+		These Triplets can then be processed by a special neural-network-structure called "Triplet Network" with a special type of loss function called <i>triplet loss</i>.
+	</p>
+
+	<h4 class="text-center my-4" style="font-weight: bold;">Triplet Loss</h4>
+	<div class="row">
+		<div class="col-sm-12 col-md-6 col-xl-6">
+			Triplet loss ensures that training leads to the positive sample getting closer to the anchor than the negative sample in the channel chart by penalizing output triplets where the negative sample is closer to the anchor point than the positive sample.
+			Let \( \mathcal T \) be the set of triplets, where a single triplet is given by the indices \( (i, j, k) \in \mathcal T \) of anchor point (\( i \)), positive sample (\( j \)) and negative sample (\( k \)) in the dataset.
+			We define and implement the loss function as
+			\[
+				\mathcal{L}=\frac{1}{\mathcal{|T|}}\sum_{\left(i,j,k\right)\in \mathcal{T}}\max\left(\Vert\mathbf{z}_i-\mathbf{z}_j\Vert-\Vert\mathbf{z}_i-\mathbf{z}_k\Vert+M,0\right).
+			\]
+		</div>
+		<div class="col-sm-12 col-md-6 col-xl-6">
+			<pre class="m-0"><code class="language-python">def triplet_loss(y_true, y_pred):
+	anchor, positive, negative = (y_pred[:, :CC_DIMENSIONALITY], y_pred[:, CC_DIMENSIONALITY : 2 * CC_DIMENSIONALITY], y_pred[:, 2 * CC_DIMENSIONALITY :])
+	positive_dist = tf.reduce_mean(tf.square(anchor - positive), axis = 1)
+	negative_dist = tf.reduce_mean(tf.square(anchor - negative), axis = 1)
+			
+	return tf.maximum(positive_dist - negative_dist + 1, 0.0)</code></pre>
+		</div>
+	</div>
+
+	<div class="row justify-content-center p-4">
+		<div class="col-12 col-lg-10 col-xl-8">
+			<img style="width: 100%;" src="tripletloss.png">
+		</div>
+	</div>
+
+	<h4 class="text-center my-4" style="font-weight: bold;">Triplet Selection</h4>
+	<p>
+		For training, we need to create a large set of triplets \(\left(i,j,k\right)\in \mathcal{T}\).
+		Ideally, these triplets would be selected such that the condition
+		\[
+			\lVert \mathbf{x}_i - \mathbf{x}_j \rVert \leq \lVert \mathbf{x}_i - \mathbf{x}_k \rVert
+		\]
+		holds for their respective ground truth positions \( \mathbf{x}_i \), \( \mathbf{x}_j \) and \( \mathbf{x}_k \).
+		Using ground truth information would be cheating though, we are looking for a self-supervised training method.
+		But there is another crucial piece of information that is available at the base station that we can exploit: The CSI timestamps!
+		Since the user travels with a finite velocity, we can assume that two CSI vectors measured within a short timeframe are likely to be close to each other.
+		Consequently, we select the triplets based on their timestamps such that
+		\[
+			\mathcal T = \{ \left(i, j, k \right): |t_j - t_i| \leq T_\mathrm{c} \},
+		\]
+		with \( T_c \) being the maximum elapsed time between anchor point and positive sample.
+	</p>
+
+	<p>
+		Admittedly, the following Python code, which generates a set of triplets \( \mathcal T \) provided \( T_\mathrm{c} \) is not pretty - but it is efficient.
+		The idea here is that we only operate on timestamps and indices in the dataset and only once we have decided which triplets to load from the training set, we iterate <i>once</i> over <code>training_set</code> and collect all the CSI features that we are interested in.
+		This way, the dataset can remain on disk if our available RAM is limited.
+	</p>
+	<p>
+		More precisely, we take the following steps to obtain \( \mathcal T \) from the training set:
+		<ol>
+			<li>
+				Given the particular elapsed time threshold \( T_\mathrm{c} \), generate a lookup table that, for every potential anchor point \( i \), contains all suitable positive sample indices \( j \).
+				That is, all sample indices \( i \) such that \( |t_i - t_j| \leq T_\mathrm{c} \).
+				Since <code>timestamp_index_map</code> is sorted, this lookup table can be computed very efficiently in a single iteration over <code>timestamp_index_map</code>.
+			</li>
+			<li>Based on the lookup table, randomly generate a list of triplets \( \mathcal T \). The negative sample index \( k \) is drawn randomly from the set of all datapoints. By the sheer number of datapoints, is unlikely that \( \mathbf x_k \) is closer to \( \mathbf x_i \) than \( \mathbf x_j \).</li>
+			<li>From \( \mathcal T \), generate a list of datapoint indices to load the CSI features for and also remember what sample (anchor / positive / negative) of which triplet(s) these features belong to.</li>
+			<li>Then, iterate over the dataset (on disk or, if cached, in RAM) only <i>once</i> and load all of the CSI features for all triplets.</li>
+		</ol>
+		For now, we only define some functions.
+		We will call <code>generate_triplets</code> later for every batch of triplets to generate.
+	</p>
+	<pre class="m-0"><code class="language-python">def generate_positive_sample_lookup(Tc = 1.5):
+	lookup = dict()
+	suitable_set = dict()
+	candidate_iterator = iter(timestamp_index_map.items())
+	next_suitable = next(candidate_iterator)
+
+	for anchor_timestamp, anchor_index in timestamp_index_map.items():
+		# Add additional later suitable datapoints to suitable_set
+		while next_suitable[0] - anchor_timestamp < Tc:
+			suitable_set.update((next_suitable,))
+			try:
+				next_suitable = next(candidate_iterator)
+			except StopIteration:
+				break
+
+		# Remove too early suitable datapoints from suitable_set
+		outdated = []
+		for timestamp in suitable_set.keys():
+			if anchor_timestamp - timestamp > Tc:
+				outdated.append(timestamp)
+			else:
+				for o in outdated:
+					del suitable_set[o]
+				break
+
+		# For every potential anchor point, store lookup table of potential positive sample indices
+		lookup[anchor_index] = set(suitable_set.values())
+		
+		# Set of suitable positive samples must not contain anchor itself
+		lookup[anchor_index].remove(anchor_index)
+		lookup[anchor_index] = list(lookup[anchor_index])
+
+	return lookup</code></pre>
+<pre class="m-0"><code class="language-python">def generate_triplets(nr_of_triplets = 1000, Tc = 1.5):
+    print("Generating lookup table for positive samples")
+    positive_sample_lookup = generate_positive_sample_lookup(Tc)
+
+    # Generate list of triplet containing *indices* of datapoints in dataset
+    triplet_indices = []
+    anchor_indices = list(positive_sample_lookup.keys())
+    
+    while len(triplet_indices) < nr_of_triplets:
+        anchor = anchor_indices[np.random.randint(len(anchor_indices))]
+        
+        # Must ensure that anchor point is not a loner and actually has some close positive samples
+        if len(positive_sample_lookup[anchor]) < 1:
+            continue
+
+        positive = np.random.choice(positive_sample_lookup[anchor])
+        negative = anchor_indices[np.random.randint(len(anchor_indices))]
+        
+        triplet_indices.append((anchor, positive, negative))
+
+    # Iterate over dataset (on hard drive storage) and load relevant CSI data to "triplets" list (in RAM)
+    datapoints_to_load = dict()
+    for target, indices in enumerate(triplet_indices):
+        for sample in range(3):
+            if indices[sample] not in datapoints_to_load:
+                datapoints_to_load[indices[sample]] = []
+            datapoints_to_load[indices[sample]].append((target, sample))
+
+    datapoints_to_load = dict(sorted(datapoints_to_load.items()))
+
+    anchors = [None for i in range(len(triplet_indices))]
+    positives = [None for i in range(len(triplet_indices))]
+    negatives = [None for i in range(len(triplet_indices))]
+
+    print("Loading batch of triplets from dataset (on disk or in RAM)")
+    for index, data in enumerate(training_set):
+        if index in datapoints_to_load:
+            for target in datapoints_to_load[index]:
+                if target[1] == 0:
+                    anchors[target[0]] = data[0]
+                elif target[1] == 1:
+                    positives[target[0]] = data[0]
+                elif target[1] == 2:
+                    negatives[target[0]] = data[0]
+    print("Finished loading triplet batch")
+
+    return [tf.stack(anchors), tf.stack(positives), tf.stack(negatives)]</code></pre>
+
+	<h4 class="text-center my-4" style="font-weight: bold;">Neural Network Architecture</h4>
+	<p>
+		The DNN is trained to learn the Forward Charting Function \( \mathcal C_{\boldsymbol \theta} \), which maps the high-dimensional features to the low-dimensional points in the channel chart.
+		The DNN itself is built from several dense layers followed by batch normalization layers.
+		The input layer has \(1024\) neurons, matching the dimensionality of the input feature vector \( \mathbf f^{(l)} \) (\( B^2 = 32^2 = 1024 \)).
+		Unsurprisingly, since the channel chart is \(2\)-dimensional, the output layer has only two neurons.
+	</p>
+	<div class="row justify-content-center">
+		<div class="col-lg-12 col-xl-9">
+			<pre class="m-0"><code class="language-python">CC_DIMENSIONALITY = 2
+embedding_model = tf.keras.models.Sequential(
+	[
+		tf.keras.layers.Dense(ANTENNACOUNT * ANTENNACOUNT, activation = "relu", input_shape = (ANTENNACOUNT * ANTENNACOUNT,)),
+		tf.keras.layers.BatchNormalization(),
+		tf.keras.layers.Dense(512, activation = "relu"),
+		tf.keras.layers.BatchNormalization(),
+		tf.keras.layers.Dense(256, activation = "relu"),
+		tf.keras.layers.BatchNormalization(),
+		tf.keras.layers.Dense(128, activation = "relu"),
+		tf.keras.layers.BatchNormalization(),
+		tf.keras.layers.Dense(64, activation = "relu"),
+		tf.keras.layers.BatchNormalization(),
+		tf.keras.layers.Dense(CC_DIMENSIONALITY, activation = "linear"),
+	]
+)</code></pre>
+		</div>
+		<div class="col-12 col-md-7 col-lg-5 col-xl-3 p-3">
+			<img style="width: 100%;" src="dnn_structure.png">
+		</div>
+<p>
+	For training, we need to embed the DNN \( \mathcal C_{\boldsymbol \theta} \) into a triplet neural network.
+	The three feature vectors of a triplet are each fed into the DNN, which then outputs the three corresponding low-dimensional points.
+	From the three output points, TensorFlow then computes gradients for backpropagation using our triplet loss.
+</p>
+<div class="row justify-content-center">
+	<div class="col-12 col-md-9 col-lg-7 col-xl-5 p-3">
+		<img style="width: 100%;" src="triplet^{(l)}etwork.png">
+	</div>
+	<div class="col-lg-12 col-xl-7">
+		<pre class="m-0"><code class="language-python">input_anchor = tf.keras.layers.Input(shape=(ANTENNACOUNT * ANTENNACOUNT,))
+input_positive = tf.keras.layers.Input(shape=(ANTENNACOUNT * ANTENNACOUNT,))
+input^{(l)}egative = tf.keras.layers.Input(shape=(ANTENNACOUNT * ANTENNACOUNT,))
+
+embedding_anchor = embedding_model(input_anchor)
+embedding_positive = embedding_model(input_positive)
+embedding^{(l)}egative = embedding_model(input^{(l)}egative)
+
+output = tf.keras.layers.concatenate([embedding_anchor, embedding_positive, embedding^{(l)}egative], axis=1)
+model = tf.keras.models.Model([input_anchor, input_positive, input^{(l)}egative], output)</code></pre>
+	</div>
+</div>
+
+	<h4 class="text-center my-4" style="font-weight: bold;">Neural Network Training</h4>
+	<div class="row justify-content-center">
+		<div class="col-12">
+			<p>
+				Finally, we are ready to train the DNN.
+				The elapsed time threshold between anchor and positive sample decreases for every training batch (\(T_c = 5.5 \dots 3\)).
+				The training itself is performed in eight sessions.
+				In each session, a new dataset with \( 150\,000 \) triplets is generated, on which the DNN is trained for ten epochs.
+				The learning rate decreases every few sessions, but the batch size remains at constant \( 8\,192 \).
+				All of these hyperparameters are definitely subject to further optimization!
+			</p>
+		</div>
+	</div>
+	<div class="row justify-content-center">
+		<div class="col-12">
+			<pre class="m-0"><code class="language-python">optimizer = tf.keras.optimizers.Adam()
+model.compile(loss = triplet_loss, optimizer = optimizer)
+
+batch_size = 8192
+learning_rates = [1e-3, 1e-3, 1e-4, 1e-4, 1e-5, 1e-5, 1e-5, 1e-5]
+T_c = 5
+
+for l in range(len(learning_rates)):
+	print("\nTraining Session ", l + 1, "\nT_c =", T_c)
+	triplets = generate_triplets(150000, T_c)
+	optimizer.learning_rate.assign(learning_rates[l])
+	print("\nBatch Size: ", batch_size, "\nEpochs: ", 10, "\nLearning rate: ", learning_rates[l])
+	model.fit(triplets, triplets, batch_size = batch_size, steps_per_epoch = int(len(triplets[0]) / batch_size), epochs = 10)</code></pre>
+		</div>
+	</div>
+
+	<h4 class="text-center my-4" style="font-weight: bold;">Plotting the Channel Chart</h4>
+
+	<div class="row justify-content-center">
+		<div class="col-12 col-xl-8 p-3">
+			<p>
+				Now we can let the trained DNN \( \mathcal C_{\boldsymbol \theta} \) predict points in the channel chart given CSI features from the training set.
+				But wait!
+				Isn't it common in machine learning tasks to do this on a test set?
+				In our case, we applied an unsupervised learning technique, so the ground truth information is not known to the DNN.
+				Therefore, and since the real goal of Channel Charting is to learn a sparse (low-dimensional) representation of CSI, we will use the training set here.
+				Let's see what the DNN predicts if we feed it with the CSI feature vectors \( \mathbf f^{(l)} \).
+			</p>
+			<pre class="m-0"><code class="language-python">channel_chart_positions = []
+	
+for csi, pos, timestamp in training_set.batch(1000):
+	channel_chart_positions.append(embedding_model.predict(csi))
+
+channel_chart_positions = np.vstack(channel_chart_positions)
+
+plot_colorized(channel_chart_positions, title = "Channel Chart")</code></pre>
+		</div>
+		<div class="col-12 col-md-8 col-lg-5 col-xl-4 p-3">
+			<img style="width: 100%;" src="channel_chart.png">
+		</div>
+	</div>
+<p>
+	Thanks to the colorization (remember, colors are assigned according to the <i>ground truth</i> positions) we can directly see that CSI vectors measured at similar user positions are also placed close to each other in the channel chart.
+	The global structure of the positions is also preserved to a certain degree.
+</p>
+
+<h2 class="text-center" style="font-weight: bold;">Performance Evaluation</h2>
+	<div class="row justify-content-center">
+		<div class="col-12">
+			<p>
+				The goal of Channel Charting is to preserve the local geometry of the UE positions, and ideally the global geometry as well.
+				However, we can't compare the channel chart with the ground truth positions using metrics such as mean squared error:
+				If the geometry of the transmitter positions was preserved perfectly, since we don't have any known reference locations, the channel chart can always only match the real positions down to some linear transformation (i.e., some combination of rotation, scaling and / or reflection).
+				Therefore, we need to find other metrics to measure the performance of the learned forward charting function.
+				Channel Charting literature employs performance metrics that are also commonly used in other dimensionality reduction tasks.
+				We use three different metrics out of them to evaluate our channel charts:
+				<ul>
+					<li>
+						<b>Continuity</b> (CT) and <b>Trustworthiness</b> (TW), both normalized to range \( [0, 1] \), are two measures for the preservation of local neighborhoods.
+						A high CT indicates that many neighborhood relationships in physical space are preserved in the channel chart.
+						A high TW value, on the other hand, indicates that the channel chart does not contain many additional false neighborhood relationships, i.e., ones which are not present in the physical space.
+						Trustworthiness is already implemented in the <a href="https://scikit-learn.org/stable/modules/generated/sklearn.manifold.trustworthiness.html">scikit-learn package</a>.
+						We implement continuity based on this implementation of the trustworthiness.
+					</li>
+					<li>
+						<b>Kruskal Stress</b> (KS) is a measure for the preservation of the global channel chart structure.
+						It is also bounded to the range \( [0,1] \), but this time with 0 indicating the best and 1 indicating the worst possible performance.
+					</li>
+				</ul>
+			</p>
+		</div>
+	</div>
+
+	<div class="row justify-content-center">
+		<div class="col-12">
+			<pre class="m-0"><code class="language-python">from sklearn.metrics import pairwise_distances
+from sklearn.neighbors import NearestNeighbors
+from sklearn import manifold
+import random
+
+def continuity(X, X_embedded, *, n^{(l)}eighbors = 5, metric = "euclidean"):
+	dist_X_embedded = pairwise_distances(X_embedded, metric = metric)
+	np.fill_diagonal(dist_X_embedded, np.inf)
+	ind_X_embedded = np.argsort(dist_X_embedded, axis = 1)
+	ind_X = NearestNeighbors(n^{(l)}eighbors = n^{(l)}eighbors).fit(X).kneighbors(return_distance = False)
+	n_samples = X_embedded.shape[0]
+	inverted_index = np.zeros((n_samples, n_samples), dtype = int)
+	ordered_indices = np.arange(n_samples + 1)
+	inverted_index[ordered_indices[:-1, np.newaxis], ind_X_embedded] = ordered_indices[1:]
+	ranks = inverted_index[ordered_indices[:-1, np.newaxis], ind_X] - n^{(l)}eighbors
+	c = np.sum(ranks[ranks > 0])
+	c = 1.0 - c * (2.0 / (n_samples * n^{(l)}eighbors * (2.0 * n_samples - 3.0 * n^{(l)}eighbors - 1.0)))
+
+	return c
+
+
+def kruskal_stress(X, X_embedded, *, metric="euclidean"):
+	dist_X = pairwise_distances(X, metric = metric)
+	dist_X_embedded = pairwise_distances(X_embedded, metric = metric)
+	beta = np.divide(np.sum(dist_X * dist_X_embedded), np.sum(dist_X_embedded * dist_X_embedded))
+
+	return np.sqrt(np.divide(np.sum(np.square((dist_X - beta * dist_X_embedded))), np.sum(dist_X * dist_X)))</code></pre>
+			<p>
+				Computing and storing pairwise distances for the CT, TW and KS metrics is both memory-intensive and computationally expensive.
+				We therefore compute these metrics on a randomly picked subset of datapoints, consisting of only every tenth datapoint:
+			</p>
+			<pre class="m-0"><code class="language-python">subset_indices = random.sample(range(len(groundtruth_positions)), len(groundtruth_positions) // 10)
+
+groundtruth_positions_subset = groundtruth_positions[subset_indices]
+channel_chart_positions_subset = channel_chart_positions[subset_indices]
+
+ct_train = continuity(groundtruth_positions_subset, channel_chart_positions_subset, n^{(l)}eighbors = int(0.05 * len(groundtruth_positions_subset)))
+tw_train = manifold.trustworthiness(groundtruth_positions_subset, channel_chart_positions_subset, n^{(l)}eighbors = int(0.05 * len(groundtruth_positions_subset)))
+ks_train = kruskal_stress(groundtruth_positions_subset, channel_chart_positions_subset)
+
+metrics_channel_chart_train = np.around(np.array([ct_train, tw_train, ks_train]), 4)
+
+print("CT: {} \nTW: {} \nKS: {}".format(*metrics_channel_chart_train))</code></pre>
+		</div>
+	</div>
+
+
+	<div class="row justify-content-center">
+		<div class="col-12 col-md-8 py-3">
+			<p>
+				Obviously, continuity and trustworthiness are close to 1, and the kruskal stress is close to 0.
+				This confirms our first impression of the channel chart to be a locally, as well as globally reasonable representation of the radio environment.
+			</p>
+		</div>
+		<div class="col-12 col-md-4">
+			<pre class="m-0"><code>>> CT: 0.9736
+>> TW: 0.957
+>> KS: 0.2596</code></pre>
+		</div>
+	</div>
+
+<h2 class="text-center" style="font-weight: bold;">Conclusion</h2>
+
+<div class="row justify-content-center">
+	<div class="col-12">
+		<p>
+			We successfully applied triplet-based Channel Charting to a DICHASUS dataset.
+			The key takeaways are:
+			<ul>
+				<li>
+					Triplet-based Channel Charting is feasible on real CSI measured by DICHASUS, exploiting timestamp metadata.
+				</li>
+				<li>
+					Performance, as measured by the evaluation metrics Continuity, Trustworthiness and Kruskal Stress, is acceptable, but can be improved further using more training data, hyperparameter tuning or better training approaches.
+				</li>
+			</ul>
+		</p>
+	</div>
+</div>-->
+
+
+<h2 class="text-center my-4" style="font-weight: bold;">A Note on Privacy</h2>
+<p>
+	Last, but not least: If you read the whole tutorial all the way to the end, then you have certainly realized that Channel Charting technology means that the massive MIMO base station will know the location of the users in a much more fine-grained manner than is possible with today's base stations and their sector antennas.
+	In my experience, Channel Charting researchers are very aware of the potential privacy implications.
+	There are some very obvious benefits attached to Channel Charting (outlined in the introduction), but there is also potential for abuse.
+	With all the skepticism about 5G and mobile networks in general, we believe it is important to transparently publish and discuss the advantages and risks of this technology.
+</p>
+
+<h4 class="text-center my-4" style="font-weight: bold;">Licensing and Authors</h4>
+<p>
+	All our datasets are licensed under the <a href="https://creativecommons.org/licenses/by/2.0/">CC-BY license</a>, i.e., you are free to use them for whatever you like as long as you reference us in your publications.
+	All code in this tutorial is <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0-licensed</a>.
+	This tutorial was written by <a href="mailto:florian.euchner@inue.uni-stuttgart.de">Florian Euchner</a>, with contributions by Chae Eun Lee and Phillip Stephan.
+</p>
+
+</main>
