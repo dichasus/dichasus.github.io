@@ -65,13 +65,18 @@ layout: tutorial-details
 	<p>
 		Next, we load the TFRecords files with TensorFlow:
 	</p>
-	<pre class="m-0"><code class="language-python">import matplotlib.pyplot as plt
+	<pre class="m-0"><code class="language-python">from sklearn.neighbors import NearestNeighbors, kneighbors_graph
+from scipy.sparse.csgraph import dijkstra
+from scipy.spatial import distance_matrix
+from sklearn.manifold import MDS
+import matplotlib.pyplot as plt
 import multiprocessing as mp
 import tensorflow as tf
 import numpy as np
 import progressbar
 import queue
 import json
+		
 
 # Antenna definitions
 ASSIGNMENTS = [
@@ -313,7 +318,7 @@ plot_colorized(groundtruth_positions, groundtruth_positions, title="Ground Truth
 	</div>
 
 	<p>
-		In mathematical terms, the set of cities we considered can be viewed as the <i>vertices</i> of a graph, and the travel times between the cities can be interpreted as the <i>edges</i> of a directed graph.
+		In mathematical terms, the set of cities we considered can be viewed as the <i>nodes</i> of a graph, and the travel times between the cities can be interpreted as the <i>edges</i> of a directed graph.
 		In this interpretation, the table above is the <i>adjacency matrix</i> of this graph, and this is essentially what we call the <i>dissimilarity matrix</i> \( \mathbf D \) in Channel Charting.
 		In general, the dissimilarity matrix has \( N^2 \) entries, where \( N \) is the number of datapoints and, hence, vertices in the graph.
 	</p>
@@ -352,7 +357,7 @@ plot_colorized(groundtruth_positions, groundtruth_positions, title="Ground Truth
 			<li>Compute the ADP-based dissimilarity matrix \( \mathbf D_\mathrm{ADP} \)</li>
 			<li>Compute a timestamp-based dissimilarity matrix  \( \mathbf D_\mathrm{time} \)</li>
 			<li>Fuse \( \mathbf D_\mathrm{ADP} \) and \( \mathbf D_\mathrm{time} \) into \( \mathbf D_\mathrm{fuse} \)</li>
-			<li>From the fused matrix \( \mathbf D_\mathrm{fuse} \), compute the geodesic matrix \( \mathbf D_\mathrm{fuse, geo} \)</li>
+			<li>From the fused matrix \( \mathbf D_\mathrm{fuse} \), compute the geodesic matrix \( \mathbf D_\mathrm{G-fuse} \)</li>
 		</ol>
 	</p>
 
@@ -583,460 +588,495 @@ dissimilarity_matrix_fused = np.minimum(adp_dissimilarity_matrix, timestamp_diss
 		In some cases, we might want to use a nonlinear scaling to match the two dissimilarity metrics, or we might want to choose the more accurate dissimilarity not just based on which entry is smaller.
 	</p>
 
-	
-
-	<div class="alert alert-danger" role="alert">
-		<h2>More Coming Soon...</h2>
-		This tutorial is a work-in-progress. More sections will be published soon.
-	</div>
-<!--
-
+	<h4 class="mt-4" style="font-weight: bold;">Step 4: Geodesic Dissimilarity Matrix</h4>
 	<p>
-		In a way, you can visualize the dataset as a <a href="https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)">graph</a>, with the datapoints being the .
+		The importance of using geodesic dissimilarities was highlighted in <a href="https://ieeexplore.ieee.org/abstract/document/10070385">a paper by a group at Fraunhofer IIS</a>.
+		In our exemplary dissimilarity matrix of train travel times above, we were unable to tell how much time it would take to get from Stuttgart to Brussels, since there is no direct train connection between these two cities.
+		However, we can get an estimate for the required travel time (ignoring transfer time), by summing up the time it takes to go from Stuttgart to Frankfurt and the time it takes to travel from Frankfurt to Brussels.
+		Why don't we go from Stuttgart to Brussel's via Paris?
+		Well, because, according to our travel times, the route via Frankfurt is shorter:
+		To figure out the missing dissimilarity, we applied a <i>shortest path algorithm</i>.
+	</p>
+	<div class="row justify-content-center mb-2">
+		<div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4 p-2">
+			<img style="width: 100%;" src="geodesic-dissimilarities.svg">
+		</div>
+		<div class="col-12 col-md-12 col-lg-6 col-xl-8 p-2">
+			For Channel Charting, we <i>can</i> compute a dissimilarity value between any two points in the dataset.
+			However, many of this dissimilarities may be nonsensical, especially if the true locations of the datapoints are far away from each other (just look at the dissimilarity matrix video above...).
+			For geodesic distances, we just find the \( K \) neareast neighbors of any datapoint (here, \( K = 20 \)), and then set the dissimlarities to all other datapoints to &infin; (what is known as finding the <i>k-nearest neighbor graph</i>).
+			Then, we apply a shortest path algorithm like <a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijkstra's_algorithm</a> to find <i>all</i> the shortest paths in the resulting graph.
+			The hope is that the sum of these many short paths will be more reflective of the true distance then directly computing a CSI- or side information-based dissimilarity.
+			We collect these distances into the now so-called geodesic dissimilarity matrix \( \mathbf D_\mathrm{G-fuse} \).	
+		</div>
+	</div>
+
+	Here, we find the k-nereast neighbor graph:
+	<pre class="m-0"><code class="language-python">n_neighbors = 20
+
+nbrs_alg = NearestNeighbors(n_neighbors = n_neighbors, metric="precomputed", n_jobs = -1)
+nbrs = nbrs_alg.fit(dissimilarity_matrix_fused)
+nbg = kneighbors_graph(nbrs, n_neighbors, metric = "precomputed", mode="distance")</code></pre>
+
+	And next, we apply Dijkstra's algorithm to find all the shortest paths.
+	The problem of finding the shortest path between <i>any two</i> points in the dataset can be neatly parallelized by running Dijkstra's algorithm in parallel for every node in the graph:
+	<pre class="m-0"><code class="language-python">dissimilarity_matrix_geodesic = np.zeros((nbg.shape[0], nbg.shape[1]), dtype = np.float32)
+
+def shortest_path_worker(todo_queue, output_queue):
+	while True:
+		index = todo_queue.get()
+
+		if index == -1:
+			output_queue.put((-1, None))
+			break
+
+		d = dijkstra(nbg, directed=False, indices=index)
+		output_queue.put((index, d))
+
+count = 0
+with progressbar.ProgressBar(max_value = nbg.shape[0]**2) as bar:
+	todo_queue = mp.Queue()
+	output_queue = mp.Queue()
+
+	for i in range(nbg.shape[0]):
+		todo_queue.put(i)
+	
+	for i in range(mp.cpu_count()):
+		todo_queue.put(-1)
+		p = mp.Process(target = shortest_path_worker, args = (todo_queue, output_queue))
+		p.start()
+
+	finished_processes = 0
+	while finished_processes != mp.cpu_count():
+		i, d = output_queue.get()
+
+		if i == -1:
+			finished_processes = finished_processes + 1
+		else:
+			dissimilarity_matrix_geodesic[i,:] = d
+			count = count + len(d)
+			bar.update(count)</code></pre>
+
+	
+	<div class="row justify-content-center mb-2 mt-2">
+		<div class="col-12 col-md-10 col-lg-8 col-xl-6">
+			<video width="100%" controls style="border: 1px solid black;">
+				<source src="dmatrix-video-fused-geodesic.mp4" type="video/mp4">
+			</video>
+		</div>
+		<div class="col-12 col-md-12 col-lg-4 col-xl-6 p-2">
+			<p>
+				This is one of the most complex processing steps in the Channel Charting pipeline.
+				Regardless, on a modern machine, it should only take a few minutes at maximum.
+				Again, we can visualize the dissimilarity matrix in a video.
+				The resulting fused dissimilarity matrix is clearly <i>much</i> better than
+			</p>
+			<p>
+				While these videos a great visualization, there is a more scientific method to evaluate the quality of a dissimilarity metric.
+				<a href="https://ieeexplore.ieee.org/abstract/document/10070385">This paper</a> introduced a diagram that relates the dissimilarities it to the ground truth Euclidean distances.
+				Let's compare \( \mathbf D_\mathrm{ADP} \) to \( \mathbf D_\mathrm{G-fuse} \) this way.
+			</p>
+			<p>
+				For this, we first need to compute the true distance matrix, i.e., the Euclidean distances between the ground truth positions:
+				<pre class="m-0"><code class="language-python"># Compute distances between groundtruth positions
+groundtruth_distance_matrix = distance_matrix(groundtruth_positions, groundtruth_positions)</code></pre>
+			</p>
+		</div>
+	</div>
+
+	Next, we sort the dissimilarities into 100 bins based on the true distances.
+	We plot the median of these bins and color the area between the 25<sup>th</sup> and 75<sup>th</sup> percentile to get a better idea of the distribution.
+
+	<pre class="m-0"><code class="language-python">def plot_dissimilarity_over_euclidean_distance(dissimilarity_matrix, distance_matrix, label = None):
+dissimilarities_flat = dissimilarity_matrix.flatten()
+distances_flat = distance_matrix.flatten()
+
+max_distance = np.max(distances_flat)
+bins = np.linspace(0, max_distance, 100)
+bin_indices = np.digitize(distances_flat, bins)
+
+bin_medians = np.zeros(len(bins) - 1)
+bin_25_perc = np.zeros(len(bins) - 1)
+bin_75_perc = np.zeros(len(bins) - 1)
+for i in range(1, len(bins)):
+	bin_values = dissimilarities_flat[bin_indices == i]
+	bin_25_perc[i - 1], bin_medians[i - 1], bin_75_perc[i - 1] = np.percentile(bin_values, [25, 50, 75])
+
+plt.plot(bins[:-1], bin_medians, label = label)
+plt.fill_between(bins[:-1], bin_25_perc, bin_75_perc, alpha=0.5)
+
+plt.figure(figsize=(8,4))
+
+plot_dissimilarity_over_euclidean_distance(dissimilarity_matrix_geodesic, groundtruth_distance_matrix, "G-fuse")
+plot_dissimilarity_over_euclidean_distance(scaling_factor * adp_dissimilarity_matrix, groundtruth_distance_matrix, "ADP")
+
+plt.legend()
+plt.xlabel("Euclidean Distance [m]")
+plt.ylabel("Scaled Dissimilarity")
+plt.show()</code></pre>
+
+	<div class="row justify-content-center mb-2 mt-2">
+		<div class="col-12 col-md-12 col-lg-5 col-xl-7 p-2">
+			What we can conclude from the diagram is that the fused geodesic dissimilarities \( \mathbf D_\mathrm{G-fuse} \) are almost proportional to the true Euclidean distance, there is a nice linear relationship.
+			For the purely ADP-based distances \( \mathbf D_\mathrm{ADP} \), on the other hand, there is also clearly a positive correlation between Euclidean distance and dissimilarity, but it is definitely not as linear.
+			Especially as the true Euclidean distance grows, the ADP-based distance becomes less and less indicative of the true distance (the curve becomes flat).
+			This is exactly the issue that the computation of geodesic distances solves.
+		</div>
+		<div class="col-12 col-md-10 col-lg-7 col-xl-5">
+			<img style="width: 100%;" src="dissimilarity-vs-distance.png">
+		</div>
+	</div>
+
+	<h2 class="text-center my-4" style="font-weight: bold;">Manifold Learning: Finding the Low-Dimensional Representation</h2>
+	<div class="row justify-content-center">
+		<div class="col-12 col-sm-12 col-md-8 col-xl-7">
+			<img style="width: 100%;" src="manifold-learning-techniques.svg">
+		</div>
+		<div class="col-12 col-sm-12 col-md-12 col-xl-5 p-3">
+			<p>
+				Channel Charting is essentially a special case of <i>manifold learning</i>, where we try to find a low-dimensional representation (physical coordinates) of the manifold of datapoints that lives in high-dimensional CSI space.
+				There are multiple well-known manifold learning techniques, which can be categorized into two classes:
+				Classical techniques and Deep Learning-based technqiues.
+			</p>
+			<p>
+				Both classes of techniques are suitable for Channel Charting, and can produce equally good channel charts.
+				The advantage of deep learning-based Channel Charting is that it can easily process previously unseen datapoints (it's a <i>parametric</i> method), more on that later.
+			</p>
+		</div>
+	</div>
+
+	<h4 class="my-4" style="font-weight: bold;">The First Channel Chart: MDS / Isomap</h4>
+	<p>
+		Time to generate the first channel chart!
+		We will use the classical <a href="https://en.wikipedia.org/wiki/Multidimensional_scaling">multidimensional scaling (MDS)</a> manifold learning technique to produce it.
+		MDS optimizes the cost function
+
+		\[
+			\min_{\{\mathbf{z}^{(l)}\}_{l=1}^L} \sum\nolimits_{i=1}^{L-1}\sum\nolimits_{j=i+1}^L \left(\mathbf D_{\mathrm{G-fuse}, i, j} - \lVert \mathbf{z}^{(i)} - \mathbf{z}^{(j)} \rVert_2 \right)^2
+		\]
+
+		using gradient descent, where \( \mathbf z^{(l)} \in \mathbb R^2 \) are the locations of points in the channel chart (we always assume 2-dimensional channel charts).
+		We only need to provide the dissimilarity matrix to get a chart, easy &#128578;!
+		If MDS is used in conjunction with a geodesic dissimilarity matrix, it is also known as <a href="https://en.wikipedia.org/wiki/Isomap">Isomap</a>.
+		In our code, we will only plot every 10<sup>th</sup> datapoint in the Channel Chart (since MDS can be pretty slow).
+		Also, we cap the number of gradient descent iterations at 80:
 	</p>
 
-	<h2 class="text-center" style="font-weight: bold;">Neural Network-based Channel Charting: Forward Charting Function</h2>
+	<pre class="m-0"><code class="language-python">nth_reduction = 10
+
+reduced_dissimilarity_matrix_geodesic = dissimilarity_matrix_geodesic[::nth_reduction, ::nth_reduction]
+embedding_isomap = MDS(metric = True, dissimilarity = 'precomputed', max_iter = 80, normalized_stress = False)
+proj_isomap = embedding_isomap.fit_transform(reduced_dissimilarity_matrix_geodesic)
+plot_colorized(proj_isomap, groundtruth_positions[::nth_reduction], title = "Isomap Channel Chart")</code></pre>
+
+	<div class="row justify-content-center mb-2 mt-2">
+		<div class="col-12 col-md-10 col-lg-7 col-xl-4">
+			<img style="width: 100%;" src="isomap-cc.png">
+		</div>
+		<div class="col-12 col-md-12 col-lg-5 col-xl-8 p-2">
+			<p>
+				And this is the Channel Chart that we get!
+				This already very much resembles the ground truth top view map from above, except for some arbitrary rotation / flipping and scaling of course.
+			</p>
+			<p>
+				But what if the base station now measures an additional datapoint and we want to localize the user on the channel chart, what would we have to do?
+				This is the main downside of classical, so called <i>non-parametric</i> Channel Charting methods:
+				We need to start the whole process from the very beginning, compute the dissimilarity of the new datapoint to all existing ones, re-run the shortest path algorithm and also re-run MDS.
+				Obviously, this is unfeasible for practical applications.
+			</p>
+			<p>
+				The ability to map previously unseen CSI data to the channel chart is why deep learning-based Channel Charting is favored over classical methods.
+			</p>
+		</div>
+	</div>
+
+	<h4 class="my-4" style="font-weight: bold;">Deep Learning-Based Channel Charting: The Forward Charting Function</h4>
+
 	<div class="row justify-content-center py-2">
 		<div class="col-12 col-sm-8 col-md-6 p-3 col-xl-3">
 			<img style="width: 100%;" src="forward_charting_function.png">
 		</div>
 		<div class="col-12 col-xl-9">
 			<p>
-				Regardless of the training method employed, the objective of neural network-based Channel Charting is to learn the so-called Forward Charting Function \( \mathcal C_{\boldsymbol \theta} \).
-				The Forward Charting Function takes a feature vector \( \mathbf f \) as an input and directly outputs the position in the Channel Chart \( \mathbf z \).
-				Once \( \mathcal C_{\boldsymbol \theta} \) has been found, this makes it very easy and efficient to infer Chart positions (this is not the case for other dimensionality reduction techniques!).
+				Regardless of the training method employed, the objective of neural network-based Channel Charting is to learn the so-called Forward Charting Function (FCF) \( \mathcal C_{\boldsymbol \theta} \).
+				The FCF takes a feature vector \( \mathbf f \) as an input and directly outputs the position in the Channel Chart \( \mathbf z \).
+				Once \( \mathcal C_{\boldsymbol \theta} \) has been found, this makes it very easy and efficient to infer additional Chart positions (unlike with MDS).
 			</p>
 			<p>
-				The \( \boldsymbol \theta \) in the subscript indicates that this function is parametrized by a parameter vector \( \boldsymbol \theta \), which contains the weights and biases of the neural network.
+				The \( \boldsymbol \theta \) in the subscript indicates that this function is <i>parametrized</i> by a parameter vector \( \boldsymbol \theta \), which contains the weights and biases of the neural network (hence, deep learning-based Channel Charting is <i>parametric</i>).
 				The purpose of neural network training is to find suitable values for \( \boldsymbol \theta \).
 			</p>
+		</div>
+	</div>
+
+	<h4 class="my-4" style="font-weight: bold;">Feature Engineering</h4>
+	Naively, one might just want to provide the time-domain CSI tensors \( \mathbf {\hat H}^{(l)} \) as inputs to the neural network.
+	That would not work for two reasons:
+	<ol>
+		<li>\( \mathbf {\hat H}^{(l)} \) is complex-valued and (at least, currently) TensorFlow neural networks work with real numbers</li>
+		<li>
+			Channel coefficient phases are relative.
+			Since transmitter and receiver oscillators are not perfectly synchronized (and in the real world they won't be, unless you have atomic clocks or highly accurate GPSDOs on both ends), the global phase rotation in \( \mathbf {\hat H}^{(l)} \) changes over time.
+			Even if the transmitter remains at the same position and the environment is perfectly static, the receiver may measured \( \mathbf {\hat H}^{(l)} \) at one point in time, and \( \mathrm e^{j \varphi} \cdot \mathbf {\hat H}^{(l)} \) soon after.
+			Neural networks are not well-equipped to compensate for this phase rotation.
+		</li>
+	</ol>
+
+	So, instead, what we would like to provide to the neural network is information about <i>relative</i> channel coefficients (sample correlations between channel coefficients of different antennas), with real and imaginary part split up.
+	In particular, we want to provide the sample autocorrelation between the channel coefficients of <i>any two</i> antennas (could be in different antenna arrays), and for all time taps (but no sample autocorrelations across time indices).
+	In mathematical notation, we would first define a set of indices \( \mathcal I \) that we then use to index the time-domain CSI tensor \( \mathbf { \hat H}^{(l)} \):
+
+	\[
+		\mathcal J = \left\{ 1, \ldots, B \right\}^2 \times \left\{ 1, \ldots, M \right\}^2 \times \left\{ 1, \ldots, \tau_\mathrm{max} - \tau_\mathrm{min} \right\}.
+	\]
+	\[
+		\mathbf c^{(l)} = \left( \tilde {\mathbf H}^{(l)}_{b_1 m_1 \tau} \left ( \tilde {\mathbf H}^{(l)}_{b_2 m_2 \tau} \right)^* \right)_{(b_1, b_2, m_1, m_2, \tau) \in \mathcal J}
+	\]
+
+	This results in a sample autocorrelation vector \( \mathbf c^{(l)} \) that we need to split into real and imaginary part to be able to feed it to the neural network, producing in the feature vector \( \mathbf f^{(l)} \):
+	\[
+		\mathbf{f}^{(l)} = \begin{pmatrix}
+			\mathrm{Re} \left\{ \mathbf c^{(l)} \right\} & \mathrm{Im} \left\{ \mathbf c^{(l)} \right\}
+		\end{pmatrix} \in \mathbb C^{2 B^2 M^2 (\tau_\mathrm{max} - \tau_\mathrm{min})}.
+	\]
+
+	<p>
+		In practical terms, we can implement the feature engineering stage as a <a href="https://keras.io/api/layers/">Keras layer</a>.
+		This means we can actually feed \( \mathbf {\hat H}^{(l)} \) as an input to that layer, and the layer will blow this up to \( \mathbf{f}^{(l)} \).
+		The computation of the sample autocorrelations can again be implemented using TensorFlow's <a href="https://www.tensorflow.org/api_docs/python/tf/einsum">einsum</a> (with the advantage that feature engineering can be efficiently performed on the GPU).
+	</p>
+
+	<pre class="m-0"><code class="language-python">class FeatureEngineeringLayer(tf.keras.layers.Layer):
+	def __init__(self):
+		super(FeatureEngineeringLayer, self).__init__(dtype = tf.complex64)
+
+	def call(self, csi):
+		# Compute sample autocorrelations for any combination of two antennas in the whole system
+		# for the same datapoint and time tap.
+		sample_autocorrelations = tf.einsum("damt,dbnt->dtabmn", csi, tf.math.conj(csi))
+		return tf.stack([tf.math.real(sample_autocorrelations), tf.math.imag(sample_autocorrelations)], axis = -1)</code></pre>
+
+	<h4 class="my-4" style="font-weight: bold;">The Forward Charting Function: Defining the Neural Network</h4>
+	<p>
+		Next, we can define the actual neural network that implements the FCF \( \mathcal C_{\boldsymbol \theta} \).
+		There is really not that much to see here, it is just a dense network.
+		We have a couple of hidden layers with ReLU activation, an output layer with linear activation and we use batch normalization.
+	</p>
+
+
+	<pre class="m-0"><code class="language-python">array_count = np.shape(csi_time_domain)[1]
+antenna_per_array_count = np.shape(csi_time_domain)[2]
+tap_count = np.shape(csi_time_domain)[3]
+
+cc_embmodel_input = tf.keras.Input(shape=(array_count, antenna_per_array_count, tap_count), name="input", dtype = tf.complex64)
+cc_embmodel_output = FeatureEngineeringLayer()(cc_embmodel_input)
+cc_embmodel_output = tf.keras.layers.Flatten()(cc_embmodel_output)
+cc_embmodel_output = tf.keras.layers.Dense(1024, activation = "relu")(cc_embmodel_output)
+cc_embmodel_output = tf.keras.layers.BatchNormalization()(cc_embmodel_output)
+cc_embmodel_output = tf.keras.layers.Dense(512, activation = "relu")(cc_embmodel_output)
+cc_embmodel_output = tf.keras.layers.BatchNormalization()(cc_embmodel_output)
+cc_embmodel_output = tf.keras.layers.Dense(256, activation = "relu")(cc_embmodel_output)
+cc_embmodel_output = tf.keras.layers.BatchNormalization()(cc_embmodel_output)
+cc_embmodel_output = tf.keras.layers.Dense(128, activation = "relu")(cc_embmodel_output)
+cc_embmodel_output = tf.keras.layers.BatchNormalization()(cc_embmodel_output)
+cc_embmodel_output = tf.keras.layers.Dense(64, activation = "relu")(cc_embmodel_output)
+cc_embmodel_output = tf.keras.layers.BatchNormalization()(cc_embmodel_output)
+cc_embmodel_output = tf.keras.layers.Dense(2, activation = "linear")(cc_embmodel_output)
+
+cc_embmodel = tf.keras.Model(inputs=cc_embmodel_input, outputs=cc_embmodel_output, name = "ForwardChartingFunction")</code></pre>
+
+	<h4 class="my-4" style="font-weight: bold;">Siamese Neural Network</h4>
+	<div class="row justify-content-center mb-2 mt-2">
+		<div class="col-12 col-md-10 col-lg-7 col-xl-4">
+			<img style="width: 100%;" src="siamese-nn.svg">
+		</div>
+		<div class="col-12 col-md-12 col-lg-5 col-xl-8 p-2">
 			<p>
-				But before we can do any of that, let's start with some basics about our datasets.
+				Remember, we can't train the FCF in a supervised manner, since we don't have ground truth information.
+				However, we do have a dissimilarity matrix \( \mathbf D_\mathrm{G-fuse} \) and we could try to make the FCF map datapoints to the channel chart such that the channel chart positions conform to \( \mathbf D_\mathrm{G-fuse} \).
+				This is exactly the idea of a <a href="https://en.wikipedia.org/wiki/Siamese_neural_network">Siamese Neural Network</a>:
+				Run the FCF twice on two different datapoint feature vectors \( f^{(i)} \) and \( f^{(j)} \), and tune (via backpropagation) the neural network based on how well the produced channel chart positions \( z^{(l)} \) and \( z^{(j)} \) match dissimilarity matrix.
+			</p>
+			<p>
+				This allows use to reuse the MDS cost function as a loss function for the Siamese neural network (where \( N \) is the size of the current batch):
+				\[
+					\mathcal{L}_\mathrm{Siamese} = \frac{1}{N^2} \sum\nolimits_{i=1}^{N}\sum\nolimits_{j=1}^N \left(\mathbf D_{\mathrm{G-fuse}, i, j}-\Vert\mathbf{z}^{(i)}-\mathbf{z}^{(j)}\Vert_2\right)^2.
+				\]
 			</p>
 		</div>
 	</div>
 
-	<p>
-		At this point, if your RAM is large enough for all TFRecords to fit inside, it might be a good idea to cache the training set so that all the subsequent training and evaluation steps will be quicker.
-		If your RAM is small (or you want to train on really huge training sets), don't worry:
-		The datasets can also remain on disk storage, and the training code will load batches of triplets from there when needed.
-		<pre class="m-0"><code class="language-python"># If you have enough RAM...
-training_set = training_set.cache()</code></pre>
-	</p>
+	For our particular implementation, inspired by <a href="https://en.wikipedia.org/wiki/Sammon_mapping">Sammon's mapping</a>, we found that a slightly modified (normalized) loss function produces even better results:
+	\[
+		\mathcal{L}_\mathrm{Siamese} = \frac{1}{N^2} \sum\nolimits_{i=1}^N\sum\nolimits_{j=1}^N \frac{1}{\mathbf D_{\mathrm{G-fuse}, i, j} + \beta} \left(\mathbf D_{\mathrm{G-fuse}, i, j}-\Vert\mathbf{z}^{(i)}-\mathbf{z}^{(j)}\Vert_2\right)^2.
+	\]
 
-	<h2 class="text-center my-4" style="font-weight: bold;">Visualizing the Dataset</h2>
-	<p>
-		Now that we have loaded the TFRecords dataset and applied some feature engineering stages, let's have a look at what the dataset actually looks like.
-		For this, we plot the afforementioned <i>ground truth</i> positions.
-		Additionally, we store a mapping from datapoint timestamp to the index in the dataset in a Python dictionary called <code class="language-python">timestamp_index_map</code> and sort this dictionary by timestamp (the dataset is not guaranteed to be sorted in any way!).
-		The purpose of this list will become apparent later on.
-	</p>
-	<p>
-		Running this code segment may take a lot of time - this is because all of the previous code segments only added processing steps to TensorFlow's compute graph.
-		It is only in the following processing step, that the datapoints are actually read from disk and feature engineering is applied.
-	</p>
-	<pre class="m-0"><code class="language-python"># This may take a long time, since TensorFlow has to load the dataset from disk!
-groundtruth_positions = []
-timestamp_index_map = dict()
+	This is how the loss function is implemented:
+	<pre class="m-0"><code class="language-python">dissimilarity_margin = np.quantile(dissimilarity_matrix_geodesic, 0.01)
 
-for index, data in enumerate(training_set):
-	groundtruth_positions.append(data[1].numpy())
-	timestamp_index_map[data[2].numpy()] = index
+def siamese_loss(y_true, y_pred):
+    y_true = y_true[:,0]
+    pos_A, pos_B = (y_pred[:,:2], y_pred[:,2:])
+    distances_pred = tf.math.reduce_euclidean_norm(pos_A - pos_B, axis = 1)
 
-timestamp_index_map = dict(sorted(timestamp_index_map.items()))
-groundtruth_positions = np.asarray(groundtruth_positions)</code></pre>
-	<p>
-		We use the <code>plot_colorized</code> function to plot the ground truth positions.
-		It produces a scatter plot, where each point in the scatter plot is assigned a color according to its ground truth position.
-		We can later reuse this function to plot the channel chart with the same colorization.
-	</p>
+    return tf.reduce_mean(tf.square(distances_pred - y_true) / (y_true + dissimilarity_margin))</code></pre>
 
-	<h2 class="text-center my-4" style="font-weight: bold;">Triplet-Based Dimensionality Reduction</h2>
+	And this is how we assemble two identical FCF networks into the Siamese neural network:
+	<pre class="m-0"><code class="language-python">input_A = tf.keras.layers.Input(shape = (array_count, antenna_per_array_count, tap_count,), dtype = tf.complex64)
+input_B = tf.keras.layers.Input(shape = (array_count, antenna_per_array_count, tap_count,), dtype = tf.complex64)
 
-	<p>
-		Now that we have loaded our CSI datasets and applied feature engineering, we are ready for the most important part of Channel Charting: the dimensionality reduction algorithm.
-		Keeping in mind that Channel Charting is a self-supervised training method, we need to pretend that we don't know the ground truth positions.
-		The channel chart should maintain the local geometry of the transmitter positions, i.e., any two positions \( \mathbf{x}, \mathbf{x'} \in \mathbb{R}^D \) that are close to each other in the real world should also be close to each other in the channel chart, with \( \mathbf{z}, \mathbf{z'} \in \mathbb{R}^{D'} \) being the corresponding points in the channel chart.
-		In other words, the condition
-		\[
-			\mathrm d_\mathrm{z} \left( \mathbf{z}, \mathbf{z'} \right) \approx \mathrm d_\mathrm{x} \left( \mathbf{x}, \mathbf{x'} \right)
-		\]
-		should be satisfied for any neighboring data points, with \( \mathrm d_\mathrm{z} \left( \cdot, \cdot \right) \) and \( \mathrm d_\mathrm{x} \left( \cdot, \cdot \right) \) being appropriately defined dissimilarity measures.
-		Finding such a dissimilarity measure is not trivial, as the Euclidean distance is a poor representation for high-dimensional data.
-		This problem is elegantly circumvented by the <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9322643">triplet-based dimensionality reduction technique</a>, which takes timestamps as side information into account.
-		Its principle is simple: Triplets of CSI samples are selected based on their timestamps.
-		Each triplet consists of a randomly selected anchor point and a positive sample which is closer to the anchor point in time than a third sample, which is called the negative sample.
-		<b>Since anchor and positive sample are close to each other in time, it is very likely that they are also close to each other in space, the converse holds for anchor and negative sample.</b>
-		These Triplets can then be processed by a special neural-network-structure called "Triplet Network" with a special type of loss function called <i>triplet loss</i>.
-	</p>
+embedding_A = cc_embmodel(input_A)
+embedding_B = cc_embmodel(input_B)
 
-	<h4 class="text-center my-4" style="font-weight: bold;">Triplet Loss</h4>
-	<div class="row">
-		<div class="col-sm-12 col-md-6 col-xl-6">
-			Triplet loss ensures that training leads to the positive sample getting closer to the anchor than the negative sample in the channel chart by penalizing output triplets where the negative sample is closer to the anchor point than the positive sample.
-			Let \( \mathcal T \) be the set of triplets, where a single triplet is given by the indices \( (i, j, k) \in \mathcal T \) of anchor point (\( i \)), positive sample (\( j \)) and negative sample (\( k \)) in the dataset.
-			We define and implement the loss function as
-			\[
-				\mathcal{L}=\frac{1}{\mathcal{|T|}}\sum_{\left(i,j,k\right)\in \mathcal{T}}\max\left(\Vert\mathbf{z}_i-\mathbf{z}_j\Vert-\Vert\mathbf{z}_i-\mathbf{z}_k\Vert+M,0\right).
-			\]
+output = tf.keras.layers.concatenate([embedding_A, embedding_B], axis=1)
+model = tf.keras.models.Model([input_A, input_B], output, name = "SiameseNeuralNetwork")</code></pre>
+
+	<h4 class="my-4" style="font-weight: bold;">Sample Selection</h4>
+	We generate a dataset called <code>random_pair_dataset</code>, which, as the name suggests, contains random pairs of datapoints from our dataset.
+	It is a good idea to implement this sample selection in a way that allows <a href="https://www.tensorflow.org/guide/data_performance">TensorFlow can optimize for maximum performance</a>.
+	<pre class="m-0"><code class="language-python">csi_time_domain_tensor = tf.constant(csi_time_domain)
+dissimilarity_matrix_geodesic_tensor = tf.constant(dissimilarity_matrix_geodesic)
+
+datapoint_count = tf.shape(csi_time_domain_tensor)[0].numpy()
+
+random_integer_pairs_dataset = tf.data.Dataset.zip(tf.data.Dataset.random(), tf.data.Dataset.random())
+
+@tf.function
+def fill_pairs(randA, randB):
+    return (csi_time_domain_tensor[randA % datapoint_count], csi_time_domain_tensor[randB % datapoint_count]), dissimilarity_matrix_geodesic_tensor[randA % datapoint_count, randB % datapoint_count]
+
+random_pair_dataset = random_integer_pairs_dataset.map(fill_pairs)</code></pre>
+
+	<h4 class="my-4" style="font-weight: bold;">Training</h4>
+	Finally, we can start the neural network training.
+	With a modern GPU, you should see the first Channel Chart after a few seconds, and training should be finished after a couple of minutes.
+	We adapt the learning rates and batch sizes over the training epochs (note: epochs don't really make sense in this context, but we will use this term anyway), such that the FCF first learns the coarse, global structure of the channel chart and later focuses on the finer details.
+
+<pre class="m-0"><code class="language-python">optimizer = tf.keras.optimizers.Adam()
+model.compile(loss = siamese_loss, optimizer = optimizer)
+
+samples_per_session = 150000
+learning_rates = [1e-2, 1e-2, 8e-3, 4e-3, 1e-3, 5e-4, 2e-4, 1e-4]
+batch_size = [500, 1000, 1500, 2000, 3000, 4000, 5000, 6000]
+
+for l in range(len(learning_rates)):
+    print("\nTraining Session ", l + 1, "\nBatch Size: ", batch_size[l], "\nLearning rate: ", learning_rates[l])
+
+    # Fit model
+    optimizer.learning_rate.assign(learning_rates[l])
+    steps_per_epoch = int(samples_per_session / batch_size[l])
+    model.fit(random_pair_dataset.batch(batch_size[l]).prefetch(tf.data.AUTOTUNE), steps_per_epoch = samples_per_session / batch_size[l])
+
+    # Plot Channel Chart
+    print("Running inference to plot channel chart")
+    channel_chart_positions = cc_embmodel.predict(csi_time_domain)
+    plot_colorized(channel_chart_positions, groundtruth_positions, title = "Siamese-Based Channel Chart - Session " + str(l + 1))</code></pre>
+
+	<div class="row justify-content-center mb-2 mt-2">
+		<div class="col-12 col-md-8 col-lg-6 col-xl-4">
+			<img style="width: 100%;" src="siamese-cc-firstiteration.png">
 		</div>
-		<div class="col-sm-12 col-md-6 col-xl-6">
-			<pre class="m-0"><code class="language-python">def triplet_loss(y_true, y_pred):
-	anchor, positive, negative = (y_pred[:, :CC_DIMENSIONALITY], y_pred[:, CC_DIMENSIONALITY : 2 * CC_DIMENSIONALITY], y_pred[:, 2 * CC_DIMENSIONALITY :])
-	positive_dist = tf.reduce_mean(tf.square(anchor - positive), axis = 1)
-	negative_dist = tf.reduce_mean(tf.square(anchor - negative), axis = 1)
-			
-	return tf.maximum(positive_dist - negative_dist + 1, 0.0)</code></pre>
+		<div class="col-12 col-md-8 col-lg-6 col-xl-4">
+			<img style="width: 100%;" src="siamese-cc.png">
+		</div>
+		<div class="col-12 col-md-12 col-lg-12 col-xl-4 p-2">
+			<p>
+				Channel charts like these ones should show up very soon.
+				The L-shaped structure of the measurement area that is also visible in the top view of "ground truth" positions is clearly very well preserved here.
+			</p>
+			<p>
+				Actually, the Channel Chart that appears after the first training epoch is already pretty acceptable, the global structure is clearly visible.
+			</p>
+			<p>
+				As always, there is some unknown rotation / flipping / scaling between the channel chart and the true locations.
+			</p>
 		</div>
 	</div>
 
-	<div class="row justify-content-center p-4">
-		<div class="col-12 col-lg-10 col-xl-8">
-			<img style="width: 100%;" src="tripletloss.png">
+	<h2 class="text-center my-4" style="font-weight: bold;">Evaluation: Optimal Affine Transform and Mean Absolute Error</h2>
+	To get a nice side-by-side comparison between channel chart and ground truth positions, we want to find the optimal affine transform
+	\[
+		\mathbf {\hat z}^{(l)} = \mathbf {\hat A} \mathbf z^{(l)} + \mathbf { \hat b }
+	\]
+	from channel chart coordinates \( \mathbf z^{(l)} \) to real-world coordinates \( \mathbf {\hat z}^{(l)} \), where \( \mathbf {\hat A} \in \mathbb R^{2 \times 2} \) and \( \mathbf { \hat b} \in \mathbb R^2 \) (2-dimensional space).
+	We can find such a transform by solving the least-squares problem
+	\[
+		(\mathbf{\hat A}, \mathbf{\hat b}) = \underset{(\mathbf{A}, \mathbf{b})}{\mathrm{argmin}} \sum_{l = 1}^L \lVert\mathbf{A}\mathbf{z}^{(l)} + \mathbf b - \mathbf{x}^{(l)}\rVert_2^2.
+	\]
+	We implement the solution to this problem with an <a href="https://en.wikipedia.org/wiki/Transformation_matrix#Affine_transformations">augmented transformation matrix</a> that handles both linear transformations and translations:
+	<pre class="m-0"><code class="language-python">channel_chart_positions = cc_embmodel.predict(csi_time_domain)
+
+def affine_transform_channel_chart(groundtruth_pos, channel_chart_pos):
+    pad = lambda x: np.hstack([x, np.ones((x.shape[0], 1))])
+    unpad = lambda x: x[:,:-1]
+    A, res, rank, s = np.linalg.lstsq(pad(channel_chart_pos), pad(groundtruth_pos), rcond = None)
+    transform = lambda x: unpad(np.dot(pad(x), A))
+    return transform(channel_chart_pos)
+
+channel_chart_positions_transformed = affine_transform_channel_chart(groundtruth_positions, channel_chart_positions)
+plot_colorized(groundtruth_positions, groundtruth_positions, title = "Ground Truth Positions")
+plot_colorized(channel_chart_positions_transformed, groundtruth_positions, title = "Channel Chart After Affine Transform")</code></pre>
+
+	Now, we can neatly compare ground truth positions to our channel chart:
+	<div class="row justify-content-center mb-2 mt-2">
+		<div class="col-12 col-md-8 col-lg-6 col-xl-4">
+			<img style="width: 100%;" src="groundtruth.png">
+		</div>
+		<div class="col-12 col-md-8 col-lg-6 col-xl-4">
+			<img style="width: 100%;" src="cc-affine.png">
 		</div>
 	</div>
 
-	<h4 class="text-center my-4" style="font-weight: bold;">Triplet Selection</h4>
-	<p>
-		For training, we need to create a large set of triplets \(\left(i,j,k\right)\in \mathcal{T}\).
-		Ideally, these triplets would be selected such that the condition
+<div class="row justify-content-center mb-2">
+	<div class="col-12 col-md-12 col-lg-6 col-xl-8 p-2">
+		We can even plot the error vectors:
+
+		<pre class="m-0"><code class="language-python">errorvectors = groundtruth_positions - channel_chart_positions_transformed
+errors = np.sqrt(errorvectors[:,0]**2 + errorvectors[:,1]**2)
+mae = np.mean(errors)
+
+nth_errorvector = 15
+plot_colorized(channel_chart_positions_transformed, groundtruth_positions, title = "Error Vectors, MAE = " + str(mae) + "m", show = False, alpha = 0.3)
+plt.quiver(channel_chart_positions_transformed[::nth_errorvector, 0], channel_chart_positions_transformed[::nth_errorvector, 1], errorvectors[::nth_errorvector, 0], errorvectors[::nth_errorvector, 1], color = "black", angles = "xy", scale_units = "xy", scale = 1)
+plt.show()</code></pre>
+
+		As you can see, the error vectors are not completely random, but we can spot some patterns.
+		Some of these patterns can be explained by the fact that the loss function compares geodesic distances (from the dissimilarity matrix) to Euclidean distances (in the channel chart).
+		So there is definitely some room for improvement here &#128521;.
+
+		The code above also computes and displays the mean absolute error (MAE), given by:
 		\[
-			\lVert \mathbf{x}_i - \mathbf{x}_j \rVert \leq \lVert \mathbf{x}_i - \mathbf{x}_k \rVert
+			\mathrm{MAE} = \frac{1}{L}\sum_{l=1}^L\lVert \mathbf{\hat{A}}\mathbf{z}^{(l)} + \mathbf{\hat b} - \mathbf{x}^{(l)}\rVert_2.
 		\]
-		holds for their respective ground truth positions \( \mathbf{x}_i \), \( \mathbf{x}_j \) and \( \mathbf{x}_k \).
-		Using ground truth information would be cheating though, we are looking for a self-supervised training method.
-		But there is another crucial piece of information that is available at the base station that we can exploit: The CSI timestamps!
-		Since the user travels with a finite velocity, we can assume that two CSI vectors measured within a short timeframe are likely to be close to each other.
-		Consequently, we select the triplets based on their timestamps such that
-		\[
-			\mathcal T = \{ \left(i, j, k \right): |t_j - t_i| \leq T_\mathrm{c} \},
-		\]
-		with \( T_c \) being the maximum elapsed time between anchor point and positive sample.
-	</p>
-
-	<p>
-		Admittedly, the following Python code, which generates a set of triplets \( \mathcal T \) provided \( T_\mathrm{c} \) is not pretty - but it is efficient.
-		The idea here is that we only operate on timestamps and indices in the dataset and only once we have decided which triplets to load from the training set, we iterate <i>once</i> over <code>training_set</code> and collect all the CSI features that we are interested in.
-		This way, the dataset can remain on disk if our available RAM is limited.
-	</p>
-	<p>
-		More precisely, we take the following steps to obtain \( \mathcal T \) from the training set:
-		<ol>
-			<li>
-				Given the particular elapsed time threshold \( T_\mathrm{c} \), generate a lookup table that, for every potential anchor point \( i \), contains all suitable positive sample indices \( j \).
-				That is, all sample indices \( i \) such that \( |t_i - t_j| \leq T_\mathrm{c} \).
-				Since <code>timestamp_index_map</code> is sorted, this lookup table can be computed very efficiently in a single iteration over <code>timestamp_index_map</code>.
-			</li>
-			<li>Based on the lookup table, randomly generate a list of triplets \( \mathcal T \). The negative sample index \( k \) is drawn randomly from the set of all datapoints. By the sheer number of datapoints, is unlikely that \( \mathbf x_k \) is closer to \( \mathbf x_i \) than \( \mathbf x_j \).</li>
-			<li>From \( \mathcal T \), generate a list of datapoint indices to load the CSI features for and also remember what sample (anchor / positive / negative) of which triplet(s) these features belong to.</li>
-			<li>Then, iterate over the dataset (on disk or, if cached, in RAM) only <i>once</i> and load all of the CSI features for all triplets.</li>
-		</ol>
-		For now, we only define some functions.
-		We will call <code>generate_triplets</code> later for every batch of triplets to generate.
-	</p>
-	<pre class="m-0"><code class="language-python">def generate_positive_sample_lookup(Tc = 1.5):
-	lookup = dict()
-	suitable_set = dict()
-	candidate_iterator = iter(timestamp_index_map.items())
-	next_suitable = next(candidate_iterator)
-
-	for anchor_timestamp, anchor_index in timestamp_index_map.items():
-		# Add additional later suitable datapoints to suitable_set
-		while next_suitable[0] - anchor_timestamp < Tc:
-			suitable_set.update((next_suitable,))
-			try:
-				next_suitable = next(candidate_iterator)
-			except StopIteration:
-				break
-
-		# Remove too early suitable datapoints from suitable_set
-		outdated = []
-		for timestamp in suitable_set.keys():
-			if anchor_timestamp - timestamp > Tc:
-				outdated.append(timestamp)
-			else:
-				for o in outdated:
-					del suitable_set[o]
-				break
-
-		# For every potential anchor point, store lookup table of potential positive sample indices
-		lookup[anchor_index] = set(suitable_set.values())
-		
-		# Set of suitable positive samples must not contain anchor itself
-		lookup[anchor_index].remove(anchor_index)
-		lookup[anchor_index] = list(lookup[anchor_index])
-
-	return lookup</code></pre>
-<pre class="m-0"><code class="language-python">def generate_triplets(nr_of_triplets = 1000, Tc = 1.5):
-    print("Generating lookup table for positive samples")
-    positive_sample_lookup = generate_positive_sample_lookup(Tc)
-
-    # Generate list of triplet containing *indices* of datapoints in dataset
-    triplet_indices = []
-    anchor_indices = list(positive_sample_lookup.keys())
-    
-    while len(triplet_indices) < nr_of_triplets:
-        anchor = anchor_indices[np.random.randint(len(anchor_indices))]
-        
-        # Must ensure that anchor point is not a loner and actually has some close positive samples
-        if len(positive_sample_lookup[anchor]) < 1:
-            continue
-
-        positive = np.random.choice(positive_sample_lookup[anchor])
-        negative = anchor_indices[np.random.randint(len(anchor_indices))]
-        
-        triplet_indices.append((anchor, positive, negative))
-
-    # Iterate over dataset (on hard drive storage) and load relevant CSI data to "triplets" list (in RAM)
-    datapoints_to_load = dict()
-    for target, indices in enumerate(triplet_indices):
-        for sample in range(3):
-            if indices[sample] not in datapoints_to_load:
-                datapoints_to_load[indices[sample]] = []
-            datapoints_to_load[indices[sample]].append((target, sample))
-
-    datapoints_to_load = dict(sorted(datapoints_to_load.items()))
-
-    anchors = [None for i in range(len(triplet_indices))]
-    positives = [None for i in range(len(triplet_indices))]
-    negatives = [None for i in range(len(triplet_indices))]
-
-    print("Loading batch of triplets from dataset (on disk or in RAM)")
-    for index, data in enumerate(training_set):
-        if index in datapoints_to_load:
-            for target in datapoints_to_load[index]:
-                if target[1] == 0:
-                    anchors[target[0]] = data[0]
-                elif target[1] == 1:
-                    positives[target[0]] = data[0]
-                elif target[1] == 2:
-                    negatives[target[0]] = data[0]
-    print("Finished loading triplet batch")
-
-    return [tf.stack(anchors), tf.stack(positives), tf.stack(negatives)]</code></pre>
-
-	<h4 class="text-center my-4" style="font-weight: bold;">Neural Network Architecture</h4>
-	<p>
-		The DNN is trained to learn the Forward Charting Function \( \mathcal C_{\boldsymbol \theta} \), which maps the high-dimensional features to the low-dimensional points in the channel chart.
-		The DNN itself is built from several dense layers followed by batch normalization layers.
-		The input layer has \(1024\) neurons, matching the dimensionality of the input feature vector \( \mathbf f^{(l)} \) (\( B^2 = 32^2 = 1024 \)).
-		Unsurprisingly, since the channel chart is \(2\)-dimensional, the output layer has only two neurons.
-	</p>
-	<div class="row justify-content-center">
-		<div class="col-lg-12 col-xl-9">
-			<pre class="m-0"><code class="language-python">CC_DIMENSIONALITY = 2
-embedding_model = tf.keras.models.Sequential(
-	[
-		tf.keras.layers.Dense(ANTENNACOUNT * ANTENNACOUNT, activation = "relu", input_shape = (ANTENNACOUNT * ANTENNACOUNT,)),
-		tf.keras.layers.BatchNormalization(),
-		tf.keras.layers.Dense(512, activation = "relu"),
-		tf.keras.layers.BatchNormalization(),
-		tf.keras.layers.Dense(256, activation = "relu"),
-		tf.keras.layers.BatchNormalization(),
-		tf.keras.layers.Dense(128, activation = "relu"),
-		tf.keras.layers.BatchNormalization(),
-		tf.keras.layers.Dense(64, activation = "relu"),
-		tf.keras.layers.BatchNormalization(),
-		tf.keras.layers.Dense(CC_DIMENSIONALITY, activation = "linear"),
-	]
-)</code></pre>
-		</div>
-		<div class="col-12 col-md-7 col-lg-5 col-xl-3 p-3">
-			<img style="width: 100%;" src="dnn_structure.png">
-		</div>
-<p>
-	For training, we need to embed the DNN \( \mathcal C_{\boldsymbol \theta} \) into a triplet neural network.
-	The three feature vectors of a triplet are each fed into the DNN, which then outputs the three corresponding low-dimensional points.
-	From the three output points, TensorFlow then computes gradients for backpropagation using our triplet loss.
-</p>
-<div class="row justify-content-center">
-	<div class="col-12 col-md-9 col-lg-7 col-xl-5 p-3">
-		<img style="width: 100%;" src="triplet^{(l)}etwork.png">
 	</div>
-	<div class="col-lg-12 col-xl-7">
-		<pre class="m-0"><code class="language-python">input_anchor = tf.keras.layers.Input(shape=(ANTENNACOUNT * ANTENNACOUNT,))
-input_positive = tf.keras.layers.Input(shape=(ANTENNACOUNT * ANTENNACOUNT,))
-input^{(l)}egative = tf.keras.layers.Input(shape=(ANTENNACOUNT * ANTENNACOUNT,))
-
-embedding_anchor = embedding_model(input_anchor)
-embedding_positive = embedding_model(input_positive)
-embedding^{(l)}egative = embedding_model(input^{(l)}egative)
-
-output = tf.keras.layers.concatenate([embedding_anchor, embedding_positive, embedding^{(l)}egative], axis=1)
-model = tf.keras.models.Model([input_anchor, input_positive, input^{(l)}egative], output)</code></pre>
+	<div class="col-12 col-md-8 col-lg-6 col-xl-4 p-2">
+		<img style="width: 100%;" src="cc-errorvectors.png">
 	</div>
 </div>
 
-	<h4 class="text-center my-4" style="font-weight: bold;">Neural Network Training</h4>
+	Finally, let's have a look at the distribution of the absolute error by plotting the cumulative distribution function (CDF) of the distance error:
 	<div class="row justify-content-center">
-		<div class="col-12">
-			<p>
-				Finally, we are ready to train the DNN.
-				The elapsed time threshold between anchor and positive sample decreases for every training batch (\(T_c = 5.5 \dots 3\)).
-				The training itself is performed in eight sessions.
-				In each session, a new dataset with \( 150\,000 \) triplets is generated, on which the DNN is trained for ten epochs.
-				The learning rate decreases every few sessions, but the batch size remains at constant \( 8\,192 \).
-				All of these hyperparameters are definitely subject to further optimization!
-			</p>
+		<div class="col-12 col-sm-12 col-md-12 col-xl-7 p-3">
+			<pre class="m-0"><code class="language-python">count, bins_count = np.histogram(errors, bins=200)
+pdf = count / sum(count)
+cdf = np.cumsum(pdf)
+
+bins_count[0] = 0
+cdf = np.append([0], cdf)
+
+plt.figure(figsize=(5, 4))
+plt.plot(bins_count, cdf)
+plt.xlim((0, 2))
+plt.xlabel("Absolute Localization Error [m]")
+plt.ylabel("CDF")
+plt.grid()
+plt.show()</code></pre>
+		</div>
+		<div class="col-12 col-sm-11 col-md-9 col-lg-7 col-xl-5 p-3">
+			<img style="width: 100%;" src="error-cdf.png">
 		</div>
 	</div>
-	<div class="row justify-content-center">
-		<div class="col-12">
-			<pre class="m-0"><code class="language-python">optimizer = tf.keras.optimizers.Adam()
-model.compile(loss = triplet_loss, optimizer = optimizer)
-
-batch_size = 8192
-learning_rates = [1e-3, 1e-3, 1e-4, 1e-4, 1e-5, 1e-5, 1e-5, 1e-5]
-T_c = 5
-
-for l in range(len(learning_rates)):
-	print("\nTraining Session ", l + 1, "\nT_c =", T_c)
-	triplets = generate_triplets(150000, T_c)
-	optimizer.learning_rate.assign(learning_rates[l])
-	print("\nBatch Size: ", batch_size, "\nEpochs: ", 10, "\nLearning rate: ", learning_rates[l])
-	model.fit(triplets, triplets, batch_size = batch_size, steps_per_epoch = int(len(triplets[0]) / batch_size), epochs = 10)</code></pre>
-		</div>
-	</div>
-
-	<h4 class="text-center my-4" style="font-weight: bold;">Plotting the Channel Chart</h4>
-
-	<div class="row justify-content-center">
-		<div class="col-12 col-xl-8 p-3">
-			<p>
-				Now we can let the trained DNN \( \mathcal C_{\boldsymbol \theta} \) predict points in the channel chart given CSI features from the training set.
-				But wait!
-				Isn't it common in machine learning tasks to do this on a test set?
-				In our case, we applied an unsupervised learning technique, so the ground truth information is not known to the DNN.
-				Therefore, and since the real goal of Channel Charting is to learn a sparse (low-dimensional) representation of CSI, we will use the training set here.
-				Let's see what the DNN predicts if we feed it with the CSI feature vectors \( \mathbf f^{(l)} \).
-			</p>
-			<pre class="m-0"><code class="language-python">channel_chart_positions = []
-	
-for csi, pos, timestamp in training_set.batch(1000):
-	channel_chart_positions.append(embedding_model.predict(csi))
-
-channel_chart_positions = np.vstack(channel_chart_positions)
-
-plot_colorized(channel_chart_positions, title = "Channel Chart")</code></pre>
-		</div>
-		<div class="col-12 col-md-8 col-lg-5 col-xl-4 p-3">
-			<img style="width: 100%;" src="channel_chart.png">
-		</div>
-	</div>
-<p>
-	Thanks to the colorization (remember, colors are assigned according to the <i>ground truth</i> positions) we can directly see that CSI vectors measured at similar user positions are also placed close to each other in the channel chart.
-	The global structure of the positions is also preserved to a certain degree.
-</p>
-
-<h2 class="text-center" style="font-weight: bold;">Performance Evaluation</h2>
-	<div class="row justify-content-center">
-		<div class="col-12">
-			<p>
-				The goal of Channel Charting is to preserve the local geometry of the UE positions, and ideally the global geometry as well.
-				However, we can't compare the channel chart with the ground truth positions using metrics such as mean squared error:
-				If the geometry of the transmitter positions was preserved perfectly, since we don't have any known reference locations, the channel chart can always only match the real positions down to some linear transformation (i.e., some combination of rotation, scaling and / or reflection).
-				Therefore, we need to find other metrics to measure the performance of the learned forward charting function.
-				Channel Charting literature employs performance metrics that are also commonly used in other dimensionality reduction tasks.
-				We use three different metrics out of them to evaluate our channel charts:
-				<ul>
-					<li>
-						<b>Continuity</b> (CT) and <b>Trustworthiness</b> (TW), both normalized to range \( [0, 1] \), are two measures for the preservation of local neighborhoods.
-						A high CT indicates that many neighborhood relationships in physical space are preserved in the channel chart.
-						A high TW value, on the other hand, indicates that the channel chart does not contain many additional false neighborhood relationships, i.e., ones which are not present in the physical space.
-						Trustworthiness is already implemented in the <a href="https://scikit-learn.org/stable/modules/generated/sklearn.manifold.trustworthiness.html">scikit-learn package</a>.
-						We implement continuity based on this implementation of the trustworthiness.
-					</li>
-					<li>
-						<b>Kruskal Stress</b> (KS) is a measure for the preservation of the global channel chart structure.
-						It is also bounded to the range \( [0,1] \), but this time with 0 indicating the best and 1 indicating the worst possible performance.
-					</li>
-				</ul>
-			</p>
-		</div>
-	</div>
-
-	<div class="row justify-content-center">
-		<div class="col-12">
-			<pre class="m-0"><code class="language-python">from sklearn.metrics import pairwise_distances
-from sklearn.neighbors import NearestNeighbors
-from sklearn import manifold
-import random
-
-def continuity(X, X_embedded, *, n^{(l)}eighbors = 5, metric = "euclidean"):
-	dist_X_embedded = pairwise_distances(X_embedded, metric = metric)
-	np.fill_diagonal(dist_X_embedded, np.inf)
-	ind_X_embedded = np.argsort(dist_X_embedded, axis = 1)
-	ind_X = NearestNeighbors(n^{(l)}eighbors = n^{(l)}eighbors).fit(X).kneighbors(return_distance = False)
-	n_samples = X_embedded.shape[0]
-	inverted_index = np.zeros((n_samples, n_samples), dtype = int)
-	ordered_indices = np.arange(n_samples + 1)
-	inverted_index[ordered_indices[:-1, np.newaxis], ind_X_embedded] = ordered_indices[1:]
-	ranks = inverted_index[ordered_indices[:-1, np.newaxis], ind_X] - n^{(l)}eighbors
-	c = np.sum(ranks[ranks > 0])
-	c = 1.0 - c * (2.0 / (n_samples * n^{(l)}eighbors * (2.0 * n_samples - 3.0 * n^{(l)}eighbors - 1.0)))
-
-	return c
-
-
-def kruskal_stress(X, X_embedded, *, metric="euclidean"):
-	dist_X = pairwise_distances(X, metric = metric)
-	dist_X_embedded = pairwise_distances(X_embedded, metric = metric)
-	beta = np.divide(np.sum(dist_X * dist_X_embedded), np.sum(dist_X_embedded * dist_X_embedded))
-
-	return np.sqrt(np.divide(np.sum(np.square((dist_X - beta * dist_X_embedded))), np.sum(dist_X * dist_X)))</code></pre>
-			<p>
-				Computing and storing pairwise distances for the CT, TW and KS metrics is both memory-intensive and computationally expensive.
-				We therefore compute these metrics on a randomly picked subset of datapoints, consisting of only every tenth datapoint:
-			</p>
-			<pre class="m-0"><code class="language-python">subset_indices = random.sample(range(len(groundtruth_positions)), len(groundtruth_positions) // 10)
-
-groundtruth_positions_subset = groundtruth_positions[subset_indices]
-channel_chart_positions_subset = channel_chart_positions[subset_indices]
-
-ct_train = continuity(groundtruth_positions_subset, channel_chart_positions_subset, n^{(l)}eighbors = int(0.05 * len(groundtruth_positions_subset)))
-tw_train = manifold.trustworthiness(groundtruth_positions_subset, channel_chart_positions_subset, n^{(l)}eighbors = int(0.05 * len(groundtruth_positions_subset)))
-ks_train = kruskal_stress(groundtruth_positions_subset, channel_chart_positions_subset)
-
-metrics_channel_chart_train = np.around(np.array([ct_train, tw_train, ks_train]), 4)
-
-print("CT: {} \nTW: {} \nKS: {}".format(*metrics_channel_chart_train))</code></pre>
-		</div>
-	</div>
-
-
-	<div class="row justify-content-center">
-		<div class="col-12 col-md-8 py-3">
-			<p>
-				Obviously, continuity and trustworthiness are close to 1, and the kruskal stress is close to 0.
-				This confirms our first impression of the channel chart to be a locally, as well as globally reasonable representation of the radio environment.
-			</p>
-		</div>
-		<div class="col-12 col-md-4">
-			<pre class="m-0"><code>>> CT: 0.9736
->> TW: 0.957
->> KS: 0.2596</code></pre>
-		</div>
-	</div>
-
-<h2 class="text-center" style="font-weight: bold;">Conclusion</h2>
-
-<div class="row justify-content-center">
-	<div class="col-12">
-		<p>
-			We successfully applied triplet-based Channel Charting to a DICHASUS dataset.
-			The key takeaways are:
-			<ul>
-				<li>
-					Triplet-based Channel Charting is feasible on real CSI measured by DICHASUS, exploiting timestamp metadata.
-				</li>
-				<li>
-					Performance, as measured by the evaluation metrics Continuity, Trustworthiness and Kruskal Stress, is acceptable, but can be improved further using more training data, hyperparameter tuning or better training approaches.
-				</li>
-			</ul>
-		</p>
-	</div>
-</div>-->
-
+	Very nice, around 90% of the absolute localization errors are below \( 0.75\,\mathrm{m} \) &#128578;!
 
 <h2 class="text-center my-4" style="font-weight: bold;">A Note on Privacy</h2>
 <p>
