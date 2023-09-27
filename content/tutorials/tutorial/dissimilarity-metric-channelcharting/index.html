@@ -182,6 +182,12 @@ for path in inputpaths[1:]:
 				</ul>
 			</p>
 
+			<p>
+				At the output of the processing pipeline, we get time-domain CSI tensors \( \mathbf { \hat H^{(l)} } \in \mathbb C^{B \times M \times (\tau_\mathrm{max} - \tau_\mathrm{min})} \).
+				In all subsequent steps, we will work with these time-domain tensors.
+				The superscript \( l \) of \( \mathbf { \hat H^{(l)} } \) indicates the datapoint, and we will use comma-separated subscripts for indexing.
+			</p>
+
 			To reduce the number of datapoints (and hence, RAM usage and processing time), we will only use every 4<sup>th</sup> datapoint:
 			<pre class="m-0"><code class="language-python"># Decimate dataset: Use only every 4th datapoint (to reduce number of points)
 training_set = full_dataset.enumerate().filter(lambda idx, value : (idx % 4 == 0))
@@ -242,11 +248,157 @@ timestamps = np.concatenate(timestamps)</code></pre>
 plot_colorized(groundtruth_positions, groundtruth_positions, title="Ground Truth Positions")</code></pre>
 		</div>
 		<div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 p-3">
-				<img style="width: 100%;" src="groundtruth.png">
+			<img style="width: 100%;" src="groundtruth.png">
 		</div>
 	</div>
 
-	<h2 class="text-center my-4" style="font-weight: bold;">Computing the Dissimilarity Matrix</h2>
+	<h2 class="text-center my-4" style="font-weight: bold;">Introduction to the Dissimilarity Matrix</h2>
+	<div class="row justify-content-center">
+		<div class="col-12 col-sm-12 col-md-12 col-xl-7 p-3">
+			So, what is a dissimilarity matrix really?
+			Let's have a look at a concrete example:
+			The picture shows a map of central Europe where a couple of cities are labelled:
+			Brussels (B), Paris (P), Frankfurt (F), Stuttgart (S) and Zürich (Z).
+			Let's say we want to know how far the cities are from each other.
+			Now, since we know the locations of these cities on the map, we could just measure the <i>true distance</i> between them.
+			Let's pretend, however, that we don't have a map - instead, let's assume we are only allowed to look up how much time it takes to travel from one city to another by train, and only direct connections are allowed.
+			We could then come up with the following table, which indicates the approximate travel time in minutes between these cities:
+
+			<div class="p-5">
+				<table class="table">
+					<tr>
+						<td></td>
+						<th><div style="width: 40px; transform: translate(0px, -10px) rotate(315deg);">Brussels</div></th>
+						<th><div style="width: 40px; transform: translate(0px, -10px) rotate(315deg);">Paris</div></th>
+						<th><div style="width: 40px; transform: translate(0px, -10px) rotate(315deg);">Frankfurt</div></th>
+						<th><div style="width: 40px; transform: translate(0px, -10px) rotate(315deg);">Stuttgart</div></th>
+						<th><div style="width: 40px; transform: translate(0px, -10px) rotate(315deg);">Zürich</div></th>
+					</tr>
+					<tr style="text-align: center;">
+						<th style="text-align: right;">
+							Brussels
+						</th>
+						<td>0</td><td>83</td><td>186</td><td>&infin;</td><td>&infin;</td>
+					</tr>
+					<tr style="text-align: center;">
+						<th style="text-align: right;">
+							Paris
+						</th>
+						<td>86</td><td>0</td><td>229</td><td>193</td><td>244</td>
+					</tr>
+					<tr style="text-align: center;">
+						<th style="text-align: right;">
+							Frankfurt
+						</th>
+						<td>189</td><td>238</td><td>0</td><td>77</td><td>233</td>
+					</tr>
+					<tr style="text-align: center;">
+						<th style="text-align: right;">
+							Stuttgart
+						</th>
+						<td>&infin;</td><td>190</td><td>78</td><td>0</td><td>&infin;</td>
+					</tr>
+					<tr style="text-align: center;">
+						<th style="text-align: right;">
+							Zürich
+						</th>
+						<td>&infin;</td><td>244</td><td>234</td><td>&infin;</td><td>0</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-5 p-3">
+			<img style="width: 100%;" src="graph-dissimilarity-matrix.svg">
+		</div>
+	</div>
+
+	<p>
+		In mathematical terms, the set of cities we considered can be viewed as the <i>vertices</i> of a graph, and the travel times between the cities can be interpreted as the <i>edges</i> of a directed graph.
+		In this interpretation, the table above is the <i>adjacency matrix</i> of this graph, and this is essentially what we call the <i>dissimilarity matrix</i> \( \mathbf D \) in Channel Charting.
+		In general, the dissimilarity matrix has \( N^2 \) entries, where \( N \) is the number of datapoints and, hence, vertices in the graph.
+	</p>
+	<p>
+		There are some general observations to be made about the dissimilarity matrix:
+		<ul>
+			<li>The values in the matrix can be interpreted as pseudo-distances. They should be somewhat indicative of the true distance between points.</li>
+			<li>The diagonal elements are zero.</li>
+			<li>
+				The matrix is either symmetric or almost symmetric. In the example above, it takes the same time to go from Paris to Zürich as it takes to get from Zürich to Paris, and the other entries differ by only a few minutes.
+				For guessing the distances between cities, we can symmetrize the matrix as \( \mathbf D_\mathrm{sym} = \frac{1}{2} \left( \mathbf D + \mathbf D^\mathrm{T} \right) \).
+			</li>
+		</ul>
+		By realizing that the \( N \) diagonal elements are all zeroes and exploiting the (almost-)symmetry of the matrix, this means that we can get away with only computing \( \frac{N^2 - N}{2} \) dissimilarities, which we will exploit later.
+	</p>
+
+	<h2 class="text-center my-4" style="font-weight: bold;">Dissimilarity Metrics and Dissimilarity Matrix Computation</h2>
+	<div class="row justify-content-center">
+		<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-10 p-3">
+			<img style="width: 100%;" src="dissimilarities-overview.svg">
+		</div>
+	</div>
+
+	<p>
+		The picture above is taken from <a href="https://arxiv.org/abs/2308.09539">our paper on dissimilarity metric-based Channel Charting</a>
+		It provides an overview over some of the ways in which dissimilarities between datapoints may be computed.
+		On one hand, there are <i>side information-based</i> methods, like taking into account timestamps of measurements or by using some sort of ground truth information, where it is available (we would consider the latter to be cheating, we want a fully self-supervised system).		
+		On the other hand, there are <i>CSI-based</i> methods, which exploit some expert knowledge on wave propagation and the format of CSI to compute dissimilarities.
+		The diagram above only lists a few of them, namely <a href="https://arxiv.org/abs/2104.13184">a cosine similarity-based metric</a>, a <a href="https://ieeexplore.ieee.org/abstract/document/10070385">channel impulse response (CIR) amplitude-based metric</a> and a (our own) <a href="https://arxiv.org/abs/2308.09539">angle delay profile (ADP)-based metric</a>.
+		Then, there are also what we call <i>fused</i> metrics, where we combine one or multiple metrics into a better one.
+		And finally, we can transform any matrix into a <i>geodesic</i> version of the matrix, which will be explained later.
+	</p>
+	<p>
+		In the following, we will use these steps to compute a dissimilarity matrix:
+		<ol>
+			<li>Compute the ADP-based dissimilarity matrix \( \mathbf D_\mathrm{ADP} \)</li>
+			<li>Compute a timestamp-based dissimilarity matrix  \( \mathbf D_\mathrm{time} \)</li>
+			<li>Fuse \( \mathbf D_\mathrm{ADP} \) and \( \mathbf D_\mathrm{time} \) into \( \mathbf D_\mathrm{fuse} \)</li>
+			<li>From the fused matrix \( \mathbf D_\mathrm{fuse} \), compute the geodesic matrix \( \mathbf D_\mathrm{fuse, geo} \)</li>
+		</ol>
+	</p>
+
+	<h4 class="mt-4" style="font-weight: bold;">Step 1: ADP-based dissimilarity matrix</h4>
+	
+	<div class="row justify-content-center">
+		<div class="col-12 col-sm-12 col-md-12 col-xl-5 p-3">
+			<p>
+				Intuitively, the "angle-delay profile" of a wireless channel describes how much power of a transmitted signal arrives at the base station at what time (<i>delay</i>) and from what <i>angle</i> of arrival (AoA).
+			</p>
+			<p>
+				There are different ways to check if two signals come from the same AoA: We could use a superresolution method like <a href="https://en.wikipedia.org/wiki/MUSIC_(algorithm)">MUSIC</a> for AoA estimation and then compare the angles.
+				MUSIC, however, is computationally rather expensive and for large dissimilarity matrices, we need to compute <i>lots</i> of dissimilarity metrics.
+				Also, we didn't get very convincing results with MUSIC, so we will use a faster and simpler method instead.
+			</p>
+		</div>
+		<div class="col-12 col-sm-12 col-md-8 col-xl-7">
+			<img style="width: 100%;" src="angle-delay-profile.svg">
+		</div>
+	</div>
+
+	<p>
+		In fact, we can check if two signals come from a similar AoA by just computing the <a href="https://en.wikipedia.org/wiki/Cosine_similarity">cosine similarity</a> between their channel vectors (i.e., the vectors continaing the channel coefficients of all antennas).
+		Here, we compute the cosine similarity between to datapoints \( i \) and \( j \) for a single time tap \( \tau \) and a single antenna array \( b \):
+		\[
+			\text{CS} = \frac{\left\lvert \sum_{m=1}^{M} \left(\tilde {\mathbf H}_{b, m, \tau}^{(i)}\right)^* \tilde {\mathbf H}_{b, m, \tau}^{(j)}\right\rvert^2} { \left(\sum_{m=1}^{M}\left\lvert \tilde {\mathbf H}_{b, m, \tau}^{(i)}\right\rvert^2 \right) \left(\sum_{m=1}^{M} \left\lvert \tilde {\mathbf H}_{b, m, \tau}^{(j)}\right\rvert^2\right)}
+		\]
+		The cosine similarity is 1 if both channel vectors are identical (except for phase shifts and power scalings), and smaller cosine similarities indicate that the two AoAs are more dissimilar.
+	</p>
+
+	<p>
+		To get a good dissimilarity measure for channel charting, we sum the time-domain cosine similarities over all time taps \( \tau = 1, \ldots, \tau_\mathrm{max} - \tau_\mathrm{min} \) and all distributed antenna arrays \( b = 1, \ldots, B \).
+		Also, we need to invert the cosine similarity value, such that higher values indicate a greater dissimilarity, hence the "\( 1- \)" in the following formula for the ADP dissimilarity:
+		\[
+			\mathbf D_{\mathrm{ADP}, i, j} = \sum_{b=1}^B \sum_{\tau=1}^{\tau_\mathrm{max} - \tau_\mathrm{min}} \left( 1 - \frac{\left\lvert \sum_{m=1}^{M} \left(\tilde {\mathbf H}_{b, m, \tau}^{(i)}\right)^* \tilde {\mathbf H}_{b, m, \tau}^{(j)}\right\rvert^2} { \left(\sum_{m=1}^{M}\left\lvert \tilde {\mathbf H}_{b, m, \tau}^{(i)}\right\rvert^2 \right) \left(\sum_{m=1}^{M} \left\lvert \tilde {\mathbf H}_{b, m, \tau}^{(j)}\right\rvert^2\right)} \right)
+		\]
+	</p>
+
+	<p>
+		In terms of the practical implementation of this equation, we will use NumPy's <a href="https://numpy.org/doc/stable/reference/generated/numpy.einsum.html">einsum</a> to compute the cosine similarities row-wise.
+		You may also notice that we can compute the entries of the matrix \( \mathbf D_\mathrm{ADP} \) independently from one another, which means that the computation can be parallelized.
+		We will use Python's <a href="https://docs.python.org/3/library/multiprocessing.html">multiprocessing</a> for that.
+		Finally, we make use of the fact that the dissimilarity matrix is symmetric and only compute half of the entries.
+		This makes the following code which computes \( \mathbf D_\mathrm{ADP} \) (here called <code>adp_dissimilarity_matrix</code>) really fast:
+	</p>
+
 	<pre class="m-0"><code class="language-python">adp_dissimilarity_matrix = np.zeros((csi_time_domain.shape[0], csi_time_domain.shape[0]),dtype=np.float32)
 
 def adp_dissimilarities_worker(todo_queue, output_queue):
@@ -296,6 +448,142 @@ with progressbar.ProgressBar(max_value = csi_time_domain.shape[0]**2) as bar:
 			adp_dissimilarity_matrix[i:,i] = d
 			count = count + 2 * len(d) - 1
 			bar.update(count)</code></pre>
+
+	<div class="row justify-content-center mb-2 mt-2">
+		<div class="col-12 col-md-12 col-lg-4 col-xl-6 p-2">
+			We can actually visualize the computed dissimilarity matrix in a video:
+			The red marker indicates the current position of the transmitter, and the color of the other datapoints indicates the dissimilarity of these datapoints to the datapoint at the red dot.
+			Clearly, datapoints which are close to the red dot are blue (small ADP dissimilarity), and other datapoints are yellow, which means that the distance matrix, which we computed purely from CSI, clearly contains some spatial information &#128578;!
+		</div>
+		<div class="col-12 col-md-10 col-lg-8 col-xl-6">
+			<video width="100%" controls style="border: 1px solid black;">
+				<source src="dmatrix-video-adp.mp4" type="video/mp4">
+			</video>
+		</div>
+	</div>
+
+	<h4 class="mt-4" style="font-weight: bold;">Step 2: Timestamp-based dissimilarity matrix</h4>
+	The timestamp-based dissimilarity matrix \( \mathbf D_\mathrm{time} \) is very easy to compute.
+	Each entry just contains the absolute time different between the timestamps in our dataset:
+	\[
+		\mathbf D_{\mathrm{time},i, j} = \lvert t^{(i)}-t^{(j)} \lvert
+	\]
+
+	We can implement this in a single line of Python code, where \( \mathbf D_\mathrm{time} \) is called <code>timestamp_dissimilarity_matrix</code>:
+	<pre class="m-0"><code class="language-python"># Compute timestamp-based dissimilarity matrix
+timestamp_dissimilarity_matrix = np.abs(np.subtract.outer(timestamps, timestamps))</code></pre>
+
+	<h4 class="mt-4" style="font-weight: bold;">Step 3: Fusing \( \mathbf D_\mathrm{ADP} \) with \( \mathbf D_\mathrm{time} \)</h4>
+	The idea behind fused metrics is very simple:
+	Some entries of \( \mathbf D_\mathrm{ADP} \) will be more accurate than \( \mathbf D_\mathrm{time} \) and in other cases, it may be the other way round.
+	Ideally, we would always like to use the more accurate dissimilarity whenever possible, which poses two challenges:
+	<ol>
+		<li>We need to get \( \mathbf D_\mathrm{ADP} \) and \( \mathbf D_\mathrm{time} \) into the same scale (i.e., the same dissimilarity should correspond to a similar true distance)</li>
+		<li>For each entry, we need to figure out which dissimilarity (ADP-based or timestamp-based) to used. This decision could be based on some heuristic which tells us which dissimilarity we expect to be more accurate.</li>
+	</ol>
+	
+	In the following, we will try to solve both challenges at the same time.
+	To get a better understanding of the problem, we will first have a look at the relationship between \( \mathbf D_\mathrm{ADP} \) and \( \mathbf D_\mathrm{time} \).
+	Of course, if the time difference is very large, \( \mathbf D_\mathrm{ADP} \) can take any value (the robot may drive in a straight line, return to the starting point, ...), so it makes sense to only consider time distances of up to \( 2 \, \mathrm{s} \).
+	In other words, let's visualize the distribution of
+	\[
+		\mathcal R = \left\{ \frac{\mathbf D_{\mathrm{ADP}, i, j}}{\mathbf D_{\mathrm{time}, i, j}} ~ \Bigg| ~ 0 < \mathbf D_{\mathrm{time}, i, j} < 2; ~ i, j \in 1, \ldots, L \right\}
+	\]
+	in a histogram:
+	<div class="row justify-content-center mb-2 mt-2">
+		<div class="col-12 col-md-12 col-lg-6 col-xl-8 p-2">
+			<pre class="m-0"><code class="language-python">TIME_THRESHOLD = 2
+small_time_dissimilarity_indices = np.logical_and(timestamp_dissimilarity_matrix < TIME_THRESHOLD, timestamp_dissimilarity_matrix > 0)
+small_time_dissimilarities = timestamp_dissimilarity_matrix[small_time_dissimilarity_indices]
+small_adp_dissimilarities = adp_dissimilarity_matrix[small_time_dissimilarity_indices]
+
+n_bins = 1500
+
+fig, ax1 = plt.subplots()
+occurences, edges, patches = ax1.hist(small_adp_dissimilarities / small_time_dissimilarities, range = (0, 50), bins = n_bins)
+ax1.set_xlabel("$D_\mathrm{APDP} / D_\mathrm{time}$")
+ax1.set_ylabel("Number of Occurences")</code></pre>
+		</div>
+		<div class="col-12 col-md-8 col-lg-6 col-xl-4 p-2">
+			<img style="width: 100%;" src="dtime-dadp-ratio-histogram.png">
+		</div>
+	</div>
+	<p>
+		Interesting... There appear to be two distinct <i>modes</i> in this distribution.
+		These modes can be attributed to behaviors of the transmitter:
+		<ul>
+			<li>The transmitter might be moving with more or less constant speed. In that case, we land on the right mode, i.e., \( \mathbf D_{\mathrm{ADP}, i, j} \) is large compared to \( \mathbf D_{\mathrm{time}, i, j} \).</li>
+			<li>Or, the transmitter may be static or just rotating. This occurs more rarely. In that case, \( \mathbf D_{\mathrm{ADP}, i, j} \) is small and we land on the left mode.</li>
+		</ul>
+
+		We can assume that if the transmitter is moving, the timestamp-based dissimilarity metric is more accurate: The robot speed is relatively constant, and it is unlikely that it makes any sharp turns within such a short time interval.
+		On the other hand, if the robot is more or less static, we should rely on the ADP distance instead.
+		This will also make sure that if the transmitter returns to the same / similar location after some time, the Channel Charting algorithm will understand that the distance between those two datapoints is low.
+	</p>
+	<p>
+		This motivates a simple dissimilarity matrix fusing algorithm:
+		<ul>
+			<li>
+				First, we find the value \( \gamma \) which separates the two modes of \( \mathcal R \).
+				We use \( \gamma \) as a scaling factor.
+			</li>
+			<li>
+				For each matrix entry \( i, j \in 1, \ldots, L \), we compare \( \gamma \mathbf D_{\mathrm{time}, i, j} \) to \( \mathbf D_{\mathrm{ADP}, i, j} \).
+				We assume that whichever is smaller, is more accurate.
+				Visually speaking, if \( i, j \) belongs to the left mode in \( \mathcal R \), we use \( \mathbf D_{\mathrm{ADP}, i, j} \), otherwise, we use \( \gamma \mathbf D_{\mathrm{time}, i, j} \).
+			</li>
+		</ul>
+		In other words, we compute the fused dissimilarity matrix as
+		\[
+			\mathbf D_{\mathrm{fuse}, i, j} = \mathrm{min} \left\{ \mathbf D_{\mathrm{ADP}, i, j}, \gamma \mathbf D_{\mathrm{time}, i, j} \right\}.
+		\]
+	</p>
+	<p>
+		For separating the two modes, we could use some kind of <a href="https://en.wikipedia.org/wiki/Thresholding_(image_processing)">thresholding algorithm</a>.
+		In the Python code, we will use a very primitive approach which finds the leftmost point of the right mode:
+	</p>
+	<div class="row justify-content-center mb-2">
+		<div class="col-12 col-md-12 col-lg-6 col-xl-8 p-2">
+			<pre class="m-0"><code class="language-python">bin_centers = edges[:-1] + np.diff(edges) / 2.
+max_bin = np.argmax(occurences)
+min_threshold = np.quantile(occurences[:max_bin], 0.5)
+
+for threshold_bin in range(max_bin - 1, -1, -1):
+	if occurences[threshold_bin] < min_threshold:
+		break
+
+scaling_factor = bin_centers[threshold_bin]
+
+plt.bar(bin_centers[:max_bin], occurences[:max_bin], width = edges[1] - edges[0])
+plt.axhline(y = min_threshold, color = 'r', linestyle = '-')
+plt.text(4, min_threshold + 10, "Mode Separation Threshold", color = 'r',)
+plt.axvline(x = scaling_factor, color = 'r', linestyle = '-')
+plt.xlabel("$D_\mathrm{APDP} / D_\mathrm{time}$")
+plt.ylabel("Number of Occurences")
+plt.show()
+
+print("gamma = ", scaling_factor)</code></pre>
+		</div>
+		<div class="col-12 col-md-8 col-lg-6 col-xl-4 p-2">
+			<img style="width: 100%;" src="primitive-mode-separation.png">
+			<pre class="m-0"><code>gamma = 12.916666507720947</code></pre>
+		</div>
+	</div>
+
+	<p>
+		Finally, we can fuse the two dissimilarity matrices:
+		<pre class="m-0"><code class="language-python"># Fuse ADP-based and time-based dissimilarity matrices
+dissimilarity_matrix_fused = np.minimum(adp_dissimilarity_matrix, timestamp_dissimilarity_matrix * scaling_factor)</code></pre>
+	</p>
+
+	<p>
+		Admittedly, this kind of heuristic is very much dataset-dependent.
+		In a different dataset, we might have a mix of transmitters (stationary, pedestrian, car) moving at different speeds.
+		In that case we would need a more advanced heuristic that, for example, estimates the transmitter-specific speed based on CSI data, or we might want to use an entirely different fusing approach.
+		In some cases, we might want to use a nonlinear scaling to match the two dissimilarity metrics, or we might want to choose the more accurate dissimilarity not just based on which entry is smaller.
+	</p>
+
+	
 
 	<div class="alert alert-danger" role="alert">
 		<h2>More Coming Soon...</h2>
