@@ -2,6 +2,14 @@ $dark: #004191;
 $primary: #00BEFF;
 $secondary: #323232;
 
+$carousel-control-opacity: 0.8;
+$carousel-control-hover-opacity: 1.0;
+$carousel-indicator-transition: none;
+$carousel-indicator-height: 6px;
+$carousel-indicator-hit-area-height: 15px;
+$carousel-dark-indicator-active-bg: $dark;
+$carousel-indicator-opacity: 0.2;
+
 .text-underline-hover {
 	text-decoration: none;
 }
@@ -15,7 +23,6 @@ $secondary: #323232;
 }
 
 @import "bootstrap/scss/bootstrap";
-
 
 .nav-link.active {
 	background: rgba(0, 0, 0, 0.5) !important;

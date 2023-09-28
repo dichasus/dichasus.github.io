@@ -688,32 +688,32 @@ groundtruth_distance_matrix = distance_matrix(groundtruth_positions, groundtruth
 	We plot the median of these bins and color the area between the 25<sup>th</sup> and 75<sup>th</sup> percentile to get a better idea of the distribution.
 
 	<pre class="m-0"><code class="language-python">def plot_dissimilarity_over_euclidean_distance(dissimilarity_matrix, distance_matrix, label = None):
-dissimilarities_flat = dissimilarity_matrix.flatten()
-distances_flat = distance_matrix.flatten()
-
-max_distance = np.max(distances_flat)
-bins = np.linspace(0, max_distance, 100)
-bin_indices = np.digitize(distances_flat, bins)
-
-bin_medians = np.zeros(len(bins) - 1)
-bin_25_perc = np.zeros(len(bins) - 1)
-bin_75_perc = np.zeros(len(bins) - 1)
-for i in range(1, len(bins)):
-	bin_values = dissimilarities_flat[bin_indices == i]
-	bin_25_perc[i - 1], bin_medians[i - 1], bin_75_perc[i - 1] = np.percentile(bin_values, [25, 50, 75])
-
-plt.plot(bins[:-1], bin_medians, label = label)
-plt.fill_between(bins[:-1], bin_25_perc, bin_75_perc, alpha=0.5)
-
-plt.figure(figsize=(8,4))
-
-plot_dissimilarity_over_euclidean_distance(dissimilarity_matrix_geodesic, groundtruth_distance_matrix, "G-fuse")
-plot_dissimilarity_over_euclidean_distance(scaling_factor * adp_dissimilarity_matrix, groundtruth_distance_matrix, "ADP")
-
-plt.legend()
-plt.xlabel("Euclidean Distance [m]")
-plt.ylabel("Scaled Dissimilarity")
-plt.show()</code></pre>
+	dissimilarities_flat = dissimilarity_matrix.flatten()
+	distances_flat = distance_matrix.flatten()
+	
+	max_distance = np.max(distances_flat)
+	bins = np.linspace(0, max_distance, 100)
+	bin_indices = np.digitize(distances_flat, bins)
+	
+	bin_medians = np.zeros(len(bins) - 1)
+	bin_25_perc = np.zeros(len(bins) - 1)
+	bin_75_perc = np.zeros(len(bins) - 1)
+	for i in range(1, len(bins)):
+		bin_values = dissimilarities_flat[bin_indices == i]
+		bin_25_perc[i - 1], bin_medians[i - 1], bin_75_perc[i - 1] = np.percentile(bin_values, [25, 50, 75])
+	
+	plt.plot(bins[:-1], bin_medians, label = label)
+	plt.fill_between(bins[:-1], bin_25_perc, bin_75_perc, alpha=0.5)
+	
+	plt.figure(figsize=(8,4))
+	
+	plot_dissimilarity_over_euclidean_distance(dissimilarity_matrix_geodesic, groundtruth_distance_matrix, "G-fuse")
+	plot_dissimilarity_over_euclidean_distance(scaling_factor * adp_dissimilarity_matrix, groundtruth_distance_matrix, "ADP")
+	
+	plt.legend()
+	plt.xlabel("Euclidean Distance [m]")
+	plt.ylabel("Scaled Dissimilarity")
+	plt.show()</code></pre>
 
 	<div class="row justify-content-center mb-2 mt-2">
 		<div class="col-12 col-md-12 col-lg-5 col-xl-7 p-2">
@@ -950,7 +950,7 @@ random_pair_dataset = random_integer_pairs_dataset.map(fill_pairs)</code></pre>
 	<h4 class="my-4" style="font-weight: bold;">Training</h4>
 	Finally, we can start the neural network training.
 	With a modern GPU, you should see the first Channel Chart after a few seconds, and training should be finished after a couple of minutes.
-	We adapt the learning rates and batch sizes over the training epochs (note: epochs don't really make sense in this context, but we will use this term anyway), such that the FCF first learns the coarse, global structure of the channel chart and later focuses on the finer details.
+	We adapt the learning rates and batch sizes over the training epochs (note: epochs don't really make sense in this context, so we will use the words <i>epoch</i> and <i>session</i> interchangeably), such that the FCF first learns the coarse, global structure of the channel chart and later focuses on the finer details.
 
 <pre class="m-0"><code class="language-python">optimizer = tf.keras.optimizers.Adam()
 model.compile(loss = siamese_loss, optimizer = optimizer)
@@ -973,15 +973,75 @@ for l in range(len(learning_rates)):
     plot_colorized(channel_chart_positions, groundtruth_positions, title = "Siamese-Based Channel Chart - Session " + str(l + 1))</code></pre>
 
 	<div class="row justify-content-center mb-2 mt-2">
-		<div class="col-12 col-md-8 col-lg-6 col-xl-4">
-			<img style="width: 100%;" src="siamese-cc-firstiteration.png">
+		<div class="col-12 col-md-10 col-lg-8 col-xl-6">
+			<div id="cc-iteration-carousel" class="carousel carousel-dark" data-bs-ride="carousel" data-bs-interval="false">
+				<div class="carousel-indicators">
+					<button type="button" data-bs-target="#cc-iteration-carousel" data-bs-slide-to="0" class="active" aria-current="true"></button>
+					<button type="button" data-bs-target="#cc-iteration-carousel" data-bs-slide-to="1"></button>
+					<button type="button" data-bs-target="#cc-iteration-carousel" data-bs-slide-to="2"></button>
+					<button type="button" data-bs-target="#cc-iteration-carousel" data-bs-slide-to="3"></button>
+					<button type="button" data-bs-target="#cc-iteration-carousel" data-bs-slide-to="4"></button>
+					<button type="button" data-bs-target="#cc-iteration-carousel" data-bs-slide-to="5"></button>
+					<button type="button" data-bs-target="#cc-iteration-carousel" data-bs-slide-to="6"></button>
+					<button type="button" data-bs-target="#cc-iteration-carousel" data-bs-slide-to="7"></button>
+				</div>
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<div class="text-center mb-5">
+							<img style="width: 70%;" src="siamese-cc-iteration1.png">
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="text-center mb-5">
+							<img style="width: 70%;" src="siamese-cc-iteration2.png">
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="text-center mb-5">
+							<img style="width: 70%;" src="siamese-cc-iteration3.png">
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="text-center mb-5">
+							<img style="width: 70%;" src="siamese-cc-iteration4.png">
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="text-center mb-5">
+							<img style="width: 70%;" src="siamese-cc-iteration5.png">
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="text-center mb-5">
+							<img style="width: 70%;" src="siamese-cc-iteration6.png">
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="text-center mb-5">
+							<img style="width: 70%;" src="siamese-cc-iteration7.png">
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="text-center mb-5">
+							<img style="width: 70%;" src="siamese-cc-iteration8.png">
+						</div>
+					</div>
+				</div>
+				<button class="carousel-control-prev" type="button" data-bs-target="#cc-iteration-carousel"
+				data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#cc-iteration-carousel"
+					data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+			</div>
 		</div>
-		<div class="col-12 col-md-8 col-lg-6 col-xl-4">
-			<img style="width: 100%;" src="siamese-cc.png">
-		</div>
-		<div class="col-12 col-md-12 col-lg-12 col-xl-4 p-2">
+		<div class="col-12 col-md-12 col-lg-12 col-xl-6 p-2">
 			<p>
-				Channel charts like these ones should show up very soon.
+				Channel charts like these ones (use the arrows to look at different training sessions) should show up very soon.
 				The L-shaped structure of the measurement area that is also visible in the top view of "ground truth" positions is clearly very well preserved here.
 			</p>
 			<p>
@@ -994,16 +1054,23 @@ for l in range(len(learning_rates)):
 	</div>
 
 	<h2 class="text-center my-4" style="font-weight: bold;">Evaluation: Optimal Affine Transform and Mean Absolute Error</h2>
-	To get a nice side-by-side comparison between channel chart and ground truth positions, we want to find the optimal affine transform
-	\[
-		\mathbf {\hat z}^{(l)} = \mathbf {\hat A} \mathbf z^{(l)} + \mathbf { \hat b }
-	\]
-	from channel chart coordinates \( \mathbf z^{(l)} \) to real-world coordinates \( \mathbf {\hat z}^{(l)} \), where \( \mathbf {\hat A} \in \mathbb R^{2 \times 2} \) and \( \mathbf { \hat b} \in \mathbb R^2 \) (2-dimensional space).
-	We can find such a transform by solving the least-squares problem
+	<p>	
+		To get a nice side-by-side comparison between channel chart and ground truth positions, we want to find the optimal affine transform
+		\[
+			\mathbf {\hat z}^{(l)} = \mathbf {\hat A} \mathbf z^{(l)} + \mathbf { \hat b }
+		\]
+		from channel chart coordinates \( \mathbf z^{(l)} \) to real-world coordinates \( \mathbf {\hat z}^{(l)} \), where \( \mathbf {\hat A} \in \mathbb R^{2 \times 2} \) and \( \mathbf { \hat b} \in \mathbb R^2 \) (2-dimensional space).
+		Channel Charting in real-world coordinates is a topic on its own, that we don't want to get into here.
+		Some previous research (for example, <a href="https://arxiv.org/abs/2308.14498">S. Taner et al</a>, <a href="https://ieeexplore.ieee.org/document/9348571">J. Pihlajasalo et al</a>) has been published on this topic.
+		For the purpose of this tutorial, we will "cheat" by using ground truth information to find  \( \mathbf {\hat A} \) and \( \mathbf {\hat b} \).
+		Regardless, we belive that, if BS antenna locations are known, fully self-supervised Channel Charting in real world coordinates will become possible in the near future (after all, it's just a matter figuring out optimal values for four entries in \( \mathbf {\hat A} \) and two entries in \( \mathbf {\hat b} \)).
+	</p>
+
+	Using the ground truth positions \( \mathbf x^{(l)} \), we can find the optimal affine transform by solving the least-squares problem
 	\[
 		(\mathbf{\hat A}, \mathbf{\hat b}) = \underset{(\mathbf{A}, \mathbf{b})}{\mathrm{argmin}} \sum_{l = 1}^L \lVert\mathbf{A}\mathbf{z}^{(l)} + \mathbf b - \mathbf{x}^{(l)}\rVert_2^2.
 	\]
-	We implement the solution to this problem with an <a href="https://en.wikipedia.org/wiki/Transformation_matrix#Affine_transformations">augmented transformation matrix</a> that handles both linear transformations and translations:
+	We implement the solution to this problem with an <a href="https://en.wikipedia.org/wiki/Transformation_matrix#Affine_transformations">augmented transformation matrix</a> that handles both linear transformations and translations, and using NumPy's <a href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.lstsq.html">linalg.lstsq</a>:
 	<pre class="m-0"><code class="language-python">channel_chart_positions = cc_embmodel.predict(csi_time_domain)
 
 def affine_transform_channel_chart(groundtruth_pos, channel_chart_pos):
@@ -1076,21 +1143,87 @@ plt.show()</code></pre>
 			<img style="width: 100%;" src="error-cdf.png">
 		</div>
 	</div>
-	Very nice, around 90% of the absolute localization errors are below \( 0.75\,\mathrm{m} \) &#128578;!
+	Around 90% of the absolute localization errors are below \( 0.75\,\mathrm{m} \) &#128578;!
 
-<h2 class="text-center my-4" style="font-weight: bold;">A Note on Privacy</h2>
-<p>
-	Last, but not least: If you read the whole tutorial all the way to the end, then you have certainly realized that Channel Charting technology means that the massive MIMO base station will know the location of the users in a much more fine-grained manner than is possible with today's base stations and their sector antennas.
-	In my experience, Channel Charting researchers are very aware of the potential privacy implications.
-	There are some very obvious benefits attached to Channel Charting (outlined in the introduction), but there is also potential for abuse.
-	With all the skepticism about 5G and mobile networks in general, we believe it is important to transparently publish and discuss the advantages and risks of this technology.
-</p>
+	<h2 class="text-center my-4" style="font-weight: bold;">Evaluation: Continuity, Trustworthiness, Kruskal's Stress</h2>
+	Channel Channel literature (and, more general, manifold learning literature) likes to evaluate channel charts not based on some absolute error values, but using some performance metrics specifically designed for dimensionality reduction.
+	These metrics are invariant to the unpredictable rotations and scalings that are inherent to unsupervised dimensionality reduction.
+	The most commonly used metrics are:
+	<ul>
+		<li>
+			<b>Continuity</b> (CT) and <b>Trustworthiness</b> (TW), both normalized to range \( [0, 1] \), which are two measures for the preservation of local neighborhoods.
+			A high CT indicates that many neighborhood relationships in physical space are preserved in the channel chart.
+			A high TW value, on the other hand, indicates that the channel chart does not contain many additional false neighborhood relationships, i.e., ones which are not present in the physical space.
+			Trustworthiness (and hence, by swapping parameters, continuity) is already implemented in the <a href="https://scikit-learn.org/stable/modules/generated/sklearn.manifold.trustworthiness.html">scikit-learn package</a>.
+		</li>
+		<li>
+			<b>Kruskal's Stress</b> (KS) is a measure for the preservation of the global channel chart structure.
+			It is also bounded to the range \( [0,1] \), but this time with 0 indicating the best and 1 indicating the worst possible performance.
+		</li>
+	</ul>
 
-<h4 class="text-center my-4" style="font-weight: bold;">Licensing and Authors</h4>
-<p>
-	All our datasets are licensed under the <a href="https://creativecommons.org/licenses/by/2.0/">CC-BY license</a>, i.e., you are free to use them for whatever you like as long as you reference us in your publications.
-	All code in this tutorial is <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0-licensed</a>.
-	This tutorial was written by <a href="mailto:florian.euchner@inue.uni-stuttgart.de">Florian Euchner</a>, with contributions by Chae Eun Lee and Phillip Stephan.
-</p>
+	CT, TW and KS are relatively straightforward to implement:
+	<pre class="m-0"><code class="language-python"># Continuity is identical to trustworthiness, except that original space and embedding space are flipped
+def continuity(*args, **kwargs):
+	args = list(args)
+	args[0], args[1] = args[1], args[0]
+	return trustworthiness(*args, **kwargs)
 
+def kruskal_stress(X, X_embedded):
+	dist_X = distance_matrix(X, X)
+	dist_X_embedded = distance_matrix(X_embedded, X_embedded)
+	beta = np.divide(np.sum(dist_X * dist_X_embedded), np.sum(dist_X_embedded * dist_X_embedded))
+
+	return np.sqrt(np.divide(np.sum(np.square((dist_X - beta * dist_X_embedded))), np.sum(dist_X * dist_X)))</code></pre>
+
+	For computing CT and TW, we need to define a <i>neighborhood size</i>, i.e., how many neighboring datapoints to consider when evaluation the preservation of local neighborhoods.
+	As is typical in Channel Charting literature, we choose a neighborhood size that is \( 5 \% \) of the total number of datapoints.
+	Furthermore, evaluating CT / TW / KS on all datapoints may take a very long time (and consume a lot of RAM).
+	We therefore perform the evaluations on a random subset of the whole dataset:
+	<div class="row justify-content-center mb-2">
+		<div class="col-12 col-sm-12 col-md-7 col-lg-8 col-xl-9 p-1">
+			<pre class="m-0"><code class="language-python"># Evaluate CT / TW / KS on a subset of the whole dataset
+subset_indices = random.sample(range(len(groundtruth_positions)), len(groundtruth_positions) // 5)
+groundtruth_positions_subset = groundtruth_positions[subset_indices]
+channel_chart_positions_subset = channel_chart_positions[subset_indices]
+
+ct = continuity(groundtruth_positions_subset, channel_chart_positions_subset, n_neighbors = int(0.05 * len(groundtruth_positions_subset)))
+tw = trustworthiness(groundtruth_positions_subset, channel_chart_positions_subset, n_neighbors = int(0.05 * len(groundtruth_positions_subset)))
+ks = kruskal_stress(groundtruth_positions_subset, channel_chart_positions_subset)
+
+print("CT: {} \nTW: {} \nKS: {}".format(*np.around((ct, tw, ks), 5)))</code></pre>
+		</div>
+		<div class="col-8 col-sm-7 col-md-5 col-lg-4 col-xl-3 p-4">
+			The performance metrics will be slightly different every time you run the training (and even every time you run the evaluation, due to the random subset sampling), but they should be similar to these:
+			<table class="table">
+				<tr>
+					<th class="text-end">Continuity (CT)</th>
+					<td>0.9960</td>
+				</tr>
+				<tr>
+					<th class="text-end">Trustworthiness (TW)</th>
+					<td>0.9962</td>
+				</tr>
+				<tr>
+					<th class="text-end">Kruskal's Stress (KS)</th>
+					<td>0.0845</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<h2 class="text-center my-4" style="font-weight: bold;">A Note on Privacy</h2>
+	<p>
+		Last, but not least: If you read the whole tutorial all the way to the end, then you have certainly realized that Channel Charting technology means that the massive MIMO base station will know the location of the users in a much more fine-grained manner than is possible with today's base stations and their sector antennas.
+		In my experience, Channel Charting researchers are very aware of the potential privacy implications.
+		There are some very obvious benefits attached to Channel Charting (outlined in the introduction), but there is also potential for abuse.
+		With all the skepticism about 5G and mobile networks in general, we believe it is important to transparently publish and discuss the advantages and risks of this technology.
+	</p>
+
+	<h4 class="text-center my-4" style="font-weight: bold;">Licensing and Authors</h4>
+	<p>
+		All our datasets are licensed under the <a href="https://creativecommons.org/licenses/by/2.0/">CC-BY license</a>, i.e., you are free to use them for whatever you like as long as you reference us in your publications.
+		All code in this tutorial is <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0-licensed</a>.
+		This tutorial was written by <a href="mailto:florian.euchner@inue.uni-stuttgart.de">Florian Euchner</a>, with contributions by Chae Eun Lee and Phillip Stephan.
+	</p>
 </main>

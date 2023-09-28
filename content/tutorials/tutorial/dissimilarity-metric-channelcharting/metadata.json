@@ -1,4 +1,6 @@
 {
-	"name" : "[WIP] Dissimilarity Metric-Based Channel Charting",
+	"name" : "Dissimilarity Metric-Based Channel Charting",
 	"thumbnail" : "banner.jpg",
-	"shortDescription" : "Use insights into the physics of wave propagation to learn a highly accurate map of the radio environment in a self-supervised manner."}
+	"shortDescription" : "Use insights into the physics of wave propagation to learn a highly accurate map of the radio environment in a self-supervised manner.",
+	"jupyterNotebook" : "DissimilarityChannelCharting.ipynb"
+}

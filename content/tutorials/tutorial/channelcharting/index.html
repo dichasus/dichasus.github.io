@@ -574,21 +574,11 @@ from sklearn.neighbors import NearestNeighbors
 from sklearn import manifold
 import random
 
-def continuity(X, X_embedded, *, n_neighbors = 5, metric = "euclidean"):
-	dist_X_embedded = pairwise_distances(X_embedded, metric = metric)
-	np.fill_diagonal(dist_X_embedded, np.inf)
-	ind_X_embedded = np.argsort(dist_X_embedded, axis = 1)
-	ind_X = NearestNeighbors(n_neighbors = n_neighbors).fit(X).kneighbors(return_distance = False)
-	n_samples = X_embedded.shape[0]
-	inverted_index = np.zeros((n_samples, n_samples), dtype = int)
-	ordered_indices = np.arange(n_samples + 1)
-	inverted_index[ordered_indices[:-1, np.newaxis], ind_X_embedded] = ordered_indices[1:]
-	ranks = inverted_index[ordered_indices[:-1, np.newaxis], ind_X] - n_neighbors
-	c = np.sum(ranks[ranks > 0])
-	c = 1.0 - c * (2.0 / (n_samples * n_neighbors * (2.0 * n_samples - 3.0 * n_neighbors - 1.0)))
-
-	return c
-
+# Continuity is identical to trustworthiness, except that original space and embedding space are flipped
+def continuity(*args, **kwargs):
+	args = list(args)
+	args[0], args[1] = args[1], args[0]
+	return manifold.trustworthiness(*args, **kwargs)
 
 def kruskal_stress(X, X_embedded, *, metric="euclidean"):
 	dist_X = pairwise_distances(X, metric = metric)
