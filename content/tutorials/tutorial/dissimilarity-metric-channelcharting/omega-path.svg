@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="48.335999mm"
-   height="36.195mm"
-   viewBox="0 0 48.335999 36.194999"
+   width="51.722mm"
+   height="34.518002mm"
+   viewBox="0 0 51.722001 34.518001"
    version="1.1"
    id="svg1"
    inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
@@ -24,14 +24,15 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="1.3594416"
-     inkscape:cx="147.11922"
-     inkscape:cy="172.49729"
+     inkscape:cx="147.48703"
+     inkscape:cy="172.4973"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
      inkscape:window-x="0"
      inkscape:window-y="32"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1" />
+     inkscape:current-layer="layer1"
+     showgrid="false" />
   <defs
      id="defs1">
     <clipPath
@@ -186,7 +187,7 @@
      transform="translate(-83.872915,-133.35)">
     <g
        id="g181"
-       transform="matrix(0.26458333,0,0,0.26458333,4.8450499,104.66689)">
+       transform="matrix(0.26458333,0,0,0.26458333,6.9617167,103.07938)">
       <path
          d="m 97.918,0.895 21.766,12.566 V 26.996 L 97.918,14.43 Z"
          style="fill:#e6e6e6;fill-opacity:1;fill-rule:nonzero;stroke:none"

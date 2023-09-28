@@ -42,7 +42,7 @@ layout: tutorial-details
 		This dataset contains CSI for \(BM = 32\) receive antennas (\( B=4 \) antenna arrays with \( M = 8 \) antennas per array) and for  \( N_\mathrm{sub} = 1024 \) OFDM subcarriers at \( L \) different transmitter positions ("datapoints").
 		The transmitter is mounted on top of a robot, which follows some trajectory through the measurement area.
 		The CSI at a particular time instant can be expressed as a matrix \(\mathbf H^{(l)} \in \mathbb C^{BM \times N_\mathrm{sub}}\).
-		Hence, the dataset consists of datapoints that are 3-tuples of channel coefficients \( \mathbf{H}^{(l)} \in \mathbb C^{BM \times N_\mathrm{sub}} \), <i>ground truth</i> positions \( \mathbf{x}^{(l)} \in \mathbb{R}^D \) and timestamps \( t^{(l)} \in \mathbb R \):
+		Hence, the dataset consists of datapoints that are 3-tuples of channel coefficients \( \mathbf{H}^{(l)} \in \mathbb C^{BM \times N_\mathrm{sub}} \), <i>ground truth</i> positions \( \mathbf{x}^{(l)} \in \mathbb{R}^3 \) and timestamps \( t^{(l)} \in \mathbb R \):
 		\[
 			\text{Dataset:} \quad \left\{ (\mathbf{H}^{(l)}, \mathbf x^{(l)}, t^{(l)}) \right\}_{l = 1, \ldots, L}
 		\]
@@ -170,7 +170,7 @@ for path in inputpaths[1:]:
 				We load all three TFRecord files (<code>dichasus-cf02</code>, <code>dichasus-cf03</code>, <code>dichasus-cf04</code>), and each of them goes through a pipeline of processing steps:
 				<ul>
 					<li>
-						First, <code>record_parse_function</code> reads the raw <code>.tfrecord</code> file and extracts raw frequency-domain CSI, "ground truth" position information and timestamps.
+						First, <code>record_parse_function</code> reads the raw <code>.tfrecord</code> file and extracts frequency-domain CSI, "ground truth" position information and timestamps.
 						Afterwards, the complex-valued tensor <code>csi</code> should have shape <code>(32, 1024)</code>, where \( BM = 32 \) is the number of antennas and \( N_\mathrm{sub} = 1024 \) is the number of subcarriers.
 						Each entry corresponds to the channel coefficient of one particular OFDM subchannel.
 					</li>
@@ -203,7 +203,7 @@ training_set = training_set.map(lambda idx, value : value)</code></pre>
 		<div class="col-sm-12 col-md-6 p-3 col-xl-4">
 			This may seem a bit odd, but we will perform many of the following processing steps on the CPU and not on the GPU.
 			Since we want to use well-established and optimized Python libraries which work on NumPy arrays, we first have to convert the dataset into NumPy arrays.
-			Don't worry, Channel Charting on the CPU can also be extremely fast (this whole tutorial should take only a few minutes on a reasonably fast machine), and the neural network training later will of course use GPU acceleration.
+			Don't worry, Channel Charting on the CPU can also be extremely fast (this whole tutorial should take only a few minutes to run on a reasonably fast machine), and the neural network training later will of course use GPU acceleration.
 		</div>
 		<div class="col-sm-12 col-md-6 col-xl-8">
 			<pre class="m-0"><code class="language-python">groundtruth_positions = []
@@ -320,7 +320,7 @@ plot_colorized(groundtruth_positions, groundtruth_positions, title="Ground Truth
 	<p>
 		In mathematical terms, the set of cities we considered can be viewed as the <i>nodes</i> of a graph, and the travel times between the cities can be interpreted as the <i>edges</i> of a directed graph.
 		In this interpretation, the table above is the <i>adjacency matrix</i> of this graph, and this is essentially what we call the <i>dissimilarity matrix</i> \( \mathbf D \) in Channel Charting.
-		In general, the dissimilarity matrix has \( N^2 \) entries, where \( N \) is the number of datapoints and, hence, vertices in the graph.
+		In general, the dissimilarity matrix has \( N^2 \) entries, where \( N \) is the number of datapoints and, hence, nodes in the graph.
 	</p>
 	<p>
 		There are some general observations to be made about the dissimilarity matrix:
@@ -332,7 +332,7 @@ plot_colorized(groundtruth_positions, groundtruth_positions, title="Ground Truth
 				For guessing the distances between cities, we can symmetrize the matrix as \( \mathbf D_\mathrm{sym} = \frac{1}{2} \left( \mathbf D + \mathbf D^\mathrm{T} \right) \).
 			</li>
 		</ul>
-		By realizing that the \( N \) diagonal elements are all zeroes and exploiting the (almost-)symmetry of the matrix, this means that we can get away with only computing \( \frac{N^2 - N}{2} \) dissimilarities, which we will exploit later.
+		By realizing that the \( N \) diagonal elements are all zeroes and using the (almost-)symmetry of the matrix, this means that we can get away with only computing \( \frac{N^2 - N}{2} \) dissimilarities, which we will exploit later.
 	</p>
 
 	<h2 class="text-center my-4" style="font-weight: bold;">Dissimilarity Metrics and Dissimilarity Matrix Computation</h2>
@@ -343,11 +343,12 @@ plot_colorized(groundtruth_positions, groundtruth_positions, title="Ground Truth
 	</div>
 
 	<p>
-		The picture above is taken from <a href="https://arxiv.org/abs/2308.09539">our paper on dissimilarity metric-based Channel Charting</a>
+		The picture above is taken from <a href="https://arxiv.org/abs/2308.09539">our paper on dissimilarity metric-based Channel Charting</a>.
 		It provides an overview over some of the ways in which dissimilarities between datapoints may be computed.
 		On one hand, there are <i>side information-based</i> methods, like taking into account timestamps of measurements or by using some sort of ground truth information, where it is available (we would consider the latter to be cheating, we want a fully self-supervised system).		
 		On the other hand, there are <i>CSI-based</i> methods, which exploit some expert knowledge on wave propagation and the format of CSI to compute dissimilarities.
 		The diagram above only lists a few of them, namely <a href="https://arxiv.org/abs/2104.13184">a cosine similarity-based metric</a>, a <a href="https://ieeexplore.ieee.org/abstract/document/10070385">channel impulse response (CIR) amplitude-based metric</a> and a (our own) <a href="https://arxiv.org/abs/2308.09539">angle delay profile (ADP)-based metric</a>.
+		We are always happy to hear about proposals for even better dissimilarity metrics!
 		Then, there are also what we call <i>fused</i> metrics, where we combine one or multiple metrics into a better one.
 		And finally, we can transform any matrix into a <i>geodesic</i> version of the matrix, which will be explained later.
 	</p>
@@ -380,24 +381,25 @@ plot_colorized(groundtruth_positions, groundtruth_positions, title="Ground Truth
 	</div>
 
 	<p>
-		In fact, we can check if two signals come from a similar AoA by just computing the <a href="https://en.wikipedia.org/wiki/Cosine_similarity">cosine similarity</a> between their channel vectors (i.e., the vectors continaing the channel coefficients of all antennas).
+		In fact, we can check if two signals come from a similar AoA by just computing the <a href="https://en.wikipedia.org/wiki/Cosine_similarity">cosine similarity</a> between their channel vectors (i.e., the vectors containing the channel coefficients of all antennas).
 		Here, we compute the cosine similarity between to datapoints \( i \) and \( j \) for a single time tap \( \tau \) and a single antenna array \( b \):
 		\[
 			\text{CS} = \frac{\left\lvert \sum_{m=1}^{M} \left(\tilde {\mathbf H}_{b, m, \tau}^{(i)}\right)^* \tilde {\mathbf H}_{b, m, \tau}^{(j)}\right\rvert^2} { \left(\sum_{m=1}^{M}\left\lvert \tilde {\mathbf H}_{b, m, \tau}^{(i)}\right\rvert^2 \right) \left(\sum_{m=1}^{M} \left\lvert \tilde {\mathbf H}_{b, m, \tau}^{(j)}\right\rvert^2\right)}
 		\]
 		The cosine similarity is 1 if both channel vectors are identical (except for phase shifts and power scalings), and smaller cosine similarities indicate that the two AoAs are more dissimilar.
+		(In fact, there is a nice interpretation of the squared cosine similarity as a <a href="../downlinkcsi/">normalized received power after downlink precoding</a>).
 	</p>
 
 	<p>
 		To get a good dissimilarity measure for channel charting, we sum the time-domain cosine similarities over all time taps \( \tau = 1, \ldots, \tau_\mathrm{max} - \tau_\mathrm{min} \) and all distributed antenna arrays \( b = 1, \ldots, B \).
-		Also, we need to invert the cosine similarity value, such that higher values indicate a greater dissimilarity, hence the "\( 1- \)" in the following formula for the ADP dissimilarity:
+		Also, we need to invert the cosine similarity value, such that higher values indicate a greater dissimilarity, hence the "\( 1- \)" in the following formula for our ADP dissimilarity metric:
 		\[
 			\mathbf D_{\mathrm{ADP}, i, j} = \sum_{b=1}^B \sum_{\tau=1}^{\tau_\mathrm{max} - \tau_\mathrm{min}} \left( 1 - \frac{\left\lvert \sum_{m=1}^{M} \left(\tilde {\mathbf H}_{b, m, \tau}^{(i)}\right)^* \tilde {\mathbf H}_{b, m, \tau}^{(j)}\right\rvert^2} { \left(\sum_{m=1}^{M}\left\lvert \tilde {\mathbf H}_{b, m, \tau}^{(i)}\right\rvert^2 \right) \left(\sum_{m=1}^{M} \left\lvert \tilde {\mathbf H}_{b, m, \tau}^{(j)}\right\rvert^2\right)} \right)
 		\]
 	</p>
 
 	<p>
-		In terms of the practical implementation of this equation, we will use NumPy's <a href="https://numpy.org/doc/stable/reference/generated/numpy.einsum.html">einsum</a> to compute the cosine similarities row-wise.
+		In terms of the practical implementation of this equation, we will use NumPy's <a href="https://numpy.org/doc/stable/reference/generated/numpy.einsum.html">einsum</a> to compute the cosine similarities, row by row in the distance matrix.
 		You may also notice that we can compute the entries of the matrix \( \mathbf D_\mathrm{ADP} \) independently from one another, which means that the computation can be parallelized.
 		We will use Python's <a href="https://docs.python.org/3/library/multiprocessing.html">multiprocessing</a> for that.
 		Finally, we make use of the fact that the dissimilarity matrix is symmetric and only compute half of the entries.
@@ -469,7 +471,7 @@ with progressbar.ProgressBar(max_value = csi_time_domain.shape[0]**2) as bar:
 
 	<h4 class="mt-4" style="font-weight: bold;">Step 2: Timestamp-based dissimilarity matrix</h4>
 	The timestamp-based dissimilarity matrix \( \mathbf D_\mathrm{time} \) is very easy to compute.
-	Each entry just contains the absolute time different between the timestamps in our dataset:
+	The entries are just the absolute time differences between the timestamps in our dataset:
 	\[
 		\mathbf D_{\mathrm{time},i, j} = \lvert t^{(i)}-t^{(j)} \lvert
 	\]
@@ -479,12 +481,33 @@ with progressbar.ProgressBar(max_value = csi_time_domain.shape[0]**2) as bar:
 timestamp_dissimilarity_matrix = np.abs(np.subtract.outer(timestamps, timestamps))</code></pre>
 
 	<h4 class="mt-4" style="font-weight: bold;">Step 3: Fusing \( \mathbf D_\mathrm{ADP} \) with \( \mathbf D_\mathrm{time} \)</h4>
-	The idea behind fused metrics is very simple:
-	Some entries of \( \mathbf D_\mathrm{ADP} \) will be more accurate than \( \mathbf D_\mathrm{time} \) and in other cases, it may be the other way round.
+	Sometimes \( \mathbf D_\mathrm{ADP} \) will be more useful, in other cases \( \mathbf D_\mathrm{time} \) might be more accurate.
+	Here are two pathological situations, in which one of these two metrics will fail entirely:
+	<div class="row justify-content-center mb-4 mt-2">
+		<div class="col-12 col-sm-6 col-md-6 col-lg-5 col-xl-4">
+			<div class="text-center">
+				<img style="width: 80%;" src="omega-path.svg">
+			</div>
+			After some time, the transmitter visits a location that is close to some space where it has previously been.
+			The timestamp-based dissimilarity metric will fail: It predicts that these two locations are far apart.
+			A CSI-based metric will correctly indicate that the two locations are close to each other.
+		</div>
+		<div class="col-12 col-sm-6 col-md-6 col-lg-5 col-xl-4">
+			<div class="text-center">
+				<img style="width: 80%;" src="wall-path.svg">
+			</div>
+			The transmitter follows a trajectory with a sudden change in CSI.
+			For example, the transmitter may transition between a line of sight (LoS) channel for some or all antennas and a non-line of sight (NLoS) channel.
+			A CSI-based metric will indicate a large dissimilarity between these two areas, but, based on timestamps, the BS might know that the locations are close in time, and hence likely also close in space.
+		</div>
+	</div>
+
+	Hence, the basic idea behind <i>fused</i> metrics is born:
+	Some entries of \( \mathbf D_\mathrm{ADP} \) will be more accurate than the corresponding values in \( \mathbf D_\mathrm{time} \) and in other cases, it may be the other way round.
 	Ideally, we would always like to use the more accurate dissimilarity whenever possible, which poses two challenges:
 	<ol>
-		<li>We need to get \( \mathbf D_\mathrm{ADP} \) and \( \mathbf D_\mathrm{time} \) into the same scale (i.e., the same dissimilarity should correspond to a similar true distance)</li>
-		<li>For each entry, we need to figure out which dissimilarity (ADP-based or timestamp-based) to used. This decision could be based on some heuristic which tells us which dissimilarity we expect to be more accurate.</li>
+		<li>We need to get \( \mathbf D_\mathrm{ADP} \) and \( \mathbf D_\mathrm{time} \) into the same scale (i.e., the same dissimilarity should correspond to a similar true distance). For example, all dissimilarities should be measured in (pseudo-)meters, and not one in meters and the other one in feet.</li>
+		<li>For each entry, we need to figure out which dissimilarity (ADP-based or timestamp-based) to use. This decision could be based on some heuristic which tells us which dissimilarity we expect to be more accurate.</li>
 	</ol>
 	
 	In the following, we will try to solve both challenges at the same time.
@@ -521,9 +544,9 @@ ax1.set_ylabel("Number of Occurences")</code></pre>
 			<li>Or, the transmitter may be static or just rotating. This occurs more rarely. In that case, \( \mathbf D_{\mathrm{ADP}, i, j} \) is small and we land on the left mode.</li>
 		</ul>
 
-		We can assume that if the transmitter is moving, the timestamp-based dissimilarity metric is more accurate: The robot speed is relatively constant, and it is unlikely that it makes any sharp turns within such a short time interval.
+		We can assume that, if the transmitter is moving, the timestamp-based dissimilarity metric is more accurate: The robot speed is relatively constant, and it is unlikely that it makes any sharp turns within such a short time interval.
 		On the other hand, if the robot is more or less static, we should rely on the ADP distance instead.
-		This will also make sure that if the transmitter returns to the same / similar location after some time, the Channel Charting algorithm will understand that the distance between those two datapoints is low.
+		This will also make sure that, if the transmitter returns to the same / similar location after some time, the Channel Charting algorithm will understand that the distance between those two datapoints is low.
 	</p>
 	<p>
 		This motivates a simple dissimilarity matrix fusing algorithm:
