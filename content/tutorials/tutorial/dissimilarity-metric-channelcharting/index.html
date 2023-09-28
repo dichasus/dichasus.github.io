@@ -42,7 +42,7 @@ layout: tutorial-details
 		This dataset contains CSI for \(BM = 32\) receive antennas (\( B=4 \) antenna arrays with \( M = 8 \) antennas per array) and for  \( N_\mathrm{sub} = 1024 \) OFDM subcarriers at \( L \) different transmitter positions ("datapoints").
 		The transmitter is mounted on top of a robot, which follows some trajectory through the measurement area.
 		The CSI at a particular time instant can be expressed as a matrix \(\mathbf H^{(l)} \in \mathbb C^{BM \times N_\mathrm{sub}}\).
-		Hence, the dataset consists of datapoints that are 3-tuples of channel coefficients \( \mathbf{H}^{(l)} \in \mathbb C^{BM \times N_\mathrm{sub}} \), <i>ground truth</i> positions \( \mathbf{x}^{(l)} \in \mathbb{R}^3 \) and timestamps \( t^{(l)} \in \mathbb R \):
+		Hence, the dataset consists of datapoints that are 3-tuples of channel coefficients \( \mathbf{H}^{(l)} \in \mathbb C^{BM \times N_\mathrm{sub}} \), <i>ground truth</i> positions \( \mathbf{x}^{(l)} \in \mathbb{R}^2 \) and timestamps \( t^{(l)} \in \mathbb R \):
 		\[
 			\text{Dataset:} \quad \left\{ (\mathbf{H}^{(l)}, \mathbf x^{(l)}, t^{(l)}) \right\}_{l = 1, \ldots, L}
 		\]
@@ -626,7 +626,7 @@ dissimilarity_matrix_fused = np.minimum(adp_dissimilarity_matrix, timestamp_diss
 		</div>
 		<div class="col-12 col-md-12 col-lg-6 col-xl-8 p-2">
 			For Channel Charting, we <i>can</i> compute a dissimilarity value between any two points in the dataset.
-			However, many of this dissimilarities may be nonsensical, especially if the true locations of the datapoints are far away from each other (just look at the dissimilarity matrix video above...).
+			However, many of these dissimilarities may be nonsensical, especially if the true locations of the datapoints are far away from each other (just look at the dissimilarity matrix video above...).
 			For geodesic distances, we just find the \( K \) neareast neighbors of any datapoint (here, \( K = 20 \)), and then set the dissimlarities to all other datapoints to &infin; (what is known as finding the <i>k-nearest neighbor graph</i>).
 			Then, we apply a shortest path algorithm like <a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijkstra's_algorithm</a> to find <i>all</i> the shortest paths in the resulting graph.
 			The hope is that the sum of these many short paths will be more reflective of the true distance then directly computing a CSI- or side information-based dissimilarity.
@@ -692,10 +692,10 @@ with progressbar.ProgressBar(max_value = nbg.shape[0]**2) as bar:
 				This is one of the most complex processing steps in the Channel Charting pipeline.
 				Regardless, on a modern machine, it should only take a few minutes at maximum.
 				Again, we can visualize the dissimilarity matrix in a video.
-				The resulting fused dissimilarity matrix is clearly <i>much</i> better than
+				The resulting fused, geodesic dissimilarity matrix is clearly <i>much</i> better than the purely ADP-based one.
 			</p>
 			<p>
-				While these videos a great visualization, there is a more scientific method to evaluate the quality of a dissimilarity metric.
+				While these videos are a great visualization, there is a more scientific method to evaluate the quality of a dissimilarity metric.
 				<a href="https://ieeexplore.ieee.org/abstract/document/10070385">This paper</a> introduced a diagram that relates the dissimilarities it to the ground truth Euclidean distances.
 				Let's compare \( \mathbf D_\mathrm{ADP} \) to \( \mathbf D_\mathrm{G-fuse} \) this way.
 			</p>
@@ -771,7 +771,7 @@ groundtruth_distance_matrix = distance_matrix(groundtruth_positions, groundtruth
 	<h4 class="my-4" style="font-weight: bold;">The First Channel Chart: MDS / Isomap</h4>
 	<p>
 		Time to generate the first channel chart!
-		We will use the classical <a href="https://en.wikipedia.org/wiki/Multidimensional_scaling">multidimensional scaling (MDS)</a> manifold learning technique to produce it.
+		We will use the classical <a href="https://en.wikipedia.org/wiki/Multidimensional_scaling">multidimensional scaling (MDS)</a> manifold learning technique.
 		MDS optimizes the cost function
 
 		\[
@@ -823,7 +823,7 @@ plot_colorized(proj_isomap, groundtruth_positions[::nth_reduction], title = "Iso
 			<p>
 				Regardless of the training method employed, the objective of neural network-based Channel Charting is to learn the so-called Forward Charting Function (FCF) \( \mathcal C_{\boldsymbol \theta} \).
 				The FCF takes a feature vector \( \mathbf f \) as an input and directly outputs the position in the Channel Chart \( \mathbf z \).
-				Once \( \mathcal C_{\boldsymbol \theta} \) has been found, this makes it very easy and efficient to infer additional Chart positions (unlike with MDS).
+				Once \( \mathcal C_{\boldsymbol \theta} \) has been found, this makes it very easy and efficient to infer additional chart positions (unlike with MDS).
 			</p>
 			<p>
 				The \( \boldsymbol \theta \) in the subscript indicates that this function is <i>parametrized</i> by a parameter vector \( \boldsymbol \theta \), which contains the weights and biases of the neural network (hence, deep learning-based Channel Charting is <i>parametric</i>).
@@ -840,13 +840,13 @@ plot_colorized(proj_isomap, groundtruth_positions[::nth_reduction], title = "Iso
 		<li>
 			Channel coefficient phases are relative.
 			Since transmitter and receiver oscillators are not perfectly synchronized (and in the real world they won't be, unless you have atomic clocks or highly accurate GPSDOs on both ends), the global phase rotation in \( \mathbf {\hat H}^{(l)} \) changes over time.
-			Even if the transmitter remains at the same position and the environment is perfectly static, the receiver may measured \( \mathbf {\hat H}^{(l)} \) at one point in time, and \( \mathrm e^{j \varphi} \cdot \mathbf {\hat H}^{(l)} \) soon after.
+			Even if the transmitter remains at the same position and the environment is perfectly static, the receiver may measure \( \mathbf {\hat H}^{(l)} \) at one point in time, and \( \mathrm e^{j \varphi} \cdot \mathbf {\hat H}^{(l)} \) soon after.
 			Neural networks are not well-equipped to compensate for this phase rotation.
 		</li>
 	</ol>
 
 	So, instead, what we would like to provide to the neural network is information about <i>relative</i> channel coefficients (sample correlations between channel coefficients of different antennas), with real and imaginary part split up.
-	In particular, we want to provide the sample autocorrelation between the channel coefficients of <i>any two</i> antennas (could be in different antenna arrays), and for all time taps (but no sample autocorrelations across time indices).
+	In particular, we want to provide the sample correlation between the channel coefficients of <i>any two</i> antennas (could be in different antenna arrays), and for all time taps (but no sample correlations across time indices).
 	In mathematical notation, we would first define a set of indices \( \mathcal I \) that we then use to index the time-domain CSI tensor \( \mathbf { \hat H}^{(l)} \):
 
 	\[
@@ -856,7 +856,7 @@ plot_colorized(proj_isomap, groundtruth_positions[::nth_reduction], title = "Iso
 		\mathbf c^{(l)} = \left( \tilde {\mathbf H}^{(l)}_{b_1 m_1 \tau} \left ( \tilde {\mathbf H}^{(l)}_{b_2 m_2 \tau} \right)^* \right)_{(b_1, b_2, m_1, m_2, \tau) \in \mathcal J}
 	\]
 
-	This results in a sample autocorrelation vector \( \mathbf c^{(l)} \) that we need to split into real and imaginary part to be able to feed it to the neural network, producing in the feature vector \( \mathbf f^{(l)} \):
+	This results in a sample correlation vector \( \mathbf c^{(l)} \) that we need to split into real and imaginary part to be able to feed it to the neural network, producing in the feature vector \( \mathbf f^{(l)} \):
 	\[
 		\mathbf{f}^{(l)} = \begin{pmatrix}
 			\mathrm{Re} \left\{ \mathbf c^{(l)} \right\} & \mathrm{Im} \left\{ \mathbf c^{(l)} \right\}
@@ -866,7 +866,7 @@ plot_colorized(proj_isomap, groundtruth_positions[::nth_reduction], title = "Iso
 	<p>
 		In practical terms, we can implement the feature engineering stage as a <a href="https://keras.io/api/layers/">Keras layer</a>.
 		This means we can actually feed \( \mathbf {\hat H}^{(l)} \) as an input to that layer, and the layer will blow this up to \( \mathbf{f}^{(l)} \).
-		The computation of the sample autocorrelations can again be implemented using TensorFlow's <a href="https://www.tensorflow.org/api_docs/python/tf/einsum">einsum</a> (with the advantage that feature engineering can be efficiently performed on the GPU).
+		The computation of the sample correlations can again be implemented using TensorFlow's <a href="https://www.tensorflow.org/api_docs/python/tf/einsum">einsum</a> (with the advantage that feature engineering can be efficiently performed on the GPU).
 	</p>
 
 	<pre class="m-0"><code class="language-python">class FeatureEngineeringLayer(tf.keras.layers.Layer):
@@ -874,7 +874,7 @@ plot_colorized(proj_isomap, groundtruth_positions[::nth_reduction], title = "Iso
 		super(FeatureEngineeringLayer, self).__init__(dtype = tf.complex64)
 
 	def call(self, csi):
-		# Compute sample autocorrelations for any combination of two antennas in the whole system
+		# Compute sample correlations for any combination of two antennas in the whole system
 		# for the same datapoint and time tap.
 		sample_autocorrelations = tf.einsum("damt,dbnt->dtabmn", csi, tf.math.conj(csi))
 		return tf.stack([tf.math.real(sample_autocorrelations), tf.math.imag(sample_autocorrelations)], axis = -1)</code></pre>
@@ -918,10 +918,10 @@ cc_embmodel = tf.keras.Model(inputs=cc_embmodel_input, outputs=cc_embmodel_outpu
 				Remember, we can't train the FCF in a supervised manner, since we don't have ground truth information.
 				However, we do have a dissimilarity matrix \( \mathbf D_\mathrm{G-fuse} \) and we could try to make the FCF map datapoints to the channel chart such that the channel chart positions conform to \( \mathbf D_\mathrm{G-fuse} \).
 				This is exactly the idea of a <a href="https://en.wikipedia.org/wiki/Siamese_neural_network">Siamese Neural Network</a>:
-				Run the FCF twice on two different datapoint feature vectors \( f^{(i)} \) and \( f^{(j)} \), and tune (via backpropagation) the neural network based on how well the produced channel chart positions \( z^{(l)} \) and \( z^{(j)} \) match dissimilarity matrix.
+				Run the FCF twice on two different datapoint feature vectors \( f^{(i)} \) and \( f^{(j)} \), and tune (via backpropagation) the neural network based on how well the produced channel chart positions \( z^{(l)} \) and \( z^{(j)} \) match the dissimilarity matrix.
 			</p>
 			<p>
-				This allows use to reuse the MDS cost function as a loss function for the Siamese neural network (where \( N \) is the size of the current batch):
+				This allows us to reuse the MDS cost function as a loss function for the Siamese neural network (where \( N \) is the size of the current batch):
 				\[
 					\mathcal{L}_\mathrm{Siamese} = \frac{1}{N^2} \sum\nolimits_{i=1}^{N}\sum\nolimits_{j=1}^N \left(\mathbf D_{\mathrm{G-fuse}, i, j}-\Vert\mathbf{z}^{(i)}-\mathbf{z}^{(j)}\Vert_2\right)^2.
 				\]
@@ -955,8 +955,8 @@ output = tf.keras.layers.concatenate([embedding_A, embedding_B], axis=1)
 model = tf.keras.models.Model([input_A, input_B], output, name = "SiameseNeuralNetwork")</code></pre>
 
 	<h4 class="my-4" style="font-weight: bold;">Sample Selection</h4>
-	We generate a dataset called <code>random_pair_dataset</code>, which, as the name suggests, contains random pairs of datapoints from our dataset.
-	It is a good idea to implement this sample selection in a way that allows <a href="https://www.tensorflow.org/guide/data_performance">TensorFlow can optimize for maximum performance</a>.
+	We generate a dataset called <code>random_pair_dataset</code>, which, as the name suggests, contains random pairs of CSI tensors \( \mathbf { \hat H}^{(i)} \), \( \mathbf { \hat H}^{(j)} \) from our dataset.
+	It is a good idea to implement this sample selection in a way that allows <a href="https://www.tensorflow.org/guide/data_performance">TensorFlow to optimize for maximum performance</a>.
 	<pre class="m-0"><code class="language-python">csi_time_domain_tensor = tf.constant(csi_time_domain)
 dissimilarity_matrix_geodesic_tensor = tf.constant(dissimilarity_matrix_geodesic)
 
@@ -1131,8 +1131,8 @@ plt.quiver(channel_chart_positions_transformed[::nth_errorvector, 0], channel_ch
 plt.show()</code></pre>
 
 		As you can see, the error vectors are not completely random, but we can spot some patterns.
-		Some of these patterns can be explained by the fact that the loss function compares geodesic distances (from the dissimilarity matrix) to Euclidean distances (in the channel chart).
-		So there is definitely some room for improvement here &#128521;.
+		Some of these patterns can be explained by the fact that the loss function compares geodesic distances (from the dissimilarity matrix) to Euclidean distances (in the channel chart), which is a fundamental issue with our loss function.
+		So there is definitely some room for furthere improvement here &#128521;.
 
 		The code above also computes and displays the mean absolute error (MAE), given by:
 		\[
@@ -1177,7 +1177,7 @@ plt.show()</code></pre>
 			<b>Continuity</b> (CT) and <b>Trustworthiness</b> (TW), both normalized to range \( [0, 1] \), which are two measures for the preservation of local neighborhoods.
 			A high CT indicates that many neighborhood relationships in physical space are preserved in the channel chart.
 			A high TW value, on the other hand, indicates that the channel chart does not contain many additional false neighborhood relationships, i.e., ones which are not present in the physical space.
-			Trustworthiness (and hence, by swapping parameters, continuity) is already implemented in the <a href="https://scikit-learn.org/stable/modules/generated/sklearn.manifold.trustworthiness.html">scikit-learn package</a>.
+			Trustworthiness (and, by swapping parameters, continuity) is already implemented in the <a href="https://scikit-learn.org/stable/modules/generated/sklearn.manifold.trustworthiness.html">scikit-learn package</a>.
 		</li>
 		<li>
 			<b>Kruskal's Stress</b> (KS) is a measure for the preservation of the global channel chart structure.
@@ -1185,8 +1185,8 @@ plt.show()</code></pre>
 		</li>
 	</ul>
 
-	CT, TW and KS are relatively straightforward to implement:
-	<pre class="m-0"><code class="language-python"># Continuity is identical to trustworthiness, except that original space and embedding space are flipped
+	CT and KS are relatively straightforward to implement:
+	<pre class="m-0"><code class="language-python"># Continuity is identical to trustworthiness, except that original space and embedding space are swapped
 def continuity(*args, **kwargs):
 	args = list(args)
 	args[0], args[1] = args[1], args[0]
