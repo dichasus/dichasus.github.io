@@ -711,8 +711,9 @@ groundtruth_distance_matrix = distance_matrix(groundtruth_positions, groundtruth
 	We plot the median of these bins and color the area between the 25<sup>th</sup> and 75<sup>th</sup> percentile to get a better idea of the distribution.
 
 	<pre class="m-0"><code class="language-python">def plot_dissimilarity_over_euclidean_distance(dissimilarity_matrix, distance_matrix, label = None):
-	dissimilarities_flat = dissimilarity_matrix.flatten()
-	distances_flat = distance_matrix.flatten()
+	nth_reduction = 10
+	dissimilarities_flat = dissimilarity_matrix[::nth_reduction, ::nth_reduction].flatten()
+	distances_flat = distance_matrix[::nth_reduction, ::nth_reduction].flatten()
 	
 	max_distance = np.max(distances_flat)
 	bins = np.linspace(0, max_distance, 100)
@@ -727,16 +728,16 @@ groundtruth_distance_matrix = distance_matrix(groundtruth_positions, groundtruth
 	
 	plt.plot(bins[:-1], bin_medians, label = label)
 	plt.fill_between(bins[:-1], bin_25_perc, bin_75_perc, alpha=0.5)
-	
-	plt.figure(figsize=(8,4))
-	
-	plot_dissimilarity_over_euclidean_distance(dissimilarity_matrix_geodesic, groundtruth_distance_matrix, "G-fuse")
-	plot_dissimilarity_over_euclidean_distance(scaling_factor * adp_dissimilarity_matrix, groundtruth_distance_matrix, "ADP")
-	
-	plt.legend()
-	plt.xlabel("Euclidean Distance [m]")
-	plt.ylabel("Scaled Dissimilarity")
-	plt.show()</code></pre>
+		
+plt.figure(figsize=(8,4))
+
+plot_dissimilarity_over_euclidean_distance(dissimilarity_matrix_geodesic, groundtruth_distance_matrix, "G-fuse")
+plot_dissimilarity_over_euclidean_distance(scaling_factor * adp_dissimilarity_matrix, groundtruth_distance_matrix, "ADP")
+
+plt.legend()
+plt.xlabel("Euclidean Distance [m]")
+plt.ylabel("Scaled Dissimilarity")
+plt.show()</code></pre>
 
 	<div class="row justify-content-center mb-2 mt-2">
 		<div class="col-12 col-md-12 col-lg-5 col-xl-7 p-2">
