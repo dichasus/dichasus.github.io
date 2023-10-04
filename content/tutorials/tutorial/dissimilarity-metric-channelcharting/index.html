@@ -391,7 +391,7 @@ plot_colorized(groundtruth_positions, groundtruth_positions, title="Ground Truth
 	</p>
 
 	<p>
-		To get a good dissimilarity measure for channel charting, we sum the time-domain cosine similarities over all time taps \( \tau = 1, \ldots, \tau_\mathrm{max} - \tau_\mathrm{min} \) and all distributed antenna arrays \( b = 1, \ldots, B \).
+		To get a good dissimilarity measure for Channel Charting, we sum the time-domain cosine similarities over all time taps \( \tau = 1, \ldots, \tau_\mathrm{max} - \tau_\mathrm{min} \) and all distributed antenna arrays \( b = 1, \ldots, B \).
 		Also, we need to invert the cosine similarity value, such that higher values indicate a greater dissimilarity, hence the "\( 1- \)" in the following formula for our ADP dissimilarity metric:
 		\[
 			\mathbf D_{\mathrm{ADP}, i, j} = \sum_{b=1}^B \sum_{\tau=1}^{\tau_\mathrm{max} - \tau_\mathrm{min}} \left( 1 - \frac{\left\lvert \sum_{m=1}^{M} \left(\tilde {\mathbf H}_{b, m, \tau}^{(i)}\right)^* \tilde {\mathbf H}_{b, m, \tau}^{(j)}\right\rvert^2} { \left(\sum_{m=1}^{M}\left\lvert \tilde {\mathbf H}_{b, m, \tau}^{(i)}\right\rvert^2 \right) \left(\sum_{m=1}^{M} \left\lvert \tilde {\mathbf H}_{b, m, \tau}^{(j)}\right\rvert^2\right)} \right)
@@ -716,7 +716,7 @@ groundtruth_distance_matrix = distance_matrix(groundtruth_positions, groundtruth
 	distances_flat = distance_matrix[::nth_reduction, ::nth_reduction].flatten()
 	
 	max_distance = np.max(distances_flat)
-	bins = np.linspace(0, max_distance, 100)
+	bins = np.linspace(0, max_distance, 200)
 	bin_indices = np.digitize(distances_flat, bins)
 	
 	bin_medians = np.zeros(len(bins) - 1)
@@ -782,7 +782,7 @@ plt.show()</code></pre>
 		using gradient descent, where \( \mathbf z^{(l)} \in \mathbb R^2 \) are the locations of points in the channel chart (we always assume 2-dimensional channel charts).
 		We only need to provide the dissimilarity matrix to get a chart, easy &#128578;!
 		If MDS is used in conjunction with a geodesic dissimilarity matrix, it is also known as <a href="https://en.wikipedia.org/wiki/Isomap">Isomap</a>.
-		In our code, we will only plot every 10<sup>th</sup> datapoint in the Channel Chart (since MDS can be pretty slow).
+		In our code, we will only plot every 10<sup>th</sup> datapoint in the channel chart (since MDS can be pretty slow).
 		Also, we cap the number of gradient descent iterations at 80:
 	</p>
 
@@ -799,7 +799,7 @@ plot_colorized(proj_isomap, groundtruth_positions[::nth_reduction], title = "Iso
 		</div>
 		<div class="col-12 col-md-12 col-lg-5 col-xl-8 p-2">
 			<p>
-				And this is the Channel Chart that we get!
+				And this is the channel chart that we get!
 				This already very much resembles the ground truth top view map from above, except for some arbitrary rotation / flipping and scaling of course.
 			</p>
 			<p>
@@ -823,7 +823,7 @@ plot_colorized(proj_isomap, groundtruth_positions[::nth_reduction], title = "Iso
 		<div class="col-12 col-xl-9">
 			<p>
 				Regardless of the training method employed, the objective of neural network-based Channel Charting is to learn the so-called Forward Charting Function (FCF) \( \mathcal C_{\boldsymbol \theta} \).
-				The FCF takes a feature vector \( \mathbf f \) as an input and directly outputs the position in the Channel Chart \( \mathbf z \).
+				The FCF takes a feature vector \( \mathbf f \) as an input and directly outputs the position in the channel chart \( \mathbf z \).
 				Once \( \mathcal C_{\boldsymbol \theta} \) has been found, this makes it very easy and efficient to infer additional chart positions (unlike with MDS).
 			</p>
 			<p>
@@ -919,7 +919,7 @@ cc_embmodel = tf.keras.Model(inputs=cc_embmodel_input, outputs=cc_embmodel_outpu
 				Remember, we can't train the FCF in a supervised manner, since we don't have ground truth information.
 				However, we do have a dissimilarity matrix \( \mathbf D_\mathrm{G-fuse} \) and we could try to make the FCF map datapoints to the channel chart such that the channel chart positions conform to \( \mathbf D_\mathrm{G-fuse} \).
 				This is exactly the idea of a <a href="https://en.wikipedia.org/wiki/Siamese_neural_network">Siamese Neural Network</a>:
-				Run the FCF twice on two different datapoint feature vectors \( f^{(i)} \) and \( f^{(j)} \), and tune (via backpropagation) the neural network based on how well the produced channel chart positions \( z^{(l)} \) and \( z^{(j)} \) match the dissimilarity matrix.
+				Run the FCF twice on two different datapoint feature vectors \( \mathbf f^{(i)} \) and \( \mathbf f^{(j)} \), and tune (via backpropagation) the neural network based on how well the produced channel chart positions \( \mathbf z^{(i)} \) and \( \mathbf z^{(j)} \) match the dissimilarity matrix.
 			</p>
 			<p>
 				This allows us to reuse the MDS cost function as a loss function for the Siamese neural network (where \( N \) is the size of the current batch):
@@ -973,7 +973,7 @@ random_pair_dataset = random_integer_pairs_dataset.map(fill_pairs)</code></pre>
 
 	<h4 class="my-4" style="font-weight: bold;">Training</h4>
 	Finally, we can start the neural network training.
-	With a modern GPU, you should see the first Channel Chart after a few seconds, and training should be finished after a couple of minutes.
+	With a modern GPU, you should see the first channel chart after a few seconds, and training should be finished after a couple of minutes.
 	We adapt the learning rates and batch sizes over the training epochs (note: epochs don't really make sense in this context, so we will use the words <i>epoch</i> and <i>session</i> interchangeably), such that the FCF first learns the coarse, global structure of the channel chart and later focuses on the finer details.
 
 <pre class="m-0"><code class="language-python">optimizer = tf.keras.optimizers.Adam()
@@ -1069,7 +1069,7 @@ for l in range(len(learning_rates)):
 				The L-shaped structure of the measurement area that is also visible in the top view of "ground truth" positions is clearly very well preserved here.
 			</p>
 			<p>
-				Actually, the Channel Chart that appears after the first training epoch is already pretty acceptable, the global structure is clearly visible.
+				Actually, the channel chart that appears after the first training epoch is already pretty acceptable, the global structure is clearly visible.
 			</p>
 			<p>
 				As always, there is some unknown rotation / flipping / scaling between the channel chart and the true locations.
@@ -1200,7 +1200,7 @@ def kruskal_stress(X, X_embedded):
 
 	return np.sqrt(np.divide(np.sum(np.square((dist_X - beta * dist_X_embedded))), np.sum(dist_X * dist_X)))</code></pre>
 
-	For computing CT and TW, we need to define a <i>neighborhood size</i>, i.e., how many neighboring datapoints to consider when evaluation the preservation of local neighborhoods.
+	For computing CT and TW, we need to define a <i>neighborhood size</i>, i.e., how many neighboring datapoints to consider when evaluating the preservation of local neighborhoods.
 	As is typical in Channel Charting literature, we choose a neighborhood size that is \( 5 \% \) of the total number of datapoints.
 	Furthermore, evaluating CT / TW / KS on all datapoints may take a very long time (and consume a lot of RAM).
 	We therefore perform the evaluations on a random subset of the whole dataset:
