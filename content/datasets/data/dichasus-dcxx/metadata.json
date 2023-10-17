@@ -256,6 +256,27 @@
             "totalSize": 18534851666
         },
         {
+            "filename": "tfrecords/dichasus-dc11.tfrecords",
+            "description": "Robot follows trajectories with many direct paths between north wing and adjacent hallway to the west. A metal wall is placed between south wing and central lobby area in south-west orientation, obstructing the LoS of the south wing antenna array. The north wing antenna array has mostly LoS channels, but also NLoS channels in the adjacent hallway to the west. Gain of all receivers is 58dB.",
+            "rx_gain_db": 58,
+            "name": "dichasus-dc11",
+            "plots": {
+                "snrByPosition": "plots/dichasus-dc11-snr-position.png",
+                "snrBoxplot": "plots/dichasus-dc11-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-dc11-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "North wing antenna array": "plots/dichasus-dc11-snr-position-array-0.png",
+                    "South wing antenna array": "plots/dichasus-dc11-snr-position-array-1.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 31940,
+            "duration": 1674.576171875,
+            "totalSize": 16769202680
+        },
+        {
             "filename": "tfrecords/dichasus-dc30.tfrecords",
             "description": "Robot follows a pseudorandom trajectory in the \"lobby\" area of the hallway. A metal wall is placed between north wing and central lobby area in north-west orientation, obstructing the LoS of the north wing antenna array. The south wing antenna array has partly LoS and partly NLoS channels. Gain of all receivers is 66dB. Tachymeter positions might be slightly less precise (only cm-level) for this file, due to a time synchronization issue (small time lags).",
             "rx_gain_db": 66,
@@ -526,7 +547,8 @@
             "plots/overall-csi-10.png",
             "plots/overall-csi-11.png",
             "plots/overall-csi-12.png",
-            "plots/overall-csi-13.png"
+            "plots/overall-csi-13.png",
+            "plots/overall-csi-14.png"
         ],
         "snrByPositionAndArray": {
             "North wing antenna array": "plots/overall-snr-position-array-0.png",
@@ -534,9 +556,9 @@
         }
     },
     "gpx": "",
-    "datapoints": 269802,
-    "duration": 14793.4091796875,
+    "datapoints": 301742,
+    "duration": 16467.9853515625,
     "antennaCount": 64,
     "subcarriers": 1024,
-    "totalSize": 141651985644
+    "totalSize": 158421188324
 }

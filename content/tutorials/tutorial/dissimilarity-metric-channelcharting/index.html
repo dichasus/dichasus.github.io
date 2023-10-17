@@ -988,8 +988,7 @@ for l in range(len(learning_rates)):
 
     # Fit model
     optimizer.learning_rate.assign(learning_rates[l])
-    steps_per_epoch = int(samples_per_session / batch_size[l])
-    model.fit(random_pair_dataset.batch(batch_size[l]).prefetch(tf.data.AUTOTUNE), steps_per_epoch = samples_per_session / batch_size[l])
+    model.fit(random_pair_dataset.batch(batch_size[l]).prefetch(tf.data.AUTOTUNE), steps_per_epoch = samples_per_session // batch_size[l])
 
     # Plot Channel Chart
     print("Running inference to plot channel chart")
