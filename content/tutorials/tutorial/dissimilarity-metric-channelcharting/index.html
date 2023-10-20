@@ -410,8 +410,6 @@ plot_colorized(groundtruth_positions, groundtruth_positions, title="Ground Truth
 
 def adp_dissimilarities_worker(todo_queue, output_queue):
 	def adp_dissimilarities(index):
-		cosine_similarities = np.zeros((np.shape(csi_time_domain)[0] - index, np.shape(csi_time_domain)[1], np.shape(csi_time_domain)[2]))
-		
 		# h has shape (arrays, antennas, taps), w has shape (datapoints, arrays, antennas, taps)
 		h = csi_time_domain[index,:,:,:]
 		w = csi_time_domain[index:,:,:,:]
