@@ -66,6 +66,7 @@ layout: tutorial-details
 		Next, we load the TFRecords files with TensorFlow:
 	</p>
 	<pre class="m-0"><code class="language-python">from sklearn.neighbors import NearestNeighbors, kneighbors_graph
+from sklearn.manifold import trustworthiness
 from scipy.sparse.csgraph import dijkstra
 from scipy.spatial import distance_matrix
 from sklearn.manifold import MDS
