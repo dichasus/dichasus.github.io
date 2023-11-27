@@ -8,7 +8,8 @@
     "year": 2023,
     "warnings": [
         "This dataset is currently still being processed.",
-        "A 3D model of the hallway will be made available alongside the dataset."
+        "A 3D model of the hallway will be made available alongside the dataset.",
+        "Currently, the offset estimates are assumed to be sufficiently accurate within the the antenna arrays, but not between them. Offset estimates for smaller .tfrecord files with few LoS channels may be inaccurate."
     ],
     "antennas": [
         {
@@ -275,6 +276,111 @@
             "datapoints": 31940,
             "duration": 1674.576171875,
             "totalSize": 16769202680
+        },
+        {
+            "filename": "tfrecords/dichasus-dc12.tfrecords",
+            "description": "Robot follows pseudorandom trajectory in the south wing. A metal wall is placed between south wing and central lobby area in south-west orientation, obstructing the LoS of the north wing antenna array. The south wing antenna array has mostly LoS channels. Gain of all receivers is 58dB.",
+            "rx_gain_db": 58,
+            "name": "dichasus-dc12",
+            "plots": {
+                "snrByPosition": "plots/dichasus-dc12-snr-position.png",
+                "snrBoxplot": "plots/dichasus-dc12-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-dc12-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "North wing antenna array": "plots/dichasus-dc12-snr-position-array-0.png",
+                    "South wing antenna array": "plots/dichasus-dc12-snr-position-array-1.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 28336,
+            "duration": 1686.5760498046875,
+            "totalSize": 14877023392
+        },
+        {
+            "filename": "tfrecords/dichasus-dc13.tfrecords",
+            "description": "Robot follows straight-line trajectory in the south wing. A metal wall is placed between south wing and central lobby area in south-west orientation, obstructing the LoS of the north wing antenna array. The south wing antenna array has mostly LoS channels. Gain of all receivers is 58dB. Measurement was terminated early when tachymeter (for ground truth reference data) lost position lock.",
+            "rx_gain_db": 58,
+            "name": "dichasus-dc13",
+            "plots": {
+                "snrByPosition": "plots/dichasus-dc13-snr-position.png",
+                "snrBoxplot": "plots/dichasus-dc13-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-dc13-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "North wing antenna array": "plots/dichasus-dc13-snr-position-array-0.png",
+                    "South wing antenna array": "plots/dichasus-dc13-snr-position-array-1.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 5903,
+            "duration": 340.176025390625,
+            "totalSize": 3099204866
+        },
+        {
+            "filename": "tfrecords/dichasus-dc14.tfrecords",
+            "description": "Robot follows straight-line trajectory in the south wing. A metal wall is placed between south wing and central lobby area in south-west orientation, obstructing the LoS of the north wing antenna array. The south wing antenna array has mostly LoS channels. Gain of all receivers is 58dB.",
+            "rx_gain_db": 58,
+            "name": "dichasus-dc14",
+            "plots": {
+                "snrByPosition": "plots/dichasus-dc14-snr-position.png",
+                "snrBoxplot": "plots/dichasus-dc14-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-dc14-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "North wing antenna array": "plots/dichasus-dc14-snr-position-array-0.png",
+                    "South wing antenna array": "plots/dichasus-dc14-snr-position-array-1.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 29018,
+            "duration": 1505.135986328125,
+            "totalSize": 15235088396
+        },
+        {
+            "filename": "tfrecords/dichasus-dc15.tfrecords",
+            "description": "Robot follows manually controlled trajectory in the central lobby area. A metal wall is placed between south wing and central lobby area in south-west orientation. Robot is close to the metal wall, so channel conditions vary between LoS / NLoS channels for north wing / south wing antenna arrays. Gain of all receivers is 58dB.",
+            "rx_gain_db": 58,
+            "name": "dichasus-dc15",
+            "plots": {
+                "snrByPosition": "plots/dichasus-dc15-snr-position.png",
+                "snrBoxplot": "plots/dichasus-dc15-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-dc15-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "North wing antenna array": "plots/dichasus-dc15-snr-position-array-0.png",
+                    "South wing antenna array": "plots/dichasus-dc15-snr-position-array-1.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 9443,
+            "duration": 566.7841796875,
+            "totalSize": 4957782746
+        },
+        {
+            "filename": "tfrecords/dichasus-dc20.tfrecords",
+            "description": "Robot follows a pseudorandom trajectory in the south wing and central lobby area. A metal wall is placed between north wing and central lobby area in north-west orientation, obstructing the LoS of the north wing antenna array. The south wing antenna array has partly LoS and partly NLoS channels. Gain of all receivers is 58dB.",
+            "rx_gain_db": 58,
+            "name": "dichasus-dc20",
+            "plots": {
+                "snrByPosition": "plots/dichasus-dc20-snr-position.png",
+                "snrBoxplot": "plots/dichasus-dc20-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-dc20-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "North wing antenna array": "plots/dichasus-dc20-snr-position-array-0.png",
+                    "South wing antenna array": "plots/dichasus-dc20-snr-position-array-1.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 31998,
+            "duration": 1869.4560546875,
+            "totalSize": 16799653956
         },
         {
             "filename": "tfrecords/dichasus-dc30.tfrecords",
@@ -548,7 +654,12 @@
             "plots/overall-csi-11.png",
             "plots/overall-csi-12.png",
             "plots/overall-csi-13.png",
-            "plots/overall-csi-14.png"
+            "plots/overall-csi-14.png",
+            "plots/overall-csi-15.png",
+            "plots/overall-csi-16.png",
+            "plots/overall-csi-17.png",
+            "plots/overall-csi-18.png",
+            "plots/overall-csi-19.png"
         ],
         "snrByPositionAndArray": {
             "North wing antenna array": "plots/overall-snr-position-array-0.png",
@@ -556,9 +667,9 @@
         }
     },
     "gpx": "",
-    "datapoints": 301742,
-    "duration": 16467.9853515625,
+    "datapoints": 406440,
+    "duration": 22436.113647460938,
     "antennaCount": 64,
     "subcarriers": 1024,
-    "totalSize": 158421188324
+    "totalSize": 213389941680
 }
