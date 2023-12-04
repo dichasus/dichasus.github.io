@@ -6,6 +6,26 @@
     "frequency": 3438000000,
     "outdoor": false,
     "year": 2023,
+    "authors": [
+        {
+            "firstname": "Florian",
+            "lastname": "Euchner",
+            "orcid": "0000-0002-8090-1188",
+            "affiliation": "Institute of Telecommunications, University of Stuttgart"
+        },
+        {
+            "firstname": "Phillip",
+            "lastname": "Stephan",
+            "orcid": "0009-0007-4036-668X",
+            "affiliation": "Institute of Telecommunications, University of Stuttgart"
+        },
+        {
+            "firstname": "Marc",
+            "lastname": "Gauger",
+            "orcid": "0000-0002-9310-6167",
+            "affiliation": "Institute of Telecommunications, University of Stuttgart"
+        }
+    ],
     "warnings": [
         "This dataset is currently still being processed.",
         "A 3D model of the hallway will be made available alongside the dataset.",
@@ -189,9 +209,9 @@
                 }
             },
             "gpx": "",
-            "datapoints": 32570,
+            "datapoints": 32133,
             "duration": 1761.935546875,
-            "totalSize": 17099966540
+            "totalSize": 16870531926
         },
         {
             "filename": "tfrecords/dichasus-dc02.tfrecords",
@@ -210,9 +230,9 @@
                 }
             },
             "gpx": "",
-            "datapoints": 31803,
+            "datapoints": 31376,
             "duration": 1666.896484375,
-            "totalSize": 16697274666
+            "totalSize": 16473090272
         },
         {
             "filename": "tfrecords/dichasus-dc04.tfrecords",
@@ -231,9 +251,9 @@
                 }
             },
             "gpx": "",
-            "datapoints": 49090,
+            "datapoints": 48456,
             "duration": 2529.9365234375,
-            "totalSize": 25773329980
+            "totalSize": 25440466032
         },
         {
             "filename": "tfrecords/dichasus-dc10.tfrecords",
@@ -252,9 +272,9 @@
                 }
             },
             "gpx": "",
-            "datapoints": 35303,
+            "datapoints": 34738,
             "duration": 1945.583984375,
-            "totalSize": 18534851666
+            "totalSize": 18238214236
         },
         {
             "filename": "tfrecords/dichasus-dc11.tfrecords",
@@ -273,9 +293,9 @@
                 }
             },
             "gpx": "",
-            "datapoints": 31940,
+            "datapoints": 31533,
             "duration": 1674.576171875,
-            "totalSize": 16769202680
+            "totalSize": 16555518726
         },
         {
             "filename": "tfrecords/dichasus-dc12.tfrecords",
@@ -294,9 +314,9 @@
                 }
             },
             "gpx": "",
-            "datapoints": 28336,
+            "datapoints": 27944,
             "duration": 1686.5760498046875,
-            "totalSize": 14877023392
+            "totalSize": 14671214768
         },
         {
             "filename": "tfrecords/dichasus-dc13.tfrecords",
@@ -315,9 +335,9 @@
                 }
             },
             "gpx": "",
-            "datapoints": 5903,
+            "datapoints": 5818,
             "duration": 340.176025390625,
-            "totalSize": 3099204866
+            "totalSize": 3054577996
         },
         {
             "filename": "tfrecords/dichasus-dc14.tfrecords",
@@ -336,9 +356,9 @@
                 }
             },
             "gpx": "",
-            "datapoints": 29018,
+            "datapoints": 28611,
             "duration": 1505.135986328125,
-            "totalSize": 15235088396
+            "totalSize": 15021404442
         },
         {
             "filename": "tfrecords/dichasus-dc15.tfrecords",
@@ -357,13 +377,13 @@
                 }
             },
             "gpx": "",
-            "datapoints": 9443,
+            "datapoints": 9300,
             "duration": 566.7841796875,
-            "totalSize": 4957782746
+            "totalSize": 4882704600
         },
         {
             "filename": "tfrecords/dichasus-dc20.tfrecords",
-            "description": "Robot follows a pseudorandom trajectory in the south wing and central lobby area. A metal wall is placed between north wing and central lobby area in north-west orientation, obstructing the LoS of the north wing antenna array. The south wing antenna array has partly LoS and partly NLoS channels. Gain of all receivers is 58dB.",
+            "description": "Robot follows a pseudorandom forth-and-back trajectory in the south wing and central lobby area. A metal wall is placed between north wing and central lobby area in north-west orientation, obstructing the LoS of the north wing antenna array. The south wing antenna array has partly LoS and partly NLoS channels. Gain of all receivers is 58dB.",
             "rx_gain_db": 58,
             "name": "dichasus-dc20",
             "plots": {
@@ -378,9 +398,30 @@
                 }
             },
             "gpx": "",
-            "datapoints": 31998,
+            "datapoints": 31547,
             "duration": 1869.4560546875,
-            "totalSize": 16799653956
+            "totalSize": 16562869034
+        },
+        {
+            "filename": "tfrecords/dichasus-dc21.tfrecords",
+            "description": "Robot follows a pseudorandom trajectory in the south wing and central lobby area. A metal wall is placed between north wing and central lobby area in north-west orientation, obstructing the LoS of the north wing antenna array. The south wing antenna array has partly LoS and partly NLoS channels. Gain of all receivers is 58dB.",
+            "rx_gain_db": 58,
+            "name": "dichasus-dc21",
+            "plots": {
+                "snrByPosition": "plots/dichasus-dc21-snr-position.png",
+                "snrBoxplot": "plots/dichasus-dc21-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-dc21-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "North wing antenna array": "plots/dichasus-dc21-snr-position-array-0.png",
+                    "South wing antenna array": "plots/dichasus-dc21-snr-position-array-1.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 26483,
+            "duration": 1481.1357421875,
+            "totalSize": 13904157626
         },
         {
             "filename": "tfrecords/dichasus-dc30.tfrecords",
@@ -399,9 +440,9 @@
                 }
             },
             "gpx": "",
-            "datapoints": 28925,
+            "datapoints": 28372,
             "duration": 1603.056640625,
-            "totalSize": 15186261350
+            "totalSize": 14895924184
         },
         {
             "filename": "tfrecords/dichasus-dc31.tfrecords",
@@ -420,9 +461,9 @@
                 }
             },
             "gpx": "",
-            "datapoints": 3942,
+            "datapoints": 3857,
             "duration": 238.8955078125,
-            "totalSize": 2069636724
+            "totalSize": 2025009854
         },
         {
             "filename": "tfrecords/dichasus-dc32.tfrecords",
@@ -441,9 +482,9 @@
                 }
             },
             "gpx": "",
-            "datapoints": 4577,
+            "datapoints": 4495,
             "duration": 244.6552734375,
-            "totalSize": 2403025694
+            "totalSize": 2359973890
         },
         {
             "filename": "tfrecords/dichasus-dc33.tfrecords",
@@ -462,9 +503,9 @@
                 }
             },
             "gpx": "",
-            "datapoints": 17627,
+            "datapoints": 17359,
             "duration": 978.576171875,
-            "totalSize": 9254562794
+            "totalSize": 9113856898
         },
         {
             "filename": "tfrecords/dichasus-dc34.tfrecords",
@@ -483,9 +524,9 @@
                 }
             },
             "gpx": "",
-            "datapoints": 10015,
+            "datapoints": 9870,
             "duration": 551.375,
-            "totalSize": 5258095330
+            "totalSize": 5181967140
         },
         {
             "filename": "tfrecords/dichasus-dc40.tfrecords",
@@ -504,9 +545,9 @@
                 }
             },
             "gpx": "",
-            "datapoints": 19551,
+            "datapoints": 19216,
             "duration": 1084.65625,
-            "totalSize": 10264705122
+            "totalSize": 10088822752
         },
         {
             "filename": "tfrecords/dichasus-dc41.tfrecords",
@@ -525,9 +566,9 @@
                 }
             },
             "gpx": "",
-            "datapoints": 3335,
+            "datapoints": 3282,
             "duration": 183.216796875,
-            "totalSize": 1750948370
+            "totalSize": 1723122204
         },
         {
             "filename": "tfrecords/dichasus-dc42.tfrecords",
@@ -546,9 +587,9 @@
                 }
             },
             "gpx": "",
-            "datapoints": 3385,
+            "datapoints": 3308,
             "duration": 182.255859375,
-            "totalSize": 1777199470
+            "totalSize": 1736772776
         },
         {
             "filename": "tfrecords/dichasus-dc43.tfrecords",
@@ -567,9 +608,9 @@
                 }
             },
             "gpx": "",
-            "datapoints": 15722,
+            "datapoints": 15480,
             "duration": 994.896484375,
-            "totalSize": 8254395884
+            "totalSize": 8127340560
         },
         {
             "filename": "tfrecords/dichasus-dc44.tfrecords",
@@ -588,9 +629,9 @@
                 }
             },
             "gpx": "",
-            "datapoints": 13957,
+            "datapoints": 13686,
             "duration": 827.47265625,
-            "totalSize": 7327732054
+            "totalSize": 7185451092
         }
     ],
     "photos": [
@@ -659,7 +700,8 @@
             "plots/overall-csi-16.png",
             "plots/overall-csi-17.png",
             "plots/overall-csi-18.png",
-            "plots/overall-csi-19.png"
+            "plots/overall-csi-19.png",
+            "plots/overall-csi-20.png"
         ],
         "snrByPositionAndArray": {
             "North wing antenna array": "plots/overall-snr-position-array-0.png",
@@ -667,9 +709,9 @@
         }
     },
     "gpx": "",
-    "datapoints": 406440,
-    "duration": 22436.113647460938,
+    "datapoints": 426864,
+    "duration": 23917.249389648438,
     "antennaCount": 64,
     "subcarriers": 1024,
-    "totalSize": 213389941680
+    "totalSize": 224112991008
 }
