@@ -1235,6 +1235,48 @@ print("CT: {} \nTW: {} \nKS: {}".format(*np.around((ct, tw, ks), 5)))</code></pr
 		</div>
 	</div>
 
+	<h2 class="text-center my-4" style="font-weight: bold;">Augmented Channel Charting: Absolute Localization</h2>
+
+	<div class="row justify-content-center mb-2">
+		<div class="col-12 col-md-8 col-lg-5 col-xl-3 p-2 text-center">
+			<b>AoA / ToA Localization</b>
+			<img style="width: 100%; margin-top: 20pt;" src="toa_aoa_ml_animation.gif">
+		</div>
+		<div class="col-12 col-md-8 col-lg-5 col-xl-3 p-2 text-center">
+			<b>Channel Charting</b>
+			<img style="width: 100%;" src="cc_animation.gif">
+		</div>
+		<div class="col-12 col-md-12 col-lg-12 col-xl-6 p-2">
+			<p>
+				Channel Charting is not just a wireless source localization technique, but wireless source localization is one of its applications.
+				When we use Channel Charting for localization, we want to obtain transmitter position coordingates in some <i>absolute</i> coordinate frame.
+				The good news is: If we know the location of the receiver antenna arrays, we can achieve this by combining Channel Charting with classical wireless source localization techniques.
+				Classical wireless localization techniques typically rely on angle of arrival (AoA) estimation and subsequent triangulation, or time of arrival (ToA) estimation and subsequent multilateration, or a combination of both.
+				In a framework that we call <i>augmented</i> Channel Charting, we feed these classical position estimates to the neural network during training.
+			</p>
+			<p>
+				The result: A forward charting function that can localize UEs in the absolute coordinate frame, and, by exploiting information contained in the multipath characteristics of the channel, is more accurate than classical approaches.
+			</p>
+		</div>
+	</div>
+	<div class="row justify-content-center mb-2">
+		<div class="col-12 col-md-10 col-lg-8 col-xl-6 p-2 text-center">
+			<b>Localization performance of classical techniques vs. Channel Charting</b>
+			<img style="width: 100%;" src="cdf-augmented-cc.svg">
+		</div>
+	</div>
+	<div class="row justify-content-center mb-2">
+		<div class="col-12 p-2">
+			Augmented Channel Charting, i.e., the combination of Channel Charting and classical techniques, is outside the scope of this tutorial.
+			You may want to check out our paper on the topic, some presentation slides or the GitHub repository for more information:
+		</div>
+	</div>
+	<div class="text-center">
+		<a class="btn btn-dark me-2" href="https://arxiv.org/abs/2312.01968">Paper</a>
+		<a class="btn btn-dark me-2" href="https://github.com/Jeija/ToA-AoA-Augmented-ChannelCharting/blob/main/PresentationSlides_Asilomar2023.pdf">Presentation Slides</a>
+		<a class="btn btn-dark me-2" href="https://github.com/Jeija/ToA-AoA-Augmented-ChannelCharting/">GitHub Repository</a>
+	</div>
+
 	<h2 class="text-center my-4" style="font-weight: bold;">A Note on Privacy</h2>
 	<p>
 		Last, but not least: If you read the whole tutorial all the way to the end, then you have certainly realized that Channel Charting technology means that the massive MIMO base station will know the location of the users in a much more fine-grained manner than is possible with today's base stations and their sector antennas.
