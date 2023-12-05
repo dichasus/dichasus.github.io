@@ -589,6 +589,15 @@ dataset = dataset.cache()</code></pre>
 		</div>
 		{{ end }}
 
+		{{ $authorlist := slice }}
+		{{ if isset $spec "authors" }}
+			{{ range $author := $spec.authors }}
+				{{ $fullname := $author.firstname | printf "%s, %s" $author.lastname | printf "%s" }}
+				{{ $authorlist = $authorlist | append $fullname }}
+			{{ end }}
+		{{ else }}
+			{{ $authorlist = $authorlist | append "Euchner, Florian" "Gauger, Marc" }}
+		{{ end }}
 
 		<h2 id="cite">How to Cite</h2>
 		<p>
@@ -597,7 +606,7 @@ dataset = dataset.cache()</code></pre>
 			{{ if isset $spec "doi" }}
 			For this dataset in particular, you may use the following BibTeX:
 		<pre class="m-0"><code class="language-tex">@data{dataset-{{ $spec.identifier }},
-	author    = {Florian Euchner and Marc Gauger},
+	author    = {{"{"}}{{ delimit $authorlist " and "}}{{"}"}},
 	publisher = {DaRUS},
 	title     = {{"{{"}}CSI Dataset {{ $spec.identifier }}: {{ $spec.name }}{{"}}"}},
 	doi       = {{"{"}}{{$spec.doi}}{{"}"}},
