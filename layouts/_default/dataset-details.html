@@ -390,42 +390,63 @@
 						<h2>Data Analysis</h2>
 						<div id="plots-with-captions" class="carousel carousel-dark slide m-4" data-bs-ride="carousel" data-bs-interval="false">
 							<div class="carousel-inner">
-								<div class="carousel-item active">
-									<img src="{{ $spec.plots.snrByPosition }}" class="d-block w-100" alt="">
-									<div
-										class="carousel-caption d-none d-md-block bg-secondary text-white p-3 bg-opacity-50">
-										Mean received signal-to-noise ratio by position
-									</div>
-								</div>
+								{{/*
+									There are several cases that we need to handle here:
+									* There is only one antenna array and only one configuration
+									* There are multiple antenna arrays and only one configuration
+									* There is only one antenna array and multiple configuration
+									* There are multiple antenna arrays and multiple configurations
+								*/}}
 
-								{{ if isset $spec.plots "snrByPositionAndArray" }}
-									{{ range $name, $filename := $spec.plots.snrByPositionAndArray }}
+								{{ $plotsList := slice }}
+								{{ if isset $spec "configuration" }}
+									{{ range $variant := $spec.configuration.variants }}
+										{{ $plotsDict := dict "plots" $variant.plots "variant" $variant.name }}
+										{{ $plotsList = $plotsList | append $plotsDict }}
+									{{ end }}
+								{{ else }}
+									{{ $plotsDict := dict "plots" $spec.plots }}
+									{{ $plotsList = $plotsList | append $plotsDict }}
+								{{ end }}
+
+								{{ range $index, $plotsDict := $plotsList }}
+									<div class="carousel-item {{ if (eq $index 0) }}active{{ end }}">
+										<img src="{{ $plotsDict.plots.snrByPosition }}" class="d-block w-100" alt="">
+										<div
+											class="carousel-caption d-none d-md-block bg-secondary text-white p-3 bg-opacity-50">
+											Mean received signal-to-noise ratio by position{{ if isset $plotsDict "variant" }} for configuration variant "{{ $plotsDict.variant }}" {{ end }}
+										</div>
+									</div>
+
+									{{ if isset $plotsDict.plots "snrByPositionAndArray" }}
+										{{ range $name, $filename := $plotsDict.plots.snrByPositionAndArray }}
+										<div class="carousel-item">
+											<img src="{{ $filename }}" class="d-block w-100" alt="">
+											<div
+												class="carousel-caption d-none d-md-block bg-secondary text-white p-3 bg-opacity-50">
+												Mean received signal-to-noise ratio by position, seen from {{ $name }}{{ if isset $plotsDict "variant" }}, for configuration variant "{{ $plotsDict.variant }}" {{ end }}
+											</div>
+										</div>
+										{{ end }}
+									{{ end }}
+
+									<div class="carousel-item">
+										<img src="{{ $plotsDict.plots.snrBoxplot }}" class="d-block w-100" alt="">
+										<div
+											class="carousel-caption d-none d-md-block bg-secondary text-white p-3 bg-opacity-50">
+											SNR by receive antenna index{{ if isset $plotsDict "variant" }} for configuration variant "{{ $plotsDict.variant }}" {{ end }}
+										</div>
+									</div>
+
+									{{/*{{ range $index, $filename := $plotsDict.plots.csiTensors }}
 									<div class="carousel-item">
 										<img src="{{ $filename }}" class="d-block w-100" alt="">
 										<div
 											class="carousel-caption d-none d-md-block bg-secondary text-white p-3 bg-opacity-50">
-											Mean received signal-to-noise ratio by position, seen from {{ $name }}
+											Exemplary channel coefficient vector {{ add $index 1 }}
 										</div>
 									</div>
-									{{ end }}
-								{{ end }}
-
-								<div class="carousel-item">
-									<img src="{{ $spec.plots.snrBoxplot }}" class="d-block w-100" alt="">
-									<div
-										class="carousel-caption d-none d-md-block bg-secondary text-white p-3 bg-opacity-50">
-										SNR by receive antenna index
-									</div>
-								</div>
-
-								{{ range $index, $filename := $spec.plots.csiTensors }}
-								<div class="carousel-item">
-									<img src="{{ $filename }}" class="d-block w-100" alt="">
-									<div
-										class="carousel-caption d-none d-md-block bg-secondary text-white p-3 bg-opacity-50">
-										Exemplary channel coefficient vector {{ add $index 1 }}
-									</div>
-								</div>
+									{{ end }}*/}}
 								{{ end }}
 							</div>
 							<button class="carousel-control-prev" type="button" data-bs-target="#plots-with-captions"
@@ -873,19 +894,19 @@ dataset = dataset.cache()</code></pre>
 										<button class="accordion-button collapsed" type="button"
 											data-bs-toggle="collapse" data-bs-target="#collapseFive-{{ $index }}"
 											aria-expanded="false" aria-controls="collapseFive-{{ $index }}">
-											Configuration Vairant {{ if isset $spec.configuration "threedmodel" }} and 3D Model{{ end }}
+											Configuration Variant {{ if isset $spec.configuration "threedmodel" }} and 3D Model{{ end }}
 										</button>
 									</h2>
 									<div id="collapseFive-{{ $index }}" class="accordion-collapse collapse"
 										aria-labelledby="headingFive-{{ $index }}"
 										data-bs-parent="#plot-accordion-{{ $index }}">
-										{{ $env := (index $spec.configuration.variants $tfrecord.configurationVariant) }}
-										<model-viewer alt="3D Model of the Environment" src="{{ $env.gltf }}" shadow-intensity="1" camera-controls touch-action="pan-y" class="w-100" style="min-height: 300px; height: 50vh;">
+										{{ $variant := (index $spec.configuration.variants $tfrecord.configurationVariant) }}
+										<model-viewer alt="3D Model of the Environment" src="{{ $variant.gltf }}" shadow-intensity="1" camera-controls touch-action="pan-y" class="w-100" style="min-height: 300px; height: 50vh;">
 											<div slot="progress-bar"></div>
 										</model-viewer>
 										<p class="p-3">
-											<b>{{ $env.name }}</b>:
-											{{ $env.description }}
+											<b>{{ $variant.name }}</b>:
+											{{ $variant.description }}
 										</p>
 									</div>
 								</div>

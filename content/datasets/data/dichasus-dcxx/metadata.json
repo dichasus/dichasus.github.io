@@ -32,47 +32,123 @@
             "affiliation": "Institute of Telecommunications, University of Stuttgart"
         }
     ],
-    "warnings": [
-        "Currently, the offset estimates are assumed to be sufficiently accurate within the the antenna arrays, but not between them. Offset estimates for smaller .tfrecord files with few LoS channels may be inaccurate."
-    ],
-    "configuration" : {
-        "threedmodel" : {
-            "blender" : "3dmodel/inue-all.blend",
-            "descriptionFile" : "3dmodel/description.md"
+    "configuration": {
+        "threedmodel": {
+            "blender": "3dmodel/inue-all.blend",
+            "descriptionFile": "3dmodel/description.md"
         },
-        "variants" : {
-            "no-walls-58db" : {
-                "name" : "No blocker walls, 58dB RX gain",
-                "description" : "The central lobby area is empty, i.e., no blocker walls were set up. Gain of all receivers is 58dB.",
-                "gltf" : "3dmodel/inue-no-walls.glb",
-                "rxgain" : 58
+        "variants": {
+            "no-walls-58db": {
+                "name": "No blocker walls, 58dB RX gain",
+                "description": "The central lobby area is empty, i.e., no blocker walls were set up. Gain of all receivers is 58dB.",
+                "gltf": "3dmodel/inue-no-walls.glb",
+                "rxgain": 58,
+                "plots": {
+                    "snrByPosition": "plots/no-walls-58db-snr-position.png",
+                    "snrBoxplot": "plots/no-walls-58db-snr-boxplot.png",
+                    "csiTensors": [
+                        "plots/no-walls-58db-csi-0.png",
+                        "plots/no-walls-58db-csi-1.png",
+                        "plots/no-walls-58db-csi-2.png"
+                    ],
+                    "snrByPositionAndArray": {
+                        "North wing antenna array": "plots/no-walls-58db-snr-position-array-0.png",
+                        "South wing antenna array": "plots/no-walls-58db-snr-position-array-1.png"
+                    }
+                },
+                "gpx": ""
             },
-            "no-walls-66db" : {
-                "name" : "No blocker walls, 66dB RX gain",
-                "description" : "The central lobby area is empty, i.e., no blocker walls were set up. Gain of all receivers is 66dB.",
-                "gltf" : "3dmodel/inue-no-walls.glb",
-                "rxgain" : 66
+            "no-walls-66db": {
+                "name": "No blocker walls, 66dB RX gain",
+                "description": "The central lobby area is empty, i.e., no blocker walls were set up. Gain of all receivers is 66dB.",
+                "gltf": "3dmodel/inue-no-walls.glb",
+                "rxgain": 66,
+                "plots": {
+                    "snrByPosition": "plots/no-walls-66db-snr-position.png",
+                    "snrBoxplot": "plots/no-walls-66db-snr-boxplot.png",
+                    "csiTensors": [
+                        "plots/no-walls-66db-csi-0.png",
+                        "plots/no-walls-66db-csi-1.png",
+                        "plots/no-walls-66db-csi-2.png",
+                        "plots/no-walls-66db-csi-3.png",
+                        "plots/no-walls-66db-csi-4.png"
+                    ],
+                    "snrByPositionAndArray": {
+                        "North wing antenna array": "plots/no-walls-66db-snr-position-array-0.png",
+                        "South wing antenna array": "plots/no-walls-66db-snr-position-array-1.png"
+                    }
+                },
+                "gpx": ""
             },
-            "northwest-wall-58db" : {
-                "name" : "With north-west blocker wall, 58dB RX gain",
-                "description" : "A metal wall is placed between north wing and central lobby area in north-west orientation, obstructing some propagation paths. Gain of all receivers is 58dB.",
-                "gltf" : "3dmodel/inue-northwest-wall.glb",
-                "rxgain" : 58
+            "northwest-wall-58db": {
+                "name": "With north-west blocker wall, 58dB RX gain",
+                "description": "A metal wall is placed between north wing and central lobby area in north-west orientation, obstructing some propagation paths. Gain of all receivers is 58dB.",
+                "gltf": "3dmodel/inue-northwest-wall.glb",
+                "rxgain": 58,
+                "plots": {
+                    "snrByPosition": "plots/northwest-wall-58db-snr-position.png",
+                    "snrBoxplot": "plots/northwest-wall-58db-snr-boxplot.png",
+                    "csiTensors": [
+                        "plots/northwest-wall-58db-csi-0.png",
+                        "plots/northwest-wall-58db-csi-1.png"
+                    ],
+                    "snrByPositionAndArray": {
+                        "North wing antenna array": "plots/northwest-wall-58db-snr-position-array-0.png",
+                        "South wing antenna array": "plots/northwest-wall-58db-snr-position-array-1.png"
+                    }
+                },
+                "gpx": ""
             },
-            "northwest-wall-66db" : {
-                "name" : "With north-west blocker wall, 66dB RX gain",
-                "description" : "A metal wall is placed between north wing and central lobby area in north-west orientation, obstructing some propagation paths. Gain of all receivers is 66dB.",
-                "gltf" : "3dmodel/inue-northwest-wall.glb",
-                "rxgain" : 66
+            "northwest-wall-66db": {
+                "name": "With north-west blocker wall, 66dB RX gain",
+                "description": "A metal wall is placed between north wing and central lobby area in north-west orientation, obstructing some propagation paths. Gain of all receivers is 66dB.",
+                "gltf": "3dmodel/inue-northwest-wall.glb",
+                "rxgain": 66,
+                "plots": {
+                    "snrByPosition": "plots/northwest-wall-66db-snr-position.png",
+                    "snrBoxplot": "plots/northwest-wall-66db-snr-boxplot.png",
+                    "csiTensors": [
+                        "plots/northwest-wall-66db-csi-0.png",
+                        "plots/northwest-wall-66db-csi-1.png",
+                        "plots/northwest-wall-66db-csi-2.png",
+                        "plots/northwest-wall-66db-csi-3.png",
+                        "plots/northwest-wall-66db-csi-4.png"
+                    ],
+                    "snrByPositionAndArray": {
+                        "North wing antenna array": "plots/northwest-wall-66db-snr-position-array-0.png",
+                        "South wing antenna array": "plots/northwest-wall-66db-snr-position-array-1.png"
+                    }
+                },
+                "gpx": ""
             },
-            "southwest-wall-58dB" : {
-                "name" : "With south-west blocker wall, 58dB RX gain",
-                "description" : "A metal wall is placed in the central lobby area in south-west orientation, obstructing some propagation paths. Gain of all receivers is 58dB.",
-                "gltf" : "3dmodel/inue-southwest-wall.glb",
-                "rxgain" : 58
+            "southwest-wall-58db": {
+                "name": "With south-west blocker wall, 58dB RX gain",
+                "description": "A metal wall is placed in the central lobby area in south-west orientation, obstructing some propagation paths. Gain of all receivers is 58dB.",
+                "gltf": "3dmodel/inue-southwest-wall.glb",
+                "rxgain": 58,
+                "plots": {
+                    "snrByPosition": "plots/southwest-wall-58db-snr-position.png",
+                    "snrBoxplot": "plots/southwest-wall-58db-snr-boxplot.png",
+                    "csiTensors": [
+                        "plots/southwest-wall-58db-csi-0.png",
+                        "plots/southwest-wall-58db-csi-1.png",
+                        "plots/southwest-wall-58db-csi-2.png",
+                        "plots/southwest-wall-58db-csi-3.png",
+                        "plots/southwest-wall-58db-csi-4.png",
+                        "plots/southwest-wall-58db-csi-5.png"
+                    ],
+                    "snrByPositionAndArray": {
+                        "North wing antenna array": "plots/southwest-wall-58db-snr-position-array-0.png",
+                        "South wing antenna array": "plots/southwest-wall-58db-snr-position-array-1.png"
+                    }
+                },
+                "gpx": ""
             }
         }
     },
+    "warnings": [
+        "Currently, the offset estimates are assumed to be sufficiently accurate within the the antenna arrays, but not between them. Offset estimates for smaller .tfrecord files with few LoS channels may be inaccurate."
+    ],
     "antennas": [
         {
             "name": "North wing antenna array",
@@ -237,7 +313,7 @@
         {
             "filename": "tfrecords/dichasus-dc01.tfrecords",
             "description": "Robot follows a pseudorandom trajectory in the hallway and in the central \"lobby\" area. No obstacles in the hallway. Gain of all receivers is 58dB.",
-            "rx_gain_db": 58,
+            "configurationVariant": "no-walls-58db",
             "name": "dichasus-dc01",
             "plots": {
                 "snrByPosition": "plots/dichasus-dc01-snr-position.png",
@@ -253,15 +329,12 @@
             "gpx": "",
             "datapoints": 32133,
             "duration": 1761.935546875,
-            "totalSize": 16870531926,
-            "darusViewURL": "https://doi.org/10.18419/darus-3831/2",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/2",
-            "configurationVariant" : "no-walls"
+            "totalSize": 16870531926
         },
         {
             "filename": "tfrecords/dichasus-dc02.tfrecords",
             "description": "Robot follows a trajectory in the hallway and in the central \"lobby\" area, containing many trajectories where to robot travels directly from southern end to northern end and back. No obstacles in the hallway. Gain of all receivers is 58dB.",
-            "rx_gain_db": 58,
+            "configurationVariant": "no-walls-58db",
             "name": "dichasus-dc02",
             "plots": {
                 "snrByPosition": "plots/dichasus-dc02-snr-position.png",
@@ -277,14 +350,12 @@
             "gpx": "",
             "datapoints": 31376,
             "duration": 1666.896484375,
-            "totalSize": 16473090272,
-            "darusViewURL": "https://doi.org/10.18419/darus-3831/3",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/3"
+            "totalSize": 16473090272
         },
         {
             "filename": "tfrecords/dichasus-dc04.tfrecords",
             "description": "Robot follows a pseudorandom trajectory in the hallway and in the central \"lobby\" area. No obstacles in the hallway. Gain of all receivers is 58dB.",
-            "rx_gain_db": 58,
+            "configurationVariant": "no-walls-58db",
             "name": "dichasus-dc04",
             "plots": {
                 "snrByPosition": "plots/dichasus-dc04-snr-position.png",
@@ -300,14 +371,12 @@
             "gpx": "",
             "datapoints": 48456,
             "duration": 2529.9365234375,
-            "totalSize": 25440466032,
-            "darusViewURL": "https://doi.org/10.18419/darus-3831/4",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/4"
+            "totalSize": 25440466032
         },
         {
             "filename": "tfrecords/dichasus-dc10.tfrecords",
             "description": "Robot follows a pseudorandom trajectory in the hallway, in the central \"lobby\" area and in the adjacent hallway towards the west. A metal wall is placed between south wing and central lobby area in south-west orientation, obstructing the LoS of the south wing antenna array. The north wing antenna array has partly LoS and partly NLoS channels. Gain of all receivers is 58dB.",
-            "rx_gain_db": 58,
+            "configurationVariant": "southwest-wall-58db",
             "name": "dichasus-dc10",
             "plots": {
                 "snrByPosition": "plots/dichasus-dc10-snr-position.png",
@@ -323,14 +392,12 @@
             "gpx": "",
             "datapoints": 34738,
             "duration": 1945.583984375,
-            "totalSize": 18238214236,
-            "darusViewURL": "https://doi.org/10.18419/darus-3831/21",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/21"
+            "totalSize": 18238214236
         },
         {
             "filename": "tfrecords/dichasus-dc11.tfrecords",
             "description": "Robot follows trajectories with many direct paths between north wing and adjacent hallway to the west. A metal wall is placed between south wing and central lobby area in south-west orientation, obstructing the LoS of the south wing antenna array. The north wing antenna array has mostly LoS channels, but also NLoS channels in the adjacent hallway to the west. Gain of all receivers is 58dB.",
-            "rx_gain_db": 58,
+            "configurationVariant": "southwest-wall-58db",
             "name": "dichasus-dc11",
             "plots": {
                 "snrByPosition": "plots/dichasus-dc11-snr-position.png",
@@ -346,14 +413,12 @@
             "gpx": "",
             "datapoints": 31533,
             "duration": 1674.576171875,
-            "totalSize": 16555518726,
-            "darusViewURL": "https://doi.org/10.18419/darus-3831/5",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/5"
+            "totalSize": 16555518726
         },
         {
             "filename": "tfrecords/dichasus-dc12.tfrecords",
             "description": "Robot follows pseudorandom trajectory in the south wing. A metal wall is placed between south wing and central lobby area in south-west orientation, obstructing the LoS of the north wing antenna array. The south wing antenna array has mostly LoS channels. Gain of all receivers is 58dB.",
-            "rx_gain_db": 58,
+            "configurationVariant": "southwest-wall-58db",
             "name": "dichasus-dc12",
             "plots": {
                 "snrByPosition": "plots/dichasus-dc12-snr-position.png",
@@ -369,14 +434,12 @@
             "gpx": "",
             "datapoints": 27944,
             "duration": 1686.5760498046875,
-            "totalSize": 14671214768,
-            "darusViewURL": "https://doi.org/10.18419/darus-3831/22",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/22"
+            "totalSize": 14671214768
         },
         {
             "filename": "tfrecords/dichasus-dc13.tfrecords",
             "description": "Robot follows straight-line trajectory in the south wing. A metal wall is placed between south wing and central lobby area in south-west orientation, obstructing the LoS of the north wing antenna array. The south wing antenna array has mostly LoS channels. Gain of all receivers is 58dB. Measurement was terminated early when tachymeter (for ground truth reference data) lost position lock.",
-            "rx_gain_db": 58,
+            "configurationVariant": "southwest-wall-58db",
             "name": "dichasus-dc13",
             "plots": {
                 "snrByPosition": "plots/dichasus-dc13-snr-position.png",
@@ -392,14 +455,12 @@
             "gpx": "",
             "datapoints": 5818,
             "duration": 340.176025390625,
-            "totalSize": 3054577996,
-            "darusViewURL": "https://doi.org/10.18419/darus-3831/6",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/6"
+            "totalSize": 3054577996
         },
         {
             "filename": "tfrecords/dichasus-dc14.tfrecords",
             "description": "Robot follows straight-line trajectory in the south wing. A metal wall is placed between south wing and central lobby area in south-west orientation, obstructing the LoS of the north wing antenna array. The south wing antenna array has mostly LoS channels. Gain of all receivers is 58dB.",
-            "rx_gain_db": 58,
+            "configurationVariant": "southwest-wall-58db",
             "name": "dichasus-dc14",
             "plots": {
                 "snrByPosition": "plots/dichasus-dc14-snr-position.png",
@@ -415,14 +476,12 @@
             "gpx": "",
             "datapoints": 28611,
             "duration": 1505.135986328125,
-            "totalSize": 15021404442,
-            "darusViewURL": "https://doi.org/10.18419/darus-3831/7",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/7"
+            "totalSize": 15021404442
         },
         {
             "filename": "tfrecords/dichasus-dc15.tfrecords",
             "description": "Robot follows manually controlled trajectory in the central lobby area. A metal wall is placed between south wing and central lobby area in south-west orientation. Robot is close to the metal wall, so channel conditions vary between LoS / NLoS channels for north wing / south wing antenna arrays. Gain of all receivers is 58dB.",
-            "rx_gain_db": 58,
+            "configurationVariant": "southwest-wall-58db",
             "name": "dichasus-dc15",
             "plots": {
                 "snrByPosition": "plots/dichasus-dc15-snr-position.png",
@@ -438,14 +497,12 @@
             "gpx": "",
             "datapoints": 9300,
             "duration": 566.7841796875,
-            "totalSize": 4882704600,
-            "darusViewURL": "https://doi.org/10.18419/darus-3831/8",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/8"
+            "totalSize": 4882704600
         },
         {
             "filename": "tfrecords/dichasus-dc20.tfrecords",
             "description": "Robot follows a pseudorandom forth-and-back trajectory in the south wing and central lobby area. A metal wall is placed between north wing and central lobby area in north-west orientation, obstructing the LoS of the north wing antenna array. The south wing antenna array has partly LoS and partly NLoS channels. Gain of all receivers is 58dB.",
-            "rx_gain_db": 58,
+            "configurationVariant": "northwest-wall-58db",
             "name": "dichasus-dc20",
             "plots": {
                 "snrByPosition": "plots/dichasus-dc20-snr-position.png",
@@ -461,14 +518,12 @@
             "gpx": "",
             "datapoints": 31547,
             "duration": 1869.4560546875,
-            "totalSize": 16562869034,
-            "darusViewURL": "https://doi.org/10.18419/darus-3831/9",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/9"
+            "totalSize": 16562869034
         },
         {
             "filename": "tfrecords/dichasus-dc21.tfrecords",
             "description": "Robot follows a pseudorandom trajectory in the south wing and central lobby area. A metal wall is placed between north wing and central lobby area in north-west orientation, obstructing the LoS of the north wing antenna array. The south wing antenna array has partly LoS and partly NLoS channels. Gain of all receivers is 58dB.",
-            "rx_gain_db": 58,
+            "configurationVariant": "northwest-wall-58db",
             "name": "dichasus-dc21",
             "plots": {
                 "snrByPosition": "plots/dichasus-dc21-snr-position.png",
@@ -484,14 +539,12 @@
             "gpx": "",
             "datapoints": 26483,
             "duration": 1481.1357421875,
-            "totalSize": 13904157626,
-            "darusViewURL": "https://doi.org/10.18419/darus-3831/10",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/10"
+            "totalSize": 13904157626
         },
         {
             "filename": "tfrecords/dichasus-dc30.tfrecords",
             "description": "Robot follows a pseudorandom trajectory in the \"lobby\" area of the hallway. A metal wall is placed between north wing and central lobby area in north-west orientation, obstructing the LoS of the north wing antenna array. The south wing antenna array has partly LoS and partly NLoS channels. Gain of all receivers is 66dB. Tachymeter positions might be slightly less precise (only cm-level) for this file, due to a time synchronization issue (small time lags).",
-            "rx_gain_db": 66,
+            "configurationVariant": "northwest-wall-66db",
             "name": "dichasus-dc30",
             "plots": {
                 "snrByPosition": "plots/dichasus-dc30-snr-position.png",
@@ -507,14 +560,12 @@
             "gpx": "",
             "datapoints": 28372,
             "duration": 1603.056640625,
-            "totalSize": 14895924184,
-            "darusViewURL": "https://doi.org/10.18419/darus-3831/11",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/11"
+            "totalSize": 14895924184
         },
         {
             "filename": "tfrecords/dichasus-dc31.tfrecords",
             "description": "Robot follows the \"T-Rex\" trajectory in the central \"lobby\" area of the hallway. A metal wall is placed between north wing and central lobby area in north-west orientation, obstructing the LoS of the north wing antenna array. The south wing antenna array has partly LoS and partly NLoS channels. Gain of all receivers is 66dB.",
-            "rx_gain_db": 66,
+            "configurationVariant": "northwest-wall-66db",
             "name": "dichasus-dc31",
             "plots": {
                 "snrByPosition": "plots/dichasus-dc31-snr-position.png",
@@ -530,14 +581,12 @@
             "gpx": "",
             "datapoints": 3857,
             "duration": 238.8955078125,
-            "totalSize": 2025009854,
-            "darusViewURL": "https://doi.org/10.18419/darus-3831/12",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/12"
+            "totalSize": 2025009854
         },
         {
             "filename": "tfrecords/dichasus-dc32.tfrecords",
             "description": "Robot follows the \"T-Rex\" trajectory in the central \"lobby\" area of the hallway (once again). A metal wall is placed between north wing and central lobby area in north-west orientation, obstructing the LoS of the north wing antenna array. The south wing antenna array has partly LoS and partly NLoS channels. Gain of all receivers is 66dB.",
-            "rx_gain_db": 66,
+            "configurationVariant": "northwest-wall-66db",
             "name": "dichasus-dc32",
             "plots": {
                 "snrByPosition": "plots/dichasus-dc32-snr-position.png",
@@ -553,14 +602,12 @@
             "gpx": "",
             "datapoints": 4495,
             "duration": 244.6552734375,
-            "totalSize": 2359973890,
-            "darusViewURL": "https://doi.org/10.18419/darus-3831/13",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/13"
+            "totalSize": 2359973890
         },
         {
             "filename": "tfrecords/dichasus-dc33.tfrecords",
             "description": "Robot follows a trajectory consisting of mostly north-south meanders in the central \"lobby\" area of the hallway. A metal wall is placed between north wing and central lobby area in north-west orientation, obstructing the LoS of the north wing antenna array. The south wing antenna array has partly LoS and partly NLoS channels. Gain of all receivers is 66dB.",
-            "rx_gain_db": 66,
+            "configurationVariant": "northwest-wall-66db",
             "name": "dichasus-dc33",
             "plots": {
                 "snrByPosition": "plots/dichasus-dc33-snr-position.png",
@@ -576,14 +623,12 @@
             "gpx": "",
             "datapoints": 17359,
             "duration": 978.576171875,
-            "totalSize": 9113856898,
-            "darusViewURL": "https://doi.org/10.18419/darus-3831/14",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/14"
+            "totalSize": 9113856898
         },
         {
             "filename": "tfrecords/dichasus-dc34.tfrecords",
             "description": "Robot follows a trajectory consisting of mostly west-east meanders in the central \"lobby\" area of the hallway. A metal wall is placed between north wing and central lobby area in north-west orientation, obstructing the LoS of the north wing antenna array. The south wing antenna array has partly LoS and partly NLoS channels. Gain of all receivers is 66dB.",
-            "rx_gain_db": 66,
+            "configurationVariant": "northwest-wall-66db",
             "name": "dichasus-dc34",
             "plots": {
                 "snrByPosition": "plots/dichasus-dc34-snr-position.png",
@@ -599,14 +644,12 @@
             "gpx": "",
             "datapoints": 9870,
             "duration": 551.375,
-            "totalSize": 5181967140,
-            "darusViewURL": "https://doi.org/10.18419/darus-3831/15",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/15"
+            "totalSize": 5181967140
         },
         {
             "filename": "tfrecords/dichasus-dc40.tfrecords",
             "description": "Robot follows a pseudorandom trajectory in the central \"lobby\" area of the hallway, partly LoS and partly NLoS. No obstacles in the hallway. Gain of all receivers is 66dB.",
-            "rx_gain_db": 66,
+            "configurationVariant": "no-walls-66db",
             "name": "dichasus-dc40",
             "plots": {
                 "snrByPosition": "plots/dichasus-dc40-snr-position.png",
@@ -622,14 +665,12 @@
             "gpx": "",
             "datapoints": 19216,
             "duration": 1084.65625,
-            "totalSize": 10088822752,
-            "darusViewURL": "https://doi.org/10.18419/darus-3831/16",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/16"
+            "totalSize": 10088822752
         },
         {
             "filename": "tfrecords/dichasus-dc41.tfrecords",
             "description": "Robot follows the \"T-Rex\" trajectory in the central \"lobby\" area of the hallway, partly LoS and partly NLoS. No obstacles in the hallway. Gain of all receivers is 66dB.",
-            "rx_gain_db": 66,
+            "configurationVariant": "no-walls-66db",
             "name": "dichasus-dc41",
             "plots": {
                 "snrByPosition": "plots/dichasus-dc41-snr-position.png",
@@ -645,14 +686,12 @@
             "gpx": "",
             "datapoints": 3282,
             "duration": 183.216796875,
-            "totalSize": 1723122204,
-            "darusViewURL": "https://doi.org/10.18419/darus-3831/17",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/17"
+            "totalSize": 1723122204
         },
         {
             "filename": "tfrecords/dichasus-dc42.tfrecords",
             "description": "Same configuration as dichasus-dc41: Robot follows the \"T-Rex\" trajectory in the central \"lobby\" area of the hallway, partly LoS and partly NLoS. No obstacles in the hallway. Gain of all receivers is 66dB.",
-            "rx_gain_db": 66,
+            "configurationVariant": "no-walls-66db",
             "name": "dichasus-dc42",
             "plots": {
                 "snrByPosition": "plots/dichasus-dc42-snr-position.png",
@@ -668,14 +707,12 @@
             "gpx": "",
             "datapoints": 3308,
             "duration": 182.255859375,
-            "totalSize": 1736772776,
-            "darusViewURL": "https://doi.org/10.18419/darus-3831/18",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/18"
+            "totalSize": 1736772776
         },
         {
             "filename": "tfrecords/dichasus-dc43.tfrecords",
             "description": "Robot follows a trajectory consisting of west-east meanders the central \"lobby\" area of the hallway, partly LoS and partly NLoS. No obstacles in the hallway. Gain of all receivers is 66dB.",
-            "rx_gain_db": 66,
+            "configurationVariant": "no-walls-66db",
             "name": "dichasus-dc43",
             "plots": {
                 "snrByPosition": "plots/dichasus-dc43-snr-position.png",
@@ -691,14 +728,12 @@
             "gpx": "",
             "datapoints": 15480,
             "duration": 994.896484375,
-            "totalSize": 8127340560,
-            "darusViewURL": "https://doi.org/10.18419/darus-3831/19",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/19"
+            "totalSize": 8127340560
         },
         {
             "filename": "tfrecords/dichasus-dc44.tfrecords",
             "description": "Robot follows a trajectory consisting of north-south meanders the central \"lobby\" area of the hallway, very fast robot movement speed, partly LoS and partly NLoS. No obstacles in the hallway. Gain of all receivers is 66dB.",
-            "rx_gain_db": 66,
+            "configurationVariant": "no-walls-66db",
             "name": "dichasus-dc44",
             "plots": {
                 "snrByPosition": "plots/dichasus-dc44-snr-position.png",
@@ -714,12 +749,14 @@
             "gpx": "",
             "datapoints": 13686,
             "duration": 827.47265625,
-            "totalSize": 7185451092,
-            "darusViewURL": "https://doi.org/10.18419/darus-3831/20",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/20"
+            "totalSize": 7185451092
         }
     ],
     "photos": [
+        {
+            "filename": "photosAll/robot-lobby.jpg",
+            "description": "MOBTX robot in west wing, with parts of the lobby area on the left."
+        },
         {
             "filename": "photosAll/northwing-array-hallway-obstacle.jpg",
             "description": "Close-up photo of MOBTX robot in front of west wing."
@@ -749,10 +786,6 @@
             "description": "Obstacle in south-west alignment configuration."
         },
         {
-            "filename": "photosAll/robot-lobby.jpg",
-            "description": "MOBTX robot in west wing, with parts of the lobby area on the left."
-        },
-        {
             "filename": "photosAll/southwing-array.jpg",
             "description": "Frontal view of south wing antenna array."
         },
@@ -762,7 +795,6 @@
         }
     ],
     "thumbnail": "photosAll/thumbnail.png",
-    "doi": "doi:10.18419/darus-3831",
     "plots": {
         "snrByPosition": "plots/overall-snr-position.png",
         "snrBoxplot": "plots/overall-snr-boxplot.png",
