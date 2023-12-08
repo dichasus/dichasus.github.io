@@ -599,6 +599,19 @@ dataset = dataset.cache()</code></pre>
 			{{ $authorlist = $authorlist | append "Euchner, Florian" "Gauger, Marc" }}
 		{{ end }}
 
+		<h2>3D Model</h2>
+		<div class="row justify-content-center mb-2">
+			<div class="col-12 col-lg-8 col-xl-6 m-3">
+				<model-viewer alt="3D Model of the Environment" src="3dmodel/inue_simple.glb" shadow-intensity="1" camera-controls touch-action="pan-y" class="w-100" style="min-height: 300px; height: 50vh; border: 1px solid #a0a0a0;"></model-viewer>
+			</div>
+			<div class="col-12 col-lg-8 col-xl-5 m-3">
+				For this dataset, we provide a 3D model of the environment.
+				If your browser supports 3D rendering, you should see the model next to this text.
+				For the 3D model, we cannot incorporate all the fine details, but the 
+				The model is provided in the same coordinate frame as the dataset.
+			</div>
+		</div>
+
 		<h2 id="cite">How to Cite</h2>
 		<p>
 			Please refer to the <a href="/">home page</a> for information on how to cite any of our datasets in your
