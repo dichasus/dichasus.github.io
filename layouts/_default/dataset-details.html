@@ -599,18 +599,64 @@ dataset = dataset.cache()</code></pre>
 			{{ $authorlist = $authorlist | append "Euchner, Florian" "Gauger, Marc" }}
 		{{ end }}
 
-		<h2>3D Model</h2>
+		{{ if isset $spec "configuration" }}
+		<h2>Configuration Variants {{ if isset $spec.configuration "threedmodel" }} and Environment 3D Model{{ end }}</h2>
 		<div class="row justify-content-center mb-2">
-			<div class="col-12 col-lg-8 col-xl-6 m-3">
-				<model-viewer alt="3D Model of the Environment" src="3dmodel/inue_simple.glb" shadow-intensity="1" camera-controls touch-action="pan-y" class="w-100" style="min-height: 300px; height: 50vh; border: 1px solid #a0a0a0;"></model-viewer>
+			<div class="col-12 col-lg-8 col-xl-8 my-3 mx-0">
+				<select id="global-3dmodel-selector" class="form-select mb-2" aria-label="Default select example">
+					{{ range $envid, $env := $spec.configuration.variants }}
+					<option value="{{ $env.gltf }}" data-name="{{ $env.name }}" data-description="{{ $env.description }}" selected>{{ $env.name }}</option>
+					{{ end }}
+				</select>
+
+				<model-viewer id="global-3dmodel-viewer" alt="3D Model of the Environment" shadow-intensity="1" camera-controls touch-action="pan-y" class="w-100" style="min-height: 300px; height: 50vh;">
+					<div slot="progress-bar"></div>
+				</model-viewer>
+				<b id="global-3dmodel-name"></b>: <span id="global-3dmodel-description"></span>
+
+				<script type="text/javascript">
+					document.getElementById("global-3dmodel-selector").addEventListener("change", function() {
+						const selected = this.options[this.selectedIndex];
+						console.log(selected.value, selected.getAttribute("data-name"));
+						document.getElementById("global-3dmodel-viewer").src = selected.value;
+						document.getElementById("global-3dmodel-name").textContent = selected.getAttribute("data-name");
+						document.getElementById("global-3dmodel-description").textContent = selected.getAttribute("data-description");
+					});
+
+					document.addEventListener("DOMContentLoaded", () => {
+						document.getElementById("global-3dmodel-selector").dispatchEvent(new Event("change"));
+					});
+				</script>
 			</div>
-			<div class="col-12 col-lg-8 col-xl-5 m-3">
-				For this dataset, we provide a 3D model of the environment.
-				If your browser supports 3D rendering, you should see the model next to this text.
-				For the 3D model, we cannot incorporate all the fine details, but the 
-				The model is provided in the same coordinate frame as the dataset.
+			
+			<div class="col-12 col-lg-12 col-xl-4 py-3">
+				<p>
+					For this dataset, we provide a 3D model of the environment.
+					If your browser supports 3D rendering, you should see the model next to this text.
+					The model is provided in the same coordinate frame as the dataset.
+					You may find the 3D model useful for raytracing-based radio propagation modeling, or for visualization purposes.
+				</p>
+				<p>
+					Please note that we cannot capture all the fine details of the environment in the 3D model - too many fine details may be undesirable anyway for raytracing applications.
+				</p>
+				<p>
+					The 3D model is provided the <code>.blend</code> file format, which is the format natively used by <a href="https://www.blender.org/">Blender</a>.
+				</p>
+
+				<div class="mt-4 mb-3 d-grid gap-2 d-md-flex justify-content-md-center">
+					<a href="{{ $spec.configuration.threedmodel.blender }}" download><button class="btn btn-lg btn-dark" type="button">Download Blender 3D Model</button></a>
+				</div>
 			</div>
 		</div>
+
+		<p>
+			{{ if eq $spec.identifier "dichasus-dcxx" }}
+				{{ $modeldescription := ($.Resources.GetMatch $spec.configuration.threedmodel.descriptionFile) }}
+				{{ $modeldescription.Content | safeHTML }}
+			{{ end }}
+		</p>
+
+		{{ end }}
 
 		<h2 id="cite">How to Cite</h2>
 		<p>
@@ -818,6 +864,29 @@ dataset = dataset.cache()</code></pre>
 												elem.dataset.initialized = true;
 											});
 										</script>
+									</div>
+								</div>
+								{{ end }}
+								{{ if isset $tfrecord "configurationVariant" }}
+								<div class="accordion-item">
+									<h2 class="accordion-header" id="headingFive-{{ $index }}">
+										<button class="accordion-button collapsed" type="button"
+											data-bs-toggle="collapse" data-bs-target="#collapseFive-{{ $index }}"
+											aria-expanded="false" aria-controls="collapseFive-{{ $index }}">
+											Configuration Vairant {{ if isset $spec.configuration "threedmodel" }} and 3D Model{{ end }}
+										</button>
+									</h2>
+									<div id="collapseFive-{{ $index }}" class="accordion-collapse collapse"
+										aria-labelledby="headingFive-{{ $index }}"
+										data-bs-parent="#plot-accordion-{{ $index }}">
+										{{ $env := (index $spec.configuration.variants $tfrecord.configurationVariant) }}
+										<model-viewer alt="3D Model of the Environment" src="{{ $env.gltf }}" shadow-intensity="1" camera-controls touch-action="pan-y" class="w-100" style="min-height: 300px; height: 50vh;">
+											<div slot="progress-bar"></div>
+										</model-viewer>
+										<p class="p-3">
+											<b>{{ $env.name }}</b>:
+											{{ $env.description }}
+										</p>
 									</div>
 								</div>
 								{{ end }}

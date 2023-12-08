@@ -33,9 +33,46 @@
         }
     ],
     "warnings": [
-        "A 3D model of the hallway will be made available alongside the dataset.",
         "Currently, the offset estimates are assumed to be sufficiently accurate within the the antenna arrays, but not between them. Offset estimates for smaller .tfrecord files with few LoS channels may be inaccurate."
     ],
+    "configuration" : {
+        "threedmodel" : {
+            "blender" : "3dmodel/inue-all.blend",
+            "descriptionFile" : "3dmodel/description.md"
+        },
+        "variants" : {
+            "no-walls-58db" : {
+                "name" : "No blocker walls, 58dB RX gain",
+                "description" : "The central lobby area is empty, i.e., no blocker walls were set up. Gain of all receivers is 58dB.",
+                "gltf" : "3dmodel/inue-no-walls.glb",
+                "rxgain" : 58
+            },
+            "no-walls-66db" : {
+                "name" : "No blocker walls, 66dB RX gain",
+                "description" : "The central lobby area is empty, i.e., no blocker walls were set up. Gain of all receivers is 66dB.",
+                "gltf" : "3dmodel/inue-no-walls.glb",
+                "rxgain" : 66
+            },
+            "northwest-wall-58db" : {
+                "name" : "With north-west blocker wall, 58dB RX gain",
+                "description" : "A metal wall is placed between north wing and central lobby area in north-west orientation, obstructing some propagation paths. Gain of all receivers is 58dB.",
+                "gltf" : "3dmodel/inue-northwest-wall.glb",
+                "rxgain" : 58
+            },
+            "northwest-wall-66db" : {
+                "name" : "With north-west blocker wall, 66dB RX gain",
+                "description" : "A metal wall is placed between north wing and central lobby area in north-west orientation, obstructing some propagation paths. Gain of all receivers is 66dB.",
+                "gltf" : "3dmodel/inue-northwest-wall.glb",
+                "rxgain" : 66
+            },
+            "southwest-wall-58dB" : {
+                "name" : "With south-west blocker wall, 58dB RX gain",
+                "description" : "A metal wall is placed in the central lobby area in south-west orientation, obstructing some propagation paths. Gain of all receivers is 58dB.",
+                "gltf" : "3dmodel/inue-southwest-wall.glb",
+                "rxgain" : 58
+            }
+        }
+    },
     "antennas": [
         {
             "name": "North wing antenna array",
@@ -218,7 +255,8 @@
             "duration": 1761.935546875,
             "totalSize": 16870531926,
             "darusViewURL": "https://doi.org/10.18419/darus-3831/2",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/2"
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/2",
+            "configurationVariant" : "no-walls"
         },
         {
             "filename": "tfrecords/dichasus-dc02.tfrecords",
@@ -723,7 +761,7 @@
             "description": "Empty \"lobby\" area."
         }
     ],
-    "thumbnail": "photosAll/thumbnail.jpg",
+    "thumbnail": "photosAll/thumbnail.png",
     "doi": "doi:10.18419/darus-3831",
     "plots": {
         "snrByPosition": "plots/overall-snr-position.png",
