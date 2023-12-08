@@ -1,12 +1,62 @@
 {
-    "plots": {
-        "delaySpread": [
-            "delay-spread-subarray-0.png",
-            "delay-spread-subarray-1.png"
-        ],
-        "kFactor": [
-            "kfactor-subarray-0.png",
-            "kfactor-subarray-1.png"
-        ]
+    "no-walls-58db": {
+        "plots": {
+            "delaySpread": [
+                "delay-spread-no-walls-58db-subarray-0.png",
+                "delay-spread-no-walls-58db-subarray-1.png"
+            ],
+            "kFactor": [
+                "kfactor-no-walls-58db-subarray-0.png",
+                "kfactor-no-walls-58db-subarray-1.png"
+            ]
+        }
+    },
+    "southwest-wall-58db": {
+        "plots": {
+            "delaySpread": [
+                "delay-spread-southwest-wall-58db-subarray-0.png",
+                "delay-spread-southwest-wall-58db-subarray-1.png"
+            ],
+            "kFactor": [
+                "kfactor-southwest-wall-58db-subarray-0.png",
+                "kfactor-southwest-wall-58db-subarray-1.png"
+            ]
+        }
+    },
+    "northwest-wall-58db": {
+        "plots": {
+            "delaySpread": [
+                "delay-spread-northwest-wall-58db-subarray-0.png",
+                "delay-spread-northwest-wall-58db-subarray-1.png"
+            ],
+            "kFactor": [
+                "kfactor-northwest-wall-58db-subarray-0.png",
+                "kfactor-northwest-wall-58db-subarray-1.png"
+            ]
+        }
+    },
+    "northwest-wall-66db": {
+        "plots": {
+            "delaySpread": [
+                "delay-spread-northwest-wall-66db-subarray-0.png",
+                "delay-spread-northwest-wall-66db-subarray-1.png"
+            ],
+            "kFactor": [
+                "kfactor-northwest-wall-66db-subarray-0.png",
+                "kfactor-northwest-wall-66db-subarray-1.png"
+            ]
+        }
+    },
+    "no-walls-66db": {
+        "plots": {
+            "delaySpread": [
+                "delay-spread-no-walls-66db-subarray-0.png",
+                "delay-spread-no-walls-66db-subarray-1.png"
+            ],
+            "kFactor": [
+                "kfactor-no-walls-66db-subarray-0.png",
+                "kfactor-no-walls-66db-subarray-1.png"
+            ]
+        }
     }
 }

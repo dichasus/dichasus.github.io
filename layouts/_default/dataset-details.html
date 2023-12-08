@@ -937,6 +937,19 @@ dataset = dataset.cache()</code></pre>
 		{{ $channelStatsFile := ($.Resources.GetMatch "stats/stats.json") }}
 		{{ if not (eq $channelStatsFile nil) }}
 			{{ $channelStats := $channelStatsFile.Content | unmarshal }}
+			{{ $dsplots := slice }}
+			{{ $kfplots := slice }}
+
+			{{ if isset $spec "configuration" }}
+				{{ range $variantId, $variant := $spec.configuration.variants }}
+					{{ $dsplots = $dsplots | append (index $channelStats $variantId).plots.delaySpread }}
+					{{ $kfplots = $kfplots | append (index $channelStats $variantId).plots.kFactor }}
+				{{ end }}
+			{{ else }}
+				{{ $dsplots = $channelStats.plots.delaySpread }}
+				{{ $kfplots = $channelStats.plots.kFactor }}
+			{{ end }}
+
 			<h2 id="stats">Derived Channel Statistics</h2>
 			<p>
 				Channel statistics such as delay spread, k-Factor and path loss exponent are a good way to characterize a wireless channel measurement and to parametrize a channel model.
@@ -956,13 +969,13 @@ dataset = dataset.cache()</code></pre>
 										<div class="row justify-content-md-center">
 											<div id="delay-spread-plots" class="carousel carousel-dark slide m-4 col-12" data-bs-ride="carousel" data-bs-interval="false">
 												<div class="carousel-inner">
-													{{ range $index, $delaySpreadPlot := $channelStats.plots.delaySpread }}
+													{{ range $index, $delaySpreadPlot := $dsplots }}
 														<div class="carousel-item {{ if (eq $index 0) }} active {{ end }}">
 															<img src="stats/{{ $delaySpreadPlot }}" class="d-block w-100">
 														</div>
 													{{ end }}
 												</div>
-												{{ if gt (len $channelStats.plots.delaySpread) 1 }}
+												{{ if gt (len $dsplots) 1 }}
 													<button class="carousel-control-prev" type="button" data-bs-target="#delay-spread-plots" data-bs-slide="prev">
 														<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 														<span class="visually-hidden">Previous</span>
@@ -990,13 +1003,13 @@ dataset = dataset.cache()</code></pre>
 										<div class="row justify-content-md-center">
 											<div id="kfactor-plots" class="carousel carousel-dark slide m-4 col-12" data-bs-ride="carousel" data-bs-interval="false">
 												<div class="carousel-inner">
-													{{ range $index, $kFactor := $channelStats.plots.kFactor }}
+													{{ range $index, $kFactor := $kfplots }}
 														<div class="carousel-item {{ if (eq $index 0) }} active {{ end }}">
 															<img src="stats/{{ $kFactor }}" class="d-block w-100">
 														</div>
 													{{ end }}
 												</div>
-												{{ if gt (len $channelStats.plots.kFactor) 1 }}
+												{{ if gt (len $kfplots) 1 }}
 													<button class="carousel-control-prev" type="button" data-bs-target="#kfactor-plots" data-bs-slide="prev">
 														<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 														<span class="visually-hidden">Previous</span>

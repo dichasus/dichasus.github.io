@@ -58,24 +58,25 @@
                 },
                 "gpx": ""
             },
-            "no-walls-66db": {
-                "name": "No blocker walls, 66dB RX gain",
-                "description": "The central lobby area is empty, i.e., no blocker walls were set up. Gain of all receivers is 66dB.",
-                "gltf": "3dmodel/inue-no-walls.glb",
-                "rxgain": 66,
+            "southwest-wall-58db": {
+                "name": "With south-west blocker wall, 58dB RX gain",
+                "description": "A metal wall is placed in the central lobby area in south-west orientation, obstructing some propagation paths. Gain of all receivers is 58dB.",
+                "gltf": "3dmodel/inue-southwest-wall.glb",
+                "rxgain": 58,
                 "plots": {
-                    "snrByPosition": "plots/no-walls-66db-snr-position.png",
-                    "snrBoxplot": "plots/no-walls-66db-snr-boxplot.png",
+                    "snrByPosition": "plots/southwest-wall-58db-snr-position.png",
+                    "snrBoxplot": "plots/southwest-wall-58db-snr-boxplot.png",
                     "csiTensors": [
-                        "plots/no-walls-66db-csi-0.png",
-                        "plots/no-walls-66db-csi-1.png",
-                        "plots/no-walls-66db-csi-2.png",
-                        "plots/no-walls-66db-csi-3.png",
-                        "plots/no-walls-66db-csi-4.png"
+                        "plots/southwest-wall-58db-csi-0.png",
+                        "plots/southwest-wall-58db-csi-1.png",
+                        "plots/southwest-wall-58db-csi-2.png",
+                        "plots/southwest-wall-58db-csi-3.png",
+                        "plots/southwest-wall-58db-csi-4.png",
+                        "plots/southwest-wall-58db-csi-5.png"
                     ],
                     "snrByPositionAndArray": {
-                        "North wing antenna array": "plots/no-walls-66db-snr-position-array-0.png",
-                        "South wing antenna array": "plots/no-walls-66db-snr-position-array-1.png"
+                        "North wing antenna array": "plots/southwest-wall-58db-snr-position-array-0.png",
+                        "South wing antenna array": "plots/southwest-wall-58db-snr-position-array-1.png"
                     }
                 },
                 "gpx": ""
@@ -121,25 +122,24 @@
                 },
                 "gpx": ""
             },
-            "southwest-wall-58db": {
-                "name": "With south-west blocker wall, 58dB RX gain",
-                "description": "A metal wall is placed in the central lobby area in south-west orientation, obstructing some propagation paths. Gain of all receivers is 58dB.",
-                "gltf": "3dmodel/inue-southwest-wall.glb",
-                "rxgain": 58,
+            "no-walls-66db": {
+                "name": "No blocker walls, 66dB RX gain",
+                "description": "The central lobby area is empty, i.e., no blocker walls were set up. Gain of all receivers is 66dB.",
+                "gltf": "3dmodel/inue-no-walls.glb",
+                "rxgain": 66,
                 "plots": {
-                    "snrByPosition": "plots/southwest-wall-58db-snr-position.png",
-                    "snrBoxplot": "plots/southwest-wall-58db-snr-boxplot.png",
+                    "snrByPosition": "plots/no-walls-66db-snr-position.png",
+                    "snrBoxplot": "plots/no-walls-66db-snr-boxplot.png",
                     "csiTensors": [
-                        "plots/southwest-wall-58db-csi-0.png",
-                        "plots/southwest-wall-58db-csi-1.png",
-                        "plots/southwest-wall-58db-csi-2.png",
-                        "plots/southwest-wall-58db-csi-3.png",
-                        "plots/southwest-wall-58db-csi-4.png",
-                        "plots/southwest-wall-58db-csi-5.png"
+                        "plots/no-walls-66db-csi-0.png",
+                        "plots/no-walls-66db-csi-1.png",
+                        "plots/no-walls-66db-csi-2.png",
+                        "plots/no-walls-66db-csi-3.png",
+                        "plots/no-walls-66db-csi-4.png"
                     ],
                     "snrByPositionAndArray": {
-                        "North wing antenna array": "plots/southwest-wall-58db-snr-position-array-0.png",
-                        "South wing antenna array": "plots/southwest-wall-58db-snr-position-array-1.png"
+                        "North wing antenna array": "plots/no-walls-66db-snr-position-array-0.png",
+                        "South wing antenna array": "plots/no-walls-66db-snr-position-array-1.png"
                     }
                 },
                 "gpx": ""
@@ -329,7 +329,9 @@
             "gpx": "",
             "datapoints": 32133,
             "duration": 1761.935546875,
-            "totalSize": 16870531926
+            "totalSize": 16870531926,
+            "darusViewURL": "https://doi.org/10.18419/darus-3831/2",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/2"
         },
         {
             "filename": "tfrecords/dichasus-dc02.tfrecords",
@@ -350,7 +352,9 @@
             "gpx": "",
             "datapoints": 31376,
             "duration": 1666.896484375,
-            "totalSize": 16473090272
+            "totalSize": 16473090272,
+            "darusViewURL": "https://doi.org/10.18419/darus-3831/3",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/3"
         },
         {
             "filename": "tfrecords/dichasus-dc04.tfrecords",
@@ -371,7 +375,9 @@
             "gpx": "",
             "datapoints": 48456,
             "duration": 2529.9365234375,
-            "totalSize": 25440466032
+            "totalSize": 25440466032,
+            "darusViewURL": "https://doi.org/10.18419/darus-3831/4",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/4"
         },
         {
             "filename": "tfrecords/dichasus-dc10.tfrecords",
@@ -392,7 +398,9 @@
             "gpx": "",
             "datapoints": 34738,
             "duration": 1945.583984375,
-            "totalSize": 18238214236
+            "totalSize": 18238214236,
+            "darusViewURL": "https://doi.org/10.18419/darus-3831/21",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/21"
         },
         {
             "filename": "tfrecords/dichasus-dc11.tfrecords",
@@ -413,7 +421,9 @@
             "gpx": "",
             "datapoints": 31533,
             "duration": 1674.576171875,
-            "totalSize": 16555518726
+            "totalSize": 16555518726,
+            "darusViewURL": "https://doi.org/10.18419/darus-3831/5",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/5"
         },
         {
             "filename": "tfrecords/dichasus-dc12.tfrecords",
@@ -434,7 +444,9 @@
             "gpx": "",
             "datapoints": 27944,
             "duration": 1686.5760498046875,
-            "totalSize": 14671214768
+            "totalSize": 14671214768,
+            "darusViewURL": "https://doi.org/10.18419/darus-3831/22",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/22"
         },
         {
             "filename": "tfrecords/dichasus-dc13.tfrecords",
@@ -455,7 +467,9 @@
             "gpx": "",
             "datapoints": 5818,
             "duration": 340.176025390625,
-            "totalSize": 3054577996
+            "totalSize": 3054577996,
+            "darusViewURL": "https://doi.org/10.18419/darus-3831/6",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/6"
         },
         {
             "filename": "tfrecords/dichasus-dc14.tfrecords",
@@ -476,7 +490,9 @@
             "gpx": "",
             "datapoints": 28611,
             "duration": 1505.135986328125,
-            "totalSize": 15021404442
+            "totalSize": 15021404442,
+            "darusViewURL": "https://doi.org/10.18419/darus-3831/7",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/7"
         },
         {
             "filename": "tfrecords/dichasus-dc15.tfrecords",
@@ -497,7 +513,9 @@
             "gpx": "",
             "datapoints": 9300,
             "duration": 566.7841796875,
-            "totalSize": 4882704600
+            "totalSize": 4882704600,
+            "darusViewURL": "https://doi.org/10.18419/darus-3831/8",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/8"
         },
         {
             "filename": "tfrecords/dichasus-dc20.tfrecords",
@@ -518,7 +536,9 @@
             "gpx": "",
             "datapoints": 31547,
             "duration": 1869.4560546875,
-            "totalSize": 16562869034
+            "totalSize": 16562869034,
+            "darusViewURL": "https://doi.org/10.18419/darus-3831/9",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/9"
         },
         {
             "filename": "tfrecords/dichasus-dc21.tfrecords",
@@ -539,7 +559,9 @@
             "gpx": "",
             "datapoints": 26483,
             "duration": 1481.1357421875,
-            "totalSize": 13904157626
+            "totalSize": 13904157626,
+            "darusViewURL": "https://doi.org/10.18419/darus-3831/10",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/10"
         },
         {
             "filename": "tfrecords/dichasus-dc30.tfrecords",
@@ -560,7 +582,9 @@
             "gpx": "",
             "datapoints": 28372,
             "duration": 1603.056640625,
-            "totalSize": 14895924184
+            "totalSize": 14895924184,
+            "darusViewURL": "https://doi.org/10.18419/darus-3831/11",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/11"
         },
         {
             "filename": "tfrecords/dichasus-dc31.tfrecords",
@@ -581,7 +605,9 @@
             "gpx": "",
             "datapoints": 3857,
             "duration": 238.8955078125,
-            "totalSize": 2025009854
+            "totalSize": 2025009854,
+            "darusViewURL": "https://doi.org/10.18419/darus-3831/12",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/12"
         },
         {
             "filename": "tfrecords/dichasus-dc32.tfrecords",
@@ -602,7 +628,9 @@
             "gpx": "",
             "datapoints": 4495,
             "duration": 244.6552734375,
-            "totalSize": 2359973890
+            "totalSize": 2359973890,
+            "darusViewURL": "https://doi.org/10.18419/darus-3831/13",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/13"
         },
         {
             "filename": "tfrecords/dichasus-dc33.tfrecords",
@@ -623,7 +651,9 @@
             "gpx": "",
             "datapoints": 17359,
             "duration": 978.576171875,
-            "totalSize": 9113856898
+            "totalSize": 9113856898,
+            "darusViewURL": "https://doi.org/10.18419/darus-3831/14",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/14"
         },
         {
             "filename": "tfrecords/dichasus-dc34.tfrecords",
@@ -644,7 +674,9 @@
             "gpx": "",
             "datapoints": 9870,
             "duration": 551.375,
-            "totalSize": 5181967140
+            "totalSize": 5181967140,
+            "darusViewURL": "https://doi.org/10.18419/darus-3831/15",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/15"
         },
         {
             "filename": "tfrecords/dichasus-dc40.tfrecords",
@@ -665,7 +697,9 @@
             "gpx": "",
             "datapoints": 19216,
             "duration": 1084.65625,
-            "totalSize": 10088822752
+            "totalSize": 10088822752,
+            "darusViewURL": "https://doi.org/10.18419/darus-3831/16",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/16"
         },
         {
             "filename": "tfrecords/dichasus-dc41.tfrecords",
@@ -686,7 +720,9 @@
             "gpx": "",
             "datapoints": 3282,
             "duration": 183.216796875,
-            "totalSize": 1723122204
+            "totalSize": 1723122204,
+            "darusViewURL": "https://doi.org/10.18419/darus-3831/17",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/17"
         },
         {
             "filename": "tfrecords/dichasus-dc42.tfrecords",
@@ -707,7 +743,9 @@
             "gpx": "",
             "datapoints": 3308,
             "duration": 182.255859375,
-            "totalSize": 1736772776
+            "totalSize": 1736772776,
+            "darusViewURL": "https://doi.org/10.18419/darus-3831/18",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/18"
         },
         {
             "filename": "tfrecords/dichasus-dc43.tfrecords",
@@ -728,7 +766,9 @@
             "gpx": "",
             "datapoints": 15480,
             "duration": 994.896484375,
-            "totalSize": 8127340560
+            "totalSize": 8127340560,
+            "darusViewURL": "https://doi.org/10.18419/darus-3831/19",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/19"
         },
         {
             "filename": "tfrecords/dichasus-dc44.tfrecords",
@@ -749,7 +789,9 @@
             "gpx": "",
             "datapoints": 13686,
             "duration": 827.47265625,
-            "totalSize": 7185451092
+            "totalSize": 7185451092,
+            "darusViewURL": "https://doi.org/10.18419/darus-3831/20",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-3831/20"
         }
     ],
     "photos": [
@@ -795,6 +837,7 @@
         }
     ],
     "thumbnail": "photosAll/thumbnail.png",
+    "doi": "doi:10.18419/darus-3831",
     "plots": {
         "snrByPosition": "plots/overall-snr-position.png",
         "snrBoxplot": "plots/overall-snr-boxplot.png",
