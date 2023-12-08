@@ -626,7 +626,7 @@ dataset = dataset.cache()</code></pre>
 			<div class="col-12 col-lg-8 col-xl-8 my-3 mx-0">
 				<select id="global-3dmodel-selector" class="form-select mb-2" aria-label="Default select example">
 					{{ range $envid, $env := $spec.configuration.variants }}
-					<option value="{{ $env.gltf }}" data-name="{{ $env.name }}" data-description="{{ $env.description }}" selected>{{ $env.name }}</option>
+					<option value="{{ $env.gltf }}" data-name="{{ $env.name }}" data-description="{{ $env.description }}">{{ $env.name }}</option>
 					{{ end }}
 				</select>
 
@@ -638,14 +638,15 @@ dataset = dataset.cache()</code></pre>
 				<script type="text/javascript">
 					document.getElementById("global-3dmodel-selector").addEventListener("change", function() {
 						const selected = this.options[this.selectedIndex];
-						console.log(selected.value, selected.getAttribute("data-name"));
 						document.getElementById("global-3dmodel-viewer").src = selected.value;
 						document.getElementById("global-3dmodel-name").textContent = selected.getAttribute("data-name");
 						document.getElementById("global-3dmodel-description").textContent = selected.getAttribute("data-description");
 					});
 
 					document.addEventListener("DOMContentLoaded", () => {
-						document.getElementById("global-3dmodel-selector").dispatchEvent(new Event("change"));
+						const selector = document.getElementById("global-3dmodel-selector");
+						selector.selectedIndex = 0;
+						selector.dispatchEvent(new Event("change"));
 					});
 				</script>
 			</div>
