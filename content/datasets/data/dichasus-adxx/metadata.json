@@ -1,0 +1,783 @@
+{
+    "identifier": "dichasus-adxx",
+    "name": "ARENA2036: Distributed setup in industrial environment",
+    "shortDescription": "Channel measurements in the ARENA2036 research factory with known 3D pointcloud scan and video, with a total of 64 antennas, arranged into four arrays.",
+    "bandwidth": 50000000.0,
+    "frequency": 3438000000,
+    "outdoor": false,
+    "year": 2024,
+    "warnings": [
+        "This dataset is currently being postprocessed. More data, the 3D pointcloud scan and the full video recordings will be added and the dataset will be published once finished."
+    ],
+    "authors": [
+        {
+            "firstname": "Florian",
+            "lastname": "Euchner",
+            "orcid": "0000-0002-8090-1188",
+            "affiliation": "Institute of Telecommunications, University of Stuttgart"
+        },
+        {
+            "firstname": "Phillip",
+            "lastname": "Stephan",
+            "orcid": "0009-0007-4036-668X",
+            "affiliation": "Institute of Telecommunications, University of Stuttgart"
+        },
+        {
+            "firstname": "Marc",
+            "lastname": "Gauger",
+            "orcid": "0000-0002-9310-6167",
+            "affiliation": "Institute of Telecommunications, University of Stuttgart"
+        },
+        {
+            "firstname": "Stephan",
+            "lastname": "ten Brink",
+            "orcid": "0000-0003-1502-2571",
+            "affiliation": "Institute of Telecommunications, University of Stuttgart"
+        }
+    ],
+    "configuration": {
+        "variants": {
+            "no-wall-64db": {
+                "name": "No wall, 64dB RX gain",
+                "description": "The measurement area is empty, all receivers are set to a fixed gain of 64dB. First day of measurements. Tachymeter is in the middle of the measurement area (hence the 'hole' in the dataset).",
+                "rxgain": 64,
+                "plots": {
+                    "snrByPosition": "plots/no-wall-64db-snr-position.png",
+                    "snrBoxplot": "plots/no-wall-64db-snr-boxplot.png",
+                    "csiTensors": [
+                        "plots/no-wall-64db-csi-0.png",
+                        "plots/no-wall-64db-csi-1.png",
+                        "plots/no-wall-64db-csi-2.png"
+                    ],
+                    "snrByPositionAndArray": {
+                        "Close to roll-up door": "plots/no-wall-64db-snr-position-array-0.png",
+                        "Close to pillar 16-A": "plots/no-wall-64db-snr-position-array-1.png",
+                        "Close to pillar 14-A": "plots/no-wall-64db-snr-position-array-2.png",
+                        "On top of container": "plots/no-wall-64db-snr-position-array-3.png"
+                    }
+                },
+                "gpx": ""
+            },
+            "no-wall-67db-day2": {
+                "name": "No wall, 67dB RX gain, Day 2",
+                "description": "The measurement area is empty, all receivers are set to a fixed gain of 67dB. Second day of measurements. Tachymeter is to the side of the measurement area.",
+                "rxgain": 67,
+                "plots": {
+                    "snrByPosition": "plots/no-wall-67db-day2-snr-position.png",
+                    "snrBoxplot": "plots/no-wall-67db-day2-snr-boxplot.png",
+                    "csiTensors": [
+                        "plots/no-wall-67db-day2-csi-0.png",
+                        "plots/no-wall-67db-day2-csi-1.png",
+                        "plots/no-wall-67db-day2-csi-2.png",
+                        "plots/no-wall-67db-day2-csi-3.png",
+                        "plots/no-wall-67db-day2-csi-4.png",
+                        "plots/no-wall-67db-day2-csi-5.png"
+                    ],
+                    "snrByPositionAndArray": {
+                        "Close to roll-up door": "plots/no-wall-67db-day2-snr-position-array-0.png",
+                        "Close to pillar 16-A": "plots/no-wall-67db-day2-snr-position-array-1.png",
+                        "Close to pillar 14-A": "plots/no-wall-67db-day2-snr-position-array-2.png",
+                        "On top of container": "plots/no-wall-67db-day2-snr-position-array-3.png"
+                    }
+                },
+                "gpx": ""
+            },
+            "wall-67db": {
+                "name": "Reflector wall present, 67dB RX gain",
+                "description": "A metal reflector wall is placed inside the measurement area. All receivers are set to a fixed gain of 67dB. Second day of measurements. Tachymeter is to the side of the measurement area.",
+                "rxgain": 67,
+                "plots": {
+                    "snrByPosition": "plots/wall-67db-snr-position.png",
+                    "snrBoxplot": "plots/wall-67db-snr-boxplot.png",
+                    "csiTensors": [
+                        "plots/wall-67db-csi-0.png",
+                        "plots/wall-67db-csi-1.png",
+                        "plots/wall-67db-csi-2.png",
+                        "plots/wall-67db-csi-3.png",
+                        "plots/wall-67db-csi-4.png",
+                        "plots/wall-67db-csi-5.png",
+                        "plots/wall-67db-csi-6.png"
+                    ],
+                    "snrByPositionAndArray": {
+                        "Close to roll-up door": "plots/wall-67db-snr-position-array-0.png",
+                        "Close to pillar 16-A": "plots/wall-67db-snr-position-array-1.png",
+                        "Close to pillar 14-A": "plots/wall-67db-snr-position-array-2.png",
+                        "On top of container": "plots/wall-67db-snr-position-array-3.png"
+                    }
+                },
+                "gpx": ""
+            }
+        }
+    },
+    "antennas": [
+        {
+            "name": "Close to roll-up door",
+            "type": "array",
+            "spacingX": 0.04364,
+            "spacingY": 0.04364,
+            "assignments": [
+                [
+                    58,
+                    12,
+                    24,
+                    29,
+                    16,
+                    2,
+                    33,
+                    38
+                ],
+                [
+                    34,
+                    9,
+                    36,
+                    32,
+                    22,
+                    62,
+                    39,
+                    10
+                ]
+            ],
+            "location": [
+                7.9555,
+                -18.2345,
+                2.5025
+            ],
+            "upvector": [
+                -0.2318,
+                0.0713,
+                0.9701
+            ],
+            "rightvector": [
+                -0.2685,
+                -0.9633,
+                0.0
+            ]
+        },
+        {
+            "name": "Close to pillar 16-A",
+            "type": "array",
+            "spacingX": 0.04364,
+            "spacingY": 0.04364,
+            "assignments": [
+                [
+                    26,
+                    35,
+                    59,
+                    53,
+                    19,
+                    20,
+                    17,
+                    54
+                ],
+                [
+                    1,
+                    48,
+                    61,
+                    44,
+                    5,
+                    49,
+                    6,
+                    60
+                ]
+            ],
+            "location": [
+                -4.71,
+                0.0488,
+                6.0385
+            ],
+            "upvector": [
+                -0.0133,
+                -0.4893,
+                0.872
+            ],
+            "rightvector": [
+                0.9986,
+                -0.0458,
+                -0.0246
+            ]
+        },
+        {
+            "name": "Close to pillar 14-A",
+            "type": "array",
+            "spacingX": 0.04364,
+            "spacingY": 0.04364,
+            "assignments": [
+                [
+                    31,
+                    15,
+                    4,
+                    14,
+                    30,
+                    47,
+                    11,
+                    3
+                ],
+                [
+                    56,
+                    23,
+                    25,
+                    41,
+                    27,
+                    0,
+                    8,
+                    40
+                ]
+            ],
+            "location": [
+                -18.51,
+                0.116,
+                6.1785
+            ],
+            "upvector": [
+                0.1041,
+                -0.2945,
+                0.95
+            ],
+            "rightvector": [
+                0.8532,
+                0.5186,
+                0.0561
+            ]
+        },
+        {
+            "name": "On top of container",
+            "type": "array",
+            "spacingX": 0.04364,
+            "spacingY": 0.04364,
+            "assignments": [
+                [
+                    57,
+                    45,
+                    42,
+                    28,
+                    63,
+                    55,
+                    46,
+                    43
+                ],
+                [
+                    7,
+                    18,
+                    52,
+                    21,
+                    13,
+                    37,
+                    50,
+                    51
+                ]
+            ],
+            "location": [
+                -10.93,
+                -25.2055,
+                5.297
+            ],
+            "upvector": [
+                0.1359,
+                0.4113,
+                0.9013
+            ],
+            "rightvector": [
+                -0.9347,
+                0.3549,
+                -0.0212
+            ]
+        }
+    ],
+    "format": {
+        "csi": {
+            "description": "Channel coefficients for all antennas, over all subcarriers, real and imaginary parts",
+            "type": "tensor",
+            "dimension": [
+                64,
+                1024,
+                2
+            ]
+        },
+        "snr": {
+            "description": "Signal-to-Noise ratio estimates for all antennas",
+            "type": "tensor",
+            "dimension": [
+                64
+            ]
+        },
+        "pos-tachy": {
+            "description": "Position of transmitter determined by a tachymeter pointed at a prism mounted on top of the antenna, in meters (X / Y / Z coordinates)",
+            "type": "tensor64",
+            "dimension": [
+                3
+            ]
+        },
+        "gt-interp-age-tachy": {
+            "description": "Time in seconds to closest known tachymeter position. Indicates quality of linear interpolation.",
+            "type": "float32",
+            "dimension": []
+        },
+        "time": {
+            "description": "Timestamp since start of measurement campaign, in seconds",
+            "type": "float32",
+            "dimension": []
+        },
+        "cfo": {
+            "description": "Measured carrier frequency offset between MOBTX and each receive antenna.",
+            "type": "tensor",
+            "dimension": [
+                64
+            ]
+        }
+    },
+    "tfrecords": [
+        {
+            "filename": "tfrecords/dichasus-ad00.tfrecords",
+            "description": "Robot follows a pseudorandom trajectory in the measurement area, part 1. Tachymeter is placed in the 'hole' in the middle.",
+            "configurationVariant": "no-wall-64db",
+            "name": "dichasus-ad00",
+            "plots": {
+                "snrByPosition": "plots/dichasus-ad00-snr-position.png",
+                "snrBoxplot": "plots/dichasus-ad00-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-ad00-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Close to roll-up door": "plots/dichasus-ad00-snr-position-array-0.png",
+                    "Close to pillar 16-A": "plots/dichasus-ad00-snr-position-array-1.png",
+                    "Close to pillar 14-A": "plots/dichasus-ad00-snr-position-array-2.png",
+                    "On top of container": "plots/dichasus-ad00-snr-position-array-3.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 12582,
+            "duration": 688.1759643554688,
+            "totalSize": 6605826804
+        },
+        {
+            "filename": "tfrecords/dichasus-ad01.tfrecords",
+            "description": "Robot follows a pseudorandom trajectory in the measurement area, part 2. Tachymeter is placed in the 'hole' in the middle.",
+            "configurationVariant": "no-wall-64db",
+            "name": "dichasus-ad01",
+            "plots": {
+                "snrByPosition": "plots/dichasus-ad01-snr-position.png",
+                "snrBoxplot": "plots/dichasus-ad01-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-ad01-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Close to roll-up door": "plots/dichasus-ad01-snr-position-array-0.png",
+                    "Close to pillar 16-A": "plots/dichasus-ad01-snr-position-array-1.png",
+                    "Close to pillar 14-A": "plots/dichasus-ad01-snr-position-array-2.png",
+                    "On top of container": "plots/dichasus-ad01-snr-position-array-3.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 14512,
+            "duration": 766.416015625,
+            "totalSize": 7619119264
+        },
+        {
+            "filename": "tfrecords/dichasus-ad02.tfrecords",
+            "description": "Robot follows a pattern of west / east meanders in the whole measurement area. Tachymeter is placed in the 'hole' in the middle.",
+            "configurationVariant": "no-wall-64db",
+            "name": "dichasus-ad02",
+            "plots": {
+                "snrByPosition": "plots/dichasus-ad02-snr-position.png",
+                "snrBoxplot": "plots/dichasus-ad02-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-ad02-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Close to roll-up door": "plots/dichasus-ad02-snr-position-array-0.png",
+                    "Close to pillar 16-A": "plots/dichasus-ad02-snr-position-array-1.png",
+                    "Close to pillar 14-A": "plots/dichasus-ad02-snr-position-array-2.png",
+                    "On top of container": "plots/dichasus-ad02-snr-position-array-3.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 41463,
+            "duration": 2144.015869140625,
+            "totalSize": 21768987186
+        },
+        {
+            "filename": "tfrecords/dichasus-ad10.tfrecords",
+            "description": "Robot follows a pattern of northeast / southwest meanders in the whole measurement area.",
+            "configurationVariant": "no-wall-67db-day2",
+            "name": "dichasus-ad10",
+            "plots": {
+                "snrByPosition": "plots/dichasus-ad10-snr-position.png",
+                "snrBoxplot": "plots/dichasus-ad10-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-ad10-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Close to roll-up door": "plots/dichasus-ad10-snr-position-array-0.png",
+                    "Close to pillar 16-A": "plots/dichasus-ad10-snr-position-array-1.png",
+                    "Close to pillar 14-A": "plots/dichasus-ad10-snr-position-array-2.png",
+                    "On top of container": "plots/dichasus-ad10-snr-position-array-3.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 46898,
+            "duration": 2508.3359375,
+            "totalSize": 24622481756
+        },
+        {
+            "filename": "tfrecords/dichasus-ad11.tfrecords",
+            "description": "Robot follows a pattern of northwest / southeast meanders in the whole measurement area.",
+            "configurationVariant": "no-wall-67db-day2",
+            "name": "dichasus-ad11",
+            "plots": {
+                "snrByPosition": "plots/dichasus-ad11-snr-position.png",
+                "snrBoxplot": "plots/dichasus-ad11-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-ad11-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Close to roll-up door": "plots/dichasus-ad11-snr-position-array-0.png",
+                    "Close to pillar 16-A": "plots/dichasus-ad11-snr-position-array-1.png",
+                    "Close to pillar 14-A": "plots/dichasus-ad11-snr-position-array-2.png",
+                    "On top of container": "plots/dichasus-ad11-snr-position-array-3.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 47202,
+            "duration": 2416.171875,
+            "totalSize": 24782088444
+        },
+        {
+            "filename": "tfrecords/dichasus-ad12.tfrecords",
+            "description": "Robot follows a pattern of northwest / southeast meanders in the whole measurement area.",
+            "configurationVariant": "no-wall-67db-day2",
+            "name": "dichasus-ad12",
+            "plots": {
+                "snrByPosition": "plots/dichasus-ad12-snr-position.png",
+                "snrBoxplot": "plots/dichasus-ad12-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-ad12-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Close to roll-up door": "plots/dichasus-ad12-snr-position-array-0.png",
+                    "Close to pillar 16-A": "plots/dichasus-ad12-snr-position-array-1.png",
+                    "Close to pillar 14-A": "plots/dichasus-ad12-snr-position-array-2.png",
+                    "On top of container": "plots/dichasus-ad12-snr-position-array-3.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 16913,
+            "duration": 920.9765625,
+            "totalSize": 8879697086
+        },
+        {
+            "filename": "tfrecords/dichasus-ad17.tfrecords",
+            "description": "Robot trajectory is in the shape of a large (slightly wobbly) circle.",
+            "configurationVariant": "no-wall-67db-day2",
+            "name": "dichasus-ad17",
+            "plots": {
+                "snrByPosition": "plots/dichasus-ad17-snr-position.png",
+                "snrBoxplot": "plots/dichasus-ad17-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-ad17-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Close to roll-up door": "plots/dichasus-ad17-snr-position-array-0.png",
+                    "Close to pillar 16-A": "plots/dichasus-ad17-snr-position-array-1.png",
+                    "Close to pillar 14-A": "plots/dichasus-ad17-snr-position-array-2.png",
+                    "On top of container": "plots/dichasus-ad17-snr-position-array-3.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 3528,
+            "duration": 200.015625,
+            "totalSize": 1852277616
+        },
+        {
+            "filename": "tfrecords/dichasus-ad18.tfrecords",
+            "description": "Robot follows a pseudorandom trajectory in the entire measurement area, part 1.",
+            "configurationVariant": "no-wall-67db-day2",
+            "name": "dichasus-ad18",
+            "plots": {
+                "snrByPosition": "plots/dichasus-ad18-snr-position.png",
+                "snrBoxplot": "plots/dichasus-ad18-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-ad18-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Close to roll-up door": "plots/dichasus-ad18-snr-position-array-0.png",
+                    "Close to pillar 16-A": "plots/dichasus-ad18-snr-position-array-1.png",
+                    "Close to pillar 14-A": "plots/dichasus-ad18-snr-position-array-2.png",
+                    "On top of container": "plots/dichasus-ad18-snr-position-array-3.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 27802,
+            "duration": 1494.4765625,
+            "totalSize": 14596661644
+        },
+        {
+            "filename": "tfrecords/dichasus-ad19.tfrecords",
+            "description": "Robot follows a pseudorandom trajectory in the entire measurement area, part 2.",
+            "configurationVariant": "no-wall-67db-day2",
+            "name": "dichasus-ad19",
+            "plots": {
+                "snrByPosition": "plots/dichasus-ad19-snr-position.png",
+                "snrBoxplot": "plots/dichasus-ad19-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-ad19-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Close to roll-up door": "plots/dichasus-ad19-snr-position-array-0.png",
+                    "Close to pillar 16-A": "plots/dichasus-ad19-snr-position-array-1.png",
+                    "Close to pillar 14-A": "plots/dichasus-ad19-snr-position-array-2.png",
+                    "On top of container": "plots/dichasus-ad19-snr-position-array-3.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 14662,
+            "duration": 761.6171875,
+            "totalSize": 7697872564
+        },
+        {
+            "filename": "tfrecords/dichasus-ad21.tfrecords",
+            "description": "Robot follows a figure 8-trajectory in the measurement area, the LoS to the antenna on top of the container is obstructed for parts of the trajectory.",
+            "configurationVariant": "wall-67db",
+            "name": "dichasus-ad21",
+            "plots": {
+                "snrByPosition": "plots/dichasus-ad21-snr-position.png",
+                "snrBoxplot": "plots/dichasus-ad21-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-ad21-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Close to roll-up door": "plots/dichasus-ad21-snr-position-array-0.png",
+                    "Close to pillar 16-A": "plots/dichasus-ad21-snr-position-array-1.png",
+                    "Close to pillar 14-A": "plots/dichasus-ad21-snr-position-array-2.png",
+                    "On top of container": "plots/dichasus-ad21-snr-position-array-3.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 2956,
+            "duration": 175.1015625,
+            "totalSize": 1551965032
+        },
+        {
+            "filename": "tfrecords/dichasus-ad22.tfrecords",
+            "description": "Robot follows a pseudorandom trajectory, part 1.",
+            "configurationVariant": "wall-67db",
+            "name": "dichasus-ad22",
+            "plots": {
+                "snrByPosition": "plots/dichasus-ad22-snr-position.png",
+                "snrBoxplot": "plots/dichasus-ad22-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-ad22-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Close to roll-up door": "plots/dichasus-ad22-snr-position-array-0.png",
+                    "Close to pillar 16-A": "plots/dichasus-ad22-snr-position-array-1.png",
+                    "Close to pillar 14-A": "plots/dichasus-ad22-snr-position-array-2.png",
+                    "On top of container": "plots/dichasus-ad22-snr-position-array-3.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 26251,
+            "duration": 1385.1875,
+            "totalSize": 13782352522
+        },
+        {
+            "filename": "tfrecords/dichasus-ad23.tfrecords",
+            "description": "Robot follows a pseudorandom trajectory, part 2.",
+            "configurationVariant": "wall-67db",
+            "name": "dichasus-ad23",
+            "plots": {
+                "snrByPosition": "plots/dichasus-ad23-snr-position.png",
+                "snrBoxplot": "plots/dichasus-ad23-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-ad23-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Close to roll-up door": "plots/dichasus-ad23-snr-position-array-0.png",
+                    "Close to pillar 16-A": "plots/dichasus-ad23-snr-position-array-1.png",
+                    "Close to pillar 14-A": "plots/dichasus-ad23-snr-position-array-2.png",
+                    "On top of container": "plots/dichasus-ad23-snr-position-array-3.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 3239,
+            "duration": 180.2890625,
+            "totalSize": 1700546258
+        },
+        {
+            "filename": "tfrecords/dichasus-ad24.tfrecords",
+            "description": "Robot follows a meandering trajectory behind the metallic wall. LoS partially obstructed for antenna on top of container.",
+            "configurationVariant": "wall-67db",
+            "name": "dichasus-ad24",
+            "plots": {
+                "snrByPosition": "plots/dichasus-ad24-snr-position.png",
+                "snrBoxplot": "plots/dichasus-ad24-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-ad24-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Close to roll-up door": "plots/dichasus-ad24-snr-position-array-0.png",
+                    "Close to pillar 16-A": "plots/dichasus-ad24-snr-position-array-1.png",
+                    "Close to pillar 14-A": "plots/dichasus-ad24-snr-position-array-2.png",
+                    "On top of container": "plots/dichasus-ad24-snr-position-array-3.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 9948,
+            "duration": 537.453125,
+            "totalSize": 5222918856
+        },
+        {
+            "filename": "tfrecords/dichasus-ad25.tfrecords",
+            "description": "Short trajectory behind the metallic wall, higher robot speed.",
+            "configurationVariant": "wall-67db",
+            "name": "dichasus-ad25",
+            "plots": {
+                "snrByPosition": "plots/dichasus-ad25-snr-position.png",
+                "snrBoxplot": "plots/dichasus-ad25-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-ad25-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Close to roll-up door": "plots/dichasus-ad25-snr-position-array-0.png",
+                    "Close to pillar 16-A": "plots/dichasus-ad25-snr-position-array-1.png",
+                    "Close to pillar 14-A": "plots/dichasus-ad25-snr-position-array-2.png",
+                    "On top of container": "plots/dichasus-ad25-snr-position-array-3.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 1137,
+            "duration": 61.578125,
+            "totalSize": 596950014
+        },
+        {
+            "filename": "tfrecords/dichasus-ad26.tfrecords",
+            "description": "Robot drives around near the metallic wall, higher robot speed.",
+            "configurationVariant": "wall-67db",
+            "name": "dichasus-ad26",
+            "plots": {
+                "snrByPosition": "plots/dichasus-ad26-snr-position.png",
+                "snrBoxplot": "plots/dichasus-ad26-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-ad26-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Close to roll-up door": "plots/dichasus-ad26-snr-position-array-0.png",
+                    "Close to pillar 16-A": "plots/dichasus-ad26-snr-position-array-1.png",
+                    "Close to pillar 14-A": "plots/dichasus-ad26-snr-position-array-2.png",
+                    "On top of container": "plots/dichasus-ad26-snr-position-array-3.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 7171,
+            "duration": 389.4765625,
+            "totalSize": 3764932762
+        },
+        {
+            "filename": "tfrecords/dichasus-ad27.tfrecords",
+            "description": "Robot drives around in the whole measurement area, sometimes very close to the wall, very high robot speed.",
+            "configurationVariant": "wall-67db",
+            "name": "dichasus-ad27",
+            "plots": {
+                "snrByPosition": "plots/dichasus-ad27-snr-position.png",
+                "snrBoxplot": "plots/dichasus-ad27-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-ad27-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Close to roll-up door": "plots/dichasus-ad27-snr-position-array-0.png",
+                    "Close to pillar 16-A": "plots/dichasus-ad27-snr-position-array-1.png",
+                    "Close to pillar 14-A": "plots/dichasus-ad27-snr-position-array-2.png",
+                    "On top of container": "plots/dichasus-ad27-snr-position-array-3.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 8486,
+            "duration": 445.96875,
+            "totalSize": 4455336692
+        }
+    ],
+    "photos": [
+        {
+            "filename": "photosAll/tachy-robot-rt.jpg",
+            "description": "Tachymeter, mobile transmitter robot and an antenna array (the one called 'close to roll-up door')."
+        },
+        {
+            "filename": "photosAll/14-a-and-16-a.jpg",
+            "description": "Antenna arrays called 'close to pillar 14-A' (left) and 'close to pillar 16-A' (right)."
+        },
+        {
+            "filename": "photosAll/14-a-view.jpg",
+            "description": "Measurement area seen from the point of view of the antenna array called 'close to pillar 14-A'. Some parts of the picture had to be blurred for privacy reasons."
+        },
+        {
+            "filename": "photosAll/16-a-view.jpg",
+            "description": "Measurement area seen from the point of view of the antenna array called 'close to pillar 16-A'."
+        },
+        {
+            "filename": "photosAll/antenna-rt.jpg",
+            "description": "Antenna 'Close to roll-up door'"
+        },
+        {
+            "filename": "photosAll/camera.jpg",
+            "description": "The video camera next to array 'close to pillar 16-A' which was used to produce the video recordings."
+        },
+        {
+            "filename": "photosAll/df-view.jpg",
+            "description": "Measurement area seen from point of view of the antenna array called 'on top of container'."
+        },
+        {
+            "filename": "photosAll/df-view-antennas.jpg",
+            "description": "Measurement area seen from point of view of the antenna array called 'on top of container', with all four antenna arrays circled in red."
+        },
+        {
+            "filename": "photosAll/robot.jpg",
+            "description": "Robot with main transmitter antenna, tachymeter in the background."
+        },
+        {
+            "filename": "photosAll/side-view.jpg",
+            "description": "Measurement area, seen from the side."
+        },
+        {
+            "filename": "photosAll/side-view-antennas.jpg",
+            "description": "Measurement area, seen from the side, with all four antenna arrays circled in red."
+        },
+        {
+            "filename": "photosAll/tachymeter-df.jpg",
+            "description": "Tachymeter, and antenna array called 'on top of container' in the background."
+        }
+    ],
+    "thumbnail": "photosAll/thumbnail.jpg",
+    "plots": {
+        "snrByPosition": "plots/overall-snr-position.png",
+        "snrBoxplot": "plots/overall-snr-boxplot.png",
+        "csiTensors": [
+            "plots/overall-csi-0.png",
+            "plots/overall-csi-1.png",
+            "plots/overall-csi-2.png",
+            "plots/overall-csi-3.png",
+            "plots/overall-csi-4.png",
+            "plots/overall-csi-5.png",
+            "plots/overall-csi-6.png",
+            "plots/overall-csi-7.png",
+            "plots/overall-csi-8.png",
+            "plots/overall-csi-9.png",
+            "plots/overall-csi-10.png",
+            "plots/overall-csi-11.png",
+            "plots/overall-csi-12.png",
+            "plots/overall-csi-13.png",
+            "plots/overall-csi-14.png",
+            "plots/overall-csi-15.png"
+        ],
+        "snrByPositionAndArray": {
+            "Close to roll-up door": "plots/overall-snr-position-array-0.png",
+            "Close to pillar 16-A": "plots/overall-snr-position-array-1.png",
+            "Close to pillar 14-A": "plots/overall-snr-position-array-2.png",
+            "On top of container": "plots/overall-snr-position-array-3.png"
+        }
+    },
+    "gpx": "",
+    "datapoints": 284750,
+    "duration": 15075.256286621094,
+    "antennaCount": 64,
+    "subcarriers": 1024,
+    "totalSize": 149500014500
+}

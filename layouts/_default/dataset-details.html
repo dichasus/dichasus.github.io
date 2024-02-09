@@ -510,7 +510,13 @@
 									horizontal spacing of {{ $antenna.spacingY }}m.
 									{{ if isset $antenna "location" }}
 									In the dataset's cartesian coordinate system, its center is located at {{
-									$antenna.location }} and the antenna points in direction {{ $antenna.direction }}.
+									$antenna.location }}
+										{{  if isset $antenna "direction"}}
+											and the antenna points in direction {{ $antenna.direction }}.
+										{{ else }}
+											and the plane in which all the array's antennas are located is spanned by two vectors:
+											The vector {{ $antenna.rightvector }}, which points to the right when looking at the array from the front, and the vector {{ $antenna.upvector }}, which points upwards.
+										{{ end }}	
 									{{ else }}
 									In the dataset's longitude / latitude coordinate system, it is located at N {{ index
 									$antenna.locationLonLat 0 }}°, E {{ index $antenna.locationLonLat 1 }}°, with the
@@ -624,33 +630,45 @@ dataset = dataset.cache()</code></pre>
 		<h2>Configuration Variants {{ if isset $spec.configuration "threedmodel" }} and Environment 3D Model{{ end }}</h2>
 		<div class="row justify-content-center mb-2">
 			<div class="col-12 col-lg-8 col-xl-8 my-3 mx-0">
-				<select id="global-3dmodel-selector" class="form-select mb-2" aria-label="Default select example">
+				<select id="global-variant-selector" class="form-select mb-2" aria-label="Default select example">
 					{{ range $envid, $env := $spec.configuration.variants }}
 					<option value="{{ $env.gltf }}" data-name="{{ $env.name }}" data-description="{{ $env.description }}">{{ $env.name }}</option>
 					{{ end }}
 				</select>
 
+				{{ if isset $spec.configuration "threedmodel" }}
 				<model-viewer id="global-3dmodel-viewer" alt="3D Model of the Environment" shadow-intensity="1" camera-controls touch-action="pan-y" class="w-100" style="min-height: 300px; height: 50vh;">
 					<div slot="progress-bar"></div>
 				</model-viewer>
-				<b id="global-3dmodel-name"></b>: <span id="global-3dmodel-description"></span>
+				{{ end }}
+				<b id="global-variant-name"></b>: <span id="global-variant-description"></span>
+
 
 				<script type="text/javascript">
-					document.getElementById("global-3dmodel-selector").addEventListener("change", function() {
+					document.getElementById("global-variant-selector").addEventListener("change", function() {
 						const selected = this.options[this.selectedIndex];
-						document.getElementById("global-3dmodel-viewer").src = selected.value;
-						document.getElementById("global-3dmodel-name").textContent = selected.getAttribute("data-name");
-						document.getElementById("global-3dmodel-description").textContent = selected.getAttribute("data-description");
+						document.getElementById("global-variant-name").textContent = selected.getAttribute("data-name");
+						document.getElementById("global-variant-description").textContent = selected.getAttribute("data-description");
 					});
 
 					document.addEventListener("DOMContentLoaded", () => {
-						const selector = document.getElementById("global-3dmodel-selector");
+						const selector = document.getElementById("global-variant-selector");
 						selector.selectedIndex = 0;
 						selector.dispatchEvent(new Event("change"));
 					});
 				</script>
+
+				{{ if isset $spec.configuration "threedmodel" }}
+					<script type="text/javascript">
+						document.getElementById("global-variant-selector").addEventListener("change", function() {
+							const selected = this.options[this.selectedIndex];
+							document.getElementById("global-3dmodel-viewer").src = selected.value;
+						});
+					</script>
+				{{ end }}
 			</div>
 			
+			{{ if isset $spec.configuration "threedmodel" }}
 			<div class="col-12 col-lg-12 col-xl-4 py-3">
 				<p>
 					For this dataset, we provide a 3D model of the environment.
@@ -669,6 +687,7 @@ dataset = dataset.cache()</code></pre>
 					<a href="{{ $spec.configuration.threedmodel.blender }}" download><button class="btn btn-lg btn-dark" type="button">Download Blender 3D Model</button></a>
 				</div>
 			</div>
+			{{ end }}
 		</div>
 
 		<p>
@@ -902,9 +921,11 @@ dataset = dataset.cache()</code></pre>
 										aria-labelledby="headingFive-{{ $index }}"
 										data-bs-parent="#plot-accordion-{{ $index }}">
 										{{ $variant := (index $spec.configuration.variants $tfrecord.configurationVariant) }}
+										{{ if isset $spec.configuration "threedmodel" }}
 										<model-viewer alt="3D Model of the Environment" src="{{ $variant.gltf }}" shadow-intensity="1" camera-controls touch-action="pan-y" class="w-100" style="min-height: 300px; height: 50vh;">
 											<div slot="progress-bar"></div>
 										</model-viewer>
+										{{ end }}
 										<p class="p-3">
 											<b>{{ $variant.name }}</b>:
 											{{ $variant.description }}
