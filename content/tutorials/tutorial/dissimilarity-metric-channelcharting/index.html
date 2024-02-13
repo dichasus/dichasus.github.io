@@ -72,9 +72,9 @@ from scipy.spatial import distance_matrix
 from sklearn.manifold import MDS
 import matplotlib.pyplot as plt
 import multiprocessing as mp
+from tqdm.auto import tqdm
 import tensorflow as tf
 import numpy as np
-import progressbar
 import random
 import queue
 import json
@@ -430,9 +430,7 @@ def adp_dissimilarities_worker(todo_queue, output_queue):
 		
 		output_queue.put((index, adp_dissimilarities(index)))
 
-count = 0
-
-with progressbar.ProgressBar(max_value = csi_time_domain.shape[0]**2) as bar:
+with tqdm(total = csi_time_domain.shape[0]**2) as pbar:
 	todo_queue = mp.Queue()
 	output_queue = mp.Queue()
 
@@ -453,8 +451,7 @@ with progressbar.ProgressBar(max_value = csi_time_domain.shape[0]**2) as bar:
 		else:
 			adp_dissimilarity_matrix[i,i:] = d
 			adp_dissimilarity_matrix[i:,i] = d
-			count = count + 2 * len(d) - 1
-			bar.update(count)</code></pre>
+			pbar.update(2 * len(d) - 1)</code></pre>
 
 	<div class="row justify-content-center mb-2 mt-2">
 		<div class="col-12 col-md-12 col-lg-4 col-xl-6 p-2">
@@ -656,8 +653,7 @@ def shortest_path_worker(todo_queue, output_queue):
 		d = dijkstra(nbg, directed=False, indices=index)
 		output_queue.put((index, d))
 
-count = 0
-with progressbar.ProgressBar(max_value = nbg.shape[0]**2) as bar:
+with tqdm(total = nbg.shape[0]**2) as pbar:
 	todo_queue = mp.Queue()
 	output_queue = mp.Queue()
 
@@ -677,8 +673,7 @@ with progressbar.ProgressBar(max_value = nbg.shape[0]**2) as bar:
 			finished_processes = finished_processes + 1
 		else:
 			dissimilarity_matrix_geodesic[i,:] = d
-			count = count + len(d)
-			bar.update(count)</code></pre>
+			pbar.update(len(d))</code></pre>
 
 	
 	<div class="row justify-content-center mb-2 mt-2">
