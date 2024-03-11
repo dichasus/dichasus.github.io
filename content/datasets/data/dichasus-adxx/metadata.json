@@ -1,13 +1,13 @@
 {
     "identifier": "dichasus-adxx",
-    "name": "ARENA2036: Distributed setup in industrial environment",
-    "shortDescription": "Channel measurements in the ARENA2036 research factory with known 3D pointcloud scan and video, with a total of 64 antennas, arranged into four arrays.",
+    "name": "ARENA2036: Distributed setup in industrial environment at 3.4GHz",
+    "shortDescription": "Channel measurements in the ARENA2036 research factory with known 3D pointcloud scan and video of environment. 64 antennas, arranged into four arrays.",
     "bandwidth": 50000000.0,
     "frequency": 3438000000,
     "outdoor": false,
     "year": 2024,
     "warnings": [
-        "This dataset is currently being postprocessed. More data, the 3D pointcloud scan and the full video recordings will be added and the dataset will be published once finished."
+        "The 3D pointcloud scan of the environment will be published soon. The full video recordings of the environment are available on DaRUS and will be documented soon."
     ],
     "authors": [
         {
@@ -36,18 +36,39 @@
         }
     ],
     "configuration": {
+        "pointcloud": {
+            "download": "pointcloud/pointclouds.tar.xz",
+            "descriptionFile": "pointcloud/description.txt"
+        },
         "variants": {
             "no-wall-64db": {
                 "name": "No wall, 64dB RX gain",
                 "description": "The measurement area is empty, all receivers are set to a fixed gain of 64dB. First day of measurements. Tachymeter is in the middle of the measurement area (hence the 'hole' in the dataset).",
                 "rxgain": 64,
+                "potree": {
+                    "folder": "potree/arena2036-day1",
+                    "position": {
+                        "x": -2,
+                        "y": -16,
+                        "z": 1.8
+                    },
+                    "pitch": 0,
+                    "yaw": 0.8,
+                    "fov": 70,
+                    "moveSpeed": 4
+                },
                 "plots": {
                     "snrByPosition": "plots/no-wall-64db-snr-position.png",
                     "snrBoxplot": "plots/no-wall-64db-snr-boxplot.png",
                     "csiTensors": [
                         "plots/no-wall-64db-csi-0.png",
                         "plots/no-wall-64db-csi-1.png",
-                        "plots/no-wall-64db-csi-2.png"
+                        "plots/no-wall-64db-csi-2.png",
+                        "plots/no-wall-64db-csi-3.png",
+                        "plots/no-wall-64db-csi-4.png",
+                        "plots/no-wall-64db-csi-5.png",
+                        "plots/no-wall-64db-csi-6.png",
+                        "plots/no-wall-64db-csi-7.png"
                     ],
                     "snrByPositionAndArray": {
                         "Close to roll-up door": "plots/no-wall-64db-snr-position-array-0.png",
@@ -58,10 +79,84 @@
                 },
                 "gpx": ""
             },
+            "no-wall-70db": {
+                "name": "No wall, 70dB RX gain",
+                "description": "The measurement area is empty, all receivers are set to a fixed gain of 70dB. First day of measurements. Tachymeter is in the middle of the measurement area.",
+                "rxgain": 70,
+                "potree": {
+                    "folder": "potree/arena2036-day1",
+                    "position": {
+                        "x": -2,
+                        "y": -16,
+                        "z": 1.8
+                    },
+                    "pitch": 0,
+                    "yaw": 0.8,
+                    "fov": 70,
+                    "moveSpeed": 4
+                },
+                "plots": {
+                    "snrByPosition": "plots/no-wall-70db-snr-position.png",
+                    "snrBoxplot": "plots/no-wall-70db-snr-boxplot.png",
+                    "csiTensors": [
+                        "plots/no-wall-70db-csi-0.png"
+                    ],
+                    "snrByPositionAndArray": {
+                        "Close to roll-up door": "plots/no-wall-70db-snr-position-array-0.png",
+                        "Close to pillar 16-A": "plots/no-wall-70db-snr-position-array-1.png",
+                        "Close to pillar 14-A": "plots/no-wall-70db-snr-position-array-2.png",
+                        "On top of container": "plots/no-wall-70db-snr-position-array-3.png"
+                    }
+                },
+                "gpx": ""
+            },
+            "no-wall-67db-day1": {
+                "name": "No wall, 67dB RX gain, Day 1",
+                "description": "The measurement area is empty, all receivers are set to a fixed gain of 67dB. First day of measurements. Tachymeter is in the middle of the measurement area (hence the 'hole' in the dataset).",
+                "rxgain": 67,
+                "potree": {
+                    "folder": "potree/arena2036-day1",
+                    "position": {
+                        "x": -2,
+                        "y": -16,
+                        "z": 1.8
+                    },
+                    "pitch": 0,
+                    "yaw": 0.8,
+                    "fov": 70,
+                    "moveSpeed": 4
+                },
+                "plots": {
+                    "snrByPosition": "plots/no-wall-67db-day1-snr-position.png",
+                    "snrBoxplot": "plots/no-wall-67db-day1-snr-boxplot.png",
+                    "csiTensors": [
+                        "plots/no-wall-67db-day1-csi-0.png"
+                    ],
+                    "snrByPositionAndArray": {
+                        "Close to roll-up door": "plots/no-wall-67db-day1-snr-position-array-0.png",
+                        "Close to pillar 16-A": "plots/no-wall-67db-day1-snr-position-array-1.png",
+                        "Close to pillar 14-A": "plots/no-wall-67db-day1-snr-position-array-2.png",
+                        "On top of container": "plots/no-wall-67db-day1-snr-position-array-3.png"
+                    }
+                },
+                "gpx": ""
+            },
             "no-wall-67db-day2": {
                 "name": "No wall, 67dB RX gain, Day 2",
                 "description": "The measurement area is empty, all receivers are set to a fixed gain of 67dB. Second day of measurements. Tachymeter is to the side of the measurement area.",
                 "rxgain": 67,
+                "potree": {
+                    "folder": "potree/arena2036-day2",
+                    "position": {
+                        "x": -2,
+                        "y": -16,
+                        "z": 1.8
+                    },
+                    "pitch": 0,
+                    "yaw": 0.8,
+                    "fov": 70,
+                    "moveSpeed": 4
+                },
                 "plots": {
                     "snrByPosition": "plots/no-wall-67db-day2-snr-position.png",
                     "snrBoxplot": "plots/no-wall-67db-day2-snr-boxplot.png",
@@ -71,7 +166,11 @@
                         "plots/no-wall-67db-day2-csi-2.png",
                         "plots/no-wall-67db-day2-csi-3.png",
                         "plots/no-wall-67db-day2-csi-4.png",
-                        "plots/no-wall-67db-day2-csi-5.png"
+                        "plots/no-wall-67db-day2-csi-5.png",
+                        "plots/no-wall-67db-day2-csi-6.png",
+                        "plots/no-wall-67db-day2-csi-7.png",
+                        "plots/no-wall-67db-day2-csi-8.png",
+                        "plots/no-wall-67db-day2-csi-9.png"
                     ],
                     "snrByPositionAndArray": {
                         "Close to roll-up door": "plots/no-wall-67db-day2-snr-position-array-0.png",
@@ -328,8 +427,9 @@
     "tfrecords": [
         {
             "filename": "tfrecords/dichasus-ad00.tfrecords",
-            "description": "Robot follows a pseudorandom trajectory in the measurement area, part 1. Tachymeter is placed in the 'hole' in the middle.",
+            "description": "Robot follows a pseudorandom trajectory in the measurement area, part 1.",
             "configurationVariant": "no-wall-64db",
+            "environmentVideo": "videos/dichasus-ad00.mkv",
             "name": "dichasus-ad00",
             "plots": {
                 "snrByPosition": "plots/dichasus-ad00-snr-position.png",
@@ -347,12 +447,15 @@
             "gpx": "",
             "datapoints": 12582,
             "duration": 688.1759643554688,
-            "totalSize": 6605826804
+            "totalSize": 6605826804,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284931",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284931"
         },
         {
             "filename": "tfrecords/dichasus-ad01.tfrecords",
-            "description": "Robot follows a pseudorandom trajectory in the measurement area, part 2. Tachymeter is placed in the 'hole' in the middle.",
+            "description": "Robot follows a pseudorandom trajectory in the measurement area, part 2.",
             "configurationVariant": "no-wall-64db",
+            "environmentVideo": "videos/dichasus-ad01.mkv",
             "name": "dichasus-ad01",
             "plots": {
                 "snrByPosition": "plots/dichasus-ad01-snr-position.png",
@@ -370,12 +473,15 @@
             "gpx": "",
             "datapoints": 14512,
             "duration": 766.416015625,
-            "totalSize": 7619119264
+            "totalSize": 7619119264,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284933",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284933"
         },
         {
             "filename": "tfrecords/dichasus-ad02.tfrecords",
-            "description": "Robot follows a pattern of west / east meanders in the whole measurement area. Tachymeter is placed in the 'hole' in the middle.",
+            "description": "Robot follows a pattern of west / east meanders in the whole measurement area.",
             "configurationVariant": "no-wall-64db",
+            "environmentVideo": "videos/dichasus-ad02.mkv",
             "name": "dichasus-ad02",
             "plots": {
                 "snrByPosition": "plots/dichasus-ad02-snr-position.png",
@@ -393,12 +499,197 @@
             "gpx": "",
             "datapoints": 41463,
             "duration": 2144.015869140625,
-            "totalSize": 21768987186
+            "totalSize": 21768987186,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284935",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284935"
+        },
+        {
+            "filename": "tfrecords/dichasus-ad03.tfrecords",
+            "description": "Robot follows a short pattern of north / south meanders.",
+            "configurationVariant": "no-wall-64db",
+            "environmentVideo": "videos/dichasus-ad03.mkv",
+            "name": "dichasus-ad03",
+            "plots": {
+                "snrByPosition": "plots/dichasus-ad03-snr-position.png",
+                "snrBoxplot": "plots/dichasus-ad03-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-ad03-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Close to roll-up door": "plots/dichasus-ad03-snr-position-array-0.png",
+                    "Close to pillar 16-A": "plots/dichasus-ad03-snr-position-array-1.png",
+                    "Close to pillar 14-A": "plots/dichasus-ad03-snr-position-array-2.png",
+                    "On top of container": "plots/dichasus-ad03-snr-position-array-3.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 10791,
+            "duration": 582.04833984375,
+            "totalSize": 5665512402,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284937",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284937"
+        },
+        {
+            "filename": "tfrecords/dichasus-ad04.tfrecords",
+            "description": "Robot follows a (long) pattern of north / south meanders in the whole measurement area. A few datapoints in the middle may be missing (due to a tachymeter issue).",
+            "configurationVariant": "no-wall-64db",
+            "environmentVideo": "videos/dichasus-ad04.mkv",
+            "name": "dichasus-ad04",
+            "plots": {
+                "snrByPosition": "plots/dichasus-ad04-snr-position.png",
+                "snrBoxplot": "plots/dichasus-ad04-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-ad04-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Close to roll-up door": "plots/dichasus-ad04-snr-position-array-0.png",
+                    "Close to pillar 16-A": "plots/dichasus-ad04-snr-position-array-1.png",
+                    "Close to pillar 14-A": "plots/dichasus-ad04-snr-position-array-2.png",
+                    "On top of container": "plots/dichasus-ad04-snr-position-array-3.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 45112,
+            "duration": 2422.41650390625,
+            "totalSize": 23684792464,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284939",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284939"
+        },
+        {
+            "filename": "tfrecords/dichasus-ad05.tfrecords",
+            "description": "Robot follows a long, pseudorandom 'smooth' trajectory in in the measurement area (part 1).",
+            "configurationVariant": "no-wall-64db",
+            "environmentVideo": "videos/dichasus-ad05.mkv",
+            "name": "dichasus-ad05",
+            "plots": {
+                "snrByPosition": "plots/dichasus-ad05-snr-position.png",
+                "snrBoxplot": "plots/dichasus-ad05-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-ad05-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Close to roll-up door": "plots/dichasus-ad05-snr-position-array-0.png",
+                    "Close to pillar 16-A": "plots/dichasus-ad05-snr-position-array-1.png",
+                    "Close to pillar 14-A": "plots/dichasus-ad05-snr-position-array-2.png",
+                    "On top of container": "plots/dichasus-ad05-snr-position-array-3.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 12576,
+            "duration": 691.6806640625,
+            "totalSize": 6602676672,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284941",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284941"
+        },
+        {
+            "filename": "tfrecords/dichasus-ad06.tfrecords",
+            "description": "Robot follows a long, pseudorandom 'smooth' trajectory in in the measurement area (part 2).",
+            "configurationVariant": "no-wall-64db",
+            "environmentVideo": "videos/dichasus-ad06.mkv",
+            "name": "dichasus-ad06",
+            "plots": {
+                "snrByPosition": "plots/dichasus-ad06-snr-position.png",
+                "snrBoxplot": "plots/dichasus-ad06-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-ad06-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Close to roll-up door": "plots/dichasus-ad06-snr-position-array-0.png",
+                    "Close to pillar 16-A": "plots/dichasus-ad06-snr-position-array-1.png",
+                    "Close to pillar 14-A": "plots/dichasus-ad06-snr-position-array-2.png",
+                    "On top of container": "plots/dichasus-ad06-snr-position-array-3.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 12411,
+            "duration": 656.9755859375,
+            "totalSize": 6516048042,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284943",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284943"
+        },
+        {
+            "filename": "tfrecords/dichasus-ad07.tfrecords",
+            "description": "Robot leaves measurement area and ventures further back into the ARENA2036.",
+            "configurationVariant": "no-wall-64db",
+            "environmentVideo": "videos/dichasus-ad07.mkv",
+            "name": "dichasus-ad07",
+            "plots": {
+                "snrByPosition": "plots/dichasus-ad07-snr-position.png",
+                "snrBoxplot": "plots/dichasus-ad07-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-ad07-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Close to roll-up door": "plots/dichasus-ad07-snr-position-array-0.png",
+                    "Close to pillar 16-A": "plots/dichasus-ad07-snr-position-array-1.png",
+                    "Close to pillar 14-A": "plots/dichasus-ad07-snr-position-array-2.png",
+                    "On top of container": "plots/dichasus-ad07-snr-position-array-3.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 7640,
+            "duration": 438.3359375,
+            "totalSize": 4011168080,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284945",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284945"
+        },
+        {
+            "filename": "tfrecords/dichasus-ad08.tfrecords",
+            "description": "Robot leaves measurement area and ventures further back into the ARENA2036, this time with higher receiver gain.",
+            "configurationVariant": "no-wall-70db",
+            "environmentVideo": "videos/dichasus-ad08.mkv",
+            "name": "dichasus-ad08",
+            "plots": {
+                "snrByPosition": "plots/dichasus-ad08-snr-position.png",
+                "snrBoxplot": "plots/dichasus-ad08-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-ad08-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Close to roll-up door": "plots/dichasus-ad08-snr-position-array-0.png",
+                    "Close to pillar 16-A": "plots/dichasus-ad08-snr-position-array-1.png",
+                    "Close to pillar 14-A": "plots/dichasus-ad08-snr-position-array-2.png",
+                    "On top of container": "plots/dichasus-ad08-snr-position-array-3.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 10812,
+            "duration": 783.6962890625,
+            "totalSize": 5676537864,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284947",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284947"
+        },
+        {
+            "filename": "tfrecords/dichasus-ad09.tfrecords",
+            "description": "Robot follows a pseudorandom trajectory in the whole measurement area.",
+            "configurationVariant": "no-wall-67db-day1",
+            "environmentVideo": "videos/dichasus-ad09.mkv",
+            "name": "dichasus-ad09",
+            "plots": {
+                "snrByPosition": "plots/dichasus-ad09-snr-position.png",
+                "snrBoxplot": "plots/dichasus-ad09-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-ad09-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Close to roll-up door": "plots/dichasus-ad09-snr-position-array-0.png",
+                    "Close to pillar 16-A": "plots/dichasus-ad09-snr-position-array-1.png",
+                    "Close to pillar 14-A": "plots/dichasus-ad09-snr-position-array-2.png",
+                    "On top of container": "plots/dichasus-ad09-snr-position-array-3.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 19715,
+            "duration": 1049.13671875,
+            "totalSize": 10350808730,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284949",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284949"
         },
         {
             "filename": "tfrecords/dichasus-ad10.tfrecords",
             "description": "Robot follows a pattern of northeast / southwest meanders in the whole measurement area.",
             "configurationVariant": "no-wall-67db-day2",
+            "environmentVideo": "videos/dichasus-ad10.mkv",
             "name": "dichasus-ad10",
             "plots": {
                 "snrByPosition": "plots/dichasus-ad10-snr-position.png",
@@ -416,12 +707,15 @@
             "gpx": "",
             "datapoints": 46898,
             "duration": 2508.3359375,
-            "totalSize": 24622481756
+            "totalSize": 24622481756,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284951",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284951"
         },
         {
             "filename": "tfrecords/dichasus-ad11.tfrecords",
             "description": "Robot follows a pattern of northwest / southeast meanders in the whole measurement area.",
             "configurationVariant": "no-wall-67db-day2",
+            "environmentVideo": "videos/dichasus-ad11.mkv",
             "name": "dichasus-ad11",
             "plots": {
                 "snrByPosition": "plots/dichasus-ad11-snr-position.png",
@@ -439,12 +733,15 @@
             "gpx": "",
             "datapoints": 47202,
             "duration": 2416.171875,
-            "totalSize": 24782088444
+            "totalSize": 24782088444,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284953",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284953"
         },
         {
             "filename": "tfrecords/dichasus-ad12.tfrecords",
             "description": "Robot follows a pattern of northwest / southeast meanders in the whole measurement area.",
             "configurationVariant": "no-wall-67db-day2",
+            "environmentVideo": "videos/dichasus-ad12.mkv",
             "name": "dichasus-ad12",
             "plots": {
                 "snrByPosition": "plots/dichasus-ad12-snr-position.png",
@@ -462,12 +759,119 @@
             "gpx": "",
             "datapoints": 16913,
             "duration": 920.9765625,
-            "totalSize": 8879697086
+            "totalSize": 8879697086,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284955",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284955"
+        },
+        {
+            "filename": "tfrecords/dichasus-ad13.tfrecords",
+            "description": "Robot follows a figure 8-trajectory in the measurement area.",
+            "configurationVariant": "no-wall-67db-day2",
+            "environmentVideo": "videos/dichasus-ad13.mkv",
+            "name": "dichasus-ad13",
+            "plots": {
+                "snrByPosition": "plots/dichasus-ad13-snr-position.png",
+                "snrBoxplot": "plots/dichasus-ad13-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-ad13-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Close to roll-up door": "plots/dichasus-ad13-snr-position-array-0.png",
+                    "Close to pillar 16-A": "plots/dichasus-ad13-snr-position-array-1.png",
+                    "Close to pillar 14-A": "plots/dichasus-ad13-snr-position-array-2.png",
+                    "On top of container": "plots/dichasus-ad13-snr-position-array-3.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 5960,
+            "duration": 318.1015625,
+            "totalSize": 3129131120,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284957",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284957"
+        },
+        {
+            "filename": "tfrecords/dichasus-ad14.tfrecords",
+            "description": "Robot follows a circular trajectory in the measurement area.",
+            "configurationVariant": "no-wall-67db-day2",
+            "environmentVideo": "videos/dichasus-ad14.mkv",
+            "name": "dichasus-ad14",
+            "plots": {
+                "snrByPosition": "plots/dichasus-ad14-snr-position.png",
+                "snrBoxplot": "plots/dichasus-ad14-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-ad14-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Close to roll-up door": "plots/dichasus-ad14-snr-position-array-0.png",
+                    "Close to pillar 16-A": "plots/dichasus-ad14-snr-position-array-1.png",
+                    "Close to pillar 14-A": "plots/dichasus-ad14-snr-position-array-2.png",
+                    "On top of container": "plots/dichasus-ad14-snr-position-array-3.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 4268,
+            "duration": 230.734375,
+            "totalSize": 2240793896,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284959",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284959"
+        },
+        {
+            "filename": "tfrecords/dichasus-ad15.tfrecords",
+            "description": "Robot follows a trajectory in the shape of the letters 'INUE'. Person walking close to the measurement area. Letters are a bit wobbly.",
+            "configurationVariant": "no-wall-67db-day2",
+            "environmentVideo": "videos/dichasus-ad15.mkv",
+            "name": "dichasus-ad15",
+            "plots": {
+                "snrByPosition": "plots/dichasus-ad15-snr-position.png",
+                "snrBoxplot": "plots/dichasus-ad15-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-ad15-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Close to roll-up door": "plots/dichasus-ad15-snr-position-array-0.png",
+                    "Close to pillar 16-A": "plots/dichasus-ad15-snr-position-array-1.png",
+                    "Close to pillar 14-A": "plots/dichasus-ad15-snr-position-array-2.png",
+                    "On top of container": "plots/dichasus-ad15-snr-position-array-3.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 3958,
+            "duration": 219.21875,
+            "totalSize": 2078037076,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284961",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284961"
+        },
+        {
+            "filename": "tfrecords/dichasus-ad16.tfrecords",
+            "description": "Robot follows a trajectory in the shape of the letters 'INUE'.",
+            "configurationVariant": "no-wall-67db-day2",
+            "environmentVideo": "videos/dichasus-ad16.mkv",
+            "name": "dichasus-ad16",
+            "plots": {
+                "snrByPosition": "plots/dichasus-ad16-snr-position.png",
+                "snrBoxplot": "plots/dichasus-ad16-snr-boxplot.png",
+                "csiTensors": [
+                    "plots/dichasus-ad16-csi-0.png"
+                ],
+                "snrByPositionAndArray": {
+                    "Close to roll-up door": "plots/dichasus-ad16-snr-position-array-0.png",
+                    "Close to pillar 16-A": "plots/dichasus-ad16-snr-position-array-1.png",
+                    "Close to pillar 14-A": "plots/dichasus-ad16-snr-position-array-2.png",
+                    "On top of container": "plots/dichasus-ad16-snr-position-array-3.png"
+                }
+            },
+            "gpx": "",
+            "datapoints": 3889,
+            "duration": 215.375,
+            "totalSize": 2041810558,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284963",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284963"
         },
         {
             "filename": "tfrecords/dichasus-ad17.tfrecords",
             "description": "Robot trajectory is in the shape of a large (slightly wobbly) circle.",
             "configurationVariant": "no-wall-67db-day2",
+            "environmentVideo": "videos/dichasus-ad17.mkv",
             "name": "dichasus-ad17",
             "plots": {
                 "snrByPosition": "plots/dichasus-ad17-snr-position.png",
@@ -485,12 +889,15 @@
             "gpx": "",
             "datapoints": 3528,
             "duration": 200.015625,
-            "totalSize": 1852277616
+            "totalSize": 1852277616,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284965",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284965"
         },
         {
             "filename": "tfrecords/dichasus-ad18.tfrecords",
             "description": "Robot follows a pseudorandom trajectory in the entire measurement area, part 1.",
             "configurationVariant": "no-wall-67db-day2",
+            "environmentVideo": "videos/dichasus-ad18.mkv",
             "name": "dichasus-ad18",
             "plots": {
                 "snrByPosition": "plots/dichasus-ad18-snr-position.png",
@@ -508,12 +915,15 @@
             "gpx": "",
             "datapoints": 27802,
             "duration": 1494.4765625,
-            "totalSize": 14596661644
+            "totalSize": 14596661644,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284967",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284967"
         },
         {
             "filename": "tfrecords/dichasus-ad19.tfrecords",
             "description": "Robot follows a pseudorandom trajectory in the entire measurement area, part 2.",
             "configurationVariant": "no-wall-67db-day2",
+            "environmentVideo": "videos/dichasus-ad19.mkv",
             "name": "dichasus-ad19",
             "plots": {
                 "snrByPosition": "plots/dichasus-ad19-snr-position.png",
@@ -531,12 +941,15 @@
             "gpx": "",
             "datapoints": 14662,
             "duration": 761.6171875,
-            "totalSize": 7697872564
+            "totalSize": 7697872564,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284969",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284969"
         },
         {
             "filename": "tfrecords/dichasus-ad21.tfrecords",
             "description": "Robot follows a figure 8-trajectory in the measurement area, the LoS to the antenna on top of the container is obstructed for parts of the trajectory.",
             "configurationVariant": "wall-67db",
+            "environmentVideo": "videos/dichasus-ad21.mkv",
             "name": "dichasus-ad21",
             "plots": {
                 "snrByPosition": "plots/dichasus-ad21-snr-position.png",
@@ -554,12 +967,15 @@
             "gpx": "",
             "datapoints": 2956,
             "duration": 175.1015625,
-            "totalSize": 1551965032
+            "totalSize": 1551965032,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284971",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284971"
         },
         {
             "filename": "tfrecords/dichasus-ad22.tfrecords",
             "description": "Robot follows a pseudorandom trajectory, part 1.",
             "configurationVariant": "wall-67db",
+            "environmentVideo": "videos/dichasus-ad22.mkv",
             "name": "dichasus-ad22",
             "plots": {
                 "snrByPosition": "plots/dichasus-ad22-snr-position.png",
@@ -577,12 +993,15 @@
             "gpx": "",
             "datapoints": 26251,
             "duration": 1385.1875,
-            "totalSize": 13782352522
+            "totalSize": 13782352522,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284973",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284973"
         },
         {
             "filename": "tfrecords/dichasus-ad23.tfrecords",
             "description": "Robot follows a pseudorandom trajectory, part 2.",
             "configurationVariant": "wall-67db",
+            "environmentVideo": "videos/dichasus-ad23.mkv",
             "name": "dichasus-ad23",
             "plots": {
                 "snrByPosition": "plots/dichasus-ad23-snr-position.png",
@@ -600,12 +1019,15 @@
             "gpx": "",
             "datapoints": 3239,
             "duration": 180.2890625,
-            "totalSize": 1700546258
+            "totalSize": 1700546258,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284975",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284975"
         },
         {
             "filename": "tfrecords/dichasus-ad24.tfrecords",
             "description": "Robot follows a meandering trajectory behind the metallic wall. LoS partially obstructed for antenna on top of container.",
             "configurationVariant": "wall-67db",
+            "environmentVideo": "videos/dichasus-ad24.mkv",
             "name": "dichasus-ad24",
             "plots": {
                 "snrByPosition": "plots/dichasus-ad24-snr-position.png",
@@ -623,12 +1045,15 @@
             "gpx": "",
             "datapoints": 9948,
             "duration": 537.453125,
-            "totalSize": 5222918856
+            "totalSize": 5222918856,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284977",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284977"
         },
         {
             "filename": "tfrecords/dichasus-ad25.tfrecords",
             "description": "Short trajectory behind the metallic wall, higher robot speed.",
             "configurationVariant": "wall-67db",
+            "environmentVideo": "videos/dichasus-ad25.mkv",
             "name": "dichasus-ad25",
             "plots": {
                 "snrByPosition": "plots/dichasus-ad25-snr-position.png",
@@ -646,12 +1071,15 @@
             "gpx": "",
             "datapoints": 1137,
             "duration": 61.578125,
-            "totalSize": 596950014
+            "totalSize": 596950014,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284979",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284979"
         },
         {
             "filename": "tfrecords/dichasus-ad26.tfrecords",
             "description": "Robot drives around near the metallic wall, higher robot speed.",
             "configurationVariant": "wall-67db",
+            "environmentVideo": "videos/dichasus-ad26.mkv",
             "name": "dichasus-ad26",
             "plots": {
                 "snrByPosition": "plots/dichasus-ad26-snr-position.png",
@@ -669,12 +1097,15 @@
             "gpx": "",
             "datapoints": 7171,
             "duration": 389.4765625,
-            "totalSize": 3764932762
+            "totalSize": 3764932762,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284981",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284981"
         },
         {
             "filename": "tfrecords/dichasus-ad27.tfrecords",
             "description": "Robot drives around in the whole measurement area, sometimes very close to the wall, very high robot speed.",
             "configurationVariant": "wall-67db",
+            "environmentVideo": "videos/dichasus-ad27.mkv",
             "name": "dichasus-ad27",
             "plots": {
                 "snrByPosition": "plots/dichasus-ad27-snr-position.png",
@@ -692,7 +1123,9 @@
             "gpx": "",
             "datapoints": 8486,
             "duration": 445.96875,
-            "totalSize": 4455336692
+            "totalSize": 4455336692,
+            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284983",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284983"
         }
     ],
     "photos": [
@@ -746,6 +1179,7 @@
         }
     ],
     "thumbnail": "photosAll/thumbnail.jpg",
+    "doi": "doi:10.18419/darus-4062",
     "plots": {
         "snrByPosition": "plots/overall-snr-position.png",
         "snrBoxplot": "plots/overall-snr-boxplot.png",
@@ -765,7 +1199,18 @@
             "plots/overall-csi-12.png",
             "plots/overall-csi-13.png",
             "plots/overall-csi-14.png",
-            "plots/overall-csi-15.png"
+            "plots/overall-csi-15.png",
+            "plots/overall-csi-16.png",
+            "plots/overall-csi-17.png",
+            "plots/overall-csi-18.png",
+            "plots/overall-csi-19.png",
+            "plots/overall-csi-20.png",
+            "plots/overall-csi-21.png",
+            "plots/overall-csi-22.png",
+            "plots/overall-csi-23.png",
+            "plots/overall-csi-24.png",
+            "plots/overall-csi-25.png",
+            "plots/overall-csi-26.png"
         ],
         "snrByPositionAndArray": {
             "Close to roll-up door": "plots/overall-snr-position-array-0.png",
@@ -775,9 +1220,9 @@
         }
     },
     "gpx": "",
-    "datapoints": 284750,
-    "duration": 15075.256286621094,
+    "datapoints": 421882,
+    "duration": 22682.976013183594,
     "antennaCount": 64,
     "subcarriers": 1024,
-    "totalSize": 149500014500
+    "totalSize": 221497331404
 }

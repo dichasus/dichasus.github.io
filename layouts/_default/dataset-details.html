@@ -586,7 +586,6 @@ dataset = raw_dataset.map(record_parse_function, num_parallel_calls = tf.data.ex
 
 # Optional: Cache dataset in RAM for faster training
 dataset = dataset.cache()</code></pre>
-		</pre>
 		<script>hljs.highlightAll();</script>
 
 		{{ $offsetfile := ".json" | printf "%s%s" $spec.identifier | printf "%s%s" "reftx-offsets-" }}
@@ -627,21 +626,56 @@ dataset = dataset.cache()</code></pre>
 		{{ end }}
 
 		{{ if isset $spec "configuration" }}
-		<h2>Configuration Variants {{ if isset $spec.configuration "threedmodel" }} and Environment 3D Model{{ end }}</h2>
+		<!-- Load only needed libraries -->
+		{{ if isset $spec.configuration "threedmodel"}}
+			<!-- ModelViewer -->
+			<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
+		{{ end }}
+		{{ if isset $spec.configuration "pointcloud"}}
+			<!-- Potree -->
+			<script src="/potree/jquery-3.1.1.min.js"></script>
+			<script src="/potree/BinaryHeap.js"></script>
+			<script src="/potree/tween.min.js"></script>
+			<script src="/potree/proj4.js"></script>
+			<script src="/potree/potree.js"></script>
+			<script type="text/javascript">
+				// Prevent spacebar from scrolling page (used as pointcloud viewer control)
+				window.addEventListener("keydown", function(e) {
+					if (e.keyCode == 32)
+						e.preventDefault();
+				});
+			</script>
+		{{ end }}
+
+		<h2>Configuration Variants{{ if isset $spec.configuration "threedmodel" }} and Environment 3D Model{{ end }}{{ if isset $spec.configuration "pointcloud" }} and Pointcloud{{ end }}</h2>
 		<div class="row justify-content-center mb-2">
-			<div class="col-12 col-lg-8 col-xl-8 my-3 mx-0">
+			<div class="col-12 col-lg-12 col-xl-12 my-3 mx-0">
 				<select id="global-variant-selector" class="form-select mb-2" aria-label="Default select example">
 					{{ range $envid, $env := $spec.configuration.variants }}
-					<option value="{{ $env.gltf }}" data-name="{{ $env.name }}" data-description="{{ $env.description }}">{{ $env.name }}</option>
+					<option data-gltf="{{ $env.gltf }}" data-potree="{{ $env.potree | jsonify }}" data-name="{{ $env.name }}" data-description="{{ $env.description }}">{{ $env.name }}</option>
 					{{ end }}
 				</select>
+
+				<p>
+					<b id="global-variant-name"></b>: <span id="global-variant-description"></span>
+				</p>
 
 				{{ if isset $spec.configuration "threedmodel" }}
 				<model-viewer id="global-3dmodel-viewer" alt="3D Model of the Environment" shadow-intensity="1" camera-controls touch-action="pan-y" class="w-100" style="min-height: 300px; height: 50vh;">
 					<div slot="progress-bar"></div>
 				</model-viewer>
 				{{ end }}
-				<b id="global-variant-name"></b>: <span id="global-variant-description"></span>
+				{{ if isset $spec.configuration "pointcloud" }}
+				<div id="global-pointcloud-viewer" alt="Pointcloud the Environment" class="w-100" style="min-height: 300px; height: 70vh; position: relative;">
+					<div style="position: absolute; bottom: 10px; z-index: 2; background: rgba(0, 0, 0, 0.5); width: 80%; text-align: center; color: white; left: 50%; transform: translateX(-50%);">
+						<b>Hint</b>: Move with W-A-S-D, up with spacebar, down with shift, pan with mouse
+					</div>
+
+					<div id="no-pointcloud-for-variant" style="position: absolute; z-index: 2; background: rgba(0, 0, 0, 0.5); width: 80%; text-align: center; color: white; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%); font-size: 25pt;">
+						No pointcloud available for this configuration variant!
+					</div>
+				</div>
+				{{ end }}
 
 
 				<script type="text/javascript">
@@ -662,14 +696,65 @@ dataset = dataset.cache()</code></pre>
 					<script type="text/javascript">
 						document.getElementById("global-variant-selector").addEventListener("change", function() {
 							const selected = this.options[this.selectedIndex];
-							document.getElementById("global-3dmodel-viewer").src = selected.value;
+							document.getElementById("global-3dmodel-viewer").src = selected.dataset.gltf;
+						});
+					</script>
+				{{ end }}
+				{{ if isset $spec.configuration "pointcloud" }}
+					<script type="text/javascript">
+						document.getElementById("global-variant-selector").addEventListener("change", function() {
+							const selected = this.options[this.selectedIndex];
+
+							if (!window.viewer) {
+								window.viewer = new Potree.Viewer(document.getElementById("global-pointcloud-viewer"));	
+							}
+
+							window.viewer.scene.pointclouds.forEach(function(layer) {
+								window.viewer.scene.scenePointCloud.remove(layer);
+							});
+							window.viewer.scene.pointclouds = [];
+
+							console.log(selected.dataset.potree)
+							if (selected.dataset.potree == "null") {
+								console.log("is null!!!!")
+								document.getElementById("no-pointcloud-for-variant").hidden = false;
+							} else {
+								document.getElementById("no-pointcloud-for-variant").hidden = true;
+
+								const attrs = JSON.parse(selected.dataset.potree);
+								Potree.loadPointCloud("pointcloud/" + attrs.folder + "/metadata.json").then(e => {
+									let scene = viewer.scene;
+									let pointcloud = e.pointcloud;
+									
+									let material = pointcloud.material;
+									material.size = 1;
+									material.pointSizeType = Potree.PointSizeType.ADAPTIVE;
+									material.shape = Potree.PointShape.CIRCLE;
+									scene.addPointCloud(pointcloud);
+
+									viewer.setDescription("");
+									viewer.setEDLEnabled(false);
+									viewer.setPointBudget(500_000);
+									viewer.scene.view.position.set(-2, -16, 1.8);
+									viewer.scene.view._pitch = 0;
+									viewer.scene.view.yaw = 0.8;
+									viewer.setFOV(70);
+									//viewer.setBackground("black");
+									viewer.fpControls.lockElevation = true;
+									viewer.fpControls.keys.UP = [" ".charCodeAt(0), 33];
+									viewer.fpControls.keys.DOWN = ["e".charCodeAt(0), 16];
+									viewer.setControls(viewer.fpControls);
+									viewer.setMoveSpeed(4);
+								});
+							}
 						});
 					</script>
 				{{ end }}
 			</div>
 			
 			{{ if isset $spec.configuration "threedmodel" }}
-			<div class="col-12 col-lg-12 col-xl-4 py-3">
+			<h4>3D Model Download and Usage Instructions</h4>
+			<div class="col-12 col-lg-12 col-xl-12 py-3">
 				<p>
 					For this dataset, we provide a 3D model of the environment.
 					If your browser supports 3D rendering, you should see the model next to this text.
@@ -686,16 +771,36 @@ dataset = dataset.cache()</code></pre>
 				<div class="mt-4 mb-3 d-grid gap-2 d-md-flex justify-content-md-center">
 					<a href="{{ $spec.configuration.threedmodel.blender }}" download><button class="btn btn-lg btn-dark" type="button">Download Blender 3D Model</button></a>
 				</div>
+
+				<p>
+					{{ if eq $spec.identifier "dichasus-dcxx" }}
+						{{ $modeldescription := ($.Resources.GetMatch $spec.configuration.threedmodel.descriptionFile) }}
+						{{ $modeldescription.Content | safeHTML }}
+					{{ end }}
+				</p>
+			</div>
+			{{ end }}
+
+			{{ if isset $spec.configuration "pointcloud" }}
+			<h4>Pointcloud Download and Usage Instructions</h4>
+			<div class="col-12 col-lg-12 col-xl-12 py-3">
+				<p>
+					For this dataset, we provide a pointcloud of the environment, which was generated using a 3D scanning device.
+					You may find the pointcloud useful for visualization purposes or to reconstruct and verify 3D models.
+					Pointclouds can be viewed and edited with applications like <a href="https://www.danielgm.net/cc/">CloudCompare</a>.
+				</p>
+
+				<div class="mt-4 mb-3 d-grid gap-2 d-md-flex justify-content-md-center">
+					<a href="{{ $spec.configuration.pointcloud.download }}" download><button class="btn btn-lg btn-dark" type="button">Download Pointcloud</button></a>
+				</div>
+
+				<p>
+					{{ $modeldescription := ($.Resources.GetMatch $spec.configuration.pointcloud.descriptionFile) }}
+					{{ $modeldescription.Content | markdownify | safeHTML }}
+				</p>
 			</div>
 			{{ end }}
 		</div>
-
-		<p>
-			{{ if eq $spec.identifier "dichasus-dcxx" }}
-				{{ $modeldescription := ($.Resources.GetMatch $spec.configuration.threedmodel.descriptionFile) }}
-				{{ $modeldescription.Content | safeHTML }}
-			{{ end }}
-		</p>
 
 		{{ end }}
 

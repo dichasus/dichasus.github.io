@@ -1,0 +1,17 @@
+Two pointcloud scans, available for download as a `.tar.xz` file, were made for this dataset:
+
+* `day1.pts`: First pointcloud scan made after the first day of measurements
+* `day2.pts`: Pointcloud scan made during the second day of measurements. Note that the tachymeter (which acts as 3d scanner) is now placed at a different location. However, we made sure to provide all points in the same coordinate system.
+
+Refer to the description of the configuration variants of the particular `.tfrecords` file to determine whether a particular measurement was made on the first or second day.
+
+PTS files are simple text files with the following format:
+* The first line contains the number of datapoints in the scan
+* The other lines contain `(x, y, z)` coordinates, reflection intensity and `(r, g, b)` color, e.g.:
+```
+x      y        z       i    r   g   b
+6.9912 -19.5173 14.7111 -546 183 190 174
+6.9930 -19.5178 14.7112 -505 162 171 154
+6.9888 -19.5181 14.7098 -570 193 200 184
+6.9902 -19.5111 14.7109 -578 184 191 173
+```
