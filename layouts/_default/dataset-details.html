@@ -352,6 +352,30 @@
 						</div>
 					</div>
 					{{ end }}
+
+					{{ if isset $spec.format "pos-gnss" }}
+					<div class="col-xl-3 col-sm-6 col-12 mb-4">
+						<div class="card">
+							<div class="card-body">
+								<div class="d-flex justify-content-between px-md-1">
+									<div class="align-self-center">
+										<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48"
+											fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+											<path
+												d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
+											<path
+												d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+										</svg>
+									</div>
+									<div class="text-end">
+										<h3>{{ index (index $spec.format "pos-gnss").dimension 0 }}D GNSS</h3>
+										<p class="mb-0">Position-Tagged</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					{{ end }}
 				</div>
 			</section>
 		</div>
@@ -794,13 +818,31 @@ dataset = dataset.cache()</code></pre>
 					<a href="{{ $spec.configuration.pointcloud.download }}" download><button class="btn btn-lg btn-dark" type="button">Download Pointcloud</button></a>
 				</div>
 
-				<p>
-					{{ $modeldescription := ($.Resources.GetMatch $spec.configuration.pointcloud.descriptionFile) }}
-					{{ $modeldescription.Content | markdownify | safeHTML }}
-				</p>
+				{{ $modeldescription := ($.Resources.GetMatch $spec.configuration.pointcloud.descriptionFile) }}
+				{{ $modeldescription.Content | .RenderString | safeHTML }}
 			</div>
 			{{ end }}
 		</div>
+
+		{{ $haveVideos := false }}
+		{{ range $index, $tfrecord := $spec.tfrecords }}
+			{{ if isset $tfrecord "darusVideoDownloadURL" }}
+				{{ $haveVideos = true }}
+			{{ end }}
+		{{ end }}
+
+		{{ if $haveVideos }}
+		<h2>Videos</h2>
+		<p>
+			This dataset includes <code>.mkv</code> videos of the environment / transmitter, each corresponding to individual <code>.tfrecords</code> dataset files..
+			You may want to use these videos to get a better understanding of what is going on in the environment, or for data visualization purposes.
+			The videos were synchronized to the dataset such that the first video frame is recorded at the same time that the earliest CSI datapoint contained in the dataset file is measured.
+			This way, by taking into account the CSI timestamps, you can match the video frames to the CSI measurements.
+			Please note that the earliest datapoint in the file may not be the one that appears first in the <code>.tfrecords</code> file, since the temporal order of the datapoints is not guaranteed.
+			The duration of the video should be approximately equal to the duration of the <code>.tfrecords</code> file (i.e., earliest timestamp subtracted from last timestamp).
+			The synchronization should be accurate down to 1-2 video frames.
+		</p>
+		{{ end }}
 
 		{{ end }}
 
@@ -1044,7 +1086,11 @@ dataset = dataset.cache()</code></pre>
 								{{ $singleOffsetfile := ".json" | printf "%s%s" $tfrecord.name | printf "%s%s" "reftx-offsets-" }}
 								{{ $singleOffsets := ($.Resources.GetMatch $singleOffsetfile) }}
 								{{ if not (eq $singleOffsets nil) }}
-									<a href="{{ $singleOffsets }}" download><button class="btn btn-lg btn-outline-dark me-md-2" type="button">Download Offset Estimates</button></a>
+									<a href="{{ $singleOffsets }}" download><button class="btn btn-lg btn-outline-dark me-md-2" type="button">Offset Estimates</button></a>
+								{{ end }}
+
+								{{ if isset $tfrecord "darusVideoDownloadURL" }}
+									<a href="{{ $tfrecord.darusVideoDownloadURL }}"><button class="btn btn-lg btn-outline-dark me-md-2" type="button">Video</button></a>
 								{{ end }}
 
 								{{ if isset $tfrecord "darusDownloadURL" }}
