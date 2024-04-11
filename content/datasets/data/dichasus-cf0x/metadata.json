@@ -3,8 +3,9 @@
     "name": "Distributed Antenna Setup in Industrial Environment, Day 1",
     "shortDescription": "Distributed antenna setup with line-of-sight (LoS) and non-line-of-sight (NLoS) channels, measured in the [Arena2036](https://www.arena2036.de/) research factory campus environment.",
     "longDescription": "Four antenna arrays with 8 antennas each distributed at the corners of an L-shaped area with a scatterer in between.",
-    "bandwidth": 50000000.0,
+    "bandwidth": 50055865.92,
     "frequency": 1272000000,
+    "regular-schedule-interval": 0.048,
     "outdoor": false,
     "year": 2022,
     "antennas": [
@@ -30,12 +31,22 @@
             "location": [
                 2.6747,
                 -13.8973,
-                1.560075
+                1.5601
+            ],
+            "upvector": [
+                -0.002,
+                -0.0372,
+                0.9993
+            ],
+            "rightvector": [
+                -0.893,
+                -0.4494,
+                -0.0224
             ],
             "direction": [
-                -0.4499506,
-                0.89246853,
-                0.03231686
+                -0.45,
+                0.8925,
+                0.0323
             ]
         },
         {
@@ -58,14 +69,24 @@
                 ]
             ],
             "location": [
-                -11.250275,
-                -9.689025,
+                -11.2503,
+                -9.689,
                 1.5336
             ],
+            "upvector": [
+                -0.0075,
+                -0.0206,
+                0.9998
+            ],
+            "rightvector": [
+                -0.6055,
+                0.7958,
+                0.0044
+            ],
             "direction": [
-                0.79575318,
-                0.60534027,
-                0.01843999
+                0.7958,
+                0.6053,
+                0.0184
             ]
         },
         {
@@ -88,14 +109,24 @@
                 ]
             ],
             "location": [
-                -1.531375,
+                -1.5314,
                 -15.0595,
                 1.5772
             ],
+            "upvector": [
+                -0.0049,
+                -0.0163,
+                0.9999
+            ],
+            "rightvector": [
+                -0.9775,
+                0.211,
+                0.0053
+            ],
             "direction": [
-                0.21108544,
-                0.97732106,
-                0.0169259
+                0.2111,
+                0.9773,
+                0.0169
             ]
         },
         {
@@ -118,14 +149,24 @@
                 ]
             ],
             "location": [
-                -12.684425,
-                -4.483325,
-                1.78985
+                -12.6844,
+                -4.4833,
+                1.7898
+            ],
+            "upvector": [
+                -0.0747,
+                -0.0114,
+                0.9971
+            ],
+            "rightvector": [
+                0.084,
+                0.9964,
+                0.0142
             ],
             "direction": [
-                0.99369031,
-                -0.08476847,
-                0.073443
+                0.9937,
+                -0.0848,
+                0.0734
             ]
         }
     ],
@@ -190,9 +231,9 @@
                 }
             },
             "gpx": "",
-            "datapoints": 18516,
+            "datapoints": 18602,
             "duration": 941.134765625,
-            "totalSize": 4862708952,
+            "totalSize": 4885294444,
             "darusViewURL": "https://doi.org/10.18419/darus-2854/8",
             "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2854/8"
         },
@@ -214,9 +255,9 @@
                 }
             },
             "gpx": "",
-            "datapoints": 23478,
+            "datapoints": 22643,
             "duration": 1186.416015625,
-            "totalSize": 6165839316,
+            "totalSize": 5946549946,
             "darusViewURL": "https://doi.org/10.18419/darus-2854/9",
             "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2854/9"
         },
@@ -238,9 +279,9 @@
                 }
             },
             "gpx": "",
-            "datapoints": 41991,
+            "datapoints": 42158,
             "duration": 2562.576171875,
-            "totalSize": 11027760402,
+            "totalSize": 11071618276,
             "darusViewURL": "https://doi.org/10.18419/darus-2854/10",
             "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2854/10"
         },
@@ -262,9 +303,9 @@
                 }
             },
             "gpx": "",
-            "datapoints": 21635,
+            "datapoints": 21722,
             "duration": 1072.17578125,
-            "totalSize": 5681826970,
+            "totalSize": 5704675084,
             "darusViewURL": "https://doi.org/10.18419/darus-2854/11",
             "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2854/11"
         },
@@ -286,9 +327,9 @@
                 }
             },
             "gpx": "",
-            "datapoints": 13557,
+            "datapoints": 13646,
             "duration": 673.775390625,
-            "totalSize": 3560366454,
+            "totalSize": 3583739812,
             "darusViewURL": "https://doi.org/10.18419/darus-2854/12",
             "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2854/12"
         },
@@ -310,9 +351,9 @@
                 }
             },
             "gpx": "",
-            "datapoints": 59137,
+            "datapoints": 59345,
             "duration": 2911.5390625,
-            "totalSize": 15530677214,
+            "totalSize": 15585302590,
             "darusViewURL": "https://doi.org/10.18419/darus-2854/13",
             "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2854/13"
         }
@@ -396,9 +437,9 @@
         }
     },
     "gpx": "",
-    "datapoints": 178314,
+    "datapoints": 178116,
     "duration": 9347.6171875,
     "antennaCount": 32,
     "subcarriers": 1024,
-    "totalSize": 46829179308
+    "totalSize": 46777180152
 }
