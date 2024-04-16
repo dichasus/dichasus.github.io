@@ -1,0 +1,133 @@
+---
+title: "Dissimilarity Metric-Based Channel Charting"
+date: 2023-09-25T18:00:00+02:00
+draft: false
+type: page
+layout: tutorial-details
+---
+<main class="flex-shrink-0 my-4">
+	<h2 class="text-center" style="font-weight: bold;">Benefits of the New "rev2" Datasets</h2>
+	Our new second-revision datasets were generated <i>from the same raw (I/Q sample) measurement data</i> as the previous datasets, but with an updated postprocessing procedure that provides several benefits over the previous one:
+	<ul>
+		<li>
+			<b>Datapoints sorted in time</b>: The old datasets contained timestamps, but the datapoints were not sorted in any way. The new datasets are sorted by timestamp (in ascending order).
+		</li>
+		<li>
+			<b>Bugfixes</b>: Some of the older datasets contained a very small number of datapoints that were simply "broken".
+			They contained CSI data that appeared to be totally random and had little to do with what was measured.
+			This was caused by a postprocessing bug, which is now fixed, so the new datasets should only contain valid datapoints.
+		</li>
+		<li>
+			<b>Regular measurement schedule</b>: The measurement datapoints are measured in regular intervals.
+			This was also the case for previous revisions of the same dataset, but information about the schedule interval was not exposed, and the timestamps don't exactly match the schedule due to limited numerical precision.
+			Information about the interval is now available on the dataset page.
+		</li>
+		<li>
+			<b>Doppler-domain coherence</b>: This is the greatest improvement, but also the one that is hardest to understand.
+			The datasets now offer receiver phase / time coherence <i>across datapoints</i>, not just within one datapoint.
+			The bulk of this tutorial is concerned with explaining this change in detail.
+			This feature is what enables analyzing measurements in Doppler-delay domain.
+		</li>
+	</ul>
+
+	<h4 class="text-center mt-4" style="font-weight: bold;">How do I tell if a datasets is a "rev2" dataset?</h2>
+	Since the new datasets are based on the same raw data with different postprocessing only, we are gradually converting some of our existing datasets to "rev2" datasets.
+	You can tell if a dataset has been converted to a "rev2" dataset by looking for the small <span class="font-weight-bold rounded rev2-marker">rev2</span> icon in the <a href="/datasets">list of datasets</a>,
+	and also on the top right of the dataset page.
+
+
+	<h4 class="text-center mt-4" style="font-weight: bold;">I want the old datasets back!</h2>
+	<p>
+		Don't worry, the old datasets are still there, so you can still easily reproduce previous results.
+		If you have existing code with hardcoded download links to <code>.tfrecords</code> files (as in our other tutorials),
+		these will still refer to the same, previous dataset version.
+		If you want to obtain an old version of a file, you can do so via DaRUS:
+		<ul>
+			<li>In the <a href="/datasets">list of datasets</a>, click on the small button below the dataset labelled "DaRUS"</li>
+			<li>On DaRUS, scroll down until you come across the list of files. Just above that list, you will find a tab labelled "Versions". Click that tab.</li>
+			<li>Here, you will find the dataset's version history. Click on the version number of an old dataset version to get to the DaRUS page for that version.</li>
+			<li>You end up on a page that looks very similar to the one you were before, except that now there is a small gray box underneath the heading, indicating that you are viewing an older version. From here, you can download the older <code>.tfrecords</code> files.</li>
+		</ul>
+	</p>
+	<p>
+		However, there is really no need to use the previous dataset versions anymore, the new versions should be better in every way.
+		If your code does not work with "rev2" datasets, it is almost certainly due to unexpectedly high reported time offsets:
+	</p>
+
+	<div class="row justify-content-center mb-4">
+		<div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
+			<img style="width: 100%;" src="old-csi.png">
+		</div>
+		<div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 p-4">
+			<p>
+				This is probably the kind of frequency-domain CSI plot that you are used to seeing.
+				Note how the phase, when plotted as a function of the subcarrier index (frequency), has a more or less constant (yet small) slope.
+				For some antennas, the phase appears to increase over the subcarrier index, and for some of them it falls over the subcarrier index (with some sudden phase jumps if there are "notches" in the channel transfer function).
+				The reason for the slope in the phase-over-frequency plot is sampling time offset (STO):
+				According to the properties of the fourier transform, a time-shift in time domain leads to a frequency-dependent phase shift in frequency domain.
+			</p>
+		</div>
+	</div>
+
+	<p>
+		Some antennas will receive the signal later than others and will exhibit a falling slope when looking at the phase over the subcarrier index.
+		Other antennas will receive the signal earlier, and will thus exhibit a rising slope (plus, all antennas may have a time offset <a href="/tutorials/tutorial/calibration/">induced by the REFTX channel</a>).
+		So if we want to do something like <a href="https://github.com/Jeija/ToA-AoA-Augmented-ChannelCharting/">time of arrival estimation</a>, it is very important to have time offset information in the CSI data.
+	</p>
+	<p>
+		However, the <b>overall</b> STO (global, experienced by <i>all</i> antennas) does not matter for most applications and was therefore previously removed (normalized to zero).
+		Since the transmitter is not synchronized to the receivers (only all receivers are synchronized to each other), it was not particularly meaningful anyway.
+		This normalization is however no longer applied for good reasons (see below), so if your code assumes that the line of sight path has an overall delay that is close to zero, it will not work equally well anymore with "rev2" data.
+	</p>
+
+	<div class="row justify-content-center mb-4">
+		<div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 p-4">
+			<p>
+				And this is what "rev2" CSI looks like.
+				While the amplitude frequency response of the channel is almost the same as before, the phase response is totally different:
+				There is now a much larger "global" slope added on top of the antenna-specific time offsets.
+				Given that the frequency-domain phase slope is an indication for the time offset of a signal, the global slope indicates that there is a global time offset that applies to all receiver antennas.
+				In other words, the transmitter and receiver sampling / symbol clocks are time-shifted compared to each other, which is to be expected.
+				While this time shift seems irrelevant at first, it is important to keep for Doppler domain applications.
+			</p>
+		</div>
+		<div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
+			<img style="width: 100%;" src="new-csi.png">
+		</div>
+	</div>
+
+	<p>
+		If you simply want to <b>remove / compensate for the global phase shift</b> to get your code (that assumes a global delay close to zero) working again with the new dataset,
+		the following code snippet which does just that may be useful:
+	</p>
+	<pre class="m-0"><code class="language-python">csi = tf.io.parse_tensor(record["csi"], out_type = tf.float32)
+csi = tf.complex(csi[:, :, 0], csi[:, :, 1])
+csi = tf.signal.fftshift(csi, axes = 1)
+incr = tf.cast(tf.math.angle(tf.math.reduce_sum(csi[:,1:] * tf.math.conj(csi[:,:-1]))), tf.complex64)
+csi = csi * tf.exp(-1.0j * incr * tf.cast(tf.range(csi.shape[-1]), tf.complex64))[tf.newaxis,:]</code></pre>
+	<script>hljs.highlightAll();</script>
+
+
+	<h4 class="text-center mt-4" style="font-weight: bold;">Doppler-Domain Coherence</h4>
+	<p>
+		A central trade-off when measuring CSI is the simple question: <i>Which effects should be removed (calibrated, normalized, accounted for), which effects should remain in the dataset?</i>
+
+		Striking a balance can be difficult: Remove too many hardware effects, and the data becomes less useful, keep too many hardware effects, and the data does not generalize well anymore and becomes harder to use.
+		In short, for our "rev2" datasets, we decided that the balance needs to shift in favor of retaining global time and phase offsets in the measurement data.
+		While constantly shifting global time / phase offsets are primarily caused by the carrier frequency offset (CFO) between transmitter and receivers, small deviations from the expected phase and time shifts are also very relevant for Doppler-domain processing.
+	</p>
+
+	<h5>To be completed, more information coming soon...</h5>
+
+	<h4 class="text-center mt-4" style="font-weight: bold;">What about reference channel offset compensation?</h4>
+	Compensation of the constant phase and time offsets as explained in the <a href="/tutorials/tutorial/calibration/">calibration tutorial</a> is still necessary.
+	The antenna-specific offsets mentioned there are caused by the non-ideal wireless channel between reference transmitter (that broadcasts the synchronization signal) and each receiver antenna.
+	The values of these offsets remain the same, regardless of whether you are using the original dataset or a "rev2" dataset.
+
+	<h4 class="text-center mt-4" style="font-weight: bold;">Licensing and Authors</h4>
+	<p>
+		All our datasets are licensed under the <a href="https://creativecommons.org/licenses/by/2.0/">CC-BY license</a>, i.e., you are free to use them for whatever you like as long as you reference us in your publications.
+		All code in this tutorial is <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0-licensed</a>.
+		This tutorial was written by <a href="mailto:florian.euchner@inue.uni-stuttgart.de">Florian Euchner</a>.
+	</p>
+</main>

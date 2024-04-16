@@ -35,3 +35,17 @@ header .nav-link:hover {
 .code-copy-container {
 	background: #f6f6f6;
 }
+
+.rev2-marker {
+	top: 10px;
+	right: 10px;
+	color: white;
+	background-color: #009120;
+	padding: 3px 8px;
+	border-radius: 0.25rem;
+	font-weight: bold;
+}
+
+a .rev2-marker:hover {
+	background-color: #00da2f;
+}

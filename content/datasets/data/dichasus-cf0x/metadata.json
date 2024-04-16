@@ -234,8 +234,8 @@
             "datapoints": 18602,
             "duration": 941.134765625,
             "totalSize": 4885294444,
-            "darusViewURL": "https://doi.org/10.18419/darus-2854/8",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2854/8"
+            "darusViewURL": "https://doi.org/10.18419/darus-2854/14",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2854/14"
         },
         {
             "filename": "tfrecords/dichasus-cf03.tfrecords",
@@ -258,8 +258,8 @@
             "datapoints": 22643,
             "duration": 1186.416015625,
             "totalSize": 5946549946,
-            "darusViewURL": "https://doi.org/10.18419/darus-2854/9",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2854/9"
+            "darusViewURL": "https://doi.org/10.18419/darus-2854/15",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2854/15"
         },
         {
             "filename": "tfrecords/dichasus-cf04.tfrecords",
@@ -282,8 +282,8 @@
             "datapoints": 42158,
             "duration": 2562.576171875,
             "totalSize": 11071618276,
-            "darusViewURL": "https://doi.org/10.18419/darus-2854/10",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2854/10"
+            "darusViewURL": "https://doi.org/10.18419/darus-2854/16",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2854/16"
         },
         {
             "filename": "tfrecords/dichasus-cf05.tfrecords",
@@ -306,8 +306,8 @@
             "datapoints": 21722,
             "duration": 1072.17578125,
             "totalSize": 5704675084,
-            "darusViewURL": "https://doi.org/10.18419/darus-2854/11",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2854/11"
+            "darusViewURL": "https://doi.org/10.18419/darus-2854/17",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2854/17"
         },
         {
             "filename": "tfrecords/dichasus-cf06.tfrecords",
@@ -330,8 +330,8 @@
             "datapoints": 13646,
             "duration": 673.775390625,
             "totalSize": 3583739812,
-            "darusViewURL": "https://doi.org/10.18419/darus-2854/12",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2854/12"
+            "darusViewURL": "https://doi.org/10.18419/darus-2854/18",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2854/18"
         },
         {
             "filename": "tfrecords/dichasus-cf07.tfrecords",
@@ -354,8 +354,8 @@
             "datapoints": 59345,
             "duration": 2911.5390625,
             "totalSize": 15585302590,
-            "darusViewURL": "https://doi.org/10.18419/darus-2854/13",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2854/13"
+            "darusViewURL": "https://doi.org/10.18419/darus-2854/20",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-2854/20"
         }
     ],
     "photos": [

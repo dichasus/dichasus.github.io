@@ -12,7 +12,13 @@
                 {{ $datasetDataPath := .File.Dir }}
                 {{ $datasetId := (path.Split $datasetDataPath).File }}
                 <div class="col">
-                    <div class="card shadow-sm">
+                    <div class="card shadow-sm position-relative">
+                        {{ if isset $metadata "regular-schedule-interval" }}
+                            <a href="/tutorials/tutorial/rev2-datasets">
+                                <div class="position-absolute rev2-marker">rev2</div>
+                            </a>
+                        {{ end }}
+
 						<a href="/{{ $datasetDataPath }}">
 							<img class="card-img-top" width="100%" src="/{{$datasetDataPath}}/{{$metadata.thumbnail}}">
 						</a>
