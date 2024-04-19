@@ -56,7 +56,9 @@
 		{{ $spec := (.Resources.GetMatch "metadata.json").Content | unmarshal }}
 		<div class="position-relative">
 			<h1 style="padding-right: 70px;"><code class="nohighlight text-black">{{ $spec.identifier }}</code> Dataset: {{ $spec.name }}</h1>
-			<a href="/tutorials/tutorial/rev2-datasets"><span class="rev2-marker position-absolute" style="right: 20px; top: 12px;">rev2</span></a>
+			{{ if isset $spec "regular-schedule-interval" }}
+				<a href="/tutorials/tutorial/rev2-datasets"><span class="rev2-marker position-absolute" style="right: 20px; top: 12px;">rev2</span></a>
+			{{ end }}
 		</div>
 		<p>
 			{{ .RenderString $spec.shortDescription }}
