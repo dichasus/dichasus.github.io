@@ -446,10 +446,10 @@
             "datapoints": 12584,
             "duration": 688.1759643554688,
             "totalSize": 6606876848,
-            "darusVideoViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284932",
-            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284932",
-            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284931",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284931"
+            "darusVideoViewURL": "https://doi.org/10.18419/darus-4062/58",
+            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/58",
+            "darusViewURL": "https://doi.org/10.18419/darus-4062/57",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/57"
         },
         {
             "filename": "tfrecords/dichasus-ad01.tfrecords",
@@ -474,10 +474,10 @@
             "datapoints": 14517,
             "duration": 766.416015625,
             "totalSize": 7621744374,
-            "darusVideoViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284934",
-            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284934",
-            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284933",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284933"
+            "darusVideoViewURL": "https://doi.org/10.18419/darus-4062/60",
+            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/60",
+            "darusViewURL": "https://doi.org/10.18419/darus-4062/59",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/59"
         },
         {
             "filename": "tfrecords/dichasus-ad02.tfrecords",
@@ -502,10 +502,10 @@
             "datapoints": 41492,
             "duration": 2144.015869140625,
             "totalSize": 21784212824,
-            "darusVideoViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284936",
-            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284936",
-            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284935",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284935"
+            "darusVideoViewURL": "https://doi.org/10.18419/darus-4062/62",
+            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/62",
+            "darusViewURL": "https://doi.org/10.18419/darus-4062/61",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/61"
         },
         {
             "filename": "tfrecords/dichasus-ad03.tfrecords",
@@ -530,10 +530,10 @@
             "datapoints": 10800,
             "duration": 582.04833984375,
             "totalSize": 5670237600,
-            "darusVideoViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284938",
-            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284938",
-            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284937",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284937"
+            "darusVideoViewURL": "https://doi.org/10.18419/darus-4062/64",
+            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/64",
+            "darusViewURL": "https://doi.org/10.18419/darus-4062/63",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/63"
         },
         {
             "filename": "tfrecords/dichasus-ad04.tfrecords",
@@ -558,10 +558,10 @@
             "datapoints": 34562,
             "duration": 2422.41650390625,
             "totalSize": 18145810364,
-            "darusVideoViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284940",
-            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284940",
-            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284939",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284939"
+            "darusVideoViewURL": "https://doi.org/10.18419/darus-4062/66",
+            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/66",
+            "darusViewURL": "https://doi.org/10.18419/darus-4062/65",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/65"
         },
         {
             "filename": "tfrecords/dichasus-ad05.tfrecords",
@@ -586,10 +586,10 @@
             "datapoints": 12576,
             "duration": 691.6806640625,
             "totalSize": 6602676672,
-            "darusVideoViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284942",
-            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284942",
-            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284941",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284941"
+            "darusVideoViewURL": "https://doi.org/10.18419/darus-4062/68",
+            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/68",
+            "darusViewURL": "https://doi.org/10.18419/darus-4062/67",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/67"
         },
         {
             "filename": "tfrecords/dichasus-ad06.tfrecords",
@@ -614,10 +614,10 @@
             "datapoints": 12404,
             "duration": 656.9755859375,
             "totalSize": 6512372888,
-            "darusVideoViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284944",
-            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284944",
-            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284943",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284943"
+            "darusVideoViewURL": "https://doi.org/10.18419/darus-4062/70",
+            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/70",
+            "darusViewURL": "https://doi.org/10.18419/darus-4062/69",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/69"
         },
         {
             "filename": "tfrecords/dichasus-ad07.tfrecords",
@@ -642,10 +642,10 @@
             "datapoints": 7640,
             "duration": 438.3359375,
             "totalSize": 4011168080,
-            "darusVideoViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284946",
-            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284946",
-            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284945",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284945"
+            "darusVideoViewURL": "https://doi.org/10.18419/darus-4062/72",
+            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/72",
+            "darusViewURL": "https://doi.org/10.18419/darus-4062/71",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/71"
         },
         {
             "filename": "tfrecords/dichasus-ad08.tfrecords",
@@ -670,10 +670,10 @@
             "datapoints": 10814,
             "duration": 783.6962890625,
             "totalSize": 5677587908,
-            "darusVideoViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284948",
-            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284948",
-            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284947",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284947"
+            "darusVideoViewURL": "https://doi.org/10.18419/darus-4062/74",
+            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/74",
+            "darusViewURL": "https://doi.org/10.18419/darus-4062/73",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/73"
         },
         {
             "filename": "tfrecords/dichasus-ad09.tfrecords",
@@ -698,10 +698,10 @@
             "datapoints": 19718,
             "duration": 1049.13671875,
             "totalSize": 10352383796,
-            "darusVideoViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284950",
-            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284950",
-            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284949",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284949"
+            "darusVideoViewURL": "https://doi.org/10.18419/darus-4062/76",
+            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/76",
+            "darusViewURL": "https://doi.org/10.18419/darus-4062/75",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/75"
         },
         {
             "filename": "tfrecords/dichasus-ad10.tfrecords",
@@ -726,10 +726,10 @@
             "datapoints": 46928,
             "duration": 2508.3359375,
             "totalSize": 24638232416,
-            "darusVideoViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284952",
-            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284952",
-            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284951",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284951"
+            "darusVideoViewURL": "https://doi.org/10.18419/darus-4062/78",
+            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/78",
+            "darusViewURL": "https://doi.org/10.18419/darus-4062/77",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/77"
         },
         {
             "filename": "tfrecords/dichasus-ad11.tfrecords",
@@ -754,10 +754,10 @@
             "datapoints": 47227,
             "duration": 2416.171875,
             "totalSize": 24795213994,
-            "darusVideoViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284954",
-            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284954",
-            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284953",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284953"
+            "darusVideoViewURL": "https://doi.org/10.18419/darus-4062/80",
+            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/80",
+            "darusViewURL": "https://doi.org/10.18419/darus-4062/79",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/79"
         },
         {
             "filename": "tfrecords/dichasus-ad12.tfrecords",
@@ -782,10 +782,10 @@
             "datapoints": 16926,
             "duration": 920.9765625,
             "totalSize": 8886522372,
-            "darusVideoViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284956",
-            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284956",
-            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284955",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284955"
+            "darusVideoViewURL": "https://doi.org/10.18419/darus-4062/82",
+            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/82",
+            "darusViewURL": "https://doi.org/10.18419/darus-4062/81",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/81"
         },
         {
             "filename": "tfrecords/dichasus-ad13.tfrecords",
@@ -810,10 +810,10 @@
             "datapoints": 5962,
             "duration": 318.1015625,
             "totalSize": 3130181164,
-            "darusVideoViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284958",
-            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284958",
-            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284957",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284957"
+            "darusVideoViewURL": "https://doi.org/10.18419/darus-4062/84",
+            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/84",
+            "darusViewURL": "https://doi.org/10.18419/darus-4062/83",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/83"
         },
         {
             "filename": "tfrecords/dichasus-ad14.tfrecords",
@@ -838,10 +838,10 @@
             "datapoints": 4270,
             "duration": 230.734375,
             "totalSize": 2241843940,
-            "darusVideoViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284960",
-            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284960",
-            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284959",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284959"
+            "darusVideoViewURL": "https://doi.org/10.18419/darus-4062/86",
+            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/86",
+            "darusViewURL": "https://doi.org/10.18419/darus-4062/85",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/85"
         },
         {
             "filename": "tfrecords/dichasus-ad15.tfrecords",
@@ -866,10 +866,10 @@
             "datapoints": 3959,
             "duration": 219.21875,
             "totalSize": 2078562098,
-            "darusVideoViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284962",
-            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284962",
-            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284961",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284961"
+            "darusVideoViewURL": "https://doi.org/10.18419/darus-4062/88",
+            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/88",
+            "darusViewURL": "https://doi.org/10.18419/darus-4062/87",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/87"
         },
         {
             "filename": "tfrecords/dichasus-ad16.tfrecords",
@@ -894,10 +894,10 @@
             "datapoints": 3893,
             "duration": 215.375,
             "totalSize": 2043910646,
-            "darusVideoViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284964",
-            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284964",
-            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284963",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284963"
+            "darusVideoViewURL": "https://doi.org/10.18419/darus-4062/90",
+            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/90",
+            "darusViewURL": "https://doi.org/10.18419/darus-4062/89",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/89"
         },
         {
             "filename": "tfrecords/dichasus-ad17.tfrecords",
@@ -922,10 +922,10 @@
             "datapoints": 3533,
             "duration": 200.015625,
             "totalSize": 1854902726,
-            "darusVideoViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284966",
-            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284966",
-            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284965",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284965"
+            "darusVideoViewURL": "https://doi.org/10.18419/darus-4062/92",
+            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/92",
+            "darusViewURL": "https://doi.org/10.18419/darus-4062/91",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/91"
         },
         {
             "filename": "tfrecords/dichasus-ad18.tfrecords",
@@ -950,10 +950,10 @@
             "datapoints": 27814,
             "duration": 1494.4765625,
             "totalSize": 14602961908,
-            "darusVideoViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284968",
-            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284968",
-            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284967",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284967"
+            "darusVideoViewURL": "https://doi.org/10.18419/darus-4062/94",
+            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/94",
+            "darusViewURL": "https://doi.org/10.18419/darus-4062/93",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/93"
         },
         {
             "filename": "tfrecords/dichasus-ad19.tfrecords",
@@ -978,10 +978,10 @@
             "datapoints": 14671,
             "duration": 761.6171875,
             "totalSize": 7702597762,
-            "darusVideoViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284970",
-            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284970",
-            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284969",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284969"
+            "darusVideoViewURL": "https://doi.org/10.18419/darus-4062/96",
+            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/96",
+            "darusViewURL": "https://doi.org/10.18419/darus-4062/95",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/95"
         },
         {
             "filename": "tfrecords/dichasus-ad21.tfrecords",
@@ -1006,10 +1006,10 @@
             "datapoints": 2958,
             "duration": 175.1015625,
             "totalSize": 1553015076,
-            "darusVideoViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284972",
-            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284972",
-            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284971",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284971"
+            "darusVideoViewURL": "https://doi.org/10.18419/darus-4062/98",
+            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/98",
+            "darusViewURL": "https://doi.org/10.18419/darus-4062/97",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/97"
         },
         {
             "filename": "tfrecords/dichasus-ad22.tfrecords",
@@ -1034,10 +1034,10 @@
             "datapoints": 26264,
             "duration": 1385.1875,
             "totalSize": 13789177808,
-            "darusVideoViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284974",
-            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284974",
-            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284973",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284973"
+            "darusVideoViewURL": "https://doi.org/10.18419/darus-4062/100",
+            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/100",
+            "darusViewURL": "https://doi.org/10.18419/darus-4062/99",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/99"
         },
         {
             "filename": "tfrecords/dichasus-ad23.tfrecords",
@@ -1062,10 +1062,10 @@
             "datapoints": 3242,
             "duration": 180.2890625,
             "totalSize": 1702121324,
-            "darusVideoViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284976",
-            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284976",
-            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284975",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284975"
+            "darusVideoViewURL": "https://doi.org/10.18419/darus-4062/102",
+            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/102",
+            "darusViewURL": "https://doi.org/10.18419/darus-4062/101",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/101"
         },
         {
             "filename": "tfrecords/dichasus-ad24.tfrecords",
@@ -1090,10 +1090,10 @@
             "datapoints": 9954,
             "duration": 537.453125,
             "totalSize": 5226068988,
-            "darusVideoViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284978",
-            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284978",
-            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284977",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284977"
+            "darusVideoViewURL": "https://doi.org/10.18419/darus-4062/104",
+            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/104",
+            "darusViewURL": "https://doi.org/10.18419/darus-4062/103",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/103"
         },
         {
             "filename": "tfrecords/dichasus-ad25.tfrecords",
@@ -1118,10 +1118,10 @@
             "datapoints": 1137,
             "duration": 61.578125,
             "totalSize": 596950014,
-            "darusVideoViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284980",
-            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284980",
-            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284979",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284979"
+            "darusVideoViewURL": "https://doi.org/10.18419/darus-4062/106",
+            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/106",
+            "darusViewURL": "https://doi.org/10.18419/darus-4062/105",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/105"
         },
         {
             "filename": "tfrecords/dichasus-ad26.tfrecords",
@@ -1146,10 +1146,10 @@
             "datapoints": 7173,
             "duration": 389.4765625,
             "totalSize": 3765982806,
-            "darusVideoViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284982",
-            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284982",
-            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284981",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284981"
+            "darusVideoViewURL": "https://doi.org/10.18419/darus-4062/108",
+            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/108",
+            "darusViewURL": "https://doi.org/10.18419/darus-4062/107",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/107"
         },
         {
             "filename": "tfrecords/dichasus-ad27.tfrecords",
@@ -1174,10 +1174,10 @@
             "datapoints": 8488,
             "duration": 445.96875,
             "totalSize": 4456386736,
-            "darusVideoViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284984",
-            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284984",
-            "darusViewURL": "https://darus.uni-stuttgart.de/file.xhtml?fileId=284983",
-            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/284983"
+            "darusVideoViewURL": "https://doi.org/10.18419/darus-4062/110",
+            "darusVideoDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/110",
+            "darusViewURL": "https://doi.org/10.18419/darus-4062/109",
+            "darusDownloadURL": "https://darus.uni-stuttgart.de/api/access/datafile/:persistentId?persistentId=doi:10.18419/darus-4062/109"
         }
     ],
     "photos": [
