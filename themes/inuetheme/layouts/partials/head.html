@@ -11,7 +11,7 @@
 
 
 	{{ $sass := resources.Get "inue.scss" }}
-	{{ $style := $sass | resources.ToCSS }}
+	{{ $style := $sass | css.Sass }}
 
 	<link rel="stylesheet" href="{{ $style.Permalink }}">
 
