@@ -1,0 +1,164 @@
+{{ define "main" }}
+<style>
+	.publication-grid {
+		--publication-image-ratio: 724 / 937;
+	}
+
+	.research-stat {
+		background: linear-gradient(135deg, #0d4f91, #084071);
+		border: 0;
+		border-radius: .75rem;
+		box-shadow: 0 .5rem 1.25rem rgba(13, 79, 145, .18);
+		color: #fff;
+		display: block;
+		height: 100%;
+		padding: 1.5rem;
+		text-decoration: none;
+		transition: box-shadow 150ms ease, transform 150ms ease;
+	}
+
+	.research-stat:hover,
+	.research-stat:focus-visible {
+		box-shadow: 0 .75rem 1.5rem rgba(13, 79, 145, .3);
+		color: #fff;
+		transform: translateY(-2px);
+	}
+
+	.research-stat-number {
+		display: block;
+		font-size: clamp(2.5rem, 7vw, 4rem);
+		font-weight: 700;
+		letter-spacing: -.04em;
+		line-height: 1;
+	}
+
+	.research-stat-label {
+		display: block;
+		font-size: 1rem;
+		font-weight: 600;
+		line-height: 1.35;
+		margin-top: .75rem;
+	}
+
+	.publication-card {
+		overflow: hidden;
+		transition: box-shadow 150ms ease, transform 150ms ease;
+	}
+
+	.publication-card:hover,
+	.publication-card:focus-within {
+		box-shadow: 0 .5rem 1.25rem rgba(0, 0, 0, .14) !important;
+		transform: translateY(-2px);
+	}
+
+	.publication-thumbnail {
+		aspect-ratio: var(--publication-image-ratio);
+		background: #f2f4f6;
+		border-bottom: 1px solid rgba(0, 0, 0, .125);
+		display: block;
+		padding: .75rem;
+	}
+
+	.publication-thumbnail img {
+		display: block;
+		height: 100%;
+		object-fit: contain;
+		object-position: top center;
+		width: 100%;
+	}
+
+	.publication-metadata {
+		display: flex;
+		flex-direction: column;
+		min-height: 15rem;
+	}
+
+	.publication-title {
+		font-size: 1rem;
+		font-weight: 700;
+		line-height: 1.35;
+	}
+
+	.publication-authors {
+		color: #495057;
+		font-size: .9rem;
+		line-height: 1.45;
+	}
+
+	.publication-link {
+		font-weight: 600;
+		margin-top: auto;
+		text-decoration: none;
+	}
+
+	.publication-link:hover,
+	.publication-link:focus {
+		text-decoration: underline;
+	}
+</style>
+
+{{ $publications := hugo.Data.publications }}
+<main class="flex-shrink-0 mb-5">
+	<div class="container">
+		<h1 class="mb-4">Research</h1>
+
+		<section class="row justify-content-center g-3 g-md-4 mb-5" aria-label="DICHASUS publication statistics">
+			<div class="col-11 col-sm-8 col-md-5 col-lg-4">
+				<a class="research-stat" href="#own-publications-heading">
+					<span class="research-stat-number">{{ len $publications.own }}+</span>
+					<span class="research-stat-label">Own publications using DICHASUS datasets</span>
+				</a>
+			</div>
+			<div class="col-11 col-sm-8 col-md-5 col-lg-4">
+				<a class="research-stat" href="#third-party-publications-heading">
+					<span class="research-stat-number">{{ len $publications.third_party }}+</span>
+					<span class="research-stat-label">Third-party publications using DICHASUS datasets</span>
+				</a>
+			</div>
+		</section>
+
+		<section class="mb-5" aria-labelledby="own-publications-heading">
+			<h2 id="own-publications-heading" class="h3 text-center fw-bold mb-4">Our Own Publications using DICHASUS Datasets</h2>
+			<div class="publication-grid row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+				{{ range $publications.own }}
+				<div class="col">
+					<article class="publication-card card h-100 shadow-sm">
+						<a class="publication-thumbnail" href="{{ .url }}" aria-label="Read {{ .title }}">
+							<img src="{{ .image }}" alt="First page of {{ .title }}" loading="lazy">
+						</a>
+						<div class="publication-metadata card-body">
+							<div class="mb-2"><span class="badge bg-secondary">{{ .year }}</span></div>
+							<h3 class="publication-title card-title">{{ .title }}</h3>
+							<p class="publication-authors card-text">{{ .authors }}</p>
+							<a class="publication-link" href="{{ .url }}">Read publication <span aria-hidden="true">&rarr;</span></a>
+						</div>
+					</article>
+				</div>
+				{{ end }}
+			</div>
+		</section>
+
+		<section class="mb-5" aria-labelledby="third-party-publications-heading">
+			<h2 id="third-party-publications-heading" class="h3 text-center fw-bold mb-4">Third-Party Publications using DICHASUS Datasets</h2>
+			<div class="publication-grid row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+				{{ range $publications.third_party }}
+				<div class="col">
+					<article class="publication-card card h-100 shadow-sm">
+						<a class="publication-thumbnail" href="{{ .url }}" aria-label="Read {{ .title }}">
+							<img src="{{ .image }}" alt="First page of {{ .title }}" loading="lazy">
+						</a>
+						<div class="publication-metadata card-body">
+							<div class="mb-2"><span class="badge bg-secondary">{{ .year }}</span></div>
+							<h3 class="publication-title card-title">{{ .title }}</h3>
+							<p class="publication-authors card-text">{{ .authors }}</p>
+							<a class="publication-link" href="{{ .url }}">Read publication <span aria-hidden="true">&rarr;</span></a>
+						</div>
+					</article>
+				</div>
+				{{ end }}
+			</div>
+		</section>
+
+	</div>
+</main>
+{{ end }}

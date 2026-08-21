@@ -2,11 +2,11 @@
 	<div class="container">
 		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 			<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-				<img height="30" class="px-3" src="/img/dichasus-logo.svg">
+				<img height="30" class="px-3" src="/img/dichasus-logo-array.svg" alt="DICHASUS">
 				<span class="fs-4">{{.Site.Title}}</span>
 			</a>
 
-			<ul class="nav nav-pills px-4">
+			<ul class="nav nav-pills gap-1 px-4">
 				{{ $currentPage := . }}
 				{{ range .Site.Menus.main }}
 				<li class="nav-item">

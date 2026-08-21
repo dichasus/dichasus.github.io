@@ -1,5 +1,8 @@
 baseURL = 'https://dichasus.inue.uni-stuttgart.de/'
-languageCode = 'en-us'
+locale = 'en-US'
 title = 'DICHASUS Datasets'
 theme = 'inuetheme'
 relativeURLs = true
+
+[security]
+allowContent = ['text/html', 'text/markdown']

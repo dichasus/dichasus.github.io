@@ -1,0 +1,314 @@
+[[own]]
+title = '''A Distributed Massive MIMO Channel Sounder for "Big CSI Data"-driven Machine Learning'''
+authors = "Florian Euchner, Marc Gauger, Sebastian Dörner, and Stephan ten Brink"
+year = 2021
+url = "https://arxiv.org/abs/2206.15302"
+image = "/img/paper-thumbnail.png"
+
+[[own]]
+title = "Geometry-Based Phase and Time Synchronization for Multi-Antenna Channel Measurements"
+authors = "Florian Euchner, Phillip Stephan, Marc Gauger, and Stephan ten Brink"
+year = 2022
+url = "https://arxiv.org/abs/2206.05984"
+image = "globecom2022.png"
+
+[[own]]
+title = "Improving Triplet-Based Channel Charting on Distributed Massive MIMO Measurements"
+authors = "Florian Euchner, Phillip Stephan, Marc Gauger, Sebastian Dörner, and Stephan ten Brink"
+year = 2022
+url = "https://arxiv.org/abs/2206.09774"
+image = "spawc2022.png"
+
+[[own]]
+title = "Deep Learning for Uplink CSI-based Downlink Precoding in FDD Massive MIMO Evaluated on Indoor Measurements"
+authors = "Florian Euchner, Niklas Süppel, Marc Gauger, Sebastian Dörner, and Stephan ten Brink"
+year = 2022
+url = "https://arxiv.org/abs/2209.10977"
+image = "eusipco2022.png"
+
+[[own]]
+title = "Angle-Delay Profile-Based and Timestamp-Aided Dissimilarity Metrics for Channel Charting"
+authors = "Phillip Stephan, Florian Euchner, and Stephan ten Brink"
+year = 2023
+url = "https://arxiv.org/abs/2308.09539"
+image = "TCOM2023.png"
+
+[[own]]
+title = "Augmenting Channel Charting with Classical Wireless Source Localization Techniques"
+authors = "Florian Euchner, Phillip Stephan, and Stephan ten Brink"
+year = 2023
+url = "https://arxiv.org/abs/2312.01968"
+image = "asilomar2023.png"
+
+[[own]]
+title = "GAN-based Massive MIMO Channel Model Trained on Measured Data"
+authors = "Florian Euchner, Janina Sanzi, Marcus Henninger, and Stephan ten Brink"
+year = 2024
+url = "https://arxiv.org/abs/2403.05321"
+image = "wsa2024.png"
+
+[[own]]
+title = "Leveraging the Doppler Effect for Channel Charting"
+authors = "Florian Euchner, Phillip Stephan, and Stephan ten Brink"
+year = 2024
+url = "https://arxiv.org/abs/2404.09620"
+image = "doppler-cc.png"
+
+[[own]]
+title = "Channel Charting-Based Channel Prediction on Real-World Distributed Massive MIMO CSI"
+authors = "Phillip Stephan, Florian Euchner, and Stephan ten Brink"
+year = 2024
+url = "https://arxiv.org/abs/2410.11486"
+image = "prediction2024.png"
+
+[[own]]
+title = "Uncertainty-Aware Dimensionality Reduction for Channel Charting with Geodesic Loss"
+authors = "Florian Euchner, Phillip Stephan, and Stephan ten Brink"
+year = 2024
+url = "https://arxiv.org/abs/2412.01715"
+image = "asilomar2024.png"
+
+[[own]]
+title = "CSI Obfuscation: Single-Antenna Transmitters Can Not Hide from Adversarial Multi-Antenna Radio Localization Systems"
+authors = "Phillip Stephan, Florian Euchner, and Stephan ten Brink"
+year = 2025
+url = "https://arxiv.org/abs/2508.02553"
+image = "csi-obfuscation-2025.png"
+
+[[own]]
+title = "Signal Space-Transformed Expectation Propagation for Symbol Detection in ISI Channels"
+authors = "Jannis Clausius, Luca Schmid, Laurent Schmalen, and Stephan ten Brink"
+year = 2025
+url = "https://arxiv.org/abs/2509.17735"
+image = "signal-space-ep-2025.png"
+
+[[own]]
+title = "Three-Dimensional Radio Localization: A Channel Charting-Based Approach"
+authors = "Phillip Stephan, Florian Euchner, and Stephan ten Brink"
+year = 2025
+url = "https://arxiv.org/abs/2512.15399"
+image = "three-dimensional-radio-localization-2025.png"
+
+[[own]]
+title = "Wireless Wanderlust: The 2025 D2I Challenge on Channel Charting and Grant-free Random Access"
+authors = "Stefano Rini, Phillip Stephan, and Florian Euchner"
+year = 2026
+url = "https://doi.org/10.1109/MBITS.2026.3710864"
+image = "wireless-wanderlust-2026.png"
+
+[[third_party]]
+title = "Reliable Packet Detection for Random Access Networks: Analysis, Benchmark, and Optimization"
+authors = "Yuyang Du and Soung Chang Liew"
+year = 2023
+url = "https://arxiv.org/abs/2307.05224"
+image = "yuyangdu2023.png"
+
+[[third_party]]
+title = "Learning Radio Environments by Differentiable Ray Tracing"
+authors = "Jakob Hoydis, Fayçal Aït Aoudia, Sebastian Cammerer, Florian Euchner, Merlin Nimier-David, Stephan ten Brink, and Alexander Keller"
+year = 2023
+url = "https://arxiv.org/abs/2311.18558"
+image = "hoydis-diff-raytracing.png"
+
+[[third_party]]
+title = "Channel Charting for Streaming CSI Data"
+authors = "Sueda Taner, Maxime Guillaud, Olav Tirkkonen, and Christoph Studer"
+year = 2023
+url = "https://arxiv.org/abs/2312.04514"
+image = "tanerasilomar2023.png"
+
+[[third_party]]
+title = "Velocity-Based Channel Charting with Spatial Distribution Map Matching"
+authors = "Maximilian Stahlke, George Yammine, Tobias Feigl, Bjoern M. Eskofier, and Christopher Mutschler"
+year = 2023
+url = "https://arxiv.org/abs/2311.08016"
+image = "stahlke2023.png"
+
+[[third_party]]
+title = "Deep Learning based Positioning with Multi-task Learning and Uncertainty-based Fusion"
+authors = "Anastasios Foliadis, Mario H. Castañeda, Richard A. Stirling-Gallacher, and Reiner S. Thomä"
+year = 2024
+url = "https://arxiv.org/abs/2403.08565"
+image = "foliadis2024.png"
+
+[[third_party]]
+title = "Transfer Learning for CSI-based Positioning with Multi-environment Meta-learning"
+authors = "Anastasios Foliadis, Mario H. Castañeda, Richard A. Stirling-Gallacher, and Reiner S. Thomä"
+year = 2024
+url = "https://arxiv.org/abs/2405.11816"
+image = "foliadis2024transfer.png"
+
+[[third_party]]
+title = "Channel Charting in Real-World Coordinates with Distributed MIMO"
+authors = "Sueda Taner, Victoria Palhares, and Christoph Studer"
+year = 2024
+url = "https://arxiv.org/abs/2406.13722"
+image = "taner_palhares_2024.png"
+
+[[third_party]]
+title = "Disentangled Representation Learning Empowered CSI Feedback Using Implicit Channel Reciprocity in FDD Massive MIMO"
+authors = "Wei Xu, Jie Wu, Shi Jin, Xiaohu You, and Zhaohua Lu"
+year = 2024
+url = "https://ieeexplore.ieee.org/document/10604756"
+image = "xu_fddmimo_2024.png"
+
+[[third_party]]
+title = "Multi-Site Wireless Channel Charting Through Latent Space Alignment"
+authors = "Yamil Vindas and Maxime Guillaud"
+year = 2024
+url = "https://hal.science/hal-04685466"
+image = "vindas_spawc2024.png"
+
+[[third_party]]
+title = "Learning Latent Wireless Dynamics from Channel State Information"
+authors = "Charbel Bou Chaaya, Abanoub M. Girgis, and Mehdi Bennis"
+year = 2024
+url = "https://arxiv.org/abs/2409.10045"
+image = "chaaya2024.png"
+
+[[third_party]]
+title = "Differentiable and Learnable Wireless Simulation with Geometric Transformers"
+authors = "Thomas Hehn, Markus Peschl, Tribhuvanesh Orekondy, Arash Behboodi, and Johann Brehmer"
+year = 2024
+url = "https://arxiv.org/abs/2406.14995"
+image = "hehn2024.png"
+
+[[third_party]]
+title = "Dynamic Channel Charting: Integrating Online Sample Selection with Continual Learning for Streaming CSI Data"
+authors = "Yamil Vindas and Maxime Guillaud"
+year = 2024
+url = "https://hal.science/hal-04765610"
+image = "vindas_streaming_2024.png"
+
+[[third_party]]
+title = "Ray Tracing Augmented with Monte Carlo Diffuse Scattering for Dense Multipath Components Simulation"
+authors = "Yuxuan Li, Lizhen Yang, and Hai Lin"
+year = 2025
+url = "https://ieeexplore.ieee.org/document/11184405"
+image = "li2025.png"
+
+[[third_party]]
+title = "Analogical Learning for Cross-Scenario Generalization: Framework and Application to Intelligent Localization"
+authors = "Zirui Chen, Hongning Ruan, Zhaoyang Zhang, Ziqing Xing, Ridong Li, Zhaohui Yang, and Mérouane Debbah"
+year = 2025
+url = "https://arxiv.org/abs/2504.08811"
+image = "analogical-learning-2025.png"
+
+[[third_party]]
+title = "CSI2Vec: Towards a Universal CSI Feature Representation for Positioning and Channel Charting"
+authors = "Victoria Palhares, Sueda Taner, and Christoph Studer"
+year = 2025
+url = "https://arxiv.org/abs/2506.05237"
+image = "csi2vec-2025.png"
+
+[[third_party]]
+title = "AI Based Positioning in Wireless Networks"
+authors = "Anastasios Foliadis"
+year = 2025
+url = "https://doi.org/10.22032/dbt.67480"
+image = "foliadis-thesis-2025.png"
+
+[[third_party]]
+title = "Self-Localizing MIMO Beam Mapping for Intelligent Open RAN with Continuously Evolving Channel Memory"
+authors = "Wangqian Chen, Junting Chen, and Shuguang Cui"
+year = 2025
+url = "https://arxiv.org/abs/2511.17007"
+image = "self-localizing-beam-map-2025.png"
+
+[[third_party]]
+title = "WiFo-2: a generalist foundation model unifies heterogeneous wireless system design"
+authors = "Boxun Liu, Xuanyu Liu, Shijian Gao, Xuesong Cai, Xiang Cheng, and Liuqing Yang"
+year = 2025
+url = "https://arxiv.org/abs/2511.22222"
+image = "wifo2-2025.png"
+
+[[third_party]]
+title = "Resilient Channel Charting Under Varying Radio Link Availability"
+authors = "Jonas Pirkl, Jonathan Ott, Maximilian Stahlke, George Yammine, Tobias Feigl, and Christopher Mutschler"
+year = 2026
+url = "https://arxiv.org/abs/2602.04704"
+image = "resilient-channel-charting-2026.png"
+
+[[third_party]]
+title = "Integrated Radio Sensing Capabilities for 6G Networks: AI/ML Perspective"
+authors = "Victor Shatov, Steffen Schieler, Charlotte Muth, José Miguel Mateos-Ramos, Ivo Bizon, Florian Euchner, Sebastian Semper, Stephan ten Brink, Gerhard Fettweis, Christian Häger, Henk Wymeersch, Laurent Schmalen, Reiner Thomä, and Norman Franchi"
+year = 2026
+url = "https://ieeexplore.ieee.org/document/11414103"
+image = "integrated-radio-sensing-2026.png"
+
+[[third_party]]
+title = "Structured Latent Dynamics in Wireless CSI via Homomorphic World Models"
+authors = "Salmane Naoumi, Mehdi Bennis, and Marwa Chafii"
+year = 2026
+url = "https://arxiv.org/abs/2603.20048"
+image = "structured-latent-dynamics-2026.png"
+
+[[third_party]]
+title = "CMTF-Net: A Complex-Valued Multi-Scale Time–Frequency Cross-Domain Attention Network for MIMO CSI Prediction"
+authors = "Bin Ren and Chengqun Wang"
+year = 2026
+url = "https://doi.org/10.3390/electronics15102225"
+image = "cmtf-net-2026.png"
+
+[[third_party]]
+title = "How Big Should a Wireless Foundation Model Be?"
+authors = "Wei-Lun Cheng and Wanjiun Liao"
+year = 2026
+url = "https://arxiv.org/abs/2605.07266"
+image = "wireless-foundation-model-size-2026.png"
+
+[[third_party]]
+title = "Annotation-Free Indoor Radio Mapping via Physics-Informed Trajectory Inference"
+authors = "Zheng Xing, Mengru Wu, Yi Zhang, Guanghui Zhang, Jun Gao, Weibing Zhao, Xuhui Zhang, Jinke Ren, and Shuguang Cui"
+year = 2026
+url = "https://arxiv.org/abs/2605.11037"
+image = "annotation-free-radio-mapping-2026.png"
+
+[[third_party]]
+title = "LWM-CDE: A Representation Space for Wireless Data Reasoning and Transferability"
+authors = "Sadjad Alikhani, Akshay Malhotra, Shahab Hamidi-Rad, and Ahmed Alkhateeb"
+year = 2026
+url = "https://arxiv.org/abs/2605.24077"
+image = "lwm-cde-2026.png"
+
+[[third_party]]
+title = "NARRAS: Edge-Triggered Distributed Inference for CSI-Based Localization in Vehicular IoT Networks"
+authors = "Rodrigo Oliver, Ricardo Vazquez Alvarez, Alejandro Lancho, and Stefano Rini"
+year = 2026
+url = "https://arxiv.org/abs/2606.11914"
+image = "narras-2026.png"
+
+[[third_party]]
+title = "Full-Domain Coupler: A Wireless Native Neural Backbone for Channel Representation and Deduction"
+authors = "Zirui Chen, Ziqing Xing, Zhaoyang Zhang, Hongning Ruan, Yuzhi Yang, Zhaohui Yang, Chongwen Huang, and Merouane Debbah"
+year = 2026
+url = "https://arxiv.org/abs/2606.22038"
+image = "full-domain-coupler-2026.png"
+
+[[third_party]]
+title = "A Sheaf-Theoretic Framework for Distributed Multi-Site Channel Charting"
+authors = "Enrico Grimaldi, Leonardo Di Nino, Mario Edoardo Pandolfo, Gabriele D'Acunto, Sergio Barbarossa, and Paolo Di Lorenzo"
+year = 2026
+url = "https://arxiv.org/abs/2607.03480"
+image = "sheaf-channel-charting-2026.png"
+
+[[third_party]]
+title = "Score-Based Diffusion Models for Wireless Channel Synthesis and Data Augmentation in Low-Pilot MIMO Systems"
+authors = "Miloš Milovančević"
+year = 2026
+url = "https://doi.org/10.31875/2979-1081.2026.02.06"
+image = "score-diffusion-2026.png"
+
+[[third_party]]
+title = "CFM-Bench: A Unified Multi-Domain, Multi-Task Benchmark for Channel Foundation Models"
+authors = "Yuan Gao, Wenjun Yu, Jun Jiang, Yunfan Li, Xinyu Guo, and Shugong Xu"
+year = 2026
+url = "https://arxiv.org/abs/2607.14975"
+image = "cfm-bench-2026.png"
+
+[[third_party]]
+title = "WiFo-INR: A Wireless Foundation Model Based on Implicit Neural Representations"
+authors = "Boxun Liu, Xuanyu Liu, Shijian Gao, Xiang Cheng, and Liuqing Yang"
+year = 2026
+url = "https://arxiv.org/abs/2608.08033"
+image = "wifo-inr-2026.png"

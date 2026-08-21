@@ -5,6 +5,194 @@ type: page
 layout: list
 ---
 
+<style>
+	.espargos-promo {
+		background: #11191e;
+		border: 1px solid rgba(55, 201, 100, .35);
+		border-radius: 1.25rem;
+		box-shadow: 0 1rem 2.5rem rgba(17, 25, 30, .18);
+		color: #f8f9fa;
+		font-family: Carlito, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+		overflow: hidden;
+		position: relative;
+	}
+
+	.espargos-promo::before {
+		background: radial-gradient(circle, rgba(55, 201, 100, .2) 0, rgba(17, 25, 30, 0) 68%);
+		content: "";
+		height: 22rem;
+		position: absolute;
+		right: -7rem;
+		top: -11rem;
+		width: 22rem;
+	}
+
+	.espargos-promo-content,
+	.espargos-product-stage {
+		position: relative;
+		z-index: 1;
+	}
+
+	.espargos-promo-logo {
+		height: auto;
+		max-width: 10rem;
+		width: 100%;
+	}
+
+	.espargos-makers-ribbon {
+		height: 100%;
+		overflow: hidden;
+		pointer-events: none;
+		position: absolute;
+		right: 0;
+		top: 0;
+		width: 100%;
+		z-index: 3;
+	}
+
+	.espargos-makers-ribbon-label {
+		align-items: center;
+		background: #227b3d;
+		box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .35);
+		color: #fff;
+		display: flex;
+		flex-direction: column;
+		font-size: 1rem;
+		font-weight: 800;
+		justify-content: center;
+		letter-spacing: .015em;
+		line-height: 1.1;
+		min-height: 3.5rem;
+		position: absolute;
+		right: -4.875rem;
+		text-align: center;
+		top: 2rem;
+		transform: rotate(45deg);
+		width: 18rem;
+	}
+
+	.espargos-makers-ribbon-label span {
+		white-space: nowrap;
+	}
+
+	.espargos-promo-title {
+		font-size: clamp(1.8rem, 4vw, 2.75rem);
+		line-height: 1.08;
+	}
+
+	.espargos-text-gradient {
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background: linear-gradient(90deg, #5edf34 0%, #37c964 100%);
+		background-clip: text;
+	}
+
+	.btn-espargos {
+		background: #227b3d;
+		border-color: #37c964;
+		color: #fff;
+	}
+
+	.btn-espargos:hover,
+	.btn-espargos:focus {
+		background: #37c964;
+		border-color: #5edf34;
+		color: #11191e;
+	}
+
+	.btn-espargos-outline {
+		border-color: #8de1a7;
+		color: #d7f5e0;
+	}
+
+	.btn-espargos-outline:hover,
+	.btn-espargos-outline:focus {
+		background: #d7f5e0;
+		border-color: #d7f5e0;
+		color: #11191e;
+	}
+
+	.espargos-product-stage {
+		align-items: center;
+		background: linear-gradient(135deg, rgba(41, 49, 53, .4), rgba(34, 123, 61, .15));
+		display: flex;
+		justify-content: center;
+		min-height: 14.5rem;
+		overflow: hidden;
+	}
+
+	.espargos-product-image {
+		filter: drop-shadow(0 1rem 1.25rem rgba(0, 0, 0, .4));
+		height: auto;
+		max-height: 15rem;
+		max-width: 100%;
+		object-fit: contain;
+		transform: rotateY(180deg);
+	}
+
+	.home-video-card {
+		background: #fff;
+		border: 1px solid rgba(0, 0, 0, .125);
+		border-radius: .5rem;
+		overflow: hidden;
+	}
+
+	.home-video-card video {
+		aspect-ratio: 16 / 9;
+		background: #000;
+		display: block;
+		object-fit: contain;
+		width: 100%;
+	}
+
+	@media (max-width: 991.98px) {
+		.espargos-promo-title {
+			padding-right: 4.5rem;
+		}
+
+		.espargos-product-stage {
+			min-height: 12rem;
+		}
+
+		.espargos-product-image {
+			max-height: 13rem;
+		}
+	}
+
+	@media (min-width: 576px) and (max-width: 991.98px) {
+		.espargos-promo-content > p {
+			padding-right: 7rem;
+		}
+	}
+</style>
+
+<section class="container mt-3 mb-4" aria-labelledby="espargos-promo-heading">
+	<div class="espargos-promo">
+		<div class="espargos-makers-ribbon">
+			<div class="espargos-makers-ribbon-label">
+				<span>From the makers of</span>
+				<span>DICHASUS</span>
+			</div>
+		</div>
+		<div class="row g-0 align-items-stretch">
+			<div class="espargos-promo-content col-lg-7 p-3 p-md-4">
+				<a href="https://espargos.net/" aria-label="Visit the ESPARGOS website">
+					<img class="espargos-promo-logo mb-3" src="/img/espargos-promo-logo.svg" alt="ESPARGOS">
+				</a>
+				<h2 id="espargos-promo-heading" class="espargos-promo-title fw-bold mb-2">Ready to <span class="espargos-text-gradient">measure your own CSI?</span></h2>
+				<p class="mb-3 text-light">ESPARGOS One is an affordable, phase-coherent Wi-Fi antenna array for researchers who want to capture real-time CSI from their own devices, in their own environments, and for their own experiments.</p>
+				<div class="d-flex flex-wrap gap-2">
+					<a class="btn btn-espargos" href="https://espargos.net/">Explore ESPARGOS</a>
+					<a class="btn btn-espargos-outline" href="https://buy.espargos.net/">Get ESPARGOS One</a>
+				</div>
+			</div>
+			<div class="espargos-product-stage col-lg-5 p-2 p-md-3">
+				<img class="espargos-product-image" src="/img/espargos-one-promo.png" alt="ESPARGOS One phase-coherent Wi-Fi antenna array" loading="lazy">
+			</div>
+		</div>
+	</div>
+</section>
+
 <div class="container col-xxl-8 px-4 py-1">
 	<div class="row flex-lg-row-reverse align-items-center g-5 py-3">
 		<div class="col-10 col-sm-10 col-md-10 col-lg-6">
@@ -94,4 +282,28 @@ layout: list
 			</div>
 		</div>
 	</div>
+
+	<section class="container pb-5" aria-labelledby="videos-heading">
+		<h2 id="videos-heading" class="h3 text-center fw-bold mb-4">Videos</h2>
+		<div class="row g-4">
+			<div class="col-12 col-lg-6">
+				<article class="home-video-card h-100 shadow-sm">
+					<video controls preload="metadata" aria-label="DICHASUS indoor measurement video">
+						<source src="/videos/csi_indoor_video.mp4" type="video/mp4">
+						Your browser does not support HTML video.
+					</video>
+					<h3 class="h5 m-0 p-3">DICHASUS Indoor Measurement</h3>
+				</article>
+			</div>
+			<div class="col-12 col-lg-6">
+				<article class="home-video-card h-100 shadow-sm">
+					<video controls preload="metadata" aria-label="Introduction to channel charting video">
+						<source src="/videos/introduction_to_channel_charting.mp4" type="video/mp4">
+						Your browser does not support HTML video.
+					</video>
+					<h3 class="h5 m-0 p-3">Introduction to Channel Charting</h3>
+				</article>
+			</div>
+		</div>
+	</section>
 </main>
