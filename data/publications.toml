@@ -209,6 +209,13 @@ url = "https://doi.org/10.22032/dbt.67480"
 image = "foliadis-thesis-2025.png"
 
 [[third_party]]
+title = "Neural Gaussian Radio Fields for Channel Estimation"
+authors = "Muhammad Umer, Muhammad Ahmed Mohsin, Ahsan Bilal, and John M. Cioffi"
+year = 2025
+url = "https://arxiv.org/abs/2508.11668"
+image = "neural-gaussian-radio-fields-2025.png"
+
+[[third_party]]
 title = "Self-Localizing MIMO Beam Mapping for Intelligent Open RAN with Continuously Evolving Channel Memory"
 authors = "Wangqian Chen, Junting Chen, and Shuguang Cui"
 year = 2025
@@ -235,6 +242,13 @@ authors = "Victor Shatov, Steffen Schieler, Charlotte Muth, José Miguel Mateos-
 year = 2026
 url = "https://ieeexplore.ieee.org/document/11414103"
 image = "integrated-radio-sensing-2026.png"
+
+[[third_party]]
+title = "A Retrieval-Assisted Framework for Wireless Localization"
+authors = "Haoyu Huang, Guangjin Pan, Kaixuan Huang, Shunqing Zhang, Yuhao Zhang, Musa Furkan Keskin, Zheng Xing, and Henk Wymeersch"
+year = 2026
+url = "https://arxiv.org/abs/2603.06158"
+image = "retrieval-assisted-localization-2026.png"
 
 [[third_party]]
 title = "Structured Latent Dynamics in Wireless CSI via Homomorphic World Models"
@@ -270,6 +284,20 @@ authors = "Sadjad Alikhani, Akshay Malhotra, Shahab Hamidi-Rad, and Ahmed Alkhat
 year = 2026
 url = "https://arxiv.org/abs/2605.24077"
 image = "lwm-cde-2026.png"
+
+[[third_party]]
+title = "A Channel Charting-Based Semi-Supervised Positioning Algorithm With Co-Training"
+authors = "Yuhang Pan, Junling Li, Yang Wu, Jianghan Ji, Chen Huang, and Cheng-Xiang Wang"
+year = 2026
+url = "https://doi.org/10.1109/TCOMM.2026.3693171"
+image = "co-training-positioning-2026.png"
+
+[[third_party]]
+title = "Physical Embedding for Radio Map Construction"
+authors = "Zheng Xing, Liang Xie, Tao Guo, Qi Tan, Qihua Zhou, Jun Wei, Weibing Zhao, Ruikang Zhong, and Laizhong Cui"
+year = 2026
+url = "https://doi.org/10.1109/ICC59461.2026.11588289"
+image = "physical-embedding-radio-map-2026.png"
 
 [[third_party]]
 title = "NARRAS: Edge-Triggered Distributed Inference for CSI-Based Localization in Vehicular IoT Networks"
@@ -312,3 +340,31 @@ authors = "Boxun Liu, Xuanyu Liu, Shijian Gao, Xiang Cheng, and Liuqing Yang"
 year = 2026
 url = "https://arxiv.org/abs/2608.08033"
 image = "wifo-inr-2026.png"
+
+[[third_party]]
+title = "Leveraging Channel Charting for Localization With Weakly Supervised Learning"
+authors = "Tianxiang Xu, Li You, Jue Wang, Chenjie Xie, Chen Sun, and Xiqi Gao"
+year = 2026
+url = "https://doi.org/10.1109/LWC.2026.3717651"
+image = "weakly-supervised-localization-2026.png"
+
+[[third_party]]
+title = "WARDEN: Wiener-Adaptive Residual Dynamic ENcoder for Channel Charting in Future Cellular Networks"
+authors = "Andrea Piroddi, Triantafyllos Kanakis, and Michael Opoku Agyeman"
+year = 2026
+url = "https://doi.org/10.1109/ACCESS.2026.3723268"
+image = "warden-2026.png"
+
+[[third_party]]
+title = "AGGC: Anchor-Guided Geodesic Charting for Few-Label CSI Indoor Localization"
+authors = "Jianrui Chen, Xinghe Chu, Anpei Li, Minchi Ruan, and Zhirui Yin"
+year = 2026
+url = "https://doi.org/10.1109/PIMRC69400.2026.11711731"
+image = "aggc-2026.png"
+
+[[third_party]]
+title = "Masked Latent Prediction of CSI for Indoor Localization in Integrated Sensing and Communication Systems"
+authors = "Ibtissam Labriji, Mahdi Maleki, and Pavan Koteshwar Srinath"
+year = 2026
+url = "https://arxiv.org/abs/2609.08509"
+image = "masked-latent-prediction-2026.png"
