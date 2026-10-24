@@ -66351,12 +66351,17 @@ void main() {
 				}else {
 					let response = await fetch(urlOctree, {
 						headers: {
-							'content-type': 'multipart/byteranges',
 							'Range': `bytes=${first}-${last}`,
 						},
 					});
 
+					if (!response.ok) {
+						throw new Error(`Failed to load pointcloud data: HTTP ${response.status} (${urlOctree})`);
+					}
 					buffer = await response.arrayBuffer();
+					if (BigInt(buffer.byteLength) !== byteSize) {
+						throw new Error(`Unexpected pointcloud range length: expected ${byteSize}, received ${buffer.byteLength}`);
+					}
 				}
 
 				let workerPath;
@@ -66555,14 +66560,19 @@ void main() {
 
 			let response = await fetch(hierarchyPath, {
 				headers: {
-					'content-type': 'multipart/byteranges',
 					'Range': `bytes=${first}-${last}`,
 				},
 			});
 
 
 
+			if (!response.ok) {
+				throw new Error(`Failed to load pointcloud hierarchy: HTTP ${response.status} (${hierarchyPath})`);
+			}
 			let buffer = await response.arrayBuffer();
+			if (BigInt(buffer.byteLength) !== hierarchyByteSize || buffer.byteLength % 22 !== 0) {
+				throw new Error(`Unexpected hierarchy range length: expected ${hierarchyByteSize}, received ${buffer.byteLength}`);
+			}
 
 			this.parseHierarchy(node, buffer);
 
