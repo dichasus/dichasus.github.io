@@ -13,24 +13,24 @@
 	{{ $sass := resources.Get "inue.scss" }}
 	{{ $style := $sass | css.Sass }}
 
-	<link rel="stylesheet" href="{{ $style.Permalink }}">
+	<link rel="stylesheet" href="{{ $style.RelPermalink }}">
 
 	{{ $bootstrap := resources.Get "bootstrap/js/bootstrap.min.js" }}
 
-	<script src="{{ $bootstrap.Permalink }}"></script>
+	<script src="{{ $bootstrap.RelPermalink }}"></script>
 
 	{{ $highlight := resources.Get "highlight.min.js" }}
 
-	<script src="{{ $highlight.Permalink }}"></script>
+	<script src="{{ $highlight.RelPermalink }}"></script>
 
 	{{ $highlightTheme := resources.Get "stackoverflow-light.min.css" }}
 
 	{{ $copycode := resources.Get "copy-code.js" }}
 
-	<script src="{{ $copycode.Permalink }}"></script>
+	<script src="{{ $copycode.RelPermalink }}"></script>
 
 
-	<link rel="stylesheet" href="{{ $highlightTheme.Permalink }}">
+	<link rel="stylesheet" href="{{ $highlightTheme.RelPermalink }}">
 
 	<!-- OpenLayers map -->
 	<script src="https://cdn.jsdelivr.net/npm/ol@v7.1.0/dist/ol.js"></script>

@@ -1,0 +1,67 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+env:
+  HUGO_VERSION: 0.168.0
+  TZ: Europe/Berlin
+
+jobs:
+  build:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+
+      - name: Install Hugo Extended
+        env:
+          HUGO_SHA256: 787f100057328824f38c6ad7c87ff10d6451ae0a7bc39cedaad0dd2bcde17e53
+        run: |
+          archive="hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz"
+          curl --fail --location --retry 3 \
+            "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/${archive}" \
+            --output "${RUNNER_TEMP}/${archive}"
+          echo "${HUGO_SHA256}  ${RUNNER_TEMP}/${archive}" | sha256sum --check
+          mkdir -p "${RUNNER_TEMP}/hugo-bin"
+          tar -xzf "${RUNNER_TEMP}/${archive}" -C "${RUNNER_TEMP}/hugo-bin" hugo
+          echo "${RUNNER_TEMP}/hugo-bin" >> "${GITHUB_PATH}"
+
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v6
+
+      - name: Build website
+        env:
+          HUGO_ENVIRONMENT: production
+          PAGES_BASE_URL: ${{ steps.pages.outputs.base_url }}
+        run: hugo --minify --baseURL "${PAGES_BASE_URL}/" --cacheDir "${RUNNER_TEMP}/hugo-cache"
+
+      - name: Upload website
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy website
+        id: deployment
+        uses: actions/deploy-pages@v5
