@@ -1,0 +1,57 @@
+{
+  "recording": "ad10",
+  "reference": "Original bundled route PNGs; original generator unavailable. Current version-3 offsets used for reconstruction.",
+  "comparison": "Viridis colour indices at measured XY positions; transparent and antialiased-edge pixels excluded. Correlations measure spatial agreement, not identical numerical values.",
+  "plots": {
+    "Power_Scatter": {
+      "samples": 46887,
+      "pearson": 0.995561938070307,
+      "spearman": 0.9934538073449003
+    },
+    "Power_Hexbin": {
+      "samples": 44046,
+      "pearson": 0.99989745604257,
+      "spearman": 0.9998494190465315
+    },
+    "DelaySpreadArray0_Scatter": {
+      "samples": 34349,
+      "pearson": 0.974166289220969,
+      "spearman": 0.9423937255283296
+    },
+    "DelaySpreadArray0_Hexbin": {
+      "samples": 45216,
+      "pearson": 0.9925085420550659,
+      "spearman": 0.9780291350940937
+    },
+    "DelaySpreadArray1_Scatter": {
+      "samples": 34081,
+      "pearson": 0.9326688111293282,
+      "spearman": 0.929791971130938
+    },
+    "DelaySpreadArray1_Hexbin": {
+      "samples": 45176,
+      "pearson": 0.9757918300721782,
+      "spearman": 0.9687201570494305
+    },
+    "DelaySpreadArray2_Scatter": {
+      "samples": 34099,
+      "pearson": 0.9458001870029602,
+      "spearman": 0.9487815216771915
+    },
+    "DelaySpreadArray2_Hexbin": {
+      "samples": 45200,
+      "pearson": 0.9866368426701296,
+      "spearman": 0.9867110479540968
+    },
+    "DelaySpreadArray3_Scatter": {
+      "samples": 34035,
+      "pearson": 0.9334729592783051,
+      "spearman": 0.9217912284290286
+    },
+    "DelaySpreadArray3_Hexbin": {
+      "samples": 45203,
+      "pearson": 0.9844136385597951,
+      "spearman": 0.9759342250346391
+    }
+  }
+}

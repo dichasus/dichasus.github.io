@@ -1,0 +1,1 @@
+window.DichasusGrid = {"depth":7,"minX":-70.0,"maxX":10.0,"minY":-35.0,"maxY":0.0,"pathMinX":-70.0,"pathMaxX":10.0,"pathMinY":-35,"pathMaxY":0.0,"pathStep":0.1,"channelVersion":"ec8ce6735a33e77981c2b312","pathVersion":"4cb6df12a45721e956201351"};

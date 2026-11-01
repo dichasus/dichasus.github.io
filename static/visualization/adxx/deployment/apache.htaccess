@@ -1,0 +1,18 @@
+# Copy to .htaccess in the viewer's directory when AllowOverride FileInfo is enabled.
+# Binary path columns and precompressed models/CSI are deliberately excluded.
+<IfModule mod_deflate.c>
+    <IfModule mod_filter.c>
+        <IfModule mod_setenvif.c>
+            SetEnvIfNoCase Range .+ no-gzip
+            AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml
+        </IfModule>
+    </IfModule>
+</IfModule>
+
+<IfModule mod_headers.c>
+    # Revalidate code, manifests, and other assets whose names can be reused.
+    Header set Cache-Control "no-cache"
+    <FilesMatch "^[a-f0-9]{24}\.(bin(\.gz)?|webp)$">
+        Header set Cache-Control "public, max-age=31536000, immutable" "expr=%{REQUEST_STATUS} == 200 || %{REQUEST_STATUS} == 206 || %{REQUEST_STATUS} == 304"
+    </FilesMatch>
+</IfModule>

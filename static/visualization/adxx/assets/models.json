@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "models": [
+    {
+      "source": "ARENA2036.gltf",
+      "sourceSha256": "dfeb7e274fb74c79145e7801e5f32eb55f2b556dbe1133dff1b6afd7e81edcf8",
+      "sourceBytes": 11634860,
+      "file": "factory.glb",
+      "bytes": 266416,
+      "gzipBytes": 55709,
+      "sha256": "6bae58355dd7629bd7888fc7749dbfd1625162c07706386059518a66fadf4029",
+      "textures": [
+        {
+          "originalDimensions": [
+            4032,
+            3024
+          ],
+          "dimensions": [
+            512,
+            384
+          ],
+          "originalBytes": 8476235,
+          "bytes": 21251
+        }
+      ]
+    },
+    {
+      "file": "robot.glb",
+      "source": "scripts/build_robot.py",
+      "sourceSha256": "5ad610f3f65e2f769eeb698735c45e6885b3ac1ae78b9786c47ebbd8006a1476",
+      "bytes": 206400,
+      "sha256": "347b509e25453e558735cde5e5cbb5b1412fb8dc1cc2f451c9a1c0a2752e4d38",
+      "gzipBytes": 42760,
+      "photoProvenance": "robot.json"
+    }
+  ]
+}

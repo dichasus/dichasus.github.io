@@ -1,0 +1,5013 @@
+{
+  "version": 1,
+  "mode": "compact",
+  "routes": {
+    "ad10": {
+      "source": {
+        "cacheIdentity": {
+          "version": 1,
+          "rawBytes": 24638232416,
+          "rawMtimeNs": 1793484948084045987,
+          "specSha256": "ddc951c7d9f65ae22206eccdce556be1a76877e176853e62a4b620892d4fea50",
+          "offsetsSha256": "bb166ee365c94c4c5081ef86209a49573fb375aef66a5bf00126853368e6f4c3",
+          "calculationSha256": "cf35d69ebd99476df677bc815c60a3fdad0fd0d3a958616b2eaeaad1376b96e7",
+          "channelHelpersSha256": "8909cce0786bdc18c16fa5bcb2315e1a26c8bf5a623c6ca8eaeb712dd7a48992"
+        },
+        "recording": "ad10",
+        "rawSha256": "e4defd37f782db98ebb0857399693d23bc8f1b73d5e182ea25f8755d2c544ef9",
+        "records": 46928,
+        "rejectedNonfinite": 0,
+        "power": "Frequency-mean squared CSI magnitude, summed over 16 antennas per array; uncalibrated linear units.",
+        "delaySpread": "Power-weighted RMS over calibrated CIR taps 495:555 after common delay removal; 20 ns/tap.",
+        "boundsXY": [
+          -70.0,
+          12.0,
+          -35.0,
+          0.0
+        ]
+      },
+      "scales": {
+        "PowerArray0": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1994.679443359375,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray1": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 386.10003662109375,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray2": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 412.12799072265625,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray3": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 877.509521484375,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "Power": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 2416.86376953125,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "DelaySpreadArray0": {
+          "min": 45.92179489135742,
+          "max": 159.93968200683594,
+          "units": "ns",
+          "Scatter": {
+            "min": 45.92179489135742,
+            "max": 159.93968200683594
+          },
+          "Hexbin": {
+            "min": 53.888099670410156,
+            "max": 146.2706756591797
+          }
+        },
+        "DelaySpreadArray1": {
+          "min": 77.89212799072266,
+          "max": 179.28741455078125,
+          "units": "ns",
+          "Scatter": {
+            "min": 77.89212799072266,
+            "max": 179.28741455078125
+          },
+          "Hexbin": {
+            "min": 88.13826751708984,
+            "max": 166.2827606201172
+          }
+        },
+        "DelaySpreadArray2": {
+          "min": 61.9260368347168,
+          "max": 179.17665100097656,
+          "units": "ns",
+          "Scatter": {
+            "min": 61.9260368347168,
+            "max": 179.17665100097656
+          },
+          "Hexbin": {
+            "min": 81.01737213134766,
+            "max": 165.9110107421875
+          }
+        },
+        "DelaySpreadArray3": {
+          "min": 50.88754653930664,
+          "max": 167.10154724121094,
+          "units": "ns",
+          "Scatter": {
+            "min": 50.88754653930664,
+            "max": 167.10154724121094
+          },
+          "Hexbin": {
+            "min": 66.12947845458984,
+            "max": 156.21859741210938
+          }
+        }
+      },
+      "renderingVersion": 2,
+      "hexbinWidthMeters": 0.75
+    },
+    "ad11": {
+      "source": {
+        "cacheIdentity": {
+          "version": 1,
+          "rawBytes": 24795213994,
+          "rawMtimeNs": 1793487313475889404,
+          "specSha256": "ddc951c7d9f65ae22206eccdce556be1a76877e176853e62a4b620892d4fea50",
+          "offsetsSha256": "f14b11a7481e9d70ed346cc2a454173096a1935b9ea102d5e30aa0968fe69502",
+          "calculationSha256": "cf35d69ebd99476df677bc815c60a3fdad0fd0d3a958616b2eaeaad1376b96e7",
+          "channelHelpersSha256": "8909cce0786bdc18c16fa5bcb2315e1a26c8bf5a623c6ca8eaeb712dd7a48992"
+        },
+        "recording": "ad11",
+        "rawSha256": "32448285ce70c7905379aff54eac8f3bf3022ca611c180b9f4625eabcc7b386a",
+        "records": 47227,
+        "rejectedNonfinite": 0,
+        "power": "Frequency-mean squared CSI magnitude, summed over 16 antennas per array; uncalibrated linear units.",
+        "delaySpread": "Power-weighted RMS over calibrated CIR taps 495:555 after common delay removal; 20 ns/tap.",
+        "boundsXY": [
+          -70.0,
+          12.0,
+          -35.0,
+          0.0
+        ]
+      },
+      "scales": {
+        "PowerArray0": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1576.9888916015625,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray1": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 345.1640625,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray2": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 288.341796875,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray3": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 829.5304565429688,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "Power": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1966.728271484375,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "DelaySpreadArray0": {
+          "min": 50.838600158691406,
+          "max": 158.7825469970703,
+          "units": "ns",
+          "Scatter": {
+            "min": 50.838600158691406,
+            "max": 158.7825469970703
+          },
+          "Hexbin": {
+            "min": 56.7263069152832,
+            "max": 151.1711883544922
+          }
+        },
+        "DelaySpreadArray1": {
+          "min": 79.31830596923828,
+          "max": 179.51773071289062,
+          "units": "ns",
+          "Scatter": {
+            "min": 79.31830596923828,
+            "max": 179.51773071289062
+          },
+          "Hexbin": {
+            "min": 92.04533386230469,
+            "max": 167.5293731689453
+          }
+        },
+        "DelaySpreadArray2": {
+          "min": 62.07618713378906,
+          "max": 179.48460388183594,
+          "units": "ns",
+          "Scatter": {
+            "min": 62.07618713378906,
+            "max": 179.48460388183594
+          },
+          "Hexbin": {
+            "min": 90.76664733886719,
+            "max": 163.32522583007812
+          }
+        },
+        "DelaySpreadArray3": {
+          "min": 54.99834442138672,
+          "max": 169.4997100830078,
+          "units": "ns",
+          "Scatter": {
+            "min": 54.99834442138672,
+            "max": 169.4997100830078
+          },
+          "Hexbin": {
+            "min": 65.55314636230469,
+            "max": 154.95745849609375
+          }
+        }
+      },
+      "renderingVersion": 2,
+      "hexbinWidthMeters": 0.75
+    },
+    "ad07": {
+      "source": {
+        "cacheIdentity": {
+          "version": 1,
+          "specSha256": "ddc951c7d9f65ae22206eccdce556be1a76877e176853e62a4b620892d4fea50",
+          "offsetsSha256": "0b7bb90867ece3a109daf8305c1b6dd617f4e7b23e9f35a1cfe8f213da7e10e2",
+          "calculationSha256": "cf35d69ebd99476df677bc815c60a3fdad0fd0d3a958616b2eaeaad1376b96e7",
+          "channelHelpersSha256": "8909cce0786bdc18c16fa5bcb2315e1a26c8bf5a623c6ca8eaeb712dd7a48992",
+          "rawBytes": 4011168080,
+          "rawMtimeNs": 1793545116866173182
+        },
+        "recording": "ad07",
+        "rawSha256": "861739a90a8938b6ab2bfc85f9925a3bd933f06ed7139e8b97ffc14e7ea7c790",
+        "metricsSha256": "2b19f2c84f5efa198637729fdb91044f42ce0d3a927c42b7aa703c2d14696ff3",
+        "records": 7640,
+        "rejectedNonfinite": 0,
+        "power": "Frequency-mean squared CSI magnitude, summed over 16 antennas per array; uncalibrated linear units.",
+        "delaySpread": "Power-weighted RMS over calibrated CIR taps 495:555 after common delay removal; 20 ns/tap.",
+        "boundsXY": [
+          -70.0,
+          12.0,
+          -35.0,
+          0.0
+        ]
+      },
+      "scales": {
+        "PowerArray0": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 312.0780334472656,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray1": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 133.87802124023438,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray2": {
+          "min": -20.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 261.7153625488281,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -20.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -20.0,
+            "max": 0
+          }
+        },
+        "PowerArray3": {
+          "min": -20.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 360.2593688964844,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -20.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -20.0,
+            "max": 0
+          }
+        },
+        "Power": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 656.3419189453125,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "DelaySpreadArray0": {
+          "min": 63.88966369628906,
+          "max": 171.1782989501953,
+          "units": "ns",
+          "Scatter": {
+            "min": 63.88966369628906,
+            "max": 171.1782989501953
+          },
+          "Hexbin": {
+            "min": 69.79249572753906,
+            "max": 152.40057373046875
+          }
+        },
+        "DelaySpreadArray1": {
+          "min": 86.4234848022461,
+          "max": 193.62313842773438,
+          "units": "ns",
+          "Scatter": {
+            "min": 86.4234848022461,
+            "max": 193.62313842773438
+          },
+          "Hexbin": {
+            "min": 98.77877807617188,
+            "max": 182.72935485839844
+          }
+        },
+        "DelaySpreadArray2": {
+          "min": 57.68640899658203,
+          "max": 185.7797088623047,
+          "units": "ns",
+          "Scatter": {
+            "min": 57.68640899658203,
+            "max": 185.7797088623047
+          },
+          "Hexbin": {
+            "min": 64.5984878540039,
+            "max": 178.2523193359375
+          }
+        },
+        "DelaySpreadArray3": {
+          "min": 56.61181640625,
+          "max": 185.494384765625,
+          "units": "ns",
+          "Scatter": {
+            "min": 56.61181640625,
+            "max": 185.494384765625
+          },
+          "Hexbin": {
+            "min": 68.64268493652344,
+            "max": 171.88462829589844
+          }
+        }
+      },
+      "renderingVersion": 2,
+      "hexbinWidthMeters": 0.75
+    },
+    "ad08": {
+      "source": {
+        "cacheIdentity": {
+          "version": 1,
+          "specSha256": "ddc951c7d9f65ae22206eccdce556be1a76877e176853e62a4b620892d4fea50",
+          "offsetsSha256": "7ab400fb0c9395ea28fb06733b50c069664405df05a06a5448a4a0236ee1e09d",
+          "calculationSha256": "cf35d69ebd99476df677bc815c60a3fdad0fd0d3a958616b2eaeaad1376b96e7",
+          "channelHelpersSha256": "8909cce0786bdc18c16fa5bcb2315e1a26c8bf5a623c6ca8eaeb712dd7a48992",
+          "rawBytes": 5677587908,
+          "rawMtimeNs": 1793546842268356522
+        },
+        "recording": "ad08",
+        "rawSha256": "83f8995d8b5b9028fb6f92fa6820044d509d0ec7229454549578bef93524f1e0",
+        "metricsSha256": "94d75e36e54b9fcd658c45d4ca0d11a37c980791ce68bf2e329836440daaa5b6",
+        "records": 10814,
+        "rejectedNonfinite": 0,
+        "power": "Frequency-mean squared CSI magnitude, summed over 16 antennas per array; uncalibrated linear units.",
+        "delaySpread": "Power-weighted RMS over calibrated CIR taps 495:555 after common delay removal; 20 ns/tap.",
+        "boundsXY": [
+          -70.0,
+          12.0,
+          -35.0,
+          0.0
+        ]
+      },
+      "scales": {
+        "PowerArray0": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1384.71923828125,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray1": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 589.1843872070312,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray2": {
+          "min": -20.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1189.197509765625,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -20.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -20.0,
+            "max": 0
+          }
+        },
+        "PowerArray3": {
+          "min": -20.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1412.01708984375,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -20.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -20.0,
+            "max": 0
+          }
+        },
+        "Power": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 3236.265869140625,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "DelaySpreadArray0": {
+          "min": 60.14086151123047,
+          "max": 174.26663208007812,
+          "units": "ns",
+          "Scatter": {
+            "min": 60.14086151123047,
+            "max": 174.26663208007812
+          },
+          "Hexbin": {
+            "min": 69.53750610351562,
+            "max": 157.73158264160156
+          }
+        },
+        "DelaySpreadArray1": {
+          "min": 86.71576690673828,
+          "max": 199.79315185546875,
+          "units": "ns",
+          "Scatter": {
+            "min": 86.71576690673828,
+            "max": 199.79315185546875
+          },
+          "Hexbin": {
+            "min": 93.73098754882812,
+            "max": 183.96258544921875
+          }
+        },
+        "DelaySpreadArray2": {
+          "min": 61.69287872314453,
+          "max": 191.1925048828125,
+          "units": "ns",
+          "Scatter": {
+            "min": 61.69287872314453,
+            "max": 191.1925048828125
+          },
+          "Hexbin": {
+            "min": 73.30806732177734,
+            "max": 185.7093048095703
+          }
+        },
+        "DelaySpreadArray3": {
+          "min": 63.02379608154297,
+          "max": 189.2253875732422,
+          "units": "ns",
+          "Scatter": {
+            "min": 63.02379608154297,
+            "max": 189.2253875732422
+          },
+          "Hexbin": {
+            "min": 70.76931762695312,
+            "max": 173.6558837890625
+          }
+        }
+      },
+      "renderingVersion": 2,
+      "hexbinWidthMeters": 0.75
+    },
+    "ad00": {
+      "source": {
+        "cacheIdentity": {
+          "version": 1,
+          "specSha256": "ddc951c7d9f65ae22206eccdce556be1a76877e176853e62a4b620892d4fea50",
+          "offsetsSha256": "59653c3c5694d0d5f8007036c676d2bdcdd489db71d9a0024c64d61371a6028e",
+          "calculationSha256": "cf35d69ebd99476df677bc815c60a3fdad0fd0d3a958616b2eaeaad1376b96e7",
+          "channelHelpersSha256": "8909cce0786bdc18c16fa5bcb2315e1a26c8bf5a623c6ca8eaeb712dd7a48992",
+          "rawBytes": 6606876848,
+          "rawMtimeNs": 1793546085880644337
+        },
+        "recording": "ad00",
+        "rawSha256": "9346ad07ad91a9c2ec4e764ad684b806ce7f93cd91eced87c27a9a62b86717b3",
+        "metricsSha256": "c1539b6fea010068426c55236444d128e6f6bc3804af7e2b759da8b7ad6f76c1",
+        "records": 12584,
+        "rejectedNonfinite": 0,
+        "power": "Frequency-mean squared CSI magnitude, summed over 16 antennas per array; uncalibrated linear units.",
+        "delaySpread": "Power-weighted RMS over calibrated CIR taps 495:555 after common delay removal; 20 ns/tap.",
+        "boundsXY": [
+          -70.0,
+          12.0,
+          -35.0,
+          0.0
+        ]
+      },
+      "datasetFile": {
+        "id": 664442,
+        "persistentId": "",
+        "filename": "dichasus-ad00.tfrecords",
+        "contentType": "application/octet-stream",
+        "friendlyType": "Unknown",
+        "filesize": 6606876848,
+        "description": "Robot follows a pseudorandom trajectory in the measurement area, part 1.",
+        "storageIdentifier": "s3-2://fokus-dv-prod-2:1a15a15d86c-f47086b99214",
+        "rootDataFileId": 293195,
+        "previousDataFileId": 293195,
+        "md5": "84377dbb29df6035b1483b490d2591f9",
+        "checksum": {
+          "type": "MD5",
+          "value": "84377dbb29df6035b1483b490d2591f9"
+        },
+        "tabularData": false,
+        "creationDate": "2026-10-20",
+        "publicationDate": "2026-10-21",
+        "lastUpdateTime": "2026-10-21T05:46:23Z",
+        "fileAccessRequest": true
+      },
+      "scales": {
+        "PowerArray0": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1062.4891357421875,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray1": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 165.2269744873047,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray2": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 118.39774322509766,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray3": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 257.8729553222656,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "Power": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1249.325439453125,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "DelaySpreadArray0": {
+          "min": 46.97898483276367,
+          "max": 157.239990234375,
+          "units": "ns",
+          "Scatter": {
+            "min": 46.97898483276367,
+            "max": 157.239990234375
+          },
+          "Hexbin": {
+            "min": 52.06950378417969,
+            "max": 143.16758728027344
+          }
+        },
+        "DelaySpreadArray1": {
+          "min": 82.46949768066406,
+          "max": 177.9815673828125,
+          "units": "ns",
+          "Scatter": {
+            "min": 82.46949768066406,
+            "max": 177.9815673828125
+          },
+          "Hexbin": {
+            "min": 94.2795181274414,
+            "max": 164.72915649414062
+          }
+        },
+        "DelaySpreadArray2": {
+          "min": 72.50548553466797,
+          "max": 174.7533416748047,
+          "units": "ns",
+          "Scatter": {
+            "min": 72.50548553466797,
+            "max": 174.7533416748047
+          },
+          "Hexbin": {
+            "min": 87.67304992675781,
+            "max": 169.14305114746094
+          }
+        },
+        "DelaySpreadArray3": {
+          "min": 63.13304138183594,
+          "max": 165.91175842285156,
+          "units": "ns",
+          "Scatter": {
+            "min": 63.13304138183594,
+            "max": 165.91175842285156
+          },
+          "Hexbin": {
+            "min": 73.3057861328125,
+            "max": 152.69422912597656
+          }
+        }
+      },
+      "renderingVersion": 2,
+      "hexbinWidthMeters": 0.75
+    },
+    "ad03": {
+      "source": {
+        "cacheIdentity": {
+          "version": 1,
+          "specSha256": "ddc951c7d9f65ae22206eccdce556be1a76877e176853e62a4b620892d4fea50",
+          "offsetsSha256": "e53538fa78e1c47251ec761ec941bc815d0a9570af9fed054ba858ffd6565c0e",
+          "calculationSha256": "cf35d69ebd99476df677bc815c60a3fdad0fd0d3a958616b2eaeaad1376b96e7",
+          "channelHelpersSha256": "8909cce0786bdc18c16fa5bcb2315e1a26c8bf5a623c6ca8eaeb712dd7a48992",
+          "rawBytes": 5670237600,
+          "rawMtimeNs": 1793546958586146927
+        },
+        "recording": "ad03",
+        "rawSha256": "9c3ee8f1cd7fcb7c99798d435aaf465bebc15c92277a73406cf8ab11faa190bd",
+        "metricsSha256": "b67964c8d6af433bf92fb54e02b0b11dda6af59985157495bfa660564a319019",
+        "records": 10800,
+        "rejectedNonfinite": 0,
+        "power": "Frequency-mean squared CSI magnitude, summed over 16 antennas per array; uncalibrated linear units.",
+        "delaySpread": "Power-weighted RMS over calibrated CIR taps 495:555 after common delay removal; 20 ns/tap.",
+        "boundsXY": [
+          -70.0,
+          12.0,
+          -35.0,
+          0.0
+        ]
+      },
+      "datasetFile": {
+        "id": 664445,
+        "persistentId": "",
+        "filename": "dichasus-ad03.tfrecords",
+        "contentType": "application/octet-stream",
+        "friendlyType": "Unknown",
+        "filesize": 5670237600,
+        "description": "Robot follows a short pattern of north / south meanders.",
+        "storageIdentifier": "s3-2://fokus-dv-prod-2:1a15a1ace5b-9158e9a63cd2",
+        "rootDataFileId": 293201,
+        "previousDataFileId": 293201,
+        "md5": "47af348022655e1e73c9d7572ddcc297",
+        "checksum": {
+          "type": "MD5",
+          "value": "47af348022655e1e73c9d7572ddcc297"
+        },
+        "tabularData": false,
+        "creationDate": "2026-10-20",
+        "publicationDate": "2026-10-21",
+        "lastUpdateTime": "2026-10-21T05:46:23Z",
+        "fileAccessRequest": true
+      },
+      "scales": {
+        "PowerArray0": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1245.433349609375,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray1": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 145.5753631591797,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray2": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 145.03372192382812,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray3": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 203.70855712890625,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "Power": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1432.9814453125,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "DelaySpreadArray0": {
+          "min": 43.761131286621094,
+          "max": 157.5324249267578,
+          "units": "ns",
+          "Scatter": {
+            "min": 43.761131286621094,
+            "max": 157.5324249267578
+          },
+          "Hexbin": {
+            "min": 56.19910430908203,
+            "max": 142.8837127685547
+          }
+        },
+        "DelaySpreadArray1": {
+          "min": 79.96281433105469,
+          "max": 176.43954467773438,
+          "units": "ns",
+          "Scatter": {
+            "min": 79.96281433105469,
+            "max": 176.43954467773438
+          },
+          "Hexbin": {
+            "min": 94.24369049072266,
+            "max": 169.33419799804688
+          }
+        },
+        "DelaySpreadArray2": {
+          "min": 70.11975860595703,
+          "max": 178.86195373535156,
+          "units": "ns",
+          "Scatter": {
+            "min": 70.11975860595703,
+            "max": 178.86195373535156
+          },
+          "Hexbin": {
+            "min": 85.81568145751953,
+            "max": 166.92474365234375
+          }
+        },
+        "DelaySpreadArray3": {
+          "min": 65.84908294677734,
+          "max": 169.05587768554688,
+          "units": "ns",
+          "Scatter": {
+            "min": 65.84908294677734,
+            "max": 169.05587768554688
+          },
+          "Hexbin": {
+            "min": 76.24055480957031,
+            "max": 154.87742614746094
+          }
+        }
+      },
+      "renderingVersion": 2,
+      "hexbinWidthMeters": 0.75
+    },
+    "ad05": {
+      "source": {
+        "cacheIdentity": {
+          "version": 1,
+          "specSha256": "ddc951c7d9f65ae22206eccdce556be1a76877e176853e62a4b620892d4fea50",
+          "offsetsSha256": "f1f1ae2ef2546426005a0e88345e676982f641f47490da7db540d71a6aab7115",
+          "calculationSha256": "cf35d69ebd99476df677bc815c60a3fdad0fd0d3a958616b2eaeaad1376b96e7",
+          "channelHelpersSha256": "8909cce0786bdc18c16fa5bcb2315e1a26c8bf5a623c6ca8eaeb712dd7a48992",
+          "rawBytes": 6602676672,
+          "rawMtimeNs": 1793547435711500357
+        },
+        "recording": "ad05",
+        "rawSha256": "ea1871ae10f7befe6f77c725410159fd1c0e98fb3871ea1e4616f9731dd2629d",
+        "metricsSha256": "0ff11aadefa18deb186492602af4fa25000f0ded93d16f4bc4e43ae484f628fd",
+        "records": 12576,
+        "rejectedNonfinite": 0,
+        "power": "Frequency-mean squared CSI magnitude, summed over 16 antennas per array; uncalibrated linear units.",
+        "delaySpread": "Power-weighted RMS over calibrated CIR taps 495:555 after common delay removal; 20 ns/tap.",
+        "boundsXY": [
+          -70.0,
+          12.0,
+          -35.0,
+          0.0
+        ]
+      },
+      "datasetFile": {
+        "id": 664447,
+        "persistentId": "",
+        "filename": "dichasus-ad05.tfrecords",
+        "contentType": "application/octet-stream",
+        "friendlyType": "Unknown",
+        "filesize": 6602676672,
+        "description": "Robot follows a long, pseudorandom smooth trajectory in in the measurement area (part 1).",
+        "storageIdentifier": "s3-2://fokus-dv-prod-2:1a15a1e206e-763d5ef6e9ba",
+        "rootDataFileId": 293205,
+        "previousDataFileId": 293205,
+        "md5": "1fefa1a5c50aee9be3b1ecf67341141a",
+        "checksum": {
+          "type": "MD5",
+          "value": "1fefa1a5c50aee9be3b1ecf67341141a"
+        },
+        "tabularData": false,
+        "creationDate": "2026-10-20",
+        "publicationDate": "2026-10-21",
+        "lastUpdateTime": "2026-10-21T05:46:23Z",
+        "fileAccessRequest": true
+      },
+      "scales": {
+        "PowerArray0": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1115.6026611328125,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray1": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 186.8499755859375,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray2": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 90.83028411865234,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray3": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 264.18682861328125,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "Power": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1302.8194580078125,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "DelaySpreadArray0": {
+          "min": 45.944618225097656,
+          "max": 156.9873809814453,
+          "units": "ns",
+          "Scatter": {
+            "min": 45.944618225097656,
+            "max": 156.9873809814453
+          },
+          "Hexbin": {
+            "min": 53.482513427734375,
+            "max": 142.0823211669922
+          }
+        },
+        "DelaySpreadArray1": {
+          "min": 82.02665710449219,
+          "max": 179.71397399902344,
+          "units": "ns",
+          "Scatter": {
+            "min": 82.02665710449219,
+            "max": 179.71397399902344
+          },
+          "Hexbin": {
+            "min": 96.34228515625,
+            "max": 168.74560546875
+          }
+        },
+        "DelaySpreadArray2": {
+          "min": 85.95793914794922,
+          "max": 180.84974670410156,
+          "units": "ns",
+          "Scatter": {
+            "min": 85.95793914794922,
+            "max": 180.84974670410156
+          },
+          "Hexbin": {
+            "min": 96.1685562133789,
+            "max": 159.624755859375
+          }
+        },
+        "DelaySpreadArray3": {
+          "min": 61.736122131347656,
+          "max": 167.77188110351562,
+          "units": "ns",
+          "Scatter": {
+            "min": 61.736122131347656,
+            "max": 167.77188110351562
+          },
+          "Hexbin": {
+            "min": 76.58305358886719,
+            "max": 155.83489990234375
+          }
+        }
+      },
+      "renderingVersion": 2,
+      "hexbinWidthMeters": 0.75
+    },
+    "ad06": {
+      "source": {
+        "cacheIdentity": {
+          "version": 1,
+          "specSha256": "ddc951c7d9f65ae22206eccdce556be1a76877e176853e62a4b620892d4fea50",
+          "offsetsSha256": "c58609aa63c4c772cf3aa5c92afebe0dfad665b7c30ff5f7fbd7a9f19b608f9f",
+          "calculationSha256": "cf35d69ebd99476df677bc815c60a3fdad0fd0d3a958616b2eaeaad1376b96e7",
+          "channelHelpersSha256": "8909cce0786bdc18c16fa5bcb2315e1a26c8bf5a623c6ca8eaeb712dd7a48992",
+          "rawBytes": 6512372888,
+          "rawMtimeNs": 1793547292354415548
+        },
+        "recording": "ad06",
+        "rawSha256": "be75c9ec5c8d69f05546f3995aa0f04c7cc16357fee062e69dbaf1e7a34ad633",
+        "metricsSha256": "3bcdda8b201893c6dae34c1ab5c236df85d1f6ccda5efe0acf46f5653b9a05e3",
+        "records": 12404,
+        "rejectedNonfinite": 0,
+        "power": "Frequency-mean squared CSI magnitude, summed over 16 antennas per array; uncalibrated linear units.",
+        "delaySpread": "Power-weighted RMS over calibrated CIR taps 495:555 after common delay removal; 20 ns/tap.",
+        "boundsXY": [
+          -70.0,
+          12.0,
+          -35.0,
+          0.0
+        ]
+      },
+      "datasetFile": {
+        "id": 664448,
+        "persistentId": "",
+        "filename": "dichasus-ad06.tfrecords",
+        "contentType": "application/octet-stream",
+        "friendlyType": "Unknown",
+        "filesize": 6512372888,
+        "description": "Robot follows a long, pseudorandom smooth trajectory in in the measurement area (part 2).",
+        "storageIdentifier": "s3-2://fokus-dv-prod-2:1a15a1f0f1b-0ef7d78ec46b",
+        "rootDataFileId": 293207,
+        "previousDataFileId": 293207,
+        "md5": "23f450ac9ba82805040f953c586ed05e",
+        "checksum": {
+          "type": "MD5",
+          "value": "23f450ac9ba82805040f953c586ed05e"
+        },
+        "tabularData": false,
+        "creationDate": "2026-10-20",
+        "publicationDate": "2026-10-21",
+        "lastUpdateTime": "2026-10-21T05:46:23Z",
+        "fileAccessRequest": true
+      },
+      "scales": {
+        "PowerArray0": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1036.4681396484375,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray1": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 182.31951904296875,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray2": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 82.95294952392578,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray3": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 266.9872131347656,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "Power": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1240.394287109375,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "DelaySpreadArray0": {
+          "min": 45.394386291503906,
+          "max": 115.64190673828125,
+          "units": "ns",
+          "Scatter": {
+            "min": 45.394386291503906,
+            "max": 115.64190673828125
+          },
+          "Hexbin": {
+            "min": 48.864036560058594,
+            "max": 106.58739471435547
+          }
+        },
+        "DelaySpreadArray1": {
+          "min": 83.78336334228516,
+          "max": 177.29600524902344,
+          "units": "ns",
+          "Scatter": {
+            "min": 83.78336334228516,
+            "max": 177.29600524902344
+          },
+          "Hexbin": {
+            "min": 93.04352569580078,
+            "max": 166.37767028808594
+          }
+        },
+        "DelaySpreadArray2": {
+          "min": 94.00062561035156,
+          "max": 177.3454132080078,
+          "units": "ns",
+          "Scatter": {
+            "min": 94.00062561035156,
+            "max": 177.3454132080078
+          },
+          "Hexbin": {
+            "min": 101.73682403564453,
+            "max": 161.76475524902344
+          }
+        },
+        "DelaySpreadArray3": {
+          "min": 66.83267211914062,
+          "max": 139.7755584716797,
+          "units": "ns",
+          "Scatter": {
+            "min": 66.83267211914062,
+            "max": 139.7755584716797
+          },
+          "Hexbin": {
+            "min": 75.7187271118164,
+            "max": 126.36603546142578
+          }
+        }
+      },
+      "renderingVersion": 2,
+      "hexbinWidthMeters": 0.75
+    },
+    "ad13": {
+      "source": {
+        "cacheIdentity": {
+          "version": 1,
+          "specSha256": "ddc951c7d9f65ae22206eccdce556be1a76877e176853e62a4b620892d4fea50",
+          "offsetsSha256": "c4a390fce6e6cae32d5a8d835ecba2cfe2a5c9a866faf56406da85935ca25da0",
+          "calculationSha256": "cf35d69ebd99476df677bc815c60a3fdad0fd0d3a958616b2eaeaad1376b96e7",
+          "channelHelpersSha256": "8909cce0786bdc18c16fa5bcb2315e1a26c8bf5a623c6ca8eaeb712dd7a48992",
+          "rawBytes": 3130181164,
+          "rawMtimeNs": 1793543948140280246
+        },
+        "recording": "ad13",
+        "rawSha256": "a4306f5ea804d4673c137412591f1ab5b835b2f91b4e4426035d35c4b6b988c2",
+        "metricsSha256": "d24bb5f16a40bce60d2e476acef95d475a96fcd832ca1a8e203ed5bc55d45950",
+        "records": 5962,
+        "rejectedNonfinite": 0,
+        "power": "Frequency-mean squared CSI magnitude, summed over 16 antennas per array; uncalibrated linear units.",
+        "delaySpread": "Power-weighted RMS over calibrated CIR taps 495:555 after common delay removal; 20 ns/tap.",
+        "boundsXY": [
+          -70.0,
+          12.0,
+          -35.0,
+          0.0
+        ]
+      },
+      "datasetFile": {
+        "id": 664455,
+        "persistentId": "",
+        "filename": "dichasus-ad13.tfrecords",
+        "contentType": "application/octet-stream",
+        "friendlyType": "Unknown",
+        "filesize": 3130181164,
+        "description": "Robot follows a figure 8-trajectory in the measurement area.",
+        "storageIdentifier": "s3-2://fokus-dv-prod-2:1a15a2d9e48-a265ec2ef3fe",
+        "rootDataFileId": 293221,
+        "previousDataFileId": 293221,
+        "md5": "f5d56709c6c2027cee46190ea23fd11b",
+        "checksum": {
+          "type": "MD5",
+          "value": "f5d56709c6c2027cee46190ea23fd11b"
+        },
+        "tabularData": false,
+        "creationDate": "2026-10-20",
+        "publicationDate": "2026-10-21",
+        "lastUpdateTime": "2026-10-21T05:46:23Z",
+        "fileAccessRequest": true
+      },
+      "scales": {
+        "PowerArray0": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1333.5982666015625,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray1": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 261.8135681152344,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray2": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 145.32318115234375,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray3": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 539.16796875,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "Power": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1736.4471435546875,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "DelaySpreadArray0": {
+          "min": 53.70637512207031,
+          "max": 111.00396728515625,
+          "units": "ns",
+          "Scatter": {
+            "min": 53.70637512207031,
+            "max": 111.00396728515625
+          },
+          "Hexbin": {
+            "min": 59.4964485168457,
+            "max": 100.88629150390625
+          }
+        },
+        "DelaySpreadArray1": {
+          "min": 90.10926818847656,
+          "max": 164.0887908935547,
+          "units": "ns",
+          "Scatter": {
+            "min": 90.10926818847656,
+            "max": 164.0887908935547
+          },
+          "Hexbin": {
+            "min": 98.62256622314453,
+            "max": 153.0787353515625
+          }
+        },
+        "DelaySpreadArray2": {
+          "min": 102.389404296875,
+          "max": 169.3529510498047,
+          "units": "ns",
+          "Scatter": {
+            "min": 102.389404296875,
+            "max": 169.3529510498047
+          },
+          "Hexbin": {
+            "min": 109.79293060302734,
+            "max": 162.65830993652344
+          }
+        },
+        "DelaySpreadArray3": {
+          "min": 70.32408142089844,
+          "max": 146.9423370361328,
+          "units": "ns",
+          "Scatter": {
+            "min": 70.32408142089844,
+            "max": 146.9423370361328
+          },
+          "Hexbin": {
+            "min": 77.61956024169922,
+            "max": 135.4953155517578
+          }
+        }
+      },
+      "renderingVersion": 2,
+      "hexbinWidthMeters": 0.75
+    },
+    "ad14": {
+      "source": {
+        "cacheIdentity": {
+          "version": 1,
+          "specSha256": "ddc951c7d9f65ae22206eccdce556be1a76877e176853e62a4b620892d4fea50",
+          "offsetsSha256": "5a5742ec1910de26e310e4d795da7bb42409bdd8be3e40d40bcc39c85cf1029c",
+          "calculationSha256": "cf35d69ebd99476df677bc815c60a3fdad0fd0d3a958616b2eaeaad1376b96e7",
+          "channelHelpersSha256": "8909cce0786bdc18c16fa5bcb2315e1a26c8bf5a623c6ca8eaeb712dd7a48992",
+          "rawBytes": 2241843940,
+          "rawMtimeNs": 1793542551176935005
+        },
+        "recording": "ad14",
+        "rawSha256": "9bb924a317320dca82b62edb4878e6a32dbb2b8309bac7acbab742bcc3069791",
+        "metricsSha256": "23ac2feee7886830f391f3d6d480c454f8449a3151d13c1432647b1482a38033",
+        "records": 4270,
+        "rejectedNonfinite": 0,
+        "power": "Frequency-mean squared CSI magnitude, summed over 16 antennas per array; uncalibrated linear units.",
+        "delaySpread": "Power-weighted RMS over calibrated CIR taps 495:555 after common delay removal; 20 ns/tap.",
+        "boundsXY": [
+          -70.0,
+          12.0,
+          -35.0,
+          0.0
+        ]
+      },
+      "datasetFile": {
+        "id": 664456,
+        "persistentId": "",
+        "filename": "dichasus-ad14.tfrecords",
+        "contentType": "application/octet-stream",
+        "friendlyType": "Unknown",
+        "filesize": 2241843940,
+        "description": "Robot follows a circular trajectory in the measurement area.",
+        "storageIdentifier": "s3-2://fokus-dv-prod-2:1a15a2e2403-ca6be1743c6b",
+        "rootDataFileId": 293223,
+        "previousDataFileId": 293223,
+        "md5": "8f6bfde23f4d7221a9867e9becdc1c21",
+        "checksum": {
+          "type": "MD5",
+          "value": "8f6bfde23f4d7221a9867e9becdc1c21"
+        },
+        "tabularData": false,
+        "creationDate": "2026-10-20",
+        "publicationDate": "2026-10-21",
+        "lastUpdateTime": "2026-10-21T05:46:23Z",
+        "fileAccessRequest": true
+      },
+      "scales": {
+        "PowerArray0": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 2213.43798828125,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray1": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 276.4896240234375,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray2": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 139.04022216796875,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray3": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 386.6598205566406,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "Power": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 2490.063232421875,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "DelaySpreadArray0": {
+          "min": 45.855186462402344,
+          "max": 95.04389190673828,
+          "units": "ns",
+          "Scatter": {
+            "min": 45.855186462402344,
+            "max": 95.04389190673828
+          },
+          "Hexbin": {
+            "min": 51.42074203491211,
+            "max": 89.91087341308594
+          }
+        },
+        "DelaySpreadArray1": {
+          "min": 86.26054382324219,
+          "max": 157.5052947998047,
+          "units": "ns",
+          "Scatter": {
+            "min": 86.26054382324219,
+            "max": 157.5052947998047
+          },
+          "Hexbin": {
+            "min": 93.55892944335938,
+            "max": 144.43699645996094
+          }
+        },
+        "DelaySpreadArray2": {
+          "min": 94.13713073730469,
+          "max": 148.4561767578125,
+          "units": "ns",
+          "Scatter": {
+            "min": 94.13713073730469,
+            "max": 148.4561767578125
+          },
+          "Hexbin": {
+            "min": 104.36475372314453,
+            "max": 144.509033203125
+          }
+        },
+        "DelaySpreadArray3": {
+          "min": 78.74369812011719,
+          "max": 135.96722412109375,
+          "units": "ns",
+          "Scatter": {
+            "min": 78.74369812011719,
+            "max": 135.96722412109375
+          },
+          "Hexbin": {
+            "min": 84.38622283935547,
+            "max": 120.90274810791016
+          }
+        }
+      },
+      "renderingVersion": 2,
+      "hexbinWidthMeters": 0.75
+    },
+    "ad15": {
+      "source": {
+        "cacheIdentity": {
+          "version": 1,
+          "specSha256": "ddc951c7d9f65ae22206eccdce556be1a76877e176853e62a4b620892d4fea50",
+          "offsetsSha256": "31f81ed39c232e1f30e619a8cbcbbaeac24d7e661435f0a4713db7909ac5d3ea",
+          "calculationSha256": "cf35d69ebd99476df677bc815c60a3fdad0fd0d3a958616b2eaeaad1376b96e7",
+          "channelHelpersSha256": "8909cce0786bdc18c16fa5bcb2315e1a26c8bf5a623c6ca8eaeb712dd7a48992",
+          "rawBytes": 2078562098,
+          "rawMtimeNs": 1793542221992632893
+        },
+        "recording": "ad15",
+        "rawSha256": "6695fd1706837c0b4b1129b2d19b16cf0b99db625fe29a4142a2a56420bf8e01",
+        "metricsSha256": "9072d9a5354b103a93c3f77aac0e5ffdd3ea6abb652ae2451745d4c2a71040e4",
+        "records": 3959,
+        "rejectedNonfinite": 0,
+        "power": "Frequency-mean squared CSI magnitude, summed over 16 antennas per array; uncalibrated linear units.",
+        "delaySpread": "Power-weighted RMS over calibrated CIR taps 495:555 after common delay removal; 20 ns/tap.",
+        "boundsXY": [
+          -70.0,
+          12.0,
+          -35.0,
+          0.0
+        ]
+      },
+      "datasetFile": {
+        "id": 664457,
+        "persistentId": "",
+        "filename": "dichasus-ad15.tfrecords",
+        "contentType": "application/octet-stream",
+        "friendlyType": "Unknown",
+        "filesize": 2078562098,
+        "description": "Robot follows a trajectory in the shape of the letters INUE. Person walking close to the measurement area. Letters are a bit wobbly.",
+        "storageIdentifier": "s3-2://fokus-dv-prod-2:1a15a2e8a72-8ac138d54004",
+        "rootDataFileId": 293225,
+        "previousDataFileId": 293225,
+        "md5": "6fe8bd03dd6fca11523f71d658128965",
+        "checksum": {
+          "type": "MD5",
+          "value": "6fe8bd03dd6fca11523f71d658128965"
+        },
+        "tabularData": false,
+        "creationDate": "2026-10-20",
+        "publicationDate": "2026-10-21",
+        "lastUpdateTime": "2026-10-21T05:46:23Z",
+        "fileAccessRequest": true
+      },
+      "scales": {
+        "PowerArray0": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1590.9478759765625,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray1": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 310.5120544433594,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray2": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 151.0205535888672,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray3": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 473.5447998046875,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "Power": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 2063.814697265625,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "DelaySpreadArray0": {
+          "min": 52.144737243652344,
+          "max": 86.05244445800781,
+          "units": "ns",
+          "Scatter": {
+            "min": 52.144737243652344,
+            "max": 86.05244445800781
+          },
+          "Hexbin": {
+            "min": 54.35184097290039,
+            "max": 80.40977478027344
+          }
+        },
+        "DelaySpreadArray1": {
+          "min": 82.49152374267578,
+          "max": 154.45460510253906,
+          "units": "ns",
+          "Scatter": {
+            "min": 82.49152374267578,
+            "max": 154.45460510253906
+          },
+          "Hexbin": {
+            "min": 90.2294692993164,
+            "max": 142.4256591796875
+          }
+        },
+        "DelaySpreadArray2": {
+          "min": 92.43590545654297,
+          "max": 157.86659240722656,
+          "units": "ns",
+          "Scatter": {
+            "min": 92.43590545654297,
+            "max": 157.86659240722656
+          },
+          "Hexbin": {
+            "min": 98.81847381591797,
+            "max": 149.52316284179688
+          }
+        },
+        "DelaySpreadArray3": {
+          "min": 75.66539001464844,
+          "max": 133.1776885986328,
+          "units": "ns",
+          "Scatter": {
+            "min": 75.66539001464844,
+            "max": 133.1776885986328
+          },
+          "Hexbin": {
+            "min": 79.15177154541016,
+            "max": 123.67767333984375
+          }
+        }
+      },
+      "renderingVersion": 2,
+      "hexbinWidthMeters": 0.75
+    },
+    "ad16": {
+      "source": {
+        "cacheIdentity": {
+          "version": 1,
+          "specSha256": "ddc951c7d9f65ae22206eccdce556be1a76877e176853e62a4b620892d4fea50",
+          "offsetsSha256": "f9089febf4ad4cef1e2b106b5b734d2419aadeb296591d26918282dda1bb1699",
+          "calculationSha256": "cf35d69ebd99476df677bc815c60a3fdad0fd0d3a958616b2eaeaad1376b96e7",
+          "channelHelpersSha256": "8909cce0786bdc18c16fa5bcb2315e1a26c8bf5a623c6ca8eaeb712dd7a48992",
+          "rawBytes": 2043910646,
+          "rawMtimeNs": 1793541544248747282
+        },
+        "recording": "ad16",
+        "rawSha256": "d62172fe2e34ac7ae3473ddf1e10c87c68d6e6a3a8053853afbcd9f6bc54be5b",
+        "metricsSha256": "9c1c69ea1bb9a7a6a8d622027eb21224696ad9eceb03d87215ad0d033dd709ee",
+        "records": 3893,
+        "rejectedNonfinite": 0,
+        "power": "Frequency-mean squared CSI magnitude, summed over 16 antennas per array; uncalibrated linear units.",
+        "delaySpread": "Power-weighted RMS over calibrated CIR taps 495:555 after common delay removal; 20 ns/tap.",
+        "boundsXY": [
+          -70.0,
+          12.0,
+          -35.0,
+          0.0
+        ]
+      },
+      "datasetFile": {
+        "id": 664458,
+        "persistentId": "",
+        "filename": "dichasus-ad16.tfrecords",
+        "contentType": "application/octet-stream",
+        "friendlyType": "Unknown",
+        "filesize": 2043910646,
+        "description": "Robot follows a trajectory in the shape of the letters INUE.",
+        "storageIdentifier": "s3-2://fokus-dv-prod-2:1a15a2eeaf4-77c667429992",
+        "rootDataFileId": 293227,
+        "previousDataFileId": 293227,
+        "md5": "0decd8842e75956160921c025583ec5d",
+        "checksum": {
+          "type": "MD5",
+          "value": "0decd8842e75956160921c025583ec5d"
+        },
+        "tabularData": false,
+        "creationDate": "2026-10-20",
+        "publicationDate": "2026-10-21",
+        "lastUpdateTime": "2026-10-21T05:46:23Z",
+        "fileAccessRequest": true
+      },
+      "scales": {
+        "PowerArray0": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 2355.314453125,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray1": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 182.44581604003906,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray2": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 137.50994873046875,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray3": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 388.8014221191406,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "Power": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 2751.77001953125,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "DelaySpreadArray0": {
+          "min": 43.18054962158203,
+          "max": 87.27043914794922,
+          "units": "ns",
+          "Scatter": {
+            "min": 43.18054962158203,
+            "max": 87.27043914794922
+          },
+          "Hexbin": {
+            "min": 48.528934478759766,
+            "max": 82.89967346191406
+          }
+        },
+        "DelaySpreadArray1": {
+          "min": 103.76837921142578,
+          "max": 152.69273376464844,
+          "units": "ns",
+          "Scatter": {
+            "min": 103.76837921142578,
+            "max": 152.69273376464844
+          },
+          "Hexbin": {
+            "min": 109.96682739257812,
+            "max": 144.3401336669922
+          }
+        },
+        "DelaySpreadArray2": {
+          "min": 96.76461791992188,
+          "max": 140.84347534179688,
+          "units": "ns",
+          "Scatter": {
+            "min": 96.76461791992188,
+            "max": 140.84347534179688
+          },
+          "Hexbin": {
+            "min": 104.04291534423828,
+            "max": 131.67123413085938
+          }
+        },
+        "DelaySpreadArray3": {
+          "min": 72.79916381835938,
+          "max": 135.97137451171875,
+          "units": "ns",
+          "Scatter": {
+            "min": 72.79916381835938,
+            "max": 135.97137451171875
+          },
+          "Hexbin": {
+            "min": 90.01554107666016,
+            "max": 123.89158630371094
+          }
+        }
+      },
+      "renderingVersion": 2,
+      "hexbinWidthMeters": 0.75
+    },
+    "ad17": {
+      "source": {
+        "cacheIdentity": {
+          "version": 1,
+          "specSha256": "ddc951c7d9f65ae22206eccdce556be1a76877e176853e62a4b620892d4fea50",
+          "offsetsSha256": "51803f5f4298e9d5733263c3f95949cd88d3baa1cf54a342ada0a53329cf5a25",
+          "calculationSha256": "cf35d69ebd99476df677bc815c60a3fdad0fd0d3a958616b2eaeaad1376b96e7",
+          "channelHelpersSha256": "8909cce0786bdc18c16fa5bcb2315e1a26c8bf5a623c6ca8eaeb712dd7a48992",
+          "rawBytes": 1854902726,
+          "rawMtimeNs": 1793539136374374308
+        },
+        "recording": "ad17",
+        "rawSha256": "5bb53ed16596d7c186c397a188fb48cf47f368d9a408d7ceb7d42e4998215ab0",
+        "records": 3533,
+        "rejectedNonfinite": 0,
+        "power": "Frequency-mean squared CSI magnitude, summed over 16 antennas per array; uncalibrated linear units.",
+        "delaySpread": "Power-weighted RMS over calibrated CIR taps 495:555 after common delay removal; 20 ns/tap.",
+        "boundsXY": [
+          -70.0,
+          12.0,
+          -35.0,
+          0.0
+        ]
+      },
+      "datasetFile": {
+        "id": 664459,
+        "persistentId": "",
+        "filename": "dichasus-ad17.tfrecords",
+        "contentType": "application/octet-stream",
+        "friendlyType": "Unknown",
+        "filesize": 1854902726,
+        "description": "Robot trajectory is in the shape of a large (slightly wobbly) circle.",
+        "storageIdentifier": "s3-2://fokus-dv-prod-2:1a15a2f49b1-ca9ee0e4be1f",
+        "rootDataFileId": 293229,
+        "previousDataFileId": 293229,
+        "md5": "2a66a64ef8d7a9def3c9a5da934420e3",
+        "checksum": {
+          "type": "MD5",
+          "value": "2a66a64ef8d7a9def3c9a5da934420e3"
+        },
+        "tabularData": false,
+        "creationDate": "2026-10-20",
+        "publicationDate": "2026-10-21",
+        "lastUpdateTime": "2026-10-21T05:46:23Z",
+        "fileAccessRequest": true
+      },
+      "scales": {
+        "PowerArray0": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1634.7685546875,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray1": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 350.6708984375,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray2": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 160.1536407470703,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray3": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 545.09765625,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "Power": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1995.1966552734375,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "DelaySpreadArray0": {
+          "min": 49.69557571411133,
+          "max": 102.42811584472656,
+          "units": "ns",
+          "Scatter": {
+            "min": 49.69557571411133,
+            "max": 102.42811584472656
+          },
+          "Hexbin": {
+            "min": 52.77227020263672,
+            "max": 95.2001724243164
+          }
+        },
+        "DelaySpreadArray1": {
+          "min": 82.91085815429688,
+          "max": 175.21640014648438,
+          "units": "ns",
+          "Scatter": {
+            "min": 82.91085815429688,
+            "max": 175.21640014648438
+          },
+          "Hexbin": {
+            "min": 94.49161529541016,
+            "max": 164.44688415527344
+          }
+        },
+        "DelaySpreadArray2": {
+          "min": 87.96077728271484,
+          "max": 169.9934539794922,
+          "units": "ns",
+          "Scatter": {
+            "min": 87.96077728271484,
+            "max": 169.9934539794922
+          },
+          "Hexbin": {
+            "min": 99.17527770996094,
+            "max": 163.06085205078125
+          }
+        },
+        "DelaySpreadArray3": {
+          "min": 67.49609375,
+          "max": 145.70213317871094,
+          "units": "ns",
+          "Scatter": {
+            "min": 67.49609375,
+            "max": 145.70213317871094
+          },
+          "Hexbin": {
+            "min": 75.54365539550781,
+            "max": 132.13192749023438
+          }
+        }
+      },
+      "renderingVersion": 2,
+      "hexbinWidthMeters": 0.75
+    },
+    "ad18": {
+      "source": {
+        "cacheIdentity": {
+          "version": 1,
+          "rawBytes": 14602961908,
+          "rawMtimeNs": 1793482882483170861,
+          "specSha256": "ddc951c7d9f65ae22206eccdce556be1a76877e176853e62a4b620892d4fea50",
+          "offsetsSha256": "d8f350e2637559fddc3bdac5036348a8dbd077c469675676138c96845747e02c",
+          "calculationSha256": "cf35d69ebd99476df677bc815c60a3fdad0fd0d3a958616b2eaeaad1376b96e7",
+          "channelHelpersSha256": "8909cce0786bdc18c16fa5bcb2315e1a26c8bf5a623c6ca8eaeb712dd7a48992"
+        },
+        "recording": "ad18",
+        "rawSha256": "e33dbb876347f5ff8752eb562552645c7d4efc843ee7a3c906ef46dce8ecab5f",
+        "records": 27814,
+        "rejectedNonfinite": 0,
+        "power": "Frequency-mean squared CSI magnitude, summed over 16 antennas per array; uncalibrated linear units.",
+        "delaySpread": "Power-weighted RMS over calibrated CIR taps 495:555 after common delay removal; 20 ns/tap.",
+        "boundsXY": [
+          -70.0,
+          12.0,
+          -35.0,
+          0.0
+        ]
+      },
+      "datasetFile": {
+        "id": 664460,
+        "persistentId": "",
+        "filename": "dichasus-ad18.tfrecords",
+        "contentType": "application/octet-stream",
+        "friendlyType": "Unknown",
+        "filesize": 14602961908,
+        "description": "Robot follows a pseudorandom trajectory in the entire measurement area, part 1.",
+        "storageIdentifier": "s3-2://fokus-dv-prod-2:1a15a300f84-083117aae512",
+        "rootDataFileId": 293231,
+        "previousDataFileId": 293231,
+        "md5": "cd3454b9d1fefca4a93960c67b211aad",
+        "checksum": {
+          "type": "MD5",
+          "value": "cd3454b9d1fefca4a93960c67b211aad"
+        },
+        "tabularData": false,
+        "creationDate": "2026-10-20",
+        "publicationDate": "2026-10-21",
+        "lastUpdateTime": "2026-10-21T05:46:23Z",
+        "fileAccessRequest": true
+      },
+      "scales": {
+        "PowerArray0": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1641.6834716796875,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray1": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 403.62384033203125,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray2": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 328.1702575683594,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray3": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 688.9616088867188,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "Power": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 2303.74609375,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "DelaySpreadArray0": {
+          "min": 44.39617156982422,
+          "max": 159.64596557617188,
+          "units": "ns",
+          "Scatter": {
+            "min": 44.39617156982422,
+            "max": 159.64596557617188
+          },
+          "Hexbin": {
+            "min": 56.433719635009766,
+            "max": 148.47164916992188
+          }
+        },
+        "DelaySpreadArray1": {
+          "min": 72.31075286865234,
+          "max": 178.58377075195312,
+          "units": "ns",
+          "Scatter": {
+            "min": 72.31075286865234,
+            "max": 178.58377075195312
+          },
+          "Hexbin": {
+            "min": 88.88050079345703,
+            "max": 165.95359802246094
+          }
+        },
+        "DelaySpreadArray2": {
+          "min": 68.45932006835938,
+          "max": 176.44866943359375,
+          "units": "ns",
+          "Scatter": {
+            "min": 68.45932006835938,
+            "max": 176.44866943359375
+          },
+          "Hexbin": {
+            "min": 75.30638122558594,
+            "max": 166.27944946289062
+          }
+        },
+        "DelaySpreadArray3": {
+          "min": 58.74122619628906,
+          "max": 168.42291259765625,
+          "units": "ns",
+          "Scatter": {
+            "min": 58.74122619628906,
+            "max": 168.42291259765625
+          },
+          "Hexbin": {
+            "min": 69.32755279541016,
+            "max": 154.9863739013672
+          }
+        }
+      },
+      "renderingVersion": 2,
+      "hexbinWidthMeters": 0.75
+    },
+    "ad19": {
+      "source": {
+        "cacheIdentity": {
+          "version": 1,
+          "rawBytes": 7702597762,
+          "rawMtimeNs": 1793484303819778571,
+          "specSha256": "ddc951c7d9f65ae22206eccdce556be1a76877e176853e62a4b620892d4fea50",
+          "offsetsSha256": "fee71a1ad18ea8f2580bd4e1d4d418590cd8a09eba023cca40b11f47e3d54f2e",
+          "calculationSha256": "cf35d69ebd99476df677bc815c60a3fdad0fd0d3a958616b2eaeaad1376b96e7",
+          "channelHelpersSha256": "8909cce0786bdc18c16fa5bcb2315e1a26c8bf5a623c6ca8eaeb712dd7a48992"
+        },
+        "recording": "ad19",
+        "rawSha256": "01b54314a6a2132c41eb38ae08811544771b7e2a5313812739a3344a1ae4f2c3",
+        "records": 14671,
+        "rejectedNonfinite": 0,
+        "power": "Frequency-mean squared CSI magnitude, summed over 16 antennas per array; uncalibrated linear units.",
+        "delaySpread": "Power-weighted RMS over calibrated CIR taps 495:555 after common delay removal; 20 ns/tap.",
+        "boundsXY": [
+          -70.0,
+          12.0,
+          -35.0,
+          0.0
+        ]
+      },
+      "datasetFile": {
+        "id": 664461,
+        "persistentId": "",
+        "filename": "dichasus-ad19.tfrecords",
+        "contentType": "application/octet-stream",
+        "friendlyType": "Unknown",
+        "filesize": 7702597762,
+        "description": "Robot follows a pseudorandom trajectory in the entire measurement area, part 2.",
+        "storageIdentifier": "s3-2://fokus-dv-prod-2:1a15a325bc9-292fe7ee0a3c",
+        "rootDataFileId": 293233,
+        "previousDataFileId": 293233,
+        "md5": "1051e83eb6b0d66d0fb19e9344af9ff1",
+        "checksum": {
+          "type": "MD5",
+          "value": "1051e83eb6b0d66d0fb19e9344af9ff1"
+        },
+        "tabularData": false,
+        "creationDate": "2026-10-20",
+        "publicationDate": "2026-10-21",
+        "lastUpdateTime": "2026-10-21T05:46:23Z",
+        "fileAccessRequest": true
+      },
+      "scales": {
+        "PowerArray0": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1451.5941162109375,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray1": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 278.5566711425781,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray2": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 187.72727966308594,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray3": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 551.2142944335938,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "Power": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1961.9822998046875,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "DelaySpreadArray0": {
+          "min": 50.00794219970703,
+          "max": 157.06185913085938,
+          "units": "ns",
+          "Scatter": {
+            "min": 50.00794219970703,
+            "max": 157.06185913085938
+          },
+          "Hexbin": {
+            "min": 55.36623764038086,
+            "max": 143.2142333984375
+          }
+        },
+        "DelaySpreadArray1": {
+          "min": 85.58467102050781,
+          "max": 176.08978271484375,
+          "units": "ns",
+          "Scatter": {
+            "min": 85.58467102050781,
+            "max": 176.08978271484375
+          },
+          "Hexbin": {
+            "min": 95.15260314941406,
+            "max": 162.21755981445312
+          }
+        },
+        "DelaySpreadArray2": {
+          "min": 84.281005859375,
+          "max": 179.7349090576172,
+          "units": "ns",
+          "Scatter": {
+            "min": 84.281005859375,
+            "max": 179.7349090576172
+          },
+          "Hexbin": {
+            "min": 93.02582550048828,
+            "max": 163.19215393066406
+          }
+        },
+        "DelaySpreadArray3": {
+          "min": 63.441734313964844,
+          "max": 166.99826049804688,
+          "units": "ns",
+          "Scatter": {
+            "min": 63.441734313964844,
+            "max": 166.99826049804688
+          },
+          "Hexbin": {
+            "min": 72.58404541015625,
+            "max": 148.7005615234375
+          }
+        }
+      },
+      "renderingVersion": 2,
+      "hexbinWidthMeters": 0.75
+    },
+    "ad21": {
+      "source": {
+        "cacheIdentity": {
+          "version": 1,
+          "specSha256": "ddc951c7d9f65ae22206eccdce556be1a76877e176853e62a4b620892d4fea50",
+          "offsetsSha256": "e0294cb3c64acd8ec29c864307a30e13031fefcb07861f64917d6b6b15412011",
+          "calculationSha256": "cf35d69ebd99476df677bc815c60a3fdad0fd0d3a958616b2eaeaad1376b96e7",
+          "channelHelpersSha256": "8909cce0786bdc18c16fa5bcb2315e1a26c8bf5a623c6ca8eaeb712dd7a48992",
+          "rawBytes": 1553015076,
+          "rawMtimeNs": 1793539117057302628
+        },
+        "recording": "ad21",
+        "rawSha256": "61c25249c8cadce3c12670e01e086e94a2b491a3a9531d6aa21c11745eca659b",
+        "records": 2958,
+        "rejectedNonfinite": 0,
+        "power": "Frequency-mean squared CSI magnitude, summed over 16 antennas per array; uncalibrated linear units.",
+        "delaySpread": "Power-weighted RMS over calibrated CIR taps 495:555 after common delay removal; 20 ns/tap.",
+        "boundsXY": [
+          -70.0,
+          12.0,
+          -35.0,
+          0.0
+        ]
+      },
+      "datasetFile": {
+        "id": 664462,
+        "persistentId": "",
+        "filename": "dichasus-ad21.tfrecords",
+        "contentType": "application/octet-stream",
+        "friendlyType": "Unknown",
+        "filesize": 1553015076,
+        "description": "Robot follows a figure 8-trajectory in the measurement area, the LoS to the antenna on top of the container is obstructed for parts of the trajectory.",
+        "storageIdentifier": "s3-2://fokus-dv-prod-2:1a15a3386c3-a81cf6f52204",
+        "rootDataFileId": 293235,
+        "previousDataFileId": 293235,
+        "md5": "c89c49a4a01e8b344b3e33920ee5b04f",
+        "checksum": {
+          "type": "MD5",
+          "value": "c89c49a4a01e8b344b3e33920ee5b04f"
+        },
+        "tabularData": false,
+        "creationDate": "2026-10-20",
+        "publicationDate": "2026-10-21",
+        "lastUpdateTime": "2026-10-21T05:46:23Z",
+        "fileAccessRequest": true
+      },
+      "scales": {
+        "PowerArray0": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1329.91943359375,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray1": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 225.2350616455078,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray2": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 150.74415588378906,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray3": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 536.438720703125,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "Power": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1781.58642578125,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "DelaySpreadArray0": {
+          "min": 52.573055267333984,
+          "max": 95.38182067871094,
+          "units": "ns",
+          "Scatter": {
+            "min": 52.573055267333984,
+            "max": 95.38182067871094
+          },
+          "Hexbin": {
+            "min": 57.795021057128906,
+            "max": 87.65198516845703
+          }
+        },
+        "DelaySpreadArray1": {
+          "min": 100.6927490234375,
+          "max": 164.0070343017578,
+          "units": "ns",
+          "Scatter": {
+            "min": 100.6927490234375,
+            "max": 164.0070343017578
+          },
+          "Hexbin": {
+            "min": 110.73457336425781,
+            "max": 155.7465362548828
+          }
+        },
+        "DelaySpreadArray2": {
+          "min": 97.2779769897461,
+          "max": 154.47499084472656,
+          "units": "ns",
+          "Scatter": {
+            "min": 97.2779769897461,
+            "max": 154.47499084472656
+          },
+          "Hexbin": {
+            "min": 107.74718475341797,
+            "max": 146.11190795898438
+          }
+        },
+        "DelaySpreadArray3": {
+          "min": 68.19207000732422,
+          "max": 123.78301239013672,
+          "units": "ns",
+          "Scatter": {
+            "min": 68.19207000732422,
+            "max": 123.78301239013672
+          },
+          "Hexbin": {
+            "min": 76.21406555175781,
+            "max": 114.363525390625
+          }
+        }
+      },
+      "renderingVersion": 2,
+      "hexbinWidthMeters": 0.75
+    },
+    "ad23": {
+      "source": {
+        "cacheIdentity": {
+          "version": 1,
+          "specSha256": "ddc951c7d9f65ae22206eccdce556be1a76877e176853e62a4b620892d4fea50",
+          "offsetsSha256": "906db7e232c67602bd6f4fcfbb136f66aca4e3b6e6b51a1d942499e862f72126",
+          "calculationSha256": "cf35d69ebd99476df677bc815c60a3fdad0fd0d3a958616b2eaeaad1376b96e7",
+          "channelHelpersSha256": "8909cce0786bdc18c16fa5bcb2315e1a26c8bf5a623c6ca8eaeb712dd7a48992",
+          "rawBytes": 1702121324,
+          "rawMtimeNs": 1793539199404606771
+        },
+        "recording": "ad23",
+        "rawSha256": "f3905e0100d4cd9667a446ce8aa445d015c58fa83527f23e6973cb1312cbc06e",
+        "records": 3242,
+        "rejectedNonfinite": 0,
+        "power": "Frequency-mean squared CSI magnitude, summed over 16 antennas per array; uncalibrated linear units.",
+        "delaySpread": "Power-weighted RMS over calibrated CIR taps 495:555 after common delay removal; 20 ns/tap.",
+        "boundsXY": [
+          -70.0,
+          12.0,
+          -35.0,
+          0.0
+        ]
+      },
+      "datasetFile": {
+        "id": 664464,
+        "persistentId": "",
+        "filename": "dichasus-ad23.tfrecords",
+        "contentType": "application/octet-stream",
+        "friendlyType": "Unknown",
+        "filesize": 1702121324,
+        "description": "Robot follows a pseudorandom trajectory, part 2.",
+        "storageIdentifier": "s3-2://fokus-dv-prod-2:1a15a363c3b-bc4f3d0e36ca",
+        "rootDataFileId": 293239,
+        "previousDataFileId": 293239,
+        "md5": "584cd5c38cbc8271f79f69e84f197372",
+        "checksum": {
+          "type": "MD5",
+          "value": "584cd5c38cbc8271f79f69e84f197372"
+        },
+        "tabularData": false,
+        "creationDate": "2026-10-20",
+        "publicationDate": "2026-10-21",
+        "lastUpdateTime": "2026-10-21T05:46:23Z",
+        "fileAccessRequest": true
+      },
+      "scales": {
+        "PowerArray0": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1469.2406005859375,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray1": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 211.91819763183594,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray2": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 161.8698272705078,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray3": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 399.8584899902344,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "Power": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1806.57080078125,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "DelaySpreadArray0": {
+          "min": 54.536033630371094,
+          "max": 117.72108459472656,
+          "units": "ns",
+          "Scatter": {
+            "min": 54.536033630371094,
+            "max": 117.72108459472656
+          },
+          "Hexbin": {
+            "min": 56.805213928222656,
+            "max": 105.56512451171875
+          }
+        },
+        "DelaySpreadArray1": {
+          "min": 96.70721435546875,
+          "max": 175.54837036132812,
+          "units": "ns",
+          "Scatter": {
+            "min": 96.70721435546875,
+            "max": 175.54837036132812
+          },
+          "Hexbin": {
+            "min": 105.74931335449219,
+            "max": 161.6090850830078
+          }
+        },
+        "DelaySpreadArray2": {
+          "min": 90.60191345214844,
+          "max": 173.0792694091797,
+          "units": "ns",
+          "Scatter": {
+            "min": 90.60191345214844,
+            "max": 173.0792694091797
+          },
+          "Hexbin": {
+            "min": 98.70787048339844,
+            "max": 160.3026123046875
+          }
+        },
+        "DelaySpreadArray3": {
+          "min": 64.87309265136719,
+          "max": 139.53440856933594,
+          "units": "ns",
+          "Scatter": {
+            "min": 64.87309265136719,
+            "max": 139.53440856933594
+          },
+          "Hexbin": {
+            "min": 78.8082046508789,
+            "max": 126.62515258789062
+          }
+        }
+      },
+      "renderingVersion": 2,
+      "hexbinWidthMeters": 0.75
+    },
+    "ad24": {
+      "source": {
+        "cacheIdentity": {
+          "version": 1,
+          "specSha256": "ddc951c7d9f65ae22206eccdce556be1a76877e176853e62a4b620892d4fea50",
+          "offsetsSha256": "049b63903699cf2897ecabe56e4282d73143ef33077955a0e634e668b9025bec",
+          "calculationSha256": "cf35d69ebd99476df677bc815c60a3fdad0fd0d3a958616b2eaeaad1376b96e7",
+          "channelHelpersSha256": "8909cce0786bdc18c16fa5bcb2315e1a26c8bf5a623c6ca8eaeb712dd7a48992",
+          "rawBytes": 5226068988,
+          "rawMtimeNs": 1793546194730292730
+        },
+        "recording": "ad24",
+        "rawSha256": "9bb42a2f50a2ccacb4b4c8ff10f281e758089205450a02a517efc4d4b5929986",
+        "metricsSha256": "9af6116f62fbadc860ab9dbf17038a1e8fdac9710fed16c38076038cae09fda5",
+        "records": 9954,
+        "rejectedNonfinite": 0,
+        "power": "Frequency-mean squared CSI magnitude, summed over 16 antennas per array; uncalibrated linear units.",
+        "delaySpread": "Power-weighted RMS over calibrated CIR taps 495:555 after common delay removal; 20 ns/tap.",
+        "boundsXY": [
+          -70.0,
+          12.0,
+          -35.0,
+          0.0
+        ]
+      },
+      "datasetFile": {
+        "id": 664465,
+        "persistentId": "",
+        "filename": "dichasus-ad24.tfrecords",
+        "contentType": "application/octet-stream",
+        "friendlyType": "Unknown",
+        "filesize": 5226068988,
+        "description": "Robot follows a meandering trajectory behind the metallic wall. LoS partially obstructed for antenna on top of container.",
+        "storageIdentifier": "s3-2://fokus-dv-prod-2:1a15a36a7d8-407253372f3a",
+        "rootDataFileId": 293241,
+        "previousDataFileId": 293241,
+        "md5": "dff9ce73509f72b0a5252482f3f27cf2",
+        "checksum": {
+          "type": "MD5",
+          "value": "dff9ce73509f72b0a5252482f3f27cf2"
+        },
+        "tabularData": false,
+        "creationDate": "2026-10-20",
+        "publicationDate": "2026-10-21",
+        "lastUpdateTime": "2026-10-21T05:46:23Z",
+        "fileAccessRequest": true
+      },
+      "scales": {
+        "PowerArray0": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1524.9107666015625,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray1": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 348.4003601074219,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray2": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 168.3831024169922,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray3": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 482.6588439941406,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "Power": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1964.3294677734375,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "DelaySpreadArray0": {
+          "min": 49.13874053955078,
+          "max": 95.19515228271484,
+          "units": "ns",
+          "Scatter": {
+            "min": 49.13874053955078,
+            "max": 95.19515228271484
+          },
+          "Hexbin": {
+            "min": 55.37230682373047,
+            "max": 84.32748413085938
+          }
+        },
+        "DelaySpreadArray1": {
+          "min": 81.91111755371094,
+          "max": 166.8611297607422,
+          "units": "ns",
+          "Scatter": {
+            "min": 81.91111755371094,
+            "max": 166.8611297607422
+          },
+          "Hexbin": {
+            "min": 104.25550842285156,
+            "max": 152.97659301757812
+          }
+        },
+        "DelaySpreadArray2": {
+          "min": 94.36199188232422,
+          "max": 158.24034118652344,
+          "units": "ns",
+          "Scatter": {
+            "min": 94.36199188232422,
+            "max": 158.24034118652344
+          },
+          "Hexbin": {
+            "min": 103.03022766113281,
+            "max": 149.84983825683594
+          }
+        },
+        "DelaySpreadArray3": {
+          "min": 71.92791748046875,
+          "max": 141.0113983154297,
+          "units": "ns",
+          "Scatter": {
+            "min": 71.92791748046875,
+            "max": 141.0113983154297
+          },
+          "Hexbin": {
+            "min": 84.00840759277344,
+            "max": 121.74427795410156
+          }
+        }
+      },
+      "renderingVersion": 2,
+      "hexbinWidthMeters": 0.75
+    },
+    "ad25": {
+      "source": {
+        "cacheIdentity": {
+          "version": 1,
+          "specSha256": "ddc951c7d9f65ae22206eccdce556be1a76877e176853e62a4b620892d4fea50",
+          "offsetsSha256": "ccf99236d62d666984968a0cb7c09d05802792a60a8a8dc08a81bc43916331cc",
+          "calculationSha256": "cf35d69ebd99476df677bc815c60a3fdad0fd0d3a958616b2eaeaad1376b96e7",
+          "channelHelpersSha256": "8909cce0786bdc18c16fa5bcb2315e1a26c8bf5a623c6ca8eaeb712dd7a48992",
+          "rawBytes": 596950014,
+          "rawMtimeNs": 1793538683435616553
+        },
+        "recording": "ad25",
+        "rawSha256": "bbd4ff14fc30993bd865cdd37dc53f652c4f4a1beb54e4a5ab0c31d1d083cc74",
+        "records": 1137,
+        "rejectedNonfinite": 0,
+        "power": "Frequency-mean squared CSI magnitude, summed over 16 antennas per array; uncalibrated linear units.",
+        "delaySpread": "Power-weighted RMS over calibrated CIR taps 495:555 after common delay removal; 20 ns/tap.",
+        "boundsXY": [
+          -70.0,
+          12.0,
+          -35.0,
+          0.0
+        ]
+      },
+      "datasetFile": {
+        "id": 664466,
+        "persistentId": "",
+        "filename": "dichasus-ad25.tfrecords",
+        "contentType": "application/octet-stream",
+        "friendlyType": "Unknown",
+        "filesize": 596950014,
+        "description": "Short trajectory behind the metallic wall, higher robot speed.",
+        "storageIdentifier": "s3-2://fokus-dv-prod-2:1a15a376ccf-8ea0f7628b0b",
+        "rootDataFileId": 293243,
+        "previousDataFileId": 293243,
+        "md5": "3e907ad72ae6aab1aa44ef53ba60a3ef",
+        "checksum": {
+          "type": "MD5",
+          "value": "3e907ad72ae6aab1aa44ef53ba60a3ef"
+        },
+        "tabularData": false,
+        "creationDate": "2026-10-20",
+        "publicationDate": "2026-10-21",
+        "lastUpdateTime": "2026-10-21T05:46:23Z",
+        "fileAccessRequest": true
+      },
+      "scales": {
+        "PowerArray0": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1410.0596923828125,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray1": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 251.59912109375,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray2": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 150.6011962890625,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray3": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 511.63079833984375,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "Power": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1812.468017578125,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "DelaySpreadArray0": {
+          "min": 51.62998580932617,
+          "max": 140.3488311767578,
+          "units": "ns",
+          "Scatter": {
+            "min": 51.62998580932617,
+            "max": 140.3488311767578
+          },
+          "Hexbin": {
+            "min": 55.30205154418945,
+            "max": 131.27923583984375
+          }
+        },
+        "DelaySpreadArray1": {
+          "min": 93.08090209960938,
+          "max": 154.6929473876953,
+          "units": "ns",
+          "Scatter": {
+            "min": 93.08090209960938,
+            "max": 154.6929473876953
+          },
+          "Hexbin": {
+            "min": 102.5029525756836,
+            "max": 146.60452270507812
+          }
+        },
+        "DelaySpreadArray2": {
+          "min": 100.11058044433594,
+          "max": 173.0596923828125,
+          "units": "ns",
+          "Scatter": {
+            "min": 100.11058044433594,
+            "max": 173.0596923828125
+          },
+          "Hexbin": {
+            "min": 104.2571029663086,
+            "max": 163.9477081298828
+          }
+        },
+        "DelaySpreadArray3": {
+          "min": 75.59552001953125,
+          "max": 133.25674438476562,
+          "units": "ns",
+          "Scatter": {
+            "min": 75.59552001953125,
+            "max": 133.25674438476562
+          },
+          "Hexbin": {
+            "min": 87.48123168945312,
+            "max": 122.04302215576172
+          }
+        }
+      },
+      "renderingVersion": 2,
+      "hexbinWidthMeters": 0.75
+    },
+    "ad26": {
+      "source": {
+        "cacheIdentity": {
+          "version": 1,
+          "specSha256": "ddc951c7d9f65ae22206eccdce556be1a76877e176853e62a4b620892d4fea50",
+          "offsetsSha256": "99bd2c2735f62f6930783b10b965b204ee3a44a264bb8c8b0e6427364ba2b1e4",
+          "calculationSha256": "cf35d69ebd99476df677bc815c60a3fdad0fd0d3a958616b2eaeaad1376b96e7",
+          "channelHelpersSha256": "8909cce0786bdc18c16fa5bcb2315e1a26c8bf5a623c6ca8eaeb712dd7a48992",
+          "rawBytes": 3765982806,
+          "rawMtimeNs": 1793544720177244677
+        },
+        "recording": "ad26",
+        "rawSha256": "4bac545b83d7b1d6684e63b8f4d5f050b200b527ef9e9ddb74749bce1892a85a",
+        "metricsSha256": "3f5af8dccc10b43a99f268c5bcc07b2dc2926fa66353908569d3bd0a16c88507",
+        "records": 7173,
+        "rejectedNonfinite": 0,
+        "power": "Frequency-mean squared CSI magnitude, summed over 16 antennas per array; uncalibrated linear units.",
+        "delaySpread": "Power-weighted RMS over calibrated CIR taps 495:555 after common delay removal; 20 ns/tap.",
+        "boundsXY": [
+          -70.0,
+          12.0,
+          -35.0,
+          0.0
+        ]
+      },
+      "datasetFile": {
+        "id": 664467,
+        "persistentId": "",
+        "filename": "dichasus-ad26.tfrecords",
+        "contentType": "application/octet-stream",
+        "friendlyType": "Unknown",
+        "filesize": 3765982806,
+        "description": "Robot drives around near the metallic wall, higher robot speed.",
+        "storageIdentifier": "s3-2://fokus-dv-prod-2:1a15a37a3e1-6208a2942193",
+        "rootDataFileId": 293245,
+        "previousDataFileId": 293245,
+        "md5": "c6194fdeeb4ff2df6943933cac6790b3",
+        "checksum": {
+          "type": "MD5",
+          "value": "c6194fdeeb4ff2df6943933cac6790b3"
+        },
+        "tabularData": false,
+        "creationDate": "2026-10-20",
+        "publicationDate": "2026-10-21",
+        "lastUpdateTime": "2026-10-21T05:46:23Z",
+        "fileAccessRequest": true
+      },
+      "scales": {
+        "PowerArray0": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1701.7135009765625,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray1": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 475.3952331542969,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray2": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 237.6205291748047,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray3": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 544.7068481445312,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "Power": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 2345.7197265625,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "DelaySpreadArray0": {
+          "min": 48.199947357177734,
+          "max": 147.15902709960938,
+          "units": "ns",
+          "Scatter": {
+            "min": 48.199947357177734,
+            "max": 147.15902709960938
+          },
+          "Hexbin": {
+            "min": 52.40165710449219,
+            "max": 133.88323974609375
+          }
+        },
+        "DelaySpreadArray1": {
+          "min": 75.41320037841797,
+          "max": 170.22836303710938,
+          "units": "ns",
+          "Scatter": {
+            "min": 75.41320037841797,
+            "max": 170.22836303710938
+          },
+          "Hexbin": {
+            "min": 91.263916015625,
+            "max": 163.64906311035156
+          }
+        },
+        "DelaySpreadArray2": {
+          "min": 79.91653442382812,
+          "max": 173.5635528564453,
+          "units": "ns",
+          "Scatter": {
+            "min": 79.91653442382812,
+            "max": 173.5635528564453
+          },
+          "Hexbin": {
+            "min": 101.68944549560547,
+            "max": 160.37677001953125
+          }
+        },
+        "DelaySpreadArray3": {
+          "min": 69.11400604248047,
+          "max": 144.71646118164062,
+          "units": "ns",
+          "Scatter": {
+            "min": 69.11400604248047,
+            "max": 144.71646118164062
+          },
+          "Hexbin": {
+            "min": 76.62371826171875,
+            "max": 130.02430725097656
+          }
+        }
+      },
+      "renderingVersion": 2,
+      "hexbinWidthMeters": 0.75
+    },
+    "ad27": {
+      "source": {
+        "cacheIdentity": {
+          "version": 1,
+          "specSha256": "ddc951c7d9f65ae22206eccdce556be1a76877e176853e62a4b620892d4fea50",
+          "offsetsSha256": "9adfef4ceac5cb1b7797ad43e64d7a47889edaf93f71565596c59aae4366f715",
+          "calculationSha256": "cf35d69ebd99476df677bc815c60a3fdad0fd0d3a958616b2eaeaad1376b96e7",
+          "channelHelpersSha256": "8909cce0786bdc18c16fa5bcb2315e1a26c8bf5a623c6ca8eaeb712dd7a48992",
+          "rawBytes": 4456386736,
+          "rawMtimeNs": 1793545782983084956
+        },
+        "recording": "ad27",
+        "rawSha256": "51e9f0c93723c49fb791274d7a8f28433ef88be9f94d3984cab602b5495a3cc4",
+        "metricsSha256": "a2ff9d1ee50a7481ec5489809c77b0761cc0956e5383ff0e047e59eca97cc913",
+        "records": 8488,
+        "rejectedNonfinite": 0,
+        "power": "Frequency-mean squared CSI magnitude, summed over 16 antennas per array; uncalibrated linear units.",
+        "delaySpread": "Power-weighted RMS over calibrated CIR taps 495:555 after common delay removal; 20 ns/tap.",
+        "boundsXY": [
+          -70.0,
+          12.0,
+          -35.0,
+          0.0
+        ]
+      },
+      "datasetFile": {
+        "id": 664468,
+        "persistentId": "",
+        "filename": "dichasus-ad27.tfrecords",
+        "contentType": "application/octet-stream",
+        "friendlyType": "Unknown",
+        "filesize": 4456386736,
+        "description": "Robot drives around in the whole measurement area, sometimes very close to the wall, very high robot speed.",
+        "storageIdentifier": "s3-2://fokus-dv-prod-2:1a15a385676-abf256d22ada",
+        "rootDataFileId": 293247,
+        "previousDataFileId": 293247,
+        "md5": "ee9e5cff84b044f9f6b1a86a992b0d6b",
+        "checksum": {
+          "type": "MD5",
+          "value": "ee9e5cff84b044f9f6b1a86a992b0d6b"
+        },
+        "tabularData": false,
+        "creationDate": "2026-10-20",
+        "publicationDate": "2026-10-21",
+        "lastUpdateTime": "2026-10-21T05:46:23Z",
+        "fileAccessRequest": true
+      },
+      "scales": {
+        "PowerArray0": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 2462.163330078125,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray1": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 420.5251770019531,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray2": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 295.54351806640625,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray3": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 691.2669677734375,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "Power": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 2835.25244140625,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "DelaySpreadArray0": {
+          "min": 41.34573745727539,
+          "max": 156.65869140625,
+          "units": "ns",
+          "Scatter": {
+            "min": 41.34573745727539,
+            "max": 156.65869140625
+          },
+          "Hexbin": {
+            "min": 49.39236831665039,
+            "max": 147.25450134277344
+          }
+        },
+        "DelaySpreadArray1": {
+          "min": 72.46145629882812,
+          "max": 172.86305236816406,
+          "units": "ns",
+          "Scatter": {
+            "min": 72.46145629882812,
+            "max": 172.86305236816406
+          },
+          "Hexbin": {
+            "min": 91.5870361328125,
+            "max": 164.5537109375
+          }
+        },
+        "DelaySpreadArray2": {
+          "min": 76.20518493652344,
+          "max": 172.07347106933594,
+          "units": "ns",
+          "Scatter": {
+            "min": 76.20518493652344,
+            "max": 172.07347106933594
+          },
+          "Hexbin": {
+            "min": 84.39034271240234,
+            "max": 162.7258758544922
+          }
+        },
+        "DelaySpreadArray3": {
+          "min": 58.78725051879883,
+          "max": 164.92333984375,
+          "units": "ns",
+          "Scatter": {
+            "min": 58.78725051879883,
+            "max": 164.92333984375
+          },
+          "Hexbin": {
+            "min": 71.09752655029297,
+            "max": 153.77200317382812
+          }
+        }
+      },
+      "renderingVersion": 2,
+      "hexbinWidthMeters": 0.75
+    },
+    "ad01": {
+      "source": {
+        "cacheIdentity": {
+          "version": 1,
+          "specSha256": "ddc951c7d9f65ae22206eccdce556be1a76877e176853e62a4b620892d4fea50",
+          "offsetsSha256": "f9e6e1b6da7d6fb4206e3846803eccd03ebdf4ddb4c7295292e88bddc446b565",
+          "calculationSha256": "cf35d69ebd99476df677bc815c60a3fdad0fd0d3a958616b2eaeaad1376b96e7",
+          "channelHelpersSha256": "8909cce0786bdc18c16fa5bcb2315e1a26c8bf5a623c6ca8eaeb712dd7a48992",
+          "rawBytes": 7621744374,
+          "rawMtimeNs": 1793548722315736349
+        },
+        "recording": "ad01",
+        "rawSha256": "02a496921a299e1fad8a02eb023367632da89c3755a0ea89f187b79120779d96",
+        "metricsSha256": "b03c6b69db3664047fe6ec67a336547525798fdfc7dadf2e2442b8fc19097b96",
+        "records": 14517,
+        "rejectedNonfinite": 0,
+        "power": "Frequency-mean squared CSI magnitude, summed over 16 antennas per array; uncalibrated linear units.",
+        "delaySpread": "Power-weighted RMS over calibrated CIR taps 495:555 after common delay removal; 20 ns/tap.",
+        "boundsXY": [
+          -70.0,
+          12.0,
+          -35.0,
+          0.0
+        ]
+      },
+      "datasetFile": {
+        "id": 664443,
+        "persistentId": "",
+        "filename": "dichasus-ad01.tfrecords",
+        "contentType": "application/octet-stream",
+        "friendlyType": "Unknown",
+        "filesize": 7621744374,
+        "description": "Robot follows a pseudorandom trajectory in the measurement area, part 2.",
+        "storageIdentifier": "s3-2://fokus-dv-prod-2:1a15a16c4ee-3019081292e7",
+        "rootDataFileId": 293197,
+        "previousDataFileId": 293197,
+        "md5": "735139bfc0cb07aec4eff37781398b2b",
+        "checksum": {
+          "type": "MD5",
+          "value": "735139bfc0cb07aec4eff37781398b2b"
+        },
+        "tabularData": false,
+        "creationDate": "2026-10-20",
+        "publicationDate": "2026-10-21",
+        "lastUpdateTime": "2026-10-21T05:46:23Z",
+        "fileAccessRequest": true
+      },
+      "scales": {
+        "PowerArray0": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1103.604736328125,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray1": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 157.0636749267578,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray2": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 128.08209228515625,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray3": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 362.37823486328125,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "Power": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1301.0704345703125,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "DelaySpreadArray0": {
+          "min": 41.974361419677734,
+          "max": 159.07882690429688,
+          "units": "ns",
+          "Scatter": {
+            "min": 41.974361419677734,
+            "max": 159.07882690429688
+          },
+          "Hexbin": {
+            "min": 51.51384353637695,
+            "max": 146.5155029296875
+          }
+        },
+        "DelaySpreadArray1": {
+          "min": 83.06608581542969,
+          "max": 174.936279296875,
+          "units": "ns",
+          "Scatter": {
+            "min": 83.06608581542969,
+            "max": 174.936279296875
+          },
+          "Hexbin": {
+            "min": 90.25169372558594,
+            "max": 166.3155517578125
+          }
+        },
+        "DelaySpreadArray2": {
+          "min": 72.00601959228516,
+          "max": 175.807861328125,
+          "units": "ns",
+          "Scatter": {
+            "min": 72.00601959228516,
+            "max": 175.807861328125
+          },
+          "Hexbin": {
+            "min": 88.98335266113281,
+            "max": 165.73951721191406
+          }
+        },
+        "DelaySpreadArray3": {
+          "min": 56.39168167114258,
+          "max": 167.06800842285156,
+          "units": "ns",
+          "Scatter": {
+            "min": 56.39168167114258,
+            "max": 167.06800842285156
+          },
+          "Hexbin": {
+            "min": 67.1531753540039,
+            "max": 156.7205810546875
+          }
+        }
+      },
+      "renderingVersion": 2,
+      "hexbinWidthMeters": 0.75
+    },
+    "ad12": {
+      "source": {
+        "cacheIdentity": {
+          "version": 1,
+          "specSha256": "ddc951c7d9f65ae22206eccdce556be1a76877e176853e62a4b620892d4fea50",
+          "offsetsSha256": "ebaf93d370d66633aa522427f02bf4f10c824587c1a538ab9dac1d2000ee499c",
+          "calculationSha256": "cf35d69ebd99476df677bc815c60a3fdad0fd0d3a958616b2eaeaad1376b96e7",
+          "channelHelpersSha256": "8909cce0786bdc18c16fa5bcb2315e1a26c8bf5a623c6ca8eaeb712dd7a48992",
+          "rawBytes": 8886522372,
+          "rawMtimeNs": 1793550735203958972
+        },
+        "recording": "ad12",
+        "rawSha256": "e6b15fca4caf3c6e45e365826ee6433ca81d5c56660e3ba377c5a3f0ed094854",
+        "metricsSha256": "efeff40bd5eedeb8cc67bdf59e784b1a8d0a29a9a372a75d223b5fc3df549e9a",
+        "records": 16926,
+        "rejectedNonfinite": 0,
+        "power": "Frequency-mean squared CSI magnitude, summed over 16 antennas per array; uncalibrated linear units.",
+        "delaySpread": "Power-weighted RMS over calibrated CIR taps 495:555 after common delay removal; 20 ns/tap.",
+        "boundsXY": [
+          -70.0,
+          12.0,
+          -35.0,
+          0.0
+        ]
+      },
+      "datasetFile": {
+        "id": 664454,
+        "persistentId": "",
+        "filename": "dichasus-ad12.tfrecords",
+        "contentType": "application/octet-stream",
+        "friendlyType": "Unknown",
+        "filesize": 8886522372,
+        "description": "Robot follows a pattern of northwest / southeast meanders in the whole measurement area.",
+        "storageIdentifier": "s3-2://fokus-dv-prod-2:1a15a2c40a0-c6289976da24",
+        "rootDataFileId": 293219,
+        "previousDataFileId": 293219,
+        "md5": "f62cccdb99fccba287ee45422ea3ea95",
+        "checksum": {
+          "type": "MD5",
+          "value": "f62cccdb99fccba287ee45422ea3ea95"
+        },
+        "tabularData": false,
+        "creationDate": "2026-10-20",
+        "publicationDate": "2026-10-21",
+        "lastUpdateTime": "2026-10-21T05:46:23Z",
+        "fileAccessRequest": true
+      },
+      "scales": {
+        "PowerArray0": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1602.3863525390625,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray1": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 322.041748046875,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray2": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 311.85662841796875,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray3": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 547.309814453125,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "Power": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1982.88427734375,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "DelaySpreadArray0": {
+          "min": 50.024593353271484,
+          "max": 155.71205139160156,
+          "units": "ns",
+          "Scatter": {
+            "min": 50.024593353271484,
+            "max": 155.71205139160156
+          },
+          "Hexbin": {
+            "min": 56.2547607421875,
+            "max": 147.10577392578125
+          }
+        },
+        "DelaySpreadArray1": {
+          "min": 84.4830322265625,
+          "max": 179.2924346923828,
+          "units": "ns",
+          "Scatter": {
+            "min": 84.4830322265625,
+            "max": 179.2924346923828
+          },
+          "Hexbin": {
+            "min": 93.28763580322266,
+            "max": 168.01087951660156
+          }
+        },
+        "DelaySpreadArray2": {
+          "min": 62.95024108886719,
+          "max": 173.7825164794922,
+          "units": "ns",
+          "Scatter": {
+            "min": 62.95024108886719,
+            "max": 173.7825164794922
+          },
+          "Hexbin": {
+            "min": 80.0743408203125,
+            "max": 162.232177734375
+          }
+        },
+        "DelaySpreadArray3": {
+          "min": 62.934303283691406,
+          "max": 169.54884338378906,
+          "units": "ns",
+          "Scatter": {
+            "min": 62.934303283691406,
+            "max": 169.54884338378906
+          },
+          "Hexbin": {
+            "min": 72.27690887451172,
+            "max": 157.28009033203125
+          }
+        }
+      },
+      "renderingVersion": 2,
+      "hexbinWidthMeters": 0.75
+    },
+    "ad09": {
+      "source": {
+        "cacheIdentity": {
+          "version": 1,
+          "specSha256": "ddc951c7d9f65ae22206eccdce556be1a76877e176853e62a4b620892d4fea50",
+          "offsetsSha256": "f3c3edb527bc9b433532c9e31c40397fba8397e7147c2a1fb15f7ff7d3be66f6",
+          "calculationSha256": "cf35d69ebd99476df677bc815c60a3fdad0fd0d3a958616b2eaeaad1376b96e7",
+          "channelHelpersSha256": "8909cce0786bdc18c16fa5bcb2315e1a26c8bf5a623c6ca8eaeb712dd7a48992",
+          "rawBytes": 10352383796,
+          "rawMtimeNs": 1793551334477124489
+        },
+        "recording": "ad09",
+        "rawSha256": "aec6050e528036ee5d67ef2401858870e0bb26f44cea284b7c2635266610246b",
+        "metricsSha256": "254605fdb2ac418b358f3c4db6d567471020d16c7ddb2e919c7f859d9a8fbb49",
+        "records": 19718,
+        "rejectedNonfinite": 0,
+        "power": "Frequency-mean squared CSI magnitude, summed over 16 antennas per array; uncalibrated linear units.",
+        "delaySpread": "Power-weighted RMS over calibrated CIR taps 495:555 after common delay removal; 20 ns/tap.",
+        "boundsXY": [
+          -70.0,
+          12.0,
+          -35.0,
+          0.0
+        ]
+      },
+      "datasetFile": {
+        "id": 664451,
+        "persistentId": "",
+        "filename": "dichasus-ad09.tfrecords",
+        "contentType": "application/octet-stream",
+        "friendlyType": "Unknown",
+        "filesize": 10352383796,
+        "description": "Robot follows a pseudorandom trajectory in the whole measurement area.",
+        "storageIdentifier": "s3-2://fokus-dv-prod-2:1a15a21ec3e-48745f54512f",
+        "rootDataFileId": 293213,
+        "previousDataFileId": 293213,
+        "md5": "0374352c86d2b19b14dfdd8a3944ba67",
+        "checksum": {
+          "type": "MD5",
+          "value": "0374352c86d2b19b14dfdd8a3944ba67"
+        },
+        "tabularData": false,
+        "creationDate": "2026-10-20",
+        "publicationDate": "2026-10-21",
+        "lastUpdateTime": "2026-10-21T05:46:23Z",
+        "fileAccessRequest": true
+      },
+      "scales": {
+        "PowerArray0": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 2684.860107421875,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray1": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 379.9656982421875,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray2": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 259.7386169433594,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray3": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 665.9285278320312,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "Power": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 3130.778076171875,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "DelaySpreadArray0": {
+          "min": 42.3250732421875,
+          "max": 158.88523864746094,
+          "units": "ns",
+          "Scatter": {
+            "min": 42.3250732421875,
+            "max": 158.88523864746094
+          },
+          "Hexbin": {
+            "min": 53.00421905517578,
+            "max": 145.67587280273438
+          }
+        },
+        "DelaySpreadArray1": {
+          "min": 85.50607299804688,
+          "max": 179.31243896484375,
+          "units": "ns",
+          "Scatter": {
+            "min": 85.50607299804688,
+            "max": 179.31243896484375
+          },
+          "Hexbin": {
+            "min": 92.69664764404297,
+            "max": 168.9165802001953
+          }
+        },
+        "DelaySpreadArray2": {
+          "min": 70.3270263671875,
+          "max": 180.2257537841797,
+          "units": "ns",
+          "Scatter": {
+            "min": 70.3270263671875,
+            "max": 180.2257537841797
+          },
+          "Hexbin": {
+            "min": 91.00357055664062,
+            "max": 163.97547912597656
+          }
+        },
+        "DelaySpreadArray3": {
+          "min": 59.498653411865234,
+          "max": 167.38221740722656,
+          "units": "ns",
+          "Scatter": {
+            "min": 59.498653411865234,
+            "max": 167.38221740722656
+          },
+          "Hexbin": {
+            "min": 73.97404479980469,
+            "max": 154.2203826904297
+          }
+        }
+      },
+      "renderingVersion": 2,
+      "hexbinWidthMeters": 0.75
+    },
+    "ad22": {
+      "source": {
+        "cacheIdentity": {
+          "version": 1,
+          "specSha256": "ddc951c7d9f65ae22206eccdce556be1a76877e176853e62a4b620892d4fea50",
+          "offsetsSha256": "c18a93979d0d02264a6bc36d1de13f557c283419d28ca12468eaca50c9bec0d7",
+          "calculationSha256": "cf35d69ebd99476df677bc815c60a3fdad0fd0d3a958616b2eaeaad1376b96e7",
+          "channelHelpersSha256": "8909cce0786bdc18c16fa5bcb2315e1a26c8bf5a623c6ca8eaeb712dd7a48992",
+          "rawBytes": 13789177808,
+          "rawMtimeNs": 1793551958780108674
+        },
+        "recording": "ad22",
+        "rawSha256": "8ababc3089f18587ea4710698c9023a18b4656f58a23bff665d171736220f1d1",
+        "metricsSha256": "62954b14aa690cc8c9cc86fdfb4129ad185b439e2483ba632a799ed78631d63c",
+        "records": 26264,
+        "rejectedNonfinite": 0,
+        "power": "Frequency-mean squared CSI magnitude, summed over 16 antennas per array; uncalibrated linear units.",
+        "delaySpread": "Power-weighted RMS over calibrated CIR taps 495:555 after common delay removal; 20 ns/tap.",
+        "boundsXY": [
+          -70.0,
+          12.0,
+          -35.0,
+          0.0
+        ]
+      },
+      "datasetFile": {
+        "id": 664463,
+        "persistentId": "",
+        "filename": "dichasus-ad22.tfrecords",
+        "contentType": "application/octet-stream",
+        "friendlyType": "Unknown",
+        "filesize": 13789177808,
+        "description": "Robot follows a pseudorandom trajectory, part 1.",
+        "storageIdentifier": "s3-2://fokus-dv-prod-2:1a15a34367e-c2e77e1b414f",
+        "rootDataFileId": 293237,
+        "previousDataFileId": 293237,
+        "md5": "1743f21630d275ba7d431205e074957c",
+        "checksum": {
+          "type": "MD5",
+          "value": "1743f21630d275ba7d431205e074957c"
+        },
+        "tabularData": false,
+        "creationDate": "2026-10-20",
+        "publicationDate": "2026-10-21",
+        "lastUpdateTime": "2026-10-21T05:46:23Z",
+        "fileAccessRequest": true
+      },
+      "scales": {
+        "PowerArray0": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 2050.804931640625,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray1": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 316.64495849609375,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray2": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 275.57177734375,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray3": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 566.533447265625,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "Power": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 2396.970947265625,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "DelaySpreadArray0": {
+          "min": 44.41096115112305,
+          "max": 159.382080078125,
+          "units": "ns",
+          "Scatter": {
+            "min": 44.41096115112305,
+            "max": 159.382080078125
+          },
+          "Hexbin": {
+            "min": 51.45433807373047,
+            "max": 144.66412353515625
+          }
+        },
+        "DelaySpreadArray1": {
+          "min": 79.0795669555664,
+          "max": 177.30838012695312,
+          "units": "ns",
+          "Scatter": {
+            "min": 79.0795669555664,
+            "max": 177.30838012695312
+          },
+          "Hexbin": {
+            "min": 90.0231704711914,
+            "max": 167.35968017578125
+          }
+        },
+        "DelaySpreadArray2": {
+          "min": 69.58235931396484,
+          "max": 179.98089599609375,
+          "units": "ns",
+          "Scatter": {
+            "min": 69.58235931396484,
+            "max": 179.98089599609375
+          },
+          "Hexbin": {
+            "min": 85.8226089477539,
+            "max": 167.84288024902344
+          }
+        },
+        "DelaySpreadArray3": {
+          "min": 63.282386779785156,
+          "max": 167.17855834960938,
+          "units": "ns",
+          "Scatter": {
+            "min": 63.282386779785156,
+            "max": 167.17855834960938
+          },
+          "Hexbin": {
+            "min": 74.87255859375,
+            "max": 159.21974182128906
+          }
+        }
+      },
+      "renderingVersion": 2,
+      "hexbinWidthMeters": 0.75
+    },
+    "ad04": {
+      "source": {
+        "cacheIdentity": {
+          "version": 1,
+          "specSha256": "ddc951c7d9f65ae22206eccdce556be1a76877e176853e62a4b620892d4fea50",
+          "offsetsSha256": "886006e59ea04c08a73d69619e7c29fe2405995b02a3106c15feaa8d7bd0fe89",
+          "calculationSha256": "cf35d69ebd99476df677bc815c60a3fdad0fd0d3a958616b2eaeaad1376b96e7",
+          "channelHelpersSha256": "8909cce0786bdc18c16fa5bcb2315e1a26c8bf5a623c6ca8eaeb712dd7a48992",
+          "rawBytes": 18145810364,
+          "rawMtimeNs": 1793552865870926546
+        },
+        "recording": "ad04",
+        "rawSha256": "36abcff9fbffd78367ad78a1d182edd6f7d8c2fd43c788ca01de3d1b2ef6614b",
+        "metricsSha256": "4c0a847674be520555af70ec8f4613c250b2cb65d38b32e1e1a62611760c29a5",
+        "records": 34562,
+        "rejectedNonfinite": 0,
+        "power": "Frequency-mean squared CSI magnitude, summed over 16 antennas per array; uncalibrated linear units.",
+        "delaySpread": "Power-weighted RMS over calibrated CIR taps 495:555 after common delay removal; 20 ns/tap.",
+        "boundsXY": [
+          -70.0,
+          12.0,
+          -35.0,
+          0.0
+        ]
+      },
+      "datasetFile": {
+        "id": 664446,
+        "persistentId": "",
+        "filename": "dichasus-ad04.tfrecords",
+        "contentType": "application/octet-stream",
+        "friendlyType": "Unknown",
+        "filesize": 18145810364,
+        "description": "Robot follows a (long) pattern of north / south meanders in the whole measurement area. A few datapoints in the middle may be missing (due to a tachymeter issue).",
+        "storageIdentifier": "s3-2://fokus-dv-prod-2:1a15a1b96c9-5439efeef413",
+        "rootDataFileId": 293203,
+        "previousDataFileId": 293203,
+        "md5": "655f558ab5a49059ed3722c76201a6cb",
+        "checksum": {
+          "type": "MD5",
+          "value": "655f558ab5a49059ed3722c76201a6cb"
+        },
+        "tabularData": false,
+        "creationDate": "2026-10-20",
+        "publicationDate": "2026-10-21",
+        "lastUpdateTime": "2026-10-21T05:46:23Z",
+        "fileAccessRequest": true
+      },
+      "scales": {
+        "PowerArray0": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1188.794189453125,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray1": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 187.6925811767578,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray2": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 177.26446533203125,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray3": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 398.5928039550781,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "Power": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1382.1937255859375,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "DelaySpreadArray0": {
+          "min": 44.100379943847656,
+          "max": 157.25811767578125,
+          "units": "ns",
+          "Scatter": {
+            "min": 44.100379943847656,
+            "max": 157.25811767578125
+          },
+          "Hexbin": {
+            "min": 52.39760208129883,
+            "max": 146.67466735839844
+          }
+        },
+        "DelaySpreadArray1": {
+          "min": 77.78497314453125,
+          "max": 184.6342315673828,
+          "units": "ns",
+          "Scatter": {
+            "min": 77.78497314453125,
+            "max": 184.6342315673828
+          },
+          "Hexbin": {
+            "min": 88.7330322265625,
+            "max": 168.9102020263672
+          }
+        },
+        "DelaySpreadArray2": {
+          "min": 69.39646911621094,
+          "max": 176.87559509277344,
+          "units": "ns",
+          "Scatter": {
+            "min": 69.39646911621094,
+            "max": 176.87559509277344
+          },
+          "Hexbin": {
+            "min": 82.17463684082031,
+            "max": 164.61073303222656
+          }
+        },
+        "DelaySpreadArray3": {
+          "min": 55.437435150146484,
+          "max": 167.68238830566406,
+          "units": "ns",
+          "Scatter": {
+            "min": 55.437435150146484,
+            "max": 167.68238830566406
+          },
+          "Hexbin": {
+            "min": 70.01136016845703,
+            "max": 155.21572875976562
+          }
+        }
+      },
+      "renderingVersion": 2,
+      "hexbinWidthMeters": 0.75
+    },
+    "ad02": {
+      "source": {
+        "cacheIdentity": {
+          "version": 1,
+          "specSha256": "ddc951c7d9f65ae22206eccdce556be1a76877e176853e62a4b620892d4fea50",
+          "offsetsSha256": "45b024cbbbd9690b7b255251f1345b6bc95176fe6a337183b6d2d2e38fad881b",
+          "calculationSha256": "cf35d69ebd99476df677bc815c60a3fdad0fd0d3a958616b2eaeaad1376b96e7",
+          "channelHelpersSha256": "8909cce0786bdc18c16fa5bcb2315e1a26c8bf5a623c6ca8eaeb712dd7a48992",
+          "rawBytes": 21784212824,
+          "rawMtimeNs": 1793553117192631904
+        },
+        "recording": "ad02",
+        "rawSha256": "cdc851bbbbe80bfee16877f32c0a3b6cc0902734decb6cbeee23bf3f849874f8",
+        "metricsSha256": "9822ac6a73ca6f8ac0370648e5dc6a2186ca21efd03f052617f5b23d6f7c05f5",
+        "records": 41492,
+        "rejectedNonfinite": 0,
+        "power": "Frequency-mean squared CSI magnitude, summed over 16 antennas per array; uncalibrated linear units.",
+        "delaySpread": "Power-weighted RMS over calibrated CIR taps 495:555 after common delay removal; 20 ns/tap.",
+        "boundsXY": [
+          -70.0,
+          12.0,
+          -35.0,
+          0.0
+        ]
+      },
+      "datasetFile": {
+        "id": 664444,
+        "persistentId": "",
+        "filename": "dichasus-ad02.tfrecords",
+        "contentType": "application/octet-stream",
+        "friendlyType": "Unknown",
+        "filesize": 21784212824,
+        "description": "Robot follows a pattern of west / east meanders in the whole measurement area.",
+        "storageIdentifier": "s3-2://fokus-dv-prod-2:1a15a17d302-71cd02ddb9c4",
+        "rootDataFileId": 293199,
+        "previousDataFileId": 293199,
+        "md5": "ac369a7da717750f9c7676e6721d5967",
+        "checksum": {
+          "type": "MD5",
+          "value": "ac369a7da717750f9c7676e6721d5967"
+        },
+        "tabularData": false,
+        "creationDate": "2026-10-20",
+        "publicationDate": "2026-10-21",
+        "lastUpdateTime": "2026-10-21T05:46:23Z",
+        "fileAccessRequest": true
+      },
+      "scales": {
+        "PowerArray0": {
+          "min": -20.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1409.9527587890625,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -20.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -20.0,
+            "max": 0
+          }
+        },
+        "PowerArray1": {
+          "min": -10.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 164.8311004638672,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -10.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -10.0,
+            "max": 0
+          }
+        },
+        "PowerArray2": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 156.09706115722656,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "PowerArray3": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 367.51971435546875,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "Power": {
+          "min": -15.0,
+          "max": 0,
+          "units": "dB relative to recording peak",
+          "referenceLinear": 1675.98779296875,
+          "sharedArrays": false,
+          "lowerPercentile": 1,
+          "aggregation": "Mean linear power before logarithmic colour mapping",
+          "Scatter": {
+            "min": -15.0,
+            "max": 0
+          },
+          "Hexbin": {
+            "min": -15.0,
+            "max": 0
+          }
+        },
+        "DelaySpreadArray0": {
+          "min": 43.68262481689453,
+          "max": 162.16929626464844,
+          "units": "ns",
+          "Scatter": {
+            "min": 43.68262481689453,
+            "max": 162.16929626464844
+          },
+          "Hexbin": {
+            "min": 52.52386474609375,
+            "max": 144.53048706054688
+          }
+        },
+        "DelaySpreadArray1": {
+          "min": 78.17436981201172,
+          "max": 179.9322509765625,
+          "units": "ns",
+          "Scatter": {
+            "min": 78.17436981201172,
+            "max": 179.9322509765625
+          },
+          "Hexbin": {
+            "min": 85.10385131835938,
+            "max": 165.02410888671875
+          }
+        },
+        "DelaySpreadArray2": {
+          "min": 64.82170104980469,
+          "max": 177.44906616210938,
+          "units": "ns",
+          "Scatter": {
+            "min": 64.82170104980469,
+            "max": 177.44906616210938
+          },
+          "Hexbin": {
+            "min": 85.39178466796875,
+            "max": 165.95449829101562
+          }
+        },
+        "DelaySpreadArray3": {
+          "min": 57.46626281738281,
+          "max": 169.4095916748047,
+          "units": "ns",
+          "Scatter": {
+            "min": 57.46626281738281,
+            "max": 169.4095916748047
+          },
+          "Hexbin": {
+            "min": 68.37509155273438,
+            "max": 156.01953125
+          }
+        }
+      },
+      "renderingVersion": 2,
+      "hexbinWidthMeters": 0.75
+    }
+  }
+}

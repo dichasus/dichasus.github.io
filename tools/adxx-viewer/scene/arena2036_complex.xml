@@ -1,0 +1,276 @@
+<scene version="2.1.0">
+
+<!-- Defaults, these can be set via the command line: -Darg=value -->
+
+
+<!-- Camera and Rendering Parameters -->
+
+	<integrator type="path" id="elm__0" name="elm__0">
+		<integer name="max_depth" value="12"/>
+	</integrator>
+
+<!-- Materials -->
+
+	<bsdf type="twosided" id="default-bsdf" name="default-bsdf">
+		<bsdf type="diffuse" name="bsdf"/>
+	</bsdf>
+
+<!-- Emitters -->
+
+
+<!-- Shapes -->
+
+	<shape type="ply" id="mesh-Stairwall_SouthWall" name="mesh-Stairwall_SouthWall">
+		<string name="filename" value="meshes/Stairwall_SouthWall.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Windows_SouthWall" name="mesh-Windows_SouthWall">
+		<string name="filename" value="meshes/Windows_SouthWall.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Wall_Hydrant_SouthWall" name="mesh-Wall_Hydrant_SouthWall">
+		<string name="filename" value="meshes/Wall_Hydrant_SouthWall.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Barrier_SouthWall" name="mesh-Barrier_SouthWall">
+		<string name="filename" value="meshes/Barrier_SouthWall.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Windows_NorthWall_001" name="mesh-Windows_NorthWall_001">
+		<string name="filename" value="meshes/Windows_NorthWall_001.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Windows_NorthWall_002" name="mesh-Windows_NorthWall_002">
+		<string name="filename" value="meshes/Windows_NorthWall_002.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Windows_NorthWall_003" name="mesh-Windows_NorthWall_003">
+		<string name="filename" value="meshes/Windows_NorthWall_003.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Lockers_NorthWall" name="mesh-Lockers_NorthWall">
+		<string name="filename" value="meshes/Lockers_NorthWall.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Wall_Hydrant_NorthWall" name="mesh-Wall_Hydrant_NorthWall">
+		<string name="filename" value="meshes/Wall_Hydrant_NorthWall.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Box_NorthWall" name="mesh-Box_NorthWall">
+		<string name="filename" value="meshes/Box_NorthWall.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Gallery_NorthWall" name="mesh-Gallery_NorthWall">
+		<string name="filename" value="meshes/Gallery_NorthWall.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-TV_Back_NorthWall" name="mesh-TV_Back_NorthWall">
+		<string name="filename" value="meshes/TV_Back_NorthWall.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-TV_Display_NorthWall" name="mesh-TV_Display_NorthWall">
+		<string name="filename" value="meshes/TV_Display_NorthWall.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Windows_NorthWall_004" name="mesh-Windows_NorthWall_004">
+		<string name="filename" value="meshes/Windows_NorthWall_004.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Wall_FarEast_001" name="mesh-Wall_FarEast_001">
+		<string name="filename" value="meshes/Wall_FarEast_001.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Wall_FarEast_002" name="mesh-Wall_FarEast_002">
+		<string name="filename" value="meshes/Wall_FarEast_002.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Wall_FarEast_003" name="mesh-Wall_FarEast_003">
+		<string name="filename" value="meshes/Wall_FarEast_003.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Wall_WestWall_001" name="mesh-Wall_WestWall_001">
+		<string name="filename" value="meshes/Wall_WestWall_001.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Wall_WestWall_002" name="mesh-Wall_WestWall_002">
+		<string name="filename" value="meshes/Wall_WestWall_002.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Roll-Up_Door_WestWall" name="mesh-Roll-Up_Door_WestWall">
+		<string name="filename" value="meshes/Roll-Up_Door_WestWall.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Wallbeam_WestWall" name="mesh-Wallbeam_WestWall">
+		<string name="filename" value="meshes/Wallbeam_WestWall.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Windows_WestWall" name="mesh-Windows_WestWall">
+		<string name="filename" value="meshes/Windows_WestWall.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Shelf_WestWall" name="mesh-Shelf_WestWall">
+		<string name="filename" value="meshes/Shelf_WestWall.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Barrier_NorthContainer" name="mesh-Barrier_NorthContainer">
+		<string name="filename" value="meshes/Barrier_NorthContainer.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Door_Frame_NorthContainer_001" name="mesh-Door_Frame_NorthContainer_001">
+		<string name="filename" value="meshes/Door_Frame_NorthContainer_001.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Door_Frame_NorthContainer_002" name="mesh-Door_Frame_NorthContainer_002">
+		<string name="filename" value="meshes/Door_Frame_NorthContainer_002.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Board_NorthContainer" name="mesh-Board_NorthContainer">
+		<string name="filename" value="meshes/Board_NorthContainer.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-TV_Back_NorthContainer" name="mesh-TV_Back_NorthContainer">
+		<string name="filename" value="meshes/TV_Back_NorthContainer.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-NorthContainer" name="mesh-NorthContainer">
+		<string name="filename" value="meshes/NorthContainer.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-TV_Display_NorthContainer" name="mesh-TV_Display_NorthContainer">
+		<string name="filename" value="meshes/TV_Display_NorthContainer.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Door_Window_NorthContainer_001" name="mesh-Door_Window_NorthContainer_001">
+		<string name="filename" value="meshes/Door_Window_NorthContainer_001.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Door_Window_NorthContainer_002" name="mesh-Door_Window_NorthContainer_002">
+		<string name="filename" value="meshes/Door_Window_NorthContainer_002.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Pinboard_Back_NorthContainer" name="mesh-Pinboard_Back_NorthContainer">
+		<string name="filename" value="meshes/Pinboard_Back_NorthContainer.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Pinboard_Front_NorthContainer" name="mesh-Pinboard_Front_NorthContainer">
+		<string name="filename" value="meshes/Pinboard_Front_NorthContainer.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Table_NorthContainer_001" name="mesh-Table_NorthContainer_001">
+		<string name="filename" value="meshes/Table_NorthContainer_001.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Table_NorthContainer_002" name="mesh-Table_NorthContainer_002">
+		<string name="filename" value="meshes/Table_NorthContainer_002.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Table_NorthContainer_003" name="mesh-Table_NorthContainer_003">
+		<string name="filename" value="meshes/Table_NorthContainer_003.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Container_Window_NorthContainer" name="mesh-Container_Window_NorthContainer">
+		<string name="filename" value="meshes/Container_Window_NorthContainer.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Barrier_SouthContainer_002" name="mesh-Barrier_SouthContainer_002">
+		<string name="filename" value="meshes/Barrier_SouthContainer_002.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Barrier_SouthContainer_001" name="mesh-Barrier_SouthContainer_001">
+		<string name="filename" value="meshes/Barrier_SouthContainer_001.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-SouthContainer" name="mesh-SouthContainer">
+		<string name="filename" value="meshes/SouthContainer.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Table_SouthContainer" name="mesh-Table_SouthContainer">
+		<string name="filename" value="meshes/Table_SouthContainer.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Window_SouthContainer" name="mesh-Window_SouthContainer">
+		<string name="filename" value="meshes/Window_SouthContainer.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Cranes" name="mesh-Cranes">
+		<string name="filename" value="meshes/Cranes.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Floor" name="mesh-Floor">
+		<string name="filename" value="meshes/Floor.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Framework_Center" name="mesh-Framework_Center">
+		<string name="filename" value="meshes/Framework_Center.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Pillars" name="mesh-Pillars">
+		<string name="filename" value="meshes/Pillars.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Roof" name="mesh-Roof">
+		<string name="filename" value="meshes/Roof.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Roofbeams" name="mesh-Roofbeams">
+		<string name="filename" value="meshes/Roofbeams.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-Walls" name="mesh-Walls">
+		<string name="filename" value="meshes/Walls.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="default-bsdf" name="bsdf"/>
+	</shape>
+
+<!-- Volumes -->
+
+</scene>

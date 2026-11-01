@@ -1,0 +1,4234 @@
+{
+  "source": "ARENA2036.gltf",
+  "surfaceSource": "photos",
+  "photoRegistration": {
+    "version": 1,
+    "coordinateSystem": "Three.js scene metres: X, height, minus dataset Y",
+    "cornerOrder": "top left, top right, bottom right, bottom left as seen in the source photo",
+    "note": "Approximate photo registration to existing geometry. Occlusions use another photograph or matching material samples; inferred/repeated surfaces are identified in each record. No RF material or geometric recalibration.",
+    "sources": {
+      "16-a-view.jpg": {
+        "url": "https://raw.githubusercontent.com/dichasus/dichasus.github.io/main/content/datasets/data/dichasus-adxx/photosAll/16-a-view.jpg",
+        "sha256": "aee0e770a5af29a9dd373556cbc4b616238c1588fcf29498407ea3105f62a2dd"
+      },
+      "df-view.jpg": {
+        "url": "https://raw.githubusercontent.com/dichasus/dichasus.github.io/main/content/datasets/data/dichasus-adxx/photosAll/df-view.jpg",
+        "sha256": "5bf7319db021ac9104f8713ebfa27c23afbd65aa474d634bfcda262f387f32be"
+      },
+      "side-view.jpg": {
+        "url": "https://raw.githubusercontent.com/dichasus/dichasus.github.io/main/content/datasets/data/dichasus-adxx/photosAll/side-view.jpg",
+        "sha256": "a4719c7d0704ed397ede3356bba77be75b44180a0f7939b654a44c836fb2bf88"
+      },
+      "robot.jpg": {
+        "url": "https://raw.githubusercontent.com/dichasus/dichasus.github.io/main/content/datasets/data/dichasus-adxx/photosAll/robot.jpg",
+        "sha256": "b6aef2f9d7b296b03604a921a5fae09b7922453a3822447a36efe0e87e4eb503"
+      },
+      "tachymeter-df.jpg": {
+        "url": "https://raw.githubusercontent.com/dichasus/dichasus.github.io/main/content/datasets/data/dichasus-adxx/photosAll/tachymeter-df.jpg",
+        "sha256": "9000e74a6da5ea0eaef9e0eba288cc68c0eb93725274b4ca85846759b8218ecc"
+      },
+      "14-a-view.jpg": {
+        "url": "https://raw.githubusercontent.com/dichasus/dichasus.github.io/main/content/datasets/data/dichasus-adxx/photosAll/14-a-view.jpg",
+        "sha256": "55f8b0a226487b6968dc40bc48e4ce902a1bb40c1afe14c0e545a3eb229d84b3"
+      },
+      "20240112_120031.jpg": {
+        "collection": "setup-2024",
+        "sha256": "3a527f03eb39722bbe8ff4ad7bac19b89760bbe96a62f9fd9af182fd14efd8da",
+        "note": "Additional setup photograph provided by Florian Euchner."
+      },
+      "20240112_120604.jpg": {
+        "collection": "setup-2024",
+        "sha256": "694014719b356abb8934b35cbe1ad0f7fa47616c777a7f2296e4964e8c5db3c4",
+        "note": "Additional setup photograph provided by Florian Euchner."
+      },
+      "20240112_120714.jpg": {
+        "collection": "setup-2024",
+        "sha256": "2f7d0e803a955cfeb7096c29fdc1c5d2fec3ec28ca3809376498f68a0ed8e534",
+        "note": "Additional setup photograph provided by Florian Euchner."
+      },
+      "20240112_120923.jpg": {
+        "collection": "setup-2024",
+        "sha256": "2bbbefab46c5703337d208ac09f71091c4779e5494b693b049a9c7d211ddc906",
+        "note": "Additional setup photograph provided by Florian Euchner."
+      },
+      "20240112_191309.jpg": {
+        "collection": "setup-2024",
+        "sha256": "744a19454ff605561275621bb0e8e1383f45958cf9e002c23e93a44884d41707",
+        "note": "Additional setup photograph provided by Florian Euchner."
+      },
+      "20240112_191316.jpg": {
+        "collection": "setup-2024",
+        "sha256": "b9ec1cb7053dc9940303b5de24addca12f4bfc6a88a1c86575c3b9f968f1adf9",
+        "note": "Additional setup photograph provided by Florian Euchner."
+      },
+      "20240112_121120.jpg": {
+        "collection": "setup-2024",
+        "sha256": "86f1df65dcb586fc5e9206b226e128c5fa0aaf05c6670061a47b16eee2099024",
+        "note": "Additional setup photograph provided by Florian Euchner."
+      },
+      "20240112_120318.jpg": {
+        "collection": "setup-2024",
+        "sha256": "0989dd1a981662e1f3183cb321a947c64ef7740943ac5be9ad48e2ad1250f266",
+        "note": "Additional setup photograph provided by Florian Euchner."
+      }
+    },
+    "surfaces": [
+      {
+        "id": "north-glass-material-37.203-upper",
+        "photo": "16-a-view.jpg",
+        "meshes": [
+          "Windows_NorthWall.001",
+          "Windows_NorthWall.002",
+          "Windows_NorthWall.003"
+        ],
+        "worldCorners": [
+          [
+            12.204,
+            7.01,
+            37.203
+          ],
+          [
+            -102.55,
+            7.01,
+            37.203
+          ],
+          [
+            -102.55,
+            4.2,
+            37.203
+          ],
+          [
+            12.204,
+            4.2,
+            37.203
+          ]
+        ],
+        "imageCorners": [
+          [
+            3345,
+            1500
+          ],
+          [
+            3810,
+            1495
+          ],
+          [
+            3810,
+            1738
+          ],
+          [
+            3345,
+            1730
+          ]
+        ],
+        "repeat": [
+          20,
+          1
+        ],
+        "gain": 1.05,
+        "kind": "repeated glass material sample; not registered outdoor geometry"
+      },
+      {
+        "id": "north-glass-material-37.203-lower",
+        "photo": "16-a-view.jpg",
+        "meshes": [
+          "Windows_NorthWall.001",
+          "Windows_NorthWall.002",
+          "Windows_NorthWall.003"
+        ],
+        "worldCorners": [
+          [
+            12.204,
+            3.265,
+            37.203
+          ],
+          [
+            -102.55,
+            3.265,
+            37.203
+          ],
+          [
+            -102.55,
+            0,
+            37.203
+          ],
+          [
+            12.204,
+            0,
+            37.203
+          ]
+        ],
+        "imageCorners": [
+          [
+            3345,
+            1500
+          ],
+          [
+            3810,
+            1495
+          ],
+          [
+            3810,
+            1738
+          ],
+          [
+            3345,
+            1730
+          ]
+        ],
+        "repeat": [
+          20,
+          1
+        ],
+        "gain": 1.05,
+        "kind": "repeated glass material sample; not registered outdoor geometry"
+      },
+      {
+        "id": "north-glass-material-41.776-lower",
+        "photo": "16-a-view.jpg",
+        "meshes": [
+          "Windows_NorthWall.004"
+        ],
+        "worldCorners": [
+          [
+            12.204,
+            3.265,
+            41.776
+          ],
+          [
+            -102.55,
+            3.265,
+            41.776
+          ],
+          [
+            -102.55,
+            0,
+            41.776
+          ],
+          [
+            12.204,
+            0,
+            41.776
+          ]
+        ],
+        "imageCorners": [
+          [
+            3345,
+            1500
+          ],
+          [
+            3810,
+            1495
+          ],
+          [
+            3810,
+            1738
+          ],
+          [
+            3345,
+            1730
+          ]
+        ],
+        "repeat": [
+          20,
+          1
+        ],
+        "gain": 1.05,
+        "kind": "repeated glass material sample; not registered outdoor geometry"
+      },
+      {
+        "id": "north-facade",
+        "photo": "16-a-view.jpg",
+        "meshes": [
+          "Walls",
+          "Windows_NorthWall.001",
+          "Windows_NorthWall.002",
+          "Windows_NorthWall.003"
+        ],
+        "worldCorners": [
+          [
+            12.204,
+            11.762,
+            37.203
+          ],
+          [
+            -15.18,
+            11.762,
+            37.203
+          ],
+          [
+            -15.18,
+            0,
+            37.203
+          ],
+          [
+            12.204,
+            0,
+            37.203
+          ]
+        ],
+        "imageCorners": [
+          [
+            2001.852,
+            1103.043
+          ],
+          [
+            4586.643,
+            970.712
+          ],
+          [
+            4574.121,
+            2165.546
+          ],
+          [
+            1992.919,
+            2057.746
+          ]
+        ],
+        "gain": 1.12,
+        "featherUV": [
+          0.025,
+          0.02
+        ],
+        "featherPixels": 15,
+        "excludeImagePolygons": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1900,
+              0
+            ],
+            [
+              1900,
+              1760
+            ],
+            [
+              0,
+              1760
+            ]
+          ],
+          [
+            [
+              4140,
+              1620
+            ],
+            [
+              4520,
+              1620
+            ],
+            [
+              4520,
+              1800
+            ],
+            [
+              4140,
+              1800
+            ]
+          ],
+          [
+            [
+              3280,
+              1910
+            ],
+            [
+              4624,
+              1910
+            ],
+            [
+              4624,
+              3468
+            ],
+            [
+              3280,
+              3468
+            ]
+          ],
+          [
+            [
+              2690,
+              1920
+            ],
+            [
+              3230,
+              1920
+            ],
+            [
+              3230,
+              2140
+            ],
+            [
+              2690,
+              2140
+            ]
+          ],
+          [
+            [
+              4000,
+              1770
+            ],
+            [
+              4624,
+              1770
+            ],
+            [
+              4624,
+              3468
+            ],
+            [
+              4000,
+              3468
+            ]
+          ],
+          [
+            [
+              3200,
+              1240
+            ],
+            [
+              3278,
+              1240
+            ],
+            [
+              3268,
+              2140
+            ],
+            [
+              3190,
+              2140
+            ]
+          ]
+        ],
+        "cameraRegistration": "16-a-view-north-columns"
+      },
+      {
+        "id": "storage-front",
+        "photo": "20240112_121120.jpg",
+        "meshes": [
+          "Shelf_WestWall"
+        ],
+        "imageCorners": [
+          [
+            1791.8000000000002,
+            959.48
+          ],
+          [
+            3814.8,
+            947.9200000000001
+          ],
+          [
+            3814.8,
+            2499.85
+          ],
+          [
+            1791.8000000000002,
+            2046.1200000000001
+          ]
+        ],
+        "worldCorners": [
+          [
+            9.914,
+            5.906,
+            2.865
+          ],
+          [
+            8.132,
+            5.906,
+            17.178
+          ],
+          [
+            8.132,
+            0,
+            17.178
+          ],
+          [
+            9.914,
+            0,
+            2.865
+          ]
+        ],
+        "gain": 1.04,
+        "note": "Unobscured storage racks from the closer setup photograph; foreground array stand and floor equipment excluded."
+      },
+      {
+        "id": "south-container-end",
+        "photo": "df-view.jpg",
+        "meshes": [
+          "SouthContainer",
+          "Window_SouthContainer"
+        ],
+        "imageCorners": [
+          [
+            1217,
+            1517
+          ],
+          [
+            1512,
+            1518
+          ],
+          [
+            1522,
+            1769
+          ],
+          [
+            1227,
+            1765
+          ]
+        ],
+        "worldCorners": [
+          [
+            -13.356,
+            3.008,
+            10.45
+          ],
+          [
+            -10.363,
+            3.008,
+            10.45
+          ],
+          [
+            -10.363,
+            0.036,
+            10.45
+          ],
+          [
+            -13.356,
+            0.036,
+            10.45
+          ]
+        ],
+        "gain": 1.1
+      },
+      {
+        "id": "west-door",
+        "photo": "20240112_120318.jpg",
+        "meshes": [
+          "Roll-Up_Door_WestWall"
+        ],
+        "imageCorners": [
+          [
+            2643,
+            566
+          ],
+          [
+            3663,
+            594
+          ],
+          [
+            3483,
+            1494
+          ],
+          [
+            2583,
+            1483
+          ]
+        ],
+        "worldCorners": [
+          [
+            9.175,
+            7.888,
+            21.813
+          ],
+          [
+            9.172,
+            7.888,
+            27.838
+          ],
+          [
+            9.172,
+            0,
+            27.838
+          ],
+          [
+            9.175,
+            0,
+            21.813
+          ]
+        ],
+        "gain": 1.12,
+        "note": "Closer, unobstructed setup photograph of the shutter; approximate visual registration to the existing door plane."
+      },
+      {
+        "id": "design-factory-front-banner",
+        "photo": "tachymeter-df.jpg",
+        "meshes": [
+          "NorthContainer"
+        ],
+        "imageCorners": [
+          [
+            1124,
+            1390
+          ],
+          [
+            2115,
+            1234
+          ],
+          [
+            2115,
+            1505
+          ],
+          [
+            1124,
+            1570
+          ]
+        ],
+        "worldCorners": [
+          [
+            -10.435,
+            3.179,
+            33.03
+          ],
+          [
+            -10.435,
+            3.179,
+            25.005
+          ],
+          [
+            -10.435,
+            2.624,
+            25.005
+          ],
+          [
+            -10.435,
+            2.624,
+            33.03
+          ]
+        ],
+        "gain": 1.03,
+        "excludeImagePolygons": [
+          [
+            [
+              1460,
+              1495
+            ],
+            [
+              1700,
+              1495
+            ],
+            [
+              1700,
+              1620
+            ],
+            [
+              1460,
+              1620
+            ]
+          ],
+          [
+            [
+              1100,
+              1535
+            ],
+            [
+              1280,
+              1535
+            ],
+            [
+              1280,
+              1620
+            ],
+            [
+              1100,
+              1620
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "design-factory-end-banner",
+        "photo": "20240112_120604.jpg",
+        "meshes": [
+          "NorthContainer"
+        ],
+        "imageCorners": [
+          [
+            1687.76,
+            404.6
+          ],
+          [
+            2444.94,
+            387.26
+          ],
+          [
+            2444.94,
+            624.24
+          ],
+          [
+            1693.54,
+            644.47
+          ]
+        ],
+        "worldCorners": [
+          [
+            -10.435,
+            3.179,
+            25.005
+          ],
+          [
+            -13.356,
+            3.179,
+            25.005
+          ],
+          [
+            -13.356,
+            2.618,
+            25.005
+          ],
+          [
+            -10.435,
+            2.618,
+            25.005
+          ]
+        ],
+        "gain": 1.03,
+        "kind": "registered photograph of this surface"
+      },
+      {
+        "id": "north-container-front-glazing",
+        "photo": "robot.jpg",
+        "meshes": [
+          "Container_Window_NorthContainer"
+        ],
+        "imageCorners": [
+          [
+            1463,
+            1582
+          ],
+          [
+            1559,
+            1597
+          ],
+          [
+            1559,
+            1717
+          ],
+          [
+            1463,
+            1711
+          ]
+        ],
+        "worldCorners": [
+          [
+            -10.435,
+            2.624,
+            27.823
+          ],
+          [
+            -10.435,
+            2.624,
+            25.005
+          ],
+          [
+            -10.435,
+            1.283,
+            25.005
+          ],
+          [
+            -10.435,
+            1.283,
+            27.823
+          ]
+        ],
+        "repeat": [
+          3,
+          1
+        ],
+        "gain": 1.2,
+        "kind": "repeated material sample"
+      },
+      {
+        "id": "north-container-end-glazing",
+        "photo": "robot.jpg",
+        "meshes": [
+          "Container_Window_NorthContainer"
+        ],
+        "imageCorners": [
+          [
+            1463,
+            1582
+          ],
+          [
+            1559,
+            1597
+          ],
+          [
+            1559,
+            1717
+          ],
+          [
+            1463,
+            1711
+          ]
+        ],
+        "worldCorners": [
+          [
+            -10.435,
+            2.624,
+            25.005
+          ],
+          [
+            -13.356,
+            2.624,
+            25.005
+          ],
+          [
+            -13.356,
+            1.283,
+            25.005
+          ],
+          [
+            -10.435,
+            1.283,
+            25.005
+          ]
+        ],
+        "repeat": [
+          3,
+          1
+        ],
+        "gain": 1.2,
+        "kind": "repeated material sample"
+      },
+      {
+        "id": "north-container-back-glazing",
+        "photo": "robot.jpg",
+        "meshes": [
+          "Container_Window_NorthContainer"
+        ],
+        "imageCorners": [
+          [
+            1463,
+            1582
+          ],
+          [
+            1559,
+            1597
+          ],
+          [
+            1559,
+            1717
+          ],
+          [
+            1463,
+            1711
+          ]
+        ],
+        "worldCorners": [
+          [
+            -13.356,
+            2.644,
+            25.005
+          ],
+          [
+            -13.356,
+            2.644,
+            27.81
+          ],
+          [
+            -13.356,
+            1.283,
+            27.81
+          ],
+          [
+            -13.356,
+            1.283,
+            25.005
+          ]
+        ],
+        "repeat": [
+          3,
+          1
+        ],
+        "gain": 1.2,
+        "kind": "repeated material sample"
+      },
+      {
+        "id": "north-blue-lockers",
+        "photo": "16-a-view.jpg",
+        "meshes": [
+          "Lockers_NorthWall"
+        ],
+        "imageCorners": [
+          [
+            2780,
+            1948
+          ],
+          [
+            3136,
+            1964
+          ],
+          [
+            3136,
+            2110
+          ],
+          [
+            2780,
+            2099
+          ]
+        ],
+        "worldCorners": [
+          [
+            2.42,
+            1.93,
+            36.19
+          ],
+          [
+            -1.55,
+            1.93,
+            36.19
+          ],
+          [
+            -1.55,
+            0,
+            36.19
+          ],
+          [
+            2.42,
+            0,
+            36.19
+          ]
+        ],
+        "gain": 1.05
+      },
+      {
+        "id": "north-hydrant",
+        "photo": "16-a-view.jpg",
+        "meshes": [
+          "Wall_Hydrant_NorthWall"
+        ],
+        "imageCorners": [
+          [
+            2145,
+            1940
+          ],
+          [
+            2205,
+            1940
+          ],
+          [
+            2205,
+            2040
+          ],
+          [
+            2145,
+            2040
+          ]
+        ],
+        "worldCorners": [
+          [
+            10.19,
+            1.64,
+            35.95
+          ],
+          [
+            9.43,
+            1.64,
+            35.95
+          ],
+          [
+            9.43,
+            0.54,
+            35.95
+          ],
+          [
+            10.19,
+            0.54,
+            35.95
+          ]
+        ],
+        "gain": 1.0
+      },
+      {
+        "id": "south-hydrant",
+        "photo": "20240112_121120.jpg",
+        "meshes": [
+          "Wall_Hydrant_SouthWall"
+        ],
+        "imageCorners": [
+          [
+            1511.47,
+            1780.24
+          ],
+          [
+            1621.29,
+            1771.5700000000002
+          ],
+          [
+            1624.18,
+            1939.19
+          ],
+          [
+            1514.3600000000001,
+            1959.42
+          ]
+        ],
+        "worldCorners": [
+          [
+            9.43,
+            1.64,
+            1.22
+          ],
+          [
+            10.19,
+            1.64,
+            1.22
+          ],
+          [
+            10.19,
+            0.54,
+            1.22
+          ],
+          [
+            9.43,
+            0.54,
+            1.22
+          ]
+        ],
+        "gain": 1.03,
+        "kind": "registered photograph of this surface"
+      },
+      {
+        "id": "storage-end",
+        "photo": "20240112_121120.jpg",
+        "meshes": [
+          "Shelf_WestWall"
+        ],
+        "imageCorners": [
+          [
+            3814.8,
+            947.9200000000001
+          ],
+          [
+            3982.42,
+            936.36
+          ],
+          [
+            3959.3,
+            2424.71
+          ],
+          [
+            3814.8,
+            2499.85
+          ]
+        ],
+        "worldCorners": [
+          [
+            8.132,
+            5.906,
+            17.178
+          ],
+          [
+            9.719,
+            5.906,
+            17.375
+          ],
+          [
+            9.719,
+            0,
+            17.375
+          ],
+          [
+            8.132,
+            0,
+            17.178
+          ]
+        ],
+        "gain": 1.04,
+        "note": "Unobscured storage racks from the closer setup photograph; foreground array stand and floor equipment excluded."
+      },
+      {
+        "id": "south-container-roof",
+        "photo": "14-a-view.jpg",
+        "meshes": [
+          "SouthContainer"
+        ],
+        "imageCorners": [
+          [
+            1590,
+            1980
+          ],
+          [
+            2500,
+            1845
+          ],
+          [
+            2840,
+            1910
+          ],
+          [
+            1780,
+            2165
+          ]
+        ],
+        "worldCorners": [
+          [
+            -10.363,
+            3.008,
+            2.324
+          ],
+          [
+            -10.363,
+            3.008,
+            10.45
+          ],
+          [
+            -13.356,
+            3.008,
+            10.45
+          ],
+          [
+            -13.356,
+            3.008,
+            2.324
+          ]
+        ],
+        "gain": 1.1,
+        "excludeImagePolygons": [
+          [
+            [
+              2400,
+              1800
+            ],
+            [
+              2590,
+              1800
+            ],
+            [
+              2590,
+              1880
+            ],
+            [
+              2400,
+              1880
+            ]
+          ]
+        ],
+        "featherPixels": 10
+      },
+      {
+        "id": "north-container-roof",
+        "photo": "14-a-view.jpg",
+        "meshes": [
+          "NorthContainer"
+        ],
+        "imageCorners": [
+          [
+            1590,
+            1980
+          ],
+          [
+            2500,
+            1845
+          ],
+          [
+            2840,
+            1910
+          ],
+          [
+            1780,
+            2165
+          ]
+        ],
+        "worldCorners": [
+          [
+            -10.435,
+            3.179,
+            25.005
+          ],
+          [
+            -10.435,
+            3.179,
+            33.03
+          ],
+          [
+            -13.356,
+            3.179,
+            33.03
+          ],
+          [
+            -13.356,
+            3.179,
+            25.005
+          ]
+        ],
+        "gain": 1.1,
+        "excludeImagePolygons": [
+          [
+            [
+              2400,
+              1800
+            ],
+            [
+              2590,
+              1800
+            ],
+            [
+              2590,
+              1880
+            ],
+            [
+              2400,
+              1880
+            ]
+          ]
+        ],
+        "featherPixels": 10,
+        "kind": "same modular-container roof material sample"
+      },
+      {
+        "id": "south-facade",
+        "photo": "df-view.jpg",
+        "meshes": [
+          "Walls"
+        ],
+        "imageCorners": [
+          [
+            498.5002,
+            829.9105
+          ],
+          [
+            2635.6395,
+            1013.0312
+          ],
+          [
+            2604.6988,
+            1555.1267
+          ],
+          [
+            568.1144,
+            1616.3934
+          ]
+        ],
+        "worldCorners": [
+          [
+            -25,
+            11.76,
+            -2.162
+          ],
+          [
+            12.204,
+            11.76,
+            -2.162
+          ],
+          [
+            12.204,
+            0,
+            -2.162
+          ],
+          [
+            -25,
+            0,
+            -2.162
+          ]
+        ],
+        "cameraRegistration": "df-view-building-and-container",
+        "gain": 1.3,
+        "featherUV": [
+          0.025,
+          0.045
+        ],
+        "excludeImagePolygons": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1150,
+              0
+            ],
+            [
+              1150,
+              1000
+            ],
+            [
+              900,
+              1470
+            ],
+            [
+              800,
+              3000
+            ],
+            [
+              0,
+              3000
+            ]
+          ],
+          [
+            [
+              1838,
+              1220
+            ],
+            [
+              1910,
+              1220
+            ],
+            [
+              1910,
+              1310
+            ],
+            [
+              1838,
+              1310
+            ]
+          ],
+          [
+            [
+              900,
+              1180
+            ],
+            [
+              1000,
+              1180
+            ],
+            [
+              1000,
+              1310
+            ],
+            [
+              900,
+              1310
+            ]
+          ],
+          [
+            [
+              2150,
+              1440
+            ],
+            [
+              2490,
+              1440
+            ],
+            [
+              2490,
+              1650
+            ],
+            [
+              2150,
+              1650
+            ]
+          ],
+          [
+            [
+              1190,
+              1480
+            ],
+            [
+              1560,
+              1480
+            ],
+            [
+              1560,
+              1800
+            ],
+            [
+              1190,
+              1800
+            ]
+          ],
+          [
+            [
+              1980,
+              1025
+            ],
+            [
+              2037,
+              1025
+            ],
+            [
+              2034,
+              1640
+            ],
+            [
+              1977,
+              1640
+            ]
+          ],
+          [
+            [
+              1148,
+              980
+            ],
+            [
+              1215,
+              980
+            ],
+            [
+              1220,
+              1510
+            ],
+            [
+              1155,
+              1510
+            ]
+          ],
+          [
+            [
+              2598,
+              1060
+            ],
+            [
+              2673,
+              1060
+            ],
+            [
+              2673,
+              1600
+            ],
+            [
+              2598,
+              1600
+            ]
+          ]
+        ],
+        "featherPixels": 15
+      },
+      {
+        "id": "south-stair-facade",
+        "photo": "df-view.jpg",
+        "meshes": [
+          "Stairwall_SouthWall"
+        ],
+        "imageCorners": [
+          [
+            437.43,
+            1281.157
+          ],
+          [
+            2495.6712,
+            1320.812
+          ],
+          [
+            2483.3431,
+            1575.0374
+          ],
+          [
+            471.9491,
+            1642.3219
+          ]
+        ],
+        "worldCorners": [
+          [
+            -25,
+            5.1,
+            -0.026
+          ],
+          [
+            7.69,
+            5.1,
+            -0.026
+          ],
+          [
+            7.69,
+            0.016,
+            -0.026
+          ],
+          [
+            -25,
+            0.016,
+            -0.026
+          ]
+        ],
+        "cameraRegistration": "df-view-building-and-container",
+        "gain": 1.22,
+        "featherUV": [
+          0.015,
+          0.025
+        ],
+        "excludeImagePolygons": [
+          [
+            [
+              0,
+              1430
+            ],
+            [
+              1600,
+              1430
+            ],
+            [
+              1600,
+              1900
+            ],
+            [
+              0,
+              1900
+            ]
+          ],
+          [
+            [
+              2130,
+              1435
+            ],
+            [
+              2500,
+              1435
+            ],
+            [
+              2500,
+              1650
+            ],
+            [
+              2130,
+              1650
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              900,
+              0
+            ],
+            [
+              900,
+              3000
+            ],
+            [
+              0,
+              3000
+            ]
+          ],
+          [
+            [
+              1980,
+              1025
+            ],
+            [
+              2037,
+              1025
+            ],
+            [
+              2034,
+              1640
+            ],
+            [
+              1977,
+              1640
+            ]
+          ],
+          [
+            [
+              1148,
+              980
+            ],
+            [
+              1215,
+              980
+            ],
+            [
+              1220,
+              1510
+            ],
+            [
+              1155,
+              1510
+            ]
+          ]
+        ],
+        "featherPixels": 10
+      },
+      {
+        "id": "south-glass-material",
+        "photo": "robot.jpg",
+        "meshes": [
+          "Windows_SouthWall"
+        ],
+        "imageCorners": [
+          [
+            2145,
+            1620
+          ],
+          [
+            2250,
+            1608
+          ],
+          [
+            2250,
+            1690
+          ],
+          [
+            2145,
+            1700
+          ]
+        ],
+        "worldCorners": [
+          [
+            -102.55,
+            3.212,
+            -0.78
+          ],
+          [
+            -2.39,
+            3.212,
+            -0.78
+          ],
+          [
+            -2.39,
+            0.015,
+            -0.78
+          ],
+          [
+            -102.55,
+            0.015,
+            -0.78
+          ]
+        ],
+        "repeat": [
+          70,
+          1
+        ],
+        "kind": "repeated clear glass material sample",
+        "gain": 0.9
+      },
+      {
+        "id": "south-windows-camera",
+        "photo": "df-view.jpg",
+        "meshes": [
+          "Windows_SouthWall"
+        ],
+        "imageCorners": [
+          [
+            487.6746,
+            1414.6674
+          ],
+          [
+            1993.1854,
+            1414.4254
+          ],
+          [
+            1990.9145,
+            1584.6206
+          ],
+          [
+            507.9003,
+            1632.3092
+          ]
+        ],
+        "worldCorners": [
+          [
+            -25,
+            3.212,
+            -0.78
+          ],
+          [
+            -2.39,
+            3.212,
+            -0.78
+          ],
+          [
+            -2.39,
+            0.015,
+            -0.78
+          ],
+          [
+            -25,
+            0.015,
+            -0.78
+          ]
+        ],
+        "cameraRegistration": "df-view-building-and-container",
+        "gain": 1.0,
+        "excludeImagePolygons": [
+          [
+            [
+              0,
+              1430
+            ],
+            [
+              1600,
+              1430
+            ],
+            [
+              1600,
+              1850
+            ],
+            [
+              0,
+              1850
+            ]
+          ],
+          [
+            [
+              1650,
+              1510
+            ],
+            [
+              1780,
+              1510
+            ],
+            [
+              1780,
+              1700
+            ],
+            [
+              1650,
+              1700
+            ]
+          ],
+          [
+            [
+              1880,
+              1450
+            ],
+            [
+              2100,
+              1450
+            ],
+            [
+              2100,
+              1700
+            ],
+            [
+              1880,
+              1700
+            ]
+          ],
+          [
+            [
+              1980,
+              1025
+            ],
+            [
+              2037,
+              1025
+            ],
+            [
+              2034,
+              1640
+            ],
+            [
+              1977,
+              1640
+            ]
+          ],
+          [
+            [
+              1148,
+              980
+            ],
+            [
+              1215,
+              980
+            ],
+            [
+              1220,
+              1510
+            ],
+            [
+              1155,
+              1510
+            ]
+          ]
+        ],
+        "featherPixels": 8
+      },
+      {
+        "id": "arena-poster",
+        "photo": "20240112_120923.jpg",
+        "meshes": [
+          "Barrier_SouthWall"
+        ],
+        "imageCorners": [
+          [
+            104,
+            1669
+          ],
+          [
+            713,
+            1637
+          ],
+          [
+            725,
+            1933
+          ],
+          [
+            125,
+            2027
+          ]
+        ],
+        "worldCorners": [
+          [
+            -0.56839903,
+            2.52118429,
+            1.5063385
+          ],
+          [
+            3.97248038,
+            2.52118429,
+            1.50633918
+          ],
+          [
+            3.97248038,
+            0.01561466,
+            1.50633918
+          ],
+          [
+            -0.56839903,
+            0.01561466,
+            1.5063385
+          ]
+        ],
+        "gain": 1.04,
+        "note": "The front ARENA2036 board only; excludes the separate orange board, wall and floor behind it."
+      },
+      {
+        "id": "design-factory-rollup",
+        "photo": "tachymeter-df.jpg",
+        "meshes": [
+          "Poster_NorthContainer.003"
+        ],
+        "imageCorners": [
+          [
+            975,
+            1530
+          ],
+          [
+            1265,
+            1560
+          ],
+          [
+            1250,
+            2170
+          ],
+          [
+            962,
+            2160
+          ]
+        ],
+        "worldCorners": [
+          [
+            -4.62933,
+            2.27909,
+            32.65979
+          ],
+          [
+            -4.5693,
+            2.27909,
+            31.76972
+          ],
+          [
+            -4.5693,
+            0.09796,
+            31.76972
+          ],
+          [
+            -4.62933,
+            0.09796,
+            32.65979
+          ]
+        ],
+        "gain": 1.03
+      },
+      {
+        "id": "design-factory-whiteboard",
+        "photo": "tachymeter-df.jpg",
+        "meshes": [
+          "Board_NorthContainer"
+        ],
+        "imageCorners": [
+          [
+            1558,
+            1633
+          ],
+          [
+            1848,
+            1666
+          ],
+          [
+            1840,
+            1940
+          ],
+          [
+            1554,
+            1934
+          ]
+        ],
+        "worldCorners": [
+          [
+            -6.82825,
+            1.93467,
+            24.45028
+          ],
+          [
+            -8.27096,
+            1.93467,
+            24.45028
+          ],
+          [
+            -8.27096,
+            0.77468,
+            24.45028
+          ],
+          [
+            -6.82825,
+            0.77468,
+            24.45028
+          ]
+        ],
+        "gain": 1.03,
+        "note": "Front viewed from the open hall toward positive scene Z; the existing clipped corner follows the foreground flag.",
+        "excludeImagePolygons": [
+          [
+            [
+              1548,
+              1620
+            ],
+            [
+              1680,
+              1648
+            ],
+            [
+              1550,
+              1815
+            ]
+          ]
+        ],
+        "featherPixels": 2
+      },
+      {
+        "id": "north-container-open-door-glazing-001",
+        "photo": "20240112_120604.jpg",
+        "meshes": [
+          "Door_Window_NorthContainer.001"
+        ],
+        "worldCorners": [
+          [
+            -11.366044186078872,
+            2.6065953579548657,
+            24.944936873932274
+          ],
+          [
+            -12.095926091725554,
+            2.6065953579548657,
+            24.512865681618685
+          ],
+          [
+            -12.095925997677682,
+            1.2857570870858375,
+            24.512865522747088
+          ],
+          [
+            -11.366044092031,
+            1.2857570870858375,
+            24.944936715060678
+          ]
+        ],
+        "imageCorners": [
+          [
+            1924.74,
+            791.86
+          ],
+          [
+            2144.38,
+            814.98
+          ],
+          [
+            2144.38,
+            1138.66
+          ],
+          [
+            1924.74,
+            1141.55
+          ]
+        ],
+        "gain": 1.03,
+        "kind": "registered photograph of this surface"
+      },
+      {
+        "id": "north-container-open-door-glazing-002",
+        "photo": "20240112_120604.jpg",
+        "meshes": [
+          "Door_Window_NorthContainer.002"
+        ],
+        "worldCorners": [
+          [
+            -13.481135236965113,
+            2.6012486608398664,
+            24.092968795399017
+          ],
+          [
+            -13.240440166867435,
+            2.6012486608398664,
+            24.89121651518569
+          ],
+          [
+            -13.24044031385119,
+            1.299496148417135,
+            24.891216559505597
+          ],
+          [
+            -13.481135383948867,
+            1.299496148417135,
+            24.092968839718925
+          ]
+        ],
+        "imageCorners": [
+          [
+            2508.52,
+            826.54
+          ],
+          [
+            2401.59,
+            797.64
+          ],
+          [
+            2407.37,
+            1101.09
+          ],
+          [
+            2508.52,
+            1135.77
+          ]
+        ],
+        "gain": 1.03,
+        "kind": "registered photograph of this surface"
+      },
+      {
+        "id": "column-16-a",
+        "photo": "df-view.jpg",
+        "meshes": [
+          "Pillar_South.003"
+        ],
+        "worldCorners": [
+          [
+            -3.0142,
+            9.44,
+            0.993219
+          ],
+          [
+            -2.3875,
+            9.44,
+            0.993219
+          ],
+          [
+            -2.3875,
+            0.0154,
+            0.993219
+          ],
+          [
+            -3.0142,
+            0.0154,
+            0.993219
+          ]
+        ],
+        "imageCorners": [
+          [
+            1988,
+            1042
+          ],
+          [
+            2030,
+            1046
+          ],
+          [
+            2025,
+            1619
+          ],
+          [
+            1984,
+            1617
+          ]
+        ],
+        "gain": 1.12,
+        "excludeUV": [
+          [
+            0,
+            0.87,
+            1,
+            1
+          ]
+        ],
+        "note": "Column face, marking and service signs; foreground trolley at the foot is excluded."
+      },
+      {
+        "id": "column-16-b",
+        "photo": "16-a-view.jpg",
+        "meshes": [
+          "Pillar_North.003"
+        ],
+        "worldCorners": [
+          [
+            -2.3875,
+            9.44,
+            36.177025
+          ],
+          [
+            -3.0142,
+            9.44,
+            36.177025
+          ],
+          [
+            -3.0142,
+            0.0154,
+            36.177025
+          ],
+          [
+            -2.3875,
+            0.0154,
+            36.177025
+          ]
+        ],
+        "imageCorners": [
+          [
+            3208,
+            1265
+          ],
+          [
+            3269,
+            1262
+          ],
+          [
+            3258,
+            2124
+          ],
+          [
+            3199,
+            2121
+          ]
+        ],
+        "gain": 1.06,
+        "note": "Column marking, safety signs and extinguisher from the unobscured front face."
+      },
+      {
+        "id": "column-14-a",
+        "photo": "df-view.jpg",
+        "meshes": [
+          "Pillar_South.005"
+        ],
+        "worldCorners": [
+          [
+            -15.4922,
+            9.44,
+            0.993219
+          ],
+          [
+            -14.8655,
+            9.44,
+            0.993219
+          ],
+          [
+            -14.8655,
+            2.5,
+            0.993219
+          ],
+          [
+            -15.4922,
+            2.5,
+            0.993219
+          ]
+        ],
+        "imageCorners": [
+          [
+            1154,
+            994
+          ],
+          [
+            1204,
+            998
+          ],
+          [
+            1207,
+            1480
+          ],
+          [
+            1163,
+            1482
+          ]
+        ],
+        "gain": 1.13,
+        "note": "Visible column above the foreground container; the occluded foot uses the neutral model material."
+      },
+      {
+        "id": "south-container-clear-front",
+        "photo": "20240112_120031.jpg",
+        "meshes": [
+          "SouthContainer",
+          "Window_SouthContainer"
+        ],
+        "worldCorners": [
+          [
+            -10.363,
+            3.008,
+            10.45
+          ],
+          [
+            -10.363,
+            3.008,
+            2.324
+          ],
+          [
+            -10.363,
+            0.036,
+            2.324
+          ],
+          [
+            -10.363,
+            0.036,
+            10.45
+          ]
+        ],
+        "imageCorners": [
+          [
+            1942,
+            830
+          ],
+          [
+            3278,
+            923
+          ],
+          [
+            3210,
+            1487
+          ],
+          [
+            1948,
+            1575
+          ]
+        ],
+        "gain": [
+          1.15,
+          1.15,
+          1.19
+        ],
+        "note": "Unobscured complete panel replaces the earlier blend of tripod-obscured photographs."
+      },
+      {
+        "photo": "20240112_120714.jpg",
+        "meshes": [
+          "SouthContainer",
+          "Window_SouthContainer"
+        ],
+        "gain": 1.08,
+        "kind": "inferred matching material underneath masked foreground equipment",
+        "id": "south-container-back-paint-fill",
+        "worldCorners": [
+          [
+            -13.356,
+            3.008,
+            2.324
+          ],
+          [
+            -13.356,
+            3.008,
+            10.45
+          ],
+          [
+            -13.356,
+            0.03600000000000003,
+            10.45
+          ],
+          [
+            -13.356,
+            0.03600000000000003,
+            2.324
+          ]
+        ],
+        "imageCorners": [
+          [
+            2050,
+            2250
+          ],
+          [
+            2085,
+            2240
+          ],
+          [
+            2085,
+            2310
+          ],
+          [
+            2050,
+            2320
+          ]
+        ]
+      },
+      {
+        "id": "south-container-back-paint-seam-0",
+        "photo": "20240112_120714.jpg",
+        "meshes": [
+          "SouthContainer",
+          "Window_SouthContainer"
+        ],
+        "worldCorners": [
+          [
+            -13.356,
+            3.008,
+            2.8928199999999995
+          ],
+          [
+            -13.356,
+            3.008,
+            2.9415759999999995
+          ],
+          [
+            -13.356,
+            0.2143200000000003,
+            2.9415759999999995
+          ],
+          [
+            -13.356,
+            0.2143200000000003,
+            2.8928199999999995
+          ]
+        ],
+        "imageCorners": [
+          [
+            2264.347,
+            2116.669
+          ],
+          [
+            2271.355,
+            2114.812
+          ],
+          [
+            2271.624,
+            2204.838
+          ],
+          [
+            2264.609,
+            2206.982
+          ]
+        ],
+        "gain": 1.08,
+        "kind": "matching photographed panel joint continued below foreground equipment"
+      },
+      {
+        "id": "south-container-back-paint-seam-1",
+        "photo": "20240112_120714.jpg",
+        "meshes": [
+          "SouthContainer",
+          "Window_SouthContainer"
+        ],
+        "worldCorners": [
+          [
+            -13.356,
+            3.008,
+            3.9573259999999997
+          ],
+          [
+            -13.356,
+            3.008,
+            4.006081999999999
+          ],
+          [
+            -13.356,
+            0.2143200000000003,
+            4.006081999999999
+          ],
+          [
+            -13.356,
+            0.2143200000000003,
+            3.9573259999999997
+          ]
+        ],
+        "imageCorners": [
+          [
+            2264.347,
+            2116.669
+          ],
+          [
+            2271.355,
+            2114.812
+          ],
+          [
+            2271.624,
+            2204.838
+          ],
+          [
+            2264.609,
+            2206.982
+          ]
+        ],
+        "gain": 1.08,
+        "kind": "matching photographed panel joint continued below foreground equipment"
+      },
+      {
+        "id": "south-container-back-paint-seam-2",
+        "photo": "20240112_120714.jpg",
+        "meshes": [
+          "SouthContainer",
+          "Window_SouthContainer"
+        ],
+        "worldCorners": [
+          [
+            -13.356,
+            3.008,
+            5.078714
+          ],
+          [
+            -13.356,
+            3.008,
+            5.12747
+          ],
+          [
+            -13.356,
+            0.2143200000000003,
+            5.12747
+          ],
+          [
+            -13.356,
+            0.2143200000000003,
+            5.078714
+          ]
+        ],
+        "imageCorners": [
+          [
+            2264.347,
+            2116.669
+          ],
+          [
+            2271.355,
+            2114.812
+          ],
+          [
+            2271.624,
+            2204.838
+          ],
+          [
+            2264.609,
+            2206.982
+          ]
+        ],
+        "gain": 1.08,
+        "kind": "matching photographed panel joint continued below foreground equipment"
+      },
+      {
+        "id": "south-container-back-paint-seam-3",
+        "photo": "20240112_120714.jpg",
+        "meshes": [
+          "SouthContainer",
+          "Window_SouthContainer"
+        ],
+        "worldCorners": [
+          [
+            -13.356,
+            3.008,
+            6.200101999999999
+          ],
+          [
+            -13.356,
+            3.008,
+            6.248857999999999
+          ],
+          [
+            -13.356,
+            0.2143200000000003,
+            6.248857999999999
+          ],
+          [
+            -13.356,
+            0.2143200000000003,
+            6.200101999999999
+          ]
+        ],
+        "imageCorners": [
+          [
+            2264.347,
+            2116.669
+          ],
+          [
+            2271.355,
+            2114.812
+          ],
+          [
+            2271.624,
+            2204.838
+          ],
+          [
+            2264.609,
+            2206.982
+          ]
+        ],
+        "gain": 1.08,
+        "kind": "matching photographed panel joint continued below foreground equipment"
+      },
+      {
+        "id": "south-container-back-paint-seam-4",
+        "photo": "20240112_120714.jpg",
+        "meshes": [
+          "SouthContainer",
+          "Window_SouthContainer"
+        ],
+        "worldCorners": [
+          [
+            -13.356,
+            3.008,
+            7.3377419999999995
+          ],
+          [
+            -13.356,
+            3.008,
+            7.386498
+          ],
+          [
+            -13.356,
+            0.2143200000000003,
+            7.386498
+          ],
+          [
+            -13.356,
+            0.2143200000000003,
+            7.3377419999999995
+          ]
+        ],
+        "imageCorners": [
+          [
+            2264.347,
+            2116.669
+          ],
+          [
+            2271.355,
+            2114.812
+          ],
+          [
+            2271.624,
+            2204.838
+          ],
+          [
+            2264.609,
+            2206.982
+          ]
+        ],
+        "gain": 1.08,
+        "kind": "matching photographed panel joint continued below foreground equipment"
+      },
+      {
+        "id": "south-container-back-paint-seam-5",
+        "photo": "20240112_120714.jpg",
+        "meshes": [
+          "SouthContainer",
+          "Window_SouthContainer"
+        ],
+        "worldCorners": [
+          [
+            -13.356,
+            3.008,
+            8.605398
+          ],
+          [
+            -13.356,
+            3.008,
+            8.654153999999998
+          ],
+          [
+            -13.356,
+            0.2143200000000003,
+            8.654153999999998
+          ],
+          [
+            -13.356,
+            0.2143200000000003,
+            8.605398
+          ]
+        ],
+        "imageCorners": [
+          [
+            2264.347,
+            2116.669
+          ],
+          [
+            2271.355,
+            2114.812
+          ],
+          [
+            2271.624,
+            2204.838
+          ],
+          [
+            2264.609,
+            2206.982
+          ]
+        ],
+        "gain": 1.08,
+        "kind": "matching photographed panel joint continued below foreground equipment"
+      },
+      {
+        "id": "south-container-back-paint-seam-6",
+        "photo": "20240112_120714.jpg",
+        "meshes": [
+          "SouthContainer",
+          "Window_SouthContainer"
+        ],
+        "worldCorners": [
+          [
+            -13.356,
+            3.008,
+            9.694282
+          ],
+          [
+            -13.356,
+            3.008,
+            9.743037999999999
+          ],
+          [
+            -13.356,
+            0.2143200000000003,
+            9.743037999999999
+          ],
+          [
+            -13.356,
+            0.2143200000000003,
+            9.694282
+          ]
+        ],
+        "imageCorners": [
+          [
+            2264.347,
+            2116.669
+          ],
+          [
+            2271.355,
+            2114.812
+          ],
+          [
+            2271.624,
+            2204.838
+          ],
+          [
+            2264.609,
+            2206.982
+          ]
+        ],
+        "gain": 1.08,
+        "kind": "matching photographed panel joint continued below foreground equipment"
+      },
+      {
+        "photo": "20240112_120714.jpg",
+        "meshes": [
+          "SouthContainer",
+          "Window_SouthContainer"
+        ],
+        "gain": 1.08,
+        "kind": "inferred matching material underneath masked foreground equipment",
+        "id": "south-container-back-blue-fill",
+        "worldCorners": [
+          [
+            -13.356,
+            1.97297330096,
+            3.4538060484399997
+          ],
+          [
+            -13.356,
+            1.97297330096,
+            6.18485697392
+          ],
+          [
+            -13.356,
+            -0.7927077248000005,
+            6.18485697392
+          ],
+          [
+            -13.356,
+            -0.7927077248000005,
+            3.4538060484399997
+          ]
+        ],
+        "imageCorners": [
+          [
+            2140,
+            2390
+          ],
+          [
+            2200,
+            2380
+          ],
+          [
+            2200,
+            2430
+          ],
+          [
+            2140,
+            2440
+          ]
+        ],
+        "includeUV": [
+          [
+            1.0,
+            0.5
+          ],
+          [
+            0.998929,
+            0.532702
+          ],
+          [
+            0.995722,
+            0.565263
+          ],
+          [
+            0.990393,
+            0.597545
+          ],
+          [
+            0.982963,
+            0.62941
+          ],
+          [
+            0.973465,
+            0.66072
+          ],
+          [
+            0.96194,
+            0.691342
+          ],
+          [
+            0.948436,
+            0.721144
+          ],
+          [
+            0.933013,
+            0.75
+          ],
+          [
+            0.915735,
+            0.777785
+          ],
+          [
+            0.896677,
+            0.804381
+          ],
+          [
+            0.87592,
+            0.829673
+          ],
+          [
+            0.853553,
+            0.853553
+          ],
+          [
+            0.829673,
+            0.87592
+          ],
+          [
+            0.804381,
+            0.896677
+          ],
+          [
+            0.777785,
+            0.915735
+          ],
+          [
+            0.75,
+            0.933013
+          ],
+          [
+            0.721144,
+            0.948436
+          ],
+          [
+            0.691342,
+            0.96194
+          ],
+          [
+            0.66072,
+            0.973465
+          ],
+          [
+            0.62941,
+            0.982963
+          ],
+          [
+            0.597545,
+            0.990393
+          ],
+          [
+            0.565263,
+            0.995722
+          ],
+          [
+            0.532702,
+            0.998929
+          ],
+          [
+            0.5,
+            1.0
+          ],
+          [
+            0.467298,
+            0.998929
+          ],
+          [
+            0.434737,
+            0.995722
+          ],
+          [
+            0.402455,
+            0.990393
+          ],
+          [
+            0.37059,
+            0.982963
+          ],
+          [
+            0.33928,
+            0.973465
+          ],
+          [
+            0.308658,
+            0.96194
+          ],
+          [
+            0.278856,
+            0.948436
+          ],
+          [
+            0.25,
+            0.933013
+          ],
+          [
+            0.222215,
+            0.915735
+          ],
+          [
+            0.195619,
+            0.896677
+          ],
+          [
+            0.170327,
+            0.87592
+          ],
+          [
+            0.146447,
+            0.853553
+          ],
+          [
+            0.12408,
+            0.829673
+          ],
+          [
+            0.103323,
+            0.804381
+          ],
+          [
+            0.084265,
+            0.777785
+          ],
+          [
+            0.066987,
+            0.75
+          ],
+          [
+            0.051564,
+            0.721144
+          ],
+          [
+            0.03806,
+            0.691342
+          ],
+          [
+            0.026535,
+            0.66072
+          ],
+          [
+            0.017037,
+            0.62941
+          ],
+          [
+            0.009607,
+            0.597545
+          ],
+          [
+            0.004278,
+            0.565263
+          ],
+          [
+            0.001071,
+            0.532702
+          ],
+          [
+            0.0,
+            0.5
+          ],
+          [
+            0.001071,
+            0.467298
+          ],
+          [
+            0.004278,
+            0.434737
+          ],
+          [
+            0.009607,
+            0.402455
+          ],
+          [
+            0.017037,
+            0.37059
+          ],
+          [
+            0.026535,
+            0.33928
+          ],
+          [
+            0.03806,
+            0.308658
+          ],
+          [
+            0.051564,
+            0.278856
+          ],
+          [
+            0.066987,
+            0.25
+          ],
+          [
+            0.084265,
+            0.222215
+          ],
+          [
+            0.103323,
+            0.195619
+          ],
+          [
+            0.12408,
+            0.170327
+          ],
+          [
+            0.146447,
+            0.146447
+          ],
+          [
+            0.170327,
+            0.12408
+          ],
+          [
+            0.195619,
+            0.103323
+          ],
+          [
+            0.222215,
+            0.084265
+          ],
+          [
+            0.25,
+            0.066987
+          ],
+          [
+            0.278856,
+            0.051564
+          ],
+          [
+            0.308658,
+            0.03806
+          ],
+          [
+            0.33928,
+            0.026535
+          ],
+          [
+            0.37059,
+            0.017037
+          ],
+          [
+            0.402455,
+            0.009607
+          ],
+          [
+            0.434737,
+            0.004278
+          ],
+          [
+            0.467298,
+            0.001071
+          ],
+          [
+            0.5,
+            0.0
+          ],
+          [
+            0.532702,
+            0.001071
+          ],
+          [
+            0.565263,
+            0.004278
+          ],
+          [
+            0.597545,
+            0.009607
+          ],
+          [
+            0.62941,
+            0.017037
+          ],
+          [
+            0.66072,
+            0.026535
+          ],
+          [
+            0.691342,
+            0.03806
+          ],
+          [
+            0.721144,
+            0.051564
+          ],
+          [
+            0.75,
+            0.066987
+          ],
+          [
+            0.777785,
+            0.084265
+          ],
+          [
+            0.804381,
+            0.103323
+          ],
+          [
+            0.829673,
+            0.12408
+          ],
+          [
+            0.853553,
+            0.146447
+          ],
+          [
+            0.87592,
+            0.170327
+          ],
+          [
+            0.896677,
+            0.195619
+          ],
+          [
+            0.915735,
+            0.222215
+          ],
+          [
+            0.933013,
+            0.25
+          ],
+          [
+            0.948436,
+            0.278856
+          ],
+          [
+            0.96194,
+            0.308658
+          ],
+          [
+            0.973465,
+            0.33928
+          ],
+          [
+            0.982963,
+            0.37059
+          ],
+          [
+            0.990393,
+            0.402455
+          ],
+          [
+            0.995722,
+            0.434737
+          ],
+          [
+            0.998929,
+            0.467298
+          ],
+          [
+            1.0,
+            0.5
+          ]
+        ],
+        "note": "Continuation of the blue graphic behind the workbench, fitted to its visible contour and filled with an unobscured sample from the same photograph."
+      },
+      {
+        "photo": "20240112_120031.jpg",
+        "meshes": [
+          "SouthContainer",
+          "Window_SouthContainer"
+        ],
+        "gain": [
+          1.15,
+          1.15,
+          1.19
+        ],
+        "kind": "inferred matching material underneath masked foreground equipment",
+        "id": "south-container-back-window-fill",
+        "worldCorners": [
+          [
+            -13.356,
+            2.77024,
+            7.52464
+          ],
+          [
+            -13.356,
+            2.77024,
+            10.45
+          ],
+          [
+            -13.356,
+            1.28424,
+            10.45
+          ],
+          [
+            -13.356,
+            1.28424,
+            7.52464
+          ]
+        ],
+        "imageCorners": [
+          [
+            2512.794,
+            905.402
+          ],
+          [
+            1942.322,
+            869.949
+          ],
+          [
+            1945.587,
+            1275.406
+          ],
+          [
+            2495.838,
+            1267.89
+          ]
+        ],
+        "note": "Matching glazing below foreground occlusions; the unobscured back photograph is overlaid next."
+      },
+      {
+        "id": "south-container-back-base-rail",
+        "photo": "20240112_120031.jpg",
+        "meshes": [
+          "SouthContainer",
+          "Window_SouthContainer"
+        ],
+        "gain": [
+          1.15,
+          1.15,
+          1.19
+        ],
+        "worldCorners": [
+          [
+            -13.356,
+            0.2143200000000003,
+            2.324
+          ],
+          [
+            -13.356,
+            0.2143200000000003,
+            10.45
+          ],
+          [
+            -13.356,
+            0.03600000000000003,
+            10.45
+          ],
+          [
+            -13.356,
+            0.03600000000000003,
+            2.324
+          ]
+        ],
+        "imageCorners": [
+          [
+            3213.871,
+            1454.894
+          ],
+          [
+            1947.664,
+            1533.301
+          ],
+          [
+            1948.0,
+            1575.0
+          ],
+          [
+            3210.0,
+            1487.0
+          ]
+        ],
+        "kind": "matching base-rail material underneath masked equipment"
+      },
+      {
+        "id": "south-container-back-blue-seam-0",
+        "photo": "20240112_120714.jpg",
+        "meshes": [
+          "SouthContainer",
+          "Window_SouthContainer"
+        ],
+        "worldCorners": [
+          [
+            -13.356,
+            1.9678,
+            3.9573259999999997
+          ],
+          [
+            -13.356,
+            1.9678,
+            4.006081999999999
+          ],
+          [
+            -13.356,
+            0.2143200000000003,
+            4.006081999999999
+          ],
+          [
+            -13.356,
+            0.2143200000000003,
+            3.9573259999999997
+          ]
+        ],
+        "imageCorners": [
+          [
+            2264.807,
+            2274.841
+          ],
+          [
+            2271.826,
+            2272.481
+          ],
+          [
+            2271.961,
+            2317.636
+          ],
+          [
+            2264.938,
+            2320.139
+          ]
+        ],
+        "gain": 1.08,
+        "kind": "matching photographed panel joint continued below foreground equipment"
+      },
+      {
+        "id": "south-container-back-blue-seam-1",
+        "photo": "20240112_120714.jpg",
+        "meshes": [
+          "SouthContainer",
+          "Window_SouthContainer"
+        ],
+        "worldCorners": [
+          [
+            -13.356,
+            1.9678,
+            5.078714
+          ],
+          [
+            -13.356,
+            1.9678,
+            5.12747
+          ],
+          [
+            -13.356,
+            0.2143200000000003,
+            5.12747
+          ],
+          [
+            -13.356,
+            0.2143200000000003,
+            5.078714
+          ]
+        ],
+        "imageCorners": [
+          [
+            2264.807,
+            2274.841
+          ],
+          [
+            2271.826,
+            2272.481
+          ],
+          [
+            2271.961,
+            2317.636
+          ],
+          [
+            2264.938,
+            2320.139
+          ]
+        ],
+        "gain": 1.08,
+        "kind": "matching photographed panel joint continued below foreground equipment"
+      },
+      {
+        "id": "south-container-clear-back",
+        "photo": "20240112_120714.jpg",
+        "meshes": [
+          "SouthContainer",
+          "Window_SouthContainer"
+        ],
+        "worldCorners": [
+          [
+            -13.356,
+            3.008,
+            2.324
+          ],
+          [
+            -13.356,
+            3.008,
+            10.45
+          ],
+          [
+            -13.356,
+            0.036,
+            10.45
+          ],
+          [
+            -13.356,
+            0.036,
+            2.324
+          ]
+        ],
+        "imageCorners": [
+          [
+            1781.092,
+            2162.383
+          ],
+          [
+            2838.471,
+            1914.324
+          ],
+          [
+            2842.488,
+            2333.46
+          ],
+          [
+            1779.231,
+            2853.906
+          ]
+        ],
+        "gain": 1.08,
+        "featherPixels": 18,
+        "excludeImagePolygons": [
+          [
+            [
+              1720,
+              2630
+            ],
+            [
+              1890,
+              2560
+            ],
+            [
+              1983,
+              2495
+            ],
+            [
+              2115,
+              2610
+            ],
+            [
+              2208,
+              2430
+            ],
+            [
+              2340,
+              2380
+            ],
+            [
+              2385,
+              2260
+            ],
+            [
+              2590,
+              2188
+            ],
+            [
+              2670,
+              2200
+            ],
+            [
+              2730,
+              2172
+            ],
+            [
+              2880,
+              2145
+            ],
+            [
+              2880,
+              3000
+            ],
+            [
+              1720,
+              3000
+            ]
+          ]
+        ],
+        "note": "Actual back panel and glazing; foreground workbenches, cabinets and equipment are excluded."
+      },
+      {
+        "id": "column-16-a-close-markings",
+        "photo": "20240112_191309.jpg",
+        "meshes": [
+          "Pillar_South.003"
+        ],
+        "worldCorners": [
+          [
+            -3.0142,
+            4.55,
+            0.993219
+          ],
+          [
+            -2.3875,
+            4.55,
+            0.993219
+          ],
+          [
+            -2.3875,
+            2.8,
+            0.993219
+          ],
+          [
+            -3.0142,
+            2.8,
+            0.993219
+          ]
+        ],
+        "imageCorners": [
+          [
+            2112.59,
+            2312.0
+          ],
+          [
+            2317.78,
+            2312.0
+          ],
+          [
+            2369.8,
+            3005.6
+          ],
+          [
+            2155.94,
+            3005.6
+          ]
+        ],
+        "gain": [
+          0.7805,
+          0.7652,
+          0.7744
+        ],
+        "featherUV": [
+          0.1,
+          0.18
+        ],
+        "note": "Close-up column marking and fire sign, aligned to their positions in the existing broad photograph."
+      },
+      {
+        "id": "column-14-a-close-marking",
+        "photo": "20240112_191316.jpg",
+        "meshes": [
+          "Pillar_South.005"
+        ],
+        "worldCorners": [
+          [
+            -15.4922,
+            4.65,
+            0.993219
+          ],
+          [
+            -14.8655,
+            4.65,
+            0.993219
+          ],
+          [
+            -14.8655,
+            3.55,
+            0.993219
+          ],
+          [
+            -15.4922,
+            3.55,
+            0.993219
+          ]
+        ],
+        "imageCorners": [
+          [
+            2714.9485714285715,
+            2747.977142857143
+          ],
+          [
+            2956.057142857143,
+            2751.28
+          ],
+          [
+            2952.7542857142857,
+            3200.4685714285715
+          ],
+          [
+            2708.342857142857,
+            3170.7428571428572
+          ]
+        ],
+        "gain": [
+          0.8376,
+          0.8228,
+          0.8248
+        ],
+        "featherUV": [
+          0.1,
+          0.18
+        ],
+        "note": "Close-up of the 14 A marking above the container, aligned to the broad photograph."
+      },
+      {
+        "id": "column-18-a-marking",
+        "photo": "20240112_121120.jpg",
+        "meshes": [
+          "Pillar_South.001"
+        ],
+        "worldCorners": [
+          [
+            9.4486,
+            4.65,
+            0.993219
+          ],
+          [
+            10.0753,
+            4.65,
+            0.993219
+          ],
+          [
+            10.0753,
+            3.55,
+            0.993219
+          ],
+          [
+            9.4486,
+            3.55,
+            0.993219
+          ]
+        ],
+        "imageCorners": [
+          [
+            1491.24,
+            1346.74
+          ],
+          [
+            1595.28,
+            1346.74
+          ],
+          [
+            1595.28,
+            1537.48
+          ],
+          [
+            1497.02,
+            1537.48
+          ]
+        ],
+        "gain": 1.06,
+        "featherUV": [
+          0.12,
+          0.18
+        ],
+        "note": "18 A marking on the column beside the storage racks; approximate visual registration."
+      }
+    ],
+    "projectedTexels": {
+      "north-glass-material-37.203-upper": 133227,
+      "north-glass-material-37.203-lower": 133205,
+      "north-glass-material-41.776-lower": 101368,
+      "north-facade": 202083,
+      "storage-front": 180289,
+      "south-container-end": 15821,
+      "west-door": 55955,
+      "design-factory-front-banner": 9442,
+      "design-factory-end-banner": 3859,
+      "north-container-front-glazing": 4417,
+      "north-container-end-glazing": 4694,
+      "north-container-back-glazing": 4465,
+      "north-blue-lockers": 36588,
+      "north-hydrant": 238,
+      "south-hydrant": 239,
+      "storage-end": 19728,
+      "south-container-roof": 48195,
+      "north-container-roof": 46705,
+      "south-facade": 155596,
+      "south-stair-facade": 22782,
+      "south-glass-material": 99335,
+      "south-windows-camera": 19890,
+      "arena-poster": 23924,
+      "design-factory-rollup": 9302,
+      "design-factory-whiteboard": 19532,
+      "north-container-open-door-glazing-001": 1186,
+      "north-container-open-door-glazing-002": 1186,
+      "column-16-a": 11650,
+      "column-16-b": 13390,
+      "column-14-a": 8848,
+      "south-container-clear-front": 49259,
+      "south-container-back-paint-fill": 52838,
+      "south-container-back-paint-seam-0": 390,
+      "south-container-back-paint-seam-1": 260,
+      "south-container-back-paint-seam-2": 260,
+      "south-container-back-paint-seam-3": 260,
+      "south-container-back-paint-seam-4": 260,
+      "south-container-back-paint-seam-5": 260,
+      "south-container-back-paint-seam-6": 260,
+      "south-container-back-blue-fill": 9532,
+      "south-container-back-window-fill": 9221,
+      "south-container-back-base-rail": 4121,
+      "south-container-back-blue-seam-0": 160,
+      "south-container-back-blue-seam-1": 160,
+      "south-container-clear-back": 29989,
+      "column-16-a-close-markings": 2480,
+      "column-14-a-close-marking": 1428,
+      "column-18-a-marking": 1581
+    }
+  },
+  "sampledScanTexels": 0,
+  "occupiedTexels": 3208454,
+  "textureSize": [
+    2048,
+    2048
+  ],
+  "atlasSize": [
+    2066,
+    2042
+  ],
+  "bytes": 465640,
+  "gzipBytes": 244946,
+  "gzipSha256": "a7642d7ce117ffb1e976895036429b30a4f7198edd482f01d0e4e8b55bfcac32",
+  "note": "Photo-derived visual materials on unchanged factory surfaces; triangles may be subdivided for UV allocation. Not RF calibration.",
+  "generatorSha256": "ae4e70fa4842da25f659f5e6f08d07c1feb6ca916e50224b8e1a0826551b0e16",
+  "photoProjectedTexels": 1549858,
+  "textureQuality": 76,
+  "photoMaterials": {
+    "version": 2,
+    "samples": {
+      "floor": {
+        "photo": "20240112_121120.jpg",
+        "collection": "setup-2024",
+        "crop": [
+          100,
+          2600,
+          800,
+          3300
+        ],
+        "detail": true,
+        "detailBlur": 96,
+        "detailGain": 1.5,
+        "sampleSize": 512,
+        "tileMode": "edge-blend",
+        "isolatedMarkThreshold": 8,
+        "file": "floor.png",
+        "bytes": 214612,
+        "sha256": "d0b529d6da9eaeee554ae89e66e409f9ee2224b67a7e0fb211b4a25db324071d",
+        "sourceSha256": "86f1df65dcb586fc5e9206b226e128c5fa0aaf05c6670061a47b16eee2099024",
+        "sourceCollection": "Additional ARENA2036 setup photographs provided by Florian Euchner"
+      },
+      "door": {
+        "photo": "robot.jpg",
+        "quad": [
+          3450,
+          1160,
+          3450,
+          1400,
+          3950,
+          1310,
+          3950,
+          1060
+        ],
+        "detail": true,
+        "rectification": "projective homography",
+        "file": "door.png",
+        "bytes": 246608,
+        "sha256": "fb5e4f7c93ec83278f15121867fb6335495e64a7310dfabc1c3236c8edcc287d",
+        "sourceSha256": "b6aef2f9d7b296b03604a921a5fae09b7922453a3822447a36efe0e87e4eb503",
+        "sourceUrl": "https://raw.githubusercontent.com/dichasus/dichasus.github.io/main/content/datasets/data/dichasus-adxx/photosAll/robot.jpg"
+      },
+      "wall-cladding": {
+        "photo": "tachy-robot-rt.jpg",
+        "quad": [
+          2910,
+          115,
+          2888,
+          1080,
+          3280,
+          1063,
+          3300,
+          98
+        ],
+        "detail": false,
+        "rectification": "projective homography",
+        "file": "wall-cladding.png",
+        "bytes": 179830,
+        "sha256": "59d2c1bf0de9f432a6be9b7daf62d1d47c08823b30b5d570ee383d5af1c900ff",
+        "sourceSha256": "10e2131f1c84d0387a452ad6520c6938d8748f2177e8728b4d4253c998509913",
+        "sourceUrl": "https://raw.githubusercontent.com/dichasus/dichasus.github.io/main/content/datasets/data/dichasus-adxx/photosAll/tachy-robot-rt.jpg"
+      },
+      "roof-cladding": {
+        "photo": "camera.jpg",
+        "quad": [
+          2912,
+          250,
+          2930,
+          395,
+          3024,
+          395,
+          3006,
+          250
+        ],
+        "detail": false,
+        "sampleSize": 128,
+        "rectification": "projective homography",
+        "file": "roof-cladding.png",
+        "bytes": 82147,
+        "sha256": "819fe74e0e378e31ae53a7f15ce4e76f101c2105c01e46cbd8a87124dd6efe20",
+        "sourceSha256": "3f8e32943f716b5d004185f5e46d9c30588b36a50bef28fea5901f468de35446",
+        "sourceUrl": "https://raw.githubusercontent.com/dichasus/dichasus.github.io/main/content/datasets/data/dichasus-adxx/photosAll/camera.jpg"
+      },
+      "robot-bumper": {
+        "photo": "robot.jpg",
+        "quad": [
+          2605,
+          2130,
+          2605,
+          2218,
+          2735,
+          2209,
+          2735,
+          2138
+        ],
+        "detail": false,
+        "sampleSize": 128,
+        "normalizeMean": false,
+        "rectification": "projective homography",
+        "file": "robot-bumper.png",
+        "bytes": 45512,
+        "sha256": "235dee2beffc14aa7b1d75893432775053abe06b223a976f5f0c56b32464a788",
+        "sourceSha256": "b6aef2f9d7b296b03604a921a5fae09b7922453a3822447a36efe0e87e4eb503",
+        "sourceUrl": "https://raw.githubusercontent.com/dichasus/dichasus.github.io/main/content/datasets/data/dichasus-adxx/photosAll/robot.jpg"
+      },
+      "container-paint": {
+        "photo": "robot.jpg",
+        "crop": [
+          1870,
+          1690,
+          1905,
+          1785
+        ],
+        "detail": true,
+        "sampleSize": 128,
+        "file": "container-paint.png",
+        "bytes": 19621,
+        "sha256": "13b2375a9e81725f9bfcdffafe30fc16e79d5b011edd1a37a764e24fc64ba3b5",
+        "sourceSha256": "b6aef2f9d7b296b03604a921a5fae09b7922453a3822447a36efe0e87e4eb503",
+        "sourceUrl": "https://raw.githubusercontent.com/dichasus/dichasus.github.io/main/content/datasets/data/dichasus-adxx/photosAll/robot.jpg"
+      }
+    },
+    "note": "Photo-derived repeating surface samples. Floor edges are blended; other materials use mirrored edges. Landmark-specific projections are documented separately in registrations.json."
+  },
+  "imageBytes": [
+    181502,
+    10594,
+    4000,
+    6582,
+    3174,
+    4066
+  ],
+  "tessellation": {
+    "Cranes": {
+      "before": 60,
+      "after": 92
+    },
+    "Framework_Center": {
+      "before": 88,
+      "after": 112
+    },
+    "Pillars": {
+      "before": 400,
+      "after": 400
+    },
+    "Roofbeams": {
+      "before": 192,
+      "after": 192
+    },
+    "Walls": {
+      "before": 19,
+      "after": 33
+    },
+    "Cranerunner_North": {
+      "before": 12,
+      "after": 28
+    },
+    "Cranerunner_South": {
+      "before": 12,
+      "after": 28
+    },
+    "Stairwall_SouthWall": {
+      "before": 15,
+      "after": 27
+    },
+    "Windows_SouthWall": {
+      "before": 2,
+      "after": 6
+    },
+    "Windows_NorthWall.002": {
+      "before": 2,
+      "after": 6
+    },
+    "Windows_NorthWall.003": {
+      "before": 2,
+      "after": 6
+    },
+    "Gallery_NorthWall": {
+      "before": 10,
+      "after": 18
+    },
+    "Windows_NorthWall.004": {
+      "before": 2,
+      "after": 6
+    }
+  },
+  "atlasFarRegion": {
+    "boundaryX": -25,
+    "densityScaleX": 0.05
+  },
+  "floorContactShading": {
+    "boundsXZ": [
+      [
+        -102.54369651450031,
+        -2.1621771660150877
+      ],
+      [
+        12.203974834812819,
+        37.20344074633839
+      ]
+    ],
+    "size": [
+      1024,
+      512
+    ],
+    "contributingTriangles": 206,
+    "note": "Approximate ambient contact shading from existing low horizontal model surfaces; not RF data."
+  },
+  "floorMaterial": {
+    "textureSize": [
+      512,
+      512
+    ],
+    "tintSrgb": [
+      130.0,
+      134.0,
+      133.0
+    ],
+    "detailGain": 1.7,
+    "repeatMeters": 4
+  },
+  "hiddenDuplicateNodes": [
+    "Pillars"
+  ],
+  "inferredContainerMaterial": "Photo-derived paint grain with approximately one-metre modular seams on unphotographed faces.",
+  "originalWoodMaterial": {
+    "sourceImage": 0,
+    "sourceSha256": "23041cf71c553411d1355eeaf458ebd936616d40aff2429d8ed183d65e5aef6c",
+    "textureSize": [
+      256,
+      256
+    ]
+  },
+  "credits": {
+    "software": "Florian Euchner",
+    "original3DModel": "Darius Siebert",
+    "initial3DVisualizationSoftware": "Johannes Sommerer"
+  },
+  "sourceSha256": "dfeb7e274fb74c79145e7801e5f32eb55f2b556dbe1133dff1b6afd7e81edcf8",
+  "generatorSources": {
+    "scripts/bake_scan_texture.py": "ae4e70fa4842da25f659f5e6f08d07c1feb6ca916e50224b8e1a0826551b0e16",
+    "scripts/photo_projection.py": "6988f73346d573c2ca4111112f1051cb70cdb51a66a2527100a3028a57859baf",
+    "scripts/texture_geometry.py": "761872923c803f21d6fb2157c450afa11183267882d3a3041da5bdd0f30ce869",
+    "scripts/floor_occlusion.py": "29876ec24bb2b7c0702680a011099146ad0c63d5b7ee94a4a8196dc5542e2008",
+    "scripts/extract_photo_materials.py": "e9d4038fc1ef717afe0eccdaa11c47cd985a730554cb95ed64f457540aee7efc",
+    "scripts/pack_models.py": "c74b517efb98057b077289830c0d7112645b65a2628abcb41733dddb7fe44334",
+    "scripts/model_geometry.py": "9f2fd9373e0df5cb5dd9c67aad599aee91e588a70107d9d2dd6537b24f619006"
+  },
+  "photoCameras": {
+    "version": 1,
+    "cameras": [
+      {
+        "K": [
+          [
+            1502.3130314433288,
+            0.0,
+            2000.0
+          ],
+          [
+            0.0,
+            1502.3130314433288,
+            1500.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "R": [
+          [
+            0.9621153091709478,
+            0.01382823890751315,
+            0.272291960343319
+          ],
+          [
+            -0.01565945195935664,
+            -0.9942615429515401,
+            0.1058242211025221
+          ],
+          [
+            0.2721927872358551,
+            -0.10607904607574306,
+            -0.9563777091507502
+          ]
+        ],
+        "t": [
+          2.3409195266332454,
+          1.6500542378905583,
+          28.134649697643912
+        ],
+        "position": [
+          -9.884444288148579,
+          4.592711479642507,
+          26.095322554176924
+        ],
+        "id": "df-view-building-and-container",
+        "photo": "df-view.jpg",
+        "note": "Approximate visual camera fit from container and building landmarks. Reprojection residuals 13\u201349 pixels on a 4000\u00d73000 photograph; the simplified model is not a photogrammetric survey.",
+        "worldLandmarks": [
+          [
+            -2.7,
+            0,
+            0.99
+          ],
+          [
+            -2.7,
+            9.44,
+            0.99
+          ],
+          [
+            9.76,
+            0,
+            0.99
+          ],
+          [
+            9.76,
+            9.44,
+            0.99
+          ],
+          [
+            -15.18,
+            9.44,
+            0.99
+          ],
+          [
+            -8.95,
+            0,
+            0.99
+          ],
+          [
+            -8.95,
+            9.44,
+            0.99
+          ],
+          [
+            -13.356,
+            3.008,
+            10.45
+          ],
+          [
+            -10.363,
+            3.008,
+            10.45
+          ],
+          [
+            -10.363,
+            0.036,
+            10.45
+          ],
+          [
+            -13.356,
+            0.036,
+            10.45
+          ]
+        ],
+        "imageLandmarks": [
+          [
+            2007,
+            1618
+          ],
+          [
+            2004,
+            1040
+          ],
+          [
+            2638,
+            1616
+          ],
+          [
+            2624,
+            1083
+          ],
+          [
+            1167,
+            990
+          ],
+          [
+            1614,
+            1623
+          ],
+          [
+            1614,
+            1015
+          ],
+          [
+            1217,
+            1517
+          ],
+          [
+            1512,
+            1518
+          ],
+          [
+            1522,
+            1769
+          ],
+          [
+            1227,
+            1765
+          ]
+        ],
+        "distortionCoefficients": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "K": [
+          [
+            3206.167134181824,
+            0.0,
+            2312.0
+          ],
+          [
+            0.0,
+            3206.167134181824,
+            1734.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "R": [
+          [
+            -0.95701100750867,
+            0.009494019842559244,
+            0.2898961798549084
+          ],
+          [
+            -0.00949060263350187,
+            -0.9999539583040985,
+            0.0014176507390970022
+          ],
+          [
+            0.28989629174739934,
+            -0.001394582085854493,
+            0.9570570490686084
+          ]
+        ],
+        "t": [
+          -3.0376422846104885,
+          4.052565315416486,
+          0.3659173001757537
+        ],
+        "position": [
+          -2.9746738845982628,
+          4.081728466273032,
+          0.5246520403503189
+        ],
+        "worldLandmarks": [
+          [
+            9.762,
+            0.0,
+            36.177
+          ],
+          [
+            9.762,
+            9.44,
+            36.177
+          ],
+          [
+            3.497,
+            0.0,
+            36.177
+          ],
+          [
+            3.497,
+            9.44,
+            36.177
+          ],
+          [
+            -2.7,
+            0.0,
+            36.177
+          ],
+          [
+            -2.7,
+            9.44,
+            36.177
+          ],
+          [
+            -8.951,
+            9.44,
+            36.177
+          ]
+        ],
+        "imageLandmarks": [
+          [
+            2170.0,
+            2075.0
+          ],
+          [
+            2167.0,
+            1265.0
+          ],
+          [
+            2652.0,
+            2100.0
+          ],
+          [
+            2662.0,
+            1250.0
+          ],
+          [
+            3274.0,
+            2130.0
+          ],
+          [
+            3280.0,
+            1230.0
+          ],
+          [
+            3890.0,
+            1220.0
+          ]
+        ],
+        "residualPixels": [
+          18.454963670124204,
+          11.702029647687215,
+          25.645306024709598,
+          24.2068591403827,
+          23.31742111473045,
+          19.732593295668746,
+          17.686807276508564
+        ],
+        "id": "16-a-view-north-columns",
+        "photo": "16-a-view.jpg",
+        "note": "Approximate visual camera pose fitted to structural columns; simplified model and manually selected landmarks, not survey calibration.",
+        "distortionCoefficients": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "K": [
+          [
+            1502.3130314433288,
+            0.0,
+            2000.0
+          ],
+          [
+            0.0,
+            1502.3130314433288,
+            1500.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "R": [
+          [
+            -0.51656525320229,
+            0.00015746174685711285,
+            0.8562478113197444
+          ],
+          [
+            0.014932343710777268,
+            -0.9998462506803114,
+            0.00919239423800726
+          ],
+          [
+            0.8561176112517236,
+            0.017534258077318673,
+            0.5164834803731104
+          ]
+        ],
+        "t": [
+          -9.845174260078906,
+          6.076919317670511,
+          16.73886808630968
+        ],
+        "position": [
+          -19.506857343541597,
+          5.784031600849175,
+          -0.27130137259015186
+        ],
+        "id": "14-a-view-container-roof",
+        "photo": "14-a-view.jpg",
+        "worldLandmarks": [
+          [
+            -10.363,
+            3.008,
+            2.324
+          ],
+          [
+            -10.363,
+            3.008,
+            10.45
+          ],
+          [
+            -13.356,
+            3.008,
+            10.45
+          ],
+          [
+            -13.356,
+            3.008,
+            2.324
+          ]
+        ],
+        "imageLandmarks": [
+          [
+            1590,
+            1980
+          ],
+          [
+            2500,
+            1845
+          ],
+          [
+            2840,
+            1910
+          ],
+          [
+            1780,
+            2165
+          ]
+        ],
+        "note": "Approximate visual camera fit from the four visible roof corners.",
+        "distortionCoefficients": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  }
+}

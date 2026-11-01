@@ -145,53 +145,119 @@ layout: list
 		width: 100%;
 	}
 
-	@media (max-width: 991.98px) {
-		.espargos-promo-title {
-			padding-right: 4.5rem;
-		}
-
-		.espargos-product-stage {
-			min-height: 12rem;
-		}
-
-		.espargos-product-image {
-			max-height: 13rem;
-		}
+	.home-promos {
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: minmax(0, 1fr);
 	}
 
-	@media (min-width: 576px) and (max-width: 991.98px) {
-		.espargos-promo-content > p {
-			padding-right: 7rem;
+	.home-promos > section {
+		border-width: 2px;
+		border-radius: 1.25rem;
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+		min-width: 0;
+		margin: 0;
+	}
+
+	.home-promos > .card {
+		border-color: rgba(0, 118, 178, .3);
+		background: radial-gradient(ellipse at 100% 0%, rgba(0, 158, 224, .18), transparent 75%), #f7fbfe;
+	}
+
+	.home-promo-image img {
+		height: 100%;
+		width: 100%;
+		object-fit: cover;
+	}
+
+	.home-promos .espargos-product-stage {
+		min-height: 0;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.home-promos .espargos-product-image {
+		max-height: 10rem;
+	}
+
+	.home-promos .espargos-promo-logo {
+		max-width: 7rem;
+	}
+
+	.home-promos .espargos-makers-ribbon-label {
+		font-size: .75rem;
+		min-height: 2.4rem;
+		right: -2.8rem;
+		top: 1.9rem;
+		width: 12rem;
+	}
+
+	.home-promos .espargos-promo-title,
+	.home-promos .espargos-promo-content > p {
+		padding-right: 3.5rem;
+	}
+
+	.home-promo-content {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: center;
+		min-width: 0;
+	}
+
+	.home-promo-content h2 {
+		font-size: 1.5rem;
+		line-height: 1.15;
+	}
+
+	.home-promo-content p {
+		font-size: .95rem;
+	}
+
+	.home-promo-actions {
+		margin-top: auto;
+	}
+
+	@media (min-width: 992px) {
+		.home-promos {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 	}
 </style>
 
-<section class="container mt-3 mb-4" aria-labelledby="espargos-promo-heading">
-	<div class="espargos-promo">
+<div class="container home-promos mt-3 mb-4">
+	<section class="card overflow-hidden" aria-labelledby="adxx-viewer-heading">
+		<a class="home-promo-image" href="/visualization/adxx/" aria-label="Open the ARENA2036 3D visualization"><img src="/img/adxx-viewer-preview.webp" width="800" height="480" alt="Measured radiation patterns and simulated rays in the ARENA2036 factory"></a>
+		<div class="home-promo-content p-3">
+			<h2 id="adxx-viewer-heading">Explore radio propagation in 3D</h2>
+			<p>Compare measured radiation patterns with ray-traced paths from Sionna RT.</p>
+			<a class="btn btn-dark home-promo-actions" href="/visualization/adxx/">Open 3D visualization</a>
+		</div>
+	</section>
+	<section class="espargos-promo" aria-labelledby="espargos-promo-heading">
 		<div class="espargos-makers-ribbon">
 			<div class="espargos-makers-ribbon-label">
 				<span>From the makers of</span>
 				<span>DICHASUS</span>
 			</div>
 		</div>
-		<div class="row g-0 align-items-stretch">
-			<div class="espargos-promo-content col-lg-7 p-3 p-md-4">
-				<a href="https://espargos.net/" aria-label="Visit the ESPARGOS website">
-					<img class="espargos-promo-logo mb-3" src="/img/espargos-promo-logo.svg" alt="ESPARGOS">
-				</a>
-				<h2 id="espargos-promo-heading" class="espargos-promo-title fw-bold mb-2">Ready to <span class="espargos-text-gradient">measure your own CSI?</span></h2>
-				<p class="mb-3 text-light">ESPARGOS One is an affordable, phase-coherent Wi-Fi antenna array for researchers who want to capture real-time CSI from their own devices, in their own environments, and for their own experiments.</p>
-				<div class="d-flex flex-wrap gap-2">
-					<a class="btn btn-espargos" href="https://espargos.net/">Explore ESPARGOS</a>
-					<a class="btn btn-espargos-outline" href="https://buy.espargos.net/">Get ESPARGOS One</a>
-				</div>
-			</div>
-			<div class="espargos-product-stage col-lg-5 p-2 p-md-3">
-				<img class="espargos-product-image" src="/img/espargos-one-promo.png" alt="ESPARGOS One phase-coherent Wi-Fi antenna array" loading="lazy">
+		<div class="espargos-product-stage p-2 p-md-3">
+			<img class="espargos-product-image" src="/img/espargos-one-promo.png" alt="ESPARGOS One digital phased array" loading="lazy">
+		</div>
+		<div class="espargos-promo-content home-promo-content p-3">
+			<a href="https://espargos.net/" aria-label="Visit the ESPARGOS website">
+				<img class="espargos-promo-logo mb-2" src="/img/espargos-promo-logo.svg" alt="ESPARGOS">
+			</a>
+			<h2 id="espargos-promo-heading" class="espargos-promo-title fw-bold mb-2">Ready to <span class="espargos-text-gradient">measure your own CSI?</span></h2>
+			<p class="mb-3 text-light">Capture real-time CSI with ESPARGOS One, an affordable digital phased array.</p>
+			<div class="home-promo-actions d-flex flex-wrap gap-2">
+				<a class="btn btn-espargos" href="https://espargos.net/">Explore ESPARGOS</a>
+				<a class="btn btn-espargos-outline" href="https://buy.espargos.net/">Get ESPARGOS One</a>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
+</div>
 
 <div class="container col-xxl-8 px-4 py-1">
 	<div class="row flex-lg-row-reverse align-items-center g-5 py-3">

@@ -1,0 +1,481 @@
+{
+	"antennas": [
+		{
+			"assignments": [
+				[
+					58,
+					12,
+					24,
+					29,
+					16,
+					2,
+					33,
+					38
+				],
+				[
+					34,
+					9,
+					36,
+					32,
+					22,
+					62,
+					39,
+					10
+				]
+			],
+			"location": [
+				7.9555,
+				-18.2345,
+				2.5025
+			],
+			"name": "Close to roll-up door",
+			"rightvector": [
+				-0.2685,
+				-0.9633,
+				0.0
+			],
+			"spacingX": 0.04364,
+			"spacingY": 0.04364,
+			"type": "array",
+			"upvector": [
+				-0.2318,
+				0.0713,
+				0.9701
+			]
+		},
+		{
+			"assignments": [
+				[
+					26,
+					35,
+					59,
+					53,
+					19,
+					20,
+					17,
+					54
+				],
+				[
+					1,
+					48,
+					61,
+					44,
+					5,
+					49,
+					6,
+					60
+				]
+			],
+			"location": [
+				-4.71,
+				0.0488,
+				6.0385
+			],
+			"name": "Close to pillar 16-A",
+			"rightvector": [
+				0.9986,
+				-0.0458,
+				-0.0246
+			],
+			"spacingX": 0.04364,
+			"spacingY": 0.04364,
+			"type": "array",
+			"upvector": [
+				-0.0133,
+				-0.4893,
+				0.872
+			]
+		},
+		{
+			"assignments": [
+				[
+					31,
+					15,
+					4,
+					14,
+					30,
+					47,
+					11,
+					3
+				],
+				[
+					56,
+					23,
+					25,
+					41,
+					27,
+					0,
+					8,
+					40
+				]
+			],
+			"location": [
+				-18.51,
+				0.116,
+				6.1785
+			],
+			"name": "Close to pillar 14-A",
+			"rightvector": [
+				0.8532,
+				0.5186,
+				0.0561
+			],
+			"spacingX": 0.04364,
+			"spacingY": 0.04364,
+			"type": "array",
+			"upvector": [
+				0.1041,
+				-0.2945,
+				0.95
+			]
+		},
+		{
+			"assignments": [
+				[
+					57,
+					45,
+					42,
+					28,
+					63,
+					55,
+					46,
+					43
+				],
+				[
+					7,
+					18,
+					52,
+					21,
+					13,
+					37,
+					50,
+					51
+				]
+			],
+			"location": [
+				-10.93,
+				-25.2055,
+				5.297
+			],
+			"name": "On top of container",
+			"rightvector": [
+				-0.9347,
+				0.3549,
+				-0.0212
+			],
+			"spacingX": 0.04364,
+			"spacingY": 0.04364,
+			"type": "array",
+			"upvector": [
+				0.1359,
+				0.4113,
+				0.9013
+			]
+		}
+	],
+	"authors": [
+		{
+			"affiliation": "Institute of Telecommunications, University of Stuttgart",
+			"firstname": "Florian",
+			"lastname": "Euchner",
+			"orcid": "0000-0002-8090-1188"
+		},
+		{
+			"affiliation": "Institute of Telecommunications, University of Stuttgart",
+			"firstname": "Phillip",
+			"lastname": "Stephan",
+			"orcid": "0009-0007-4036-668X"
+		},
+		{
+			"affiliation": "Institute of Telecommunications, University of Stuttgart",
+			"firstname": "Marc",
+			"lastname": "Gauger",
+			"orcid": "0000-0002-9310-6167"
+		},
+		{
+			"affiliation": "Institute of Telecommunications, University of Stuttgart",
+			"firstname": "Stephan",
+			"lastname": "ten Brink",
+			"orcid": "0000-0003-1502-2571"
+		}
+	],
+	"bandwidth": 50055865.92,
+	"configuration": {
+		"pointcloud": {
+			"descriptionFile": "pointcloud/description.txt",
+			"download": "pointcloud/pointclouds.tar.xz"
+		},
+		"variants": {
+			"no-wall-64db": {
+				"description": "The measurement area is empty, all receivers are set to a fixed gain of 64dB. First day of measurements. Tachymeter is in the middle of the measurement area (hence the 'hole' in the dataset).",
+				"name": "No wall, 64dB RX gain",
+				"potree": {
+					"folder": "potree/arena2036-day1",
+					"fov": 70,
+					"moveSpeed": 4,
+					"pitch": 0,
+					"position": {
+						"x": -2,
+						"y": -16,
+						"z": 1.8
+					},
+					"yaw": 0.8
+				},
+				"rxgain": 64
+			},
+			"no-wall-67db-day1": {
+				"description": "The measurement area is empty, all receivers are set to a fixed gain of 67dB. First day of measurements. Tachymeter is in the middle of the measurement area (hence the 'hole' in the dataset).",
+				"name": "No wall, 67dB RX gain, Day 1",
+				"potree": {
+					"folder": "potree/arena2036-day1",
+					"fov": 70,
+					"moveSpeed": 4,
+					"pitch": 0,
+					"position": {
+						"x": -2,
+						"y": -16,
+						"z": 1.8
+					},
+					"yaw": 0.8
+				},
+				"rxgain": 67
+			},
+			"no-wall-67db-day2": {
+				"description": "The measurement area is empty, all receivers are set to a fixed gain of 67dB. Second day of measurements. Tachymeter is to the side of the measurement area.",
+				"name": "No wall, 67dB RX gain, Day 2",
+				"potree": {
+					"folder": "potree/arena2036-day2",
+					"fov": 70,
+					"moveSpeed": 4,
+					"pitch": 0,
+					"position": {
+						"x": -2,
+						"y": -16,
+						"z": 1.8
+					},
+					"yaw": 0.8
+				},
+				"rxgain": 67
+			},
+			"no-wall-70db": {
+				"description": "The measurement area is empty, all receivers are set to a fixed gain of 70dB. First day of measurements. Tachymeter is in the middle of the measurement area.",
+				"name": "No wall, 70dB RX gain",
+				"potree": {
+					"folder": "potree/arena2036-day1",
+					"fov": 70,
+					"moveSpeed": 4,
+					"pitch": 0,
+					"position": {
+						"x": -2,
+						"y": -16,
+						"z": 1.8
+					},
+					"yaw": 0.8
+				},
+				"rxgain": 70
+			},
+			"wall-67db": {
+				"description": "A metal reflector wall is placed inside the measurement area. All receivers are set to a fixed gain of 67dB. Second day of measurements. Tachymeter is to the side of the measurement area.",
+				"name": "Reflector wall present, 67dB RX gain",
+				"rxgain": 67
+			}
+		}
+	},
+	"format": {
+		"cfo": {
+			"description": "Measured carrier frequency offset between MOBTX and each receive antenna.",
+			"type": "tensor"
+		},
+		"csi": {
+			"description": "Channel coefficients for all antennas, over all subcarriers, real and imaginary parts",
+			"type": "tensor"
+		},
+		"gt-interp-age-tachy": {
+			"description": "Time in seconds to closest known tachymeter position. Indicates quality of linear interpolation.",
+			"type": "float32"
+		},
+		"pos-tachy": {
+			"description": "Position of transmitter determined by a tachymeter pointed at a prism mounted on top of the antenna, in meters (X / Y / Z coordinates)",
+			"type": "tensor64"
+		},
+		"snr": {
+			"description": "Signal-to-Noise ratio estimates for all antennas",
+			"type": "tensor"
+		},
+		"time": {
+			"description": "Timestamp since start of measurement campaign, in seconds",
+			"type": "float32"
+		}
+	},
+	"frequency": 3440000000,
+	"identifier": "dichasus-adxx",
+	"name": "ARENA2036: Distributed setup in industrial environment at 3.4GHz",
+	"outdoor": false,
+	"regular-schedule-interval": 0.048,
+	"shortDescription": "Channel measurements in the ARENA2036 research factory with known 3D pointcloud scan and video of environment. 64 antennas, arranged into four arrays.",
+	"tfrecords": [
+		{
+			"configurationVariant": "no-wall-64db",
+			"description": "Robot follows a pseudorandom trajectory in the measurement area, part 1.",
+			"environmentVideo": "videos/dichasus-ad00.mkv",
+			"filename": "tfrecords/dichasus-ad00.tfrecords"
+		},
+		{
+			"configurationVariant": "no-wall-64db",
+			"description": "Robot follows a pseudorandom trajectory in the measurement area, part 2.",
+			"environmentVideo": "videos/dichasus-ad01.mkv",
+			"filename": "tfrecords/dichasus-ad01.tfrecords"
+		},
+		{
+			"configurationVariant": "no-wall-64db",
+			"description": "Robot follows a pattern of west / east meanders in the whole measurement area.",
+			"environmentVideo": "videos/dichasus-ad02.mkv",
+			"filename": "tfrecords/dichasus-ad02.tfrecords"
+		},
+		{
+			"configurationVariant": "no-wall-64db",
+			"description": "Robot follows a short pattern of north / south meanders.",
+			"environmentVideo": "videos/dichasus-ad03.mkv",
+			"filename": "tfrecords/dichasus-ad03.tfrecords"
+		},
+		{
+			"configurationVariant": "no-wall-64db",
+			"description": "Robot follows a (long) pattern of north / south meanders in the whole measurement area. A few datapoints in the middle may be missing (due to a tachymeter issue).",
+			"environmentVideo": "videos/dichasus-ad04.mkv",
+			"filename": "tfrecords/dichasus-ad04.tfrecords"
+		},
+		{
+			"configurationVariant": "no-wall-64db",
+			"description": "Robot follows a long, pseudorandom 'smooth' trajectory in in the measurement area (part 1).",
+			"environmentVideo": "videos/dichasus-ad05.mkv",
+			"filename": "tfrecords/dichasus-ad05.tfrecords"
+		},
+		{
+			"configurationVariant": "no-wall-64db",
+			"description": "Robot follows a long, pseudorandom 'smooth' trajectory in in the measurement area (part 2).",
+			"environmentVideo": "videos/dichasus-ad06.mkv",
+			"filename": "tfrecords/dichasus-ad06.tfrecords"
+		},
+		{
+			"configurationVariant": "no-wall-64db",
+			"description": "Robot leaves measurement area and ventures further back into the ARENA2036.",
+			"environmentVideo": "videos/dichasus-ad07.mkv",
+			"filename": "tfrecords/dichasus-ad07.tfrecords"
+		},
+		{
+			"configurationVariant": "no-wall-70db",
+			"description": "Robot leaves measurement area and ventures further back into the ARENA2036, this time with higher receiver gain.",
+			"environmentVideo": "videos/dichasus-ad08.mkv",
+			"filename": "tfrecords/dichasus-ad08.tfrecords"
+		},
+		{
+			"configurationVariant": "no-wall-67db-day1",
+			"description": "Robot follows a pseudorandom trajectory in the whole measurement area.",
+			"environmentVideo": "videos/dichasus-ad09.mkv",
+			"filename": "tfrecords/dichasus-ad09.tfrecords"
+		},
+		{
+			"configurationVariant": "no-wall-67db-day2",
+			"description": "Robot follows a pattern of northeast / southwest meanders in the whole measurement area.",
+			"environmentVideo": "videos/dichasus-ad10.mkv",
+			"filename": "tfrecords/dichasus-ad10.tfrecords"
+		},
+		{
+			"configurationVariant": "no-wall-67db-day2",
+			"description": "Robot follows a pattern of northwest / southeast meanders in the whole measurement area.",
+			"environmentVideo": "videos/dichasus-ad11.mkv",
+			"filename": "tfrecords/dichasus-ad11.tfrecords"
+		},
+		{
+			"configurationVariant": "no-wall-67db-day2",
+			"description": "Robot follows a pattern of northwest / southeast meanders in the whole measurement area.",
+			"environmentVideo": "videos/dichasus-ad12.mkv",
+			"filename": "tfrecords/dichasus-ad12.tfrecords"
+		},
+		{
+			"configurationVariant": "no-wall-67db-day2",
+			"description": "Robot follows a figure 8-trajectory in the measurement area.",
+			"environmentVideo": "videos/dichasus-ad13.mkv",
+			"filename": "tfrecords/dichasus-ad13.tfrecords"
+		},
+		{
+			"configurationVariant": "no-wall-67db-day2",
+			"description": "Robot follows a circular trajectory in the measurement area.",
+			"environmentVideo": "videos/dichasus-ad14.mkv",
+			"filename": "tfrecords/dichasus-ad14.tfrecords"
+		},
+		{
+			"configurationVariant": "no-wall-67db-day2",
+			"description": "Robot follows a trajectory in the shape of the letters 'INUE'. Person walking close to the measurement area. Letters are a bit wobbly.",
+			"environmentVideo": "videos/dichasus-ad15.mkv",
+			"filename": "tfrecords/dichasus-ad15.tfrecords"
+		},
+		{
+			"configurationVariant": "no-wall-67db-day2",
+			"description": "Robot follows a trajectory in the shape of the letters 'INUE'.",
+			"environmentVideo": "videos/dichasus-ad16.mkv",
+			"filename": "tfrecords/dichasus-ad16.tfrecords"
+		},
+		{
+			"configurationVariant": "no-wall-67db-day2",
+			"description": "Robot trajectory is in the shape of a large (slightly wobbly) circle.",
+			"environmentVideo": "videos/dichasus-ad17.mkv",
+			"filename": "tfrecords/dichasus-ad17.tfrecords"
+		},
+		{
+			"configurationVariant": "no-wall-67db-day2",
+			"description": "Robot follows a pseudorandom trajectory in the entire measurement area, part 1.",
+			"environmentVideo": "videos/dichasus-ad18.mkv",
+			"filename": "tfrecords/dichasus-ad18.tfrecords"
+		},
+		{
+			"configurationVariant": "no-wall-67db-day2",
+			"description": "Robot follows a pseudorandom trajectory in the entire measurement area, part 2.",
+			"environmentVideo": "videos/dichasus-ad19.mkv",
+			"filename": "tfrecords/dichasus-ad19.tfrecords"
+		},
+		{
+			"configurationVariant": "wall-67db",
+			"description": "Robot follows a figure 8-trajectory in the measurement area, the LoS to the antenna on top of the container is obstructed for parts of the trajectory.",
+			"environmentVideo": "videos/dichasus-ad21.mkv",
+			"filename": "tfrecords/dichasus-ad21.tfrecords"
+		},
+		{
+			"configurationVariant": "wall-67db",
+			"description": "Robot follows a pseudorandom trajectory, part 1.",
+			"environmentVideo": "videos/dichasus-ad22.mkv",
+			"filename": "tfrecords/dichasus-ad22.tfrecords"
+		},
+		{
+			"configurationVariant": "wall-67db",
+			"description": "Robot follows a pseudorandom trajectory, part 2.",
+			"environmentVideo": "videos/dichasus-ad23.mkv",
+			"filename": "tfrecords/dichasus-ad23.tfrecords"
+		},
+		{
+			"configurationVariant": "wall-67db",
+			"description": "Robot follows a meandering trajectory behind the metallic wall. LoS partially obstructed for antenna on top of container.",
+			"environmentVideo": "videos/dichasus-ad24.mkv",
+			"filename": "tfrecords/dichasus-ad24.tfrecords"
+		},
+		{
+			"configurationVariant": "wall-67db",
+			"description": "Short trajectory behind the metallic wall, higher robot speed.",
+			"environmentVideo": "videos/dichasus-ad25.mkv",
+			"filename": "tfrecords/dichasus-ad25.tfrecords"
+		},
+		{
+			"configurationVariant": "wall-67db",
+			"description": "Robot drives around near the metallic wall, higher robot speed.",
+			"environmentVideo": "videos/dichasus-ad26.mkv",
+			"filename": "tfrecords/dichasus-ad26.tfrecords"
+		},
+		{
+			"configurationVariant": "wall-67db",
+			"description": "Robot drives around in the whole measurement area, sometimes very close to the wall, very high robot speed.",
+			"environmentVideo": "videos/dichasus-ad27.mkv",
+			"filename": "tfrecords/dichasus-ad27.tfrecords"
+		}
+	],
+	"year": 2024
+}

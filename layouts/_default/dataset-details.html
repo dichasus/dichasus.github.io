@@ -69,6 +69,15 @@
 			{{ end }}
 		</p>
 
+		{{ with .Params.visualization }}
+		<div class="card mb-4">
+			<div class="card-body d-flex flex-wrap align-items-center justify-content-between gap-3">
+				<div><h2 class="h5 mb-1">Explore this dataset in 3D</h2><p class="mb-0">Compare measured radiation patterns and power delay profiles with ray-traced paths from Sionna RT.</p></div>
+				<a class="btn btn-dark" href="{{ . | relURL }}">Open 3D visualization</a>
+			</div>
+		</div>
+		{{ end }}
+
 		<div class="container-fluid">
 			<section>
 				<div class="row">

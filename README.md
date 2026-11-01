@@ -13,3 +13,6 @@ During development, you may want to use
 hugo serve
 ```
 to build and serve the static HTML site locally at [http://localhost:1313/](http://localhost:1313/).
+
+The fullscreen adxx viewer is in `static/visualization/adxx/`. See
+[its short developer README](tools/adxx-viewer/README.md) for the data-reproduction commands.

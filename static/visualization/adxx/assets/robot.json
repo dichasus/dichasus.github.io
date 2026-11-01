@@ -1,0 +1,38 @@
+{
+  "sourcePhoto": "https://raw.githubusercontent.com/dichasus/dichasus.github.io/main/content/datasets/data/dichasus-adxx/photosAll/robot.jpg",
+  "sourcePhotoSha256": "b6aef2f9d7b296b03604a921a5fae09b7922453a3822447a36efe0e87e4eb503",
+  "generator": "scripts/build_robot.py",
+  "triangles": 2352,
+  "materials": 8,
+  "txAnchorMeters": [
+    0,
+    1.07,
+    0
+  ],
+  "note": "Photo-informed visual approximation; original simulation height and RF geometry unchanged.",
+  "bytes": 206400,
+  "gzipBytes": 42760,
+  "photoMaterial": {
+    "photo": "robot.jpg",
+    "quad": [
+      2605,
+      2130,
+      2605,
+      2218,
+      2735,
+      2209,
+      2735,
+      2138
+    ],
+    "detail": false,
+    "sampleSize": 128,
+    "normalizeMean": false,
+    "rectification": "projective homography",
+    "file": "robot-bumper.png",
+    "bytes": 45512,
+    "sha256": "235dee2beffc14aa7b1d75893432775053abe06b223a976f5f0c56b32464a788",
+    "sourceSha256": "b6aef2f9d7b296b03604a921a5fae09b7922453a3822447a36efe0e87e4eb503",
+    "sourceUrl": "https://raw.githubusercontent.com/dichasus/dichasus.github.io/main/content/datasets/data/dichasus-adxx/photosAll/robot.jpg"
+  },
+  "textureBytes": 1008
+}
