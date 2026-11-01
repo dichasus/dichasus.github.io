@@ -14,5 +14,5 @@ hugo serve
 ```
 to build and serve the static HTML site locally at [http://localhost:1313/](http://localhost:1313/).
 
-The fullscreen adxx viewer is in `static/visualization/adxx/`. See
-[its short developer README](tools/adxx-viewer/README.md) for the data-reproduction commands.
+The fullscreen 3D viewer supports adxx and dcxx. See
+[the developer README](tools/radio-viewer/README.md) for its source files and data-reproduction commands.
